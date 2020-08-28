@@ -1,3 +1,5 @@
+![Screenshot of desktop](https://i.imgur.com/5j28PBn.png)
+
 This is my humble collection of configuration files and command line scripts. 
 
 My setup:
