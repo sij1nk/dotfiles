@@ -1,0 +1,16 @@
+#!/bin/sh
+# Values are hardcoded for my current setup
+
+result=$(echo "laptop\nexternal\nboth\nmanual" | dmenu -r -i -p "Select output:" -l 4 -fn "monospace:size=12" )
+
+case "$result" in
+	laptop)   xrandr --output eDP-1 --auto --primary --output DP-1 --off
+		  ;;
+	external) xrandr --output eDP-1 --off --output DP-1 --primary --mode 1440x900 --rate 74.98
+	          ;;
+	both)     xrandr --output eDP-1 --auto --output DP-1 --primary --mode 1440x900 --rate 74.98 --left-of eDP-1
+                  ;;
+	manual)   arandr
+	          ;;
+esac
+wallpaperctl &

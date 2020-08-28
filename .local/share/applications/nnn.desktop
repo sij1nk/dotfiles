@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=File manager
+Exec=/usr/bin/alacritty -e n %u

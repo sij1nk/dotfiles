@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export NNN_COLORS='3333'
+export NNN_OPTS='dHo'
+export NNN_BMS='d:~/Downloads;r:~/Repos;c:~/.config;'
+export LC_COLLATE="C"
+
+nnn

@@ -1,0 +1,10 @@
+*font: monospace:size=12
+
+! dwm colors
+*.normbgcolor: #000000
+*.normfgcolor: #ebdbb2
+*.normbordercolor: #282828
+*.selbgcolor: #d79921
+*.selfgcolor: #282828
+*.selbordercolor: #fabd2f
+*.borderpx: 1

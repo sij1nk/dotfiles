@@ -1,0 +1,14 @@
+#!/bin/sh
+
+export WINEPREFIX="/home/rg/Games/osu"
+export WINEARCH=win32
+export WINEDLLPATH="/home/rg/Games/osu/drive_c/osu/bin32"
+export vblank_mode=0
+export STAGING_AUDIO_DURATION=50000
+export PATH=/home/rg/Links/osu-runner/bin:$PATH
+
+cd ~/Games/osu/drive_c/osu
+
+~/Links/osu-runner/bin/wine osu!.exe "$@"
+
+

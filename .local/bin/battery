@@ -1,0 +1,14 @@
+#!/bin/sh
+
+status=$(cat /sys/class/power_supply/BAT0/status)
+cap=$(cat /sys/class/power_supply/BAT0/capacity)
+
+if [ $cap -eq 100 ]; then
+ 	icon="🔋"
+elif [ $cap -lt 15 ]; then
+	icon="❗"
+else
+	[ "$status" = "Charging" ] && icon="🔌" || icon="⚡"
+fi
+
+printf "%s%-3i\n" "$icon" $cap

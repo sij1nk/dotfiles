@@ -1,0 +1,14 @@
+
+[Default Applications]
+application/x-bittorrent=torrent.desktop
+application/x-directory=nnn.desktop
+application/pdf=zathura.desktop
+applicaton/epub+zip=zathura.desktop
+directory/inode=nnn.desktop
+x-scheme-handler/magnet=torrent.desktop
+text/html=brave-browser.desktop
+text/plain=nvim.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+mimetype=nvim.desktop
+mimetypes=nvim.desktop

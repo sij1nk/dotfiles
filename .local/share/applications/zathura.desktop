@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Zathura
+Comment=A minimalistic document viewer
+Exec=/usr/bin/alacritty -e zathura %u

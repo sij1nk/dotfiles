@@ -1,0 +1,19 @@
+#!/bin/sh
+
+result=$(echo "shutdown\nreboot\nsuspend\nblind" | dmenu -r -i -p "Select operation:" -l 4)
+
+case "$result" in
+	shutdown)
+		shutdown now
+		;;
+	reboot)
+		reboot
+		;;
+	suspend)
+		slock &
+		systemctl suspend
+		;;
+	blind)
+		xset dpms force suspend
+		;;
+esac

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+name=$(echo /tmp/transmission.log | tail -n 5 | grep "State changed from \"Incomplete\" to \"Complete\"" | sed "s/^\[.*\]//;s/State changed.*//g")
+
+notify-send "Torrent" "Finished downloading:\n$name"

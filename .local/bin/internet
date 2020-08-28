@@ -1,0 +1,9 @@
+#!/bin/sh
+# Can either display Ethernet or WiFi connection status (with signal strength in the latter case)
+
+globe="🌍"
+if [ $(cat /sys/class/net/e*/operstate) = "up" ]; then
+	echo "${globe}Eth"
+elif [ $(cat /sys/class/net/w*/operstate) = "up" ]; then
+	echo "${globe}$(grep "^\s*w" /proc/net/wireless | awk '{printf "%-3i\n", int ($3 * 100 / 70) }')"
+fi

@@ -1,0 +1,13 @@
+# Output directory and format
+-o ~/Downloads/%(title)s.%(ext)s
+
+# Ignore errors (e.g. when a video in a playlist is not available)
+-i
+
+# Restrict filenames to ASCII characters, and avoid "&" and spaces
+--restrict-filenames
+
+# Do not overwrite files
+-w
+
+--add-metadata

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+playlists=$(mpc lsplaylists)
+
+result=$(echo "$playlists" | dmenu -r -i -p "Choose a playlist:" -l $(echo "$playlists" | wc -l))
+
+if [ -n "$result" ]; then
+	mpc clear
+	mpc load "$result"
+	notify-send "Music" "Loading playlist: $result"
+	mpc play
+fi

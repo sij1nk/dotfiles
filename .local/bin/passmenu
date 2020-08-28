@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dmenu -fn "monospace:size=12" -P -b -p "$1" <&- && echo
