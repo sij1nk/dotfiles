@@ -44,23 +44,29 @@ alias \
 ### PROMPT STUFF ###########################################
 ############################################################
 
-# Set up colors from Xresources
-colors=$(xrdb -q)
+# TODO: fix conditional
+if [ -n $DISPLAY ]; then
 
-get_xres() {
-  echo $colors | grep $1 | awk '{print $2}'
-}
+	# Set up colors from Xresources
+	colors=$(xrdb -q)
 
-# These are the colors I'm currently using in my prompts
-# The colors could alternatively be exported as env variables
-black=$(get_xres "*color0:")
-red=$(get_xres "*color9:")
-yellow=$(get_xres "*color11:")
-lgrey=$(get_xres "*color7:")
+	get_xres() {
+	  echo $colors | grep $1 | awk '{print $2}'
+	}
 
-# Starting out in insert mode - default prompt and cursor
-echo -ne '\e[5 q'
-PS1="%K{$black} %F{$yellow}%c%f %B%F{$red}❯%b%f%k "
+	# These are the colors I'm currently using in my prompts
+	# The colors could alternatively be exported as env variables
+	red=$(get_xres "*color9:")
+	yellow=$(get_xres "*color11:")
+	lgrey=$(get_xres "*color7:")
+
+	# Starting out in insert mode - default prompt and cursor
+	echo -ne '\e[5 q'
+	PS1="%F{$yellow}%c%f %B%F{$red}❯%b%f "
+
+else
+	PS1=">"
+fi
 
 # Executes every time the keymap changes
 # (changing between vi modes)

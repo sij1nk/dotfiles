@@ -1,6 +1,6 @@
 #!/bin/sh
 
-result=$(ls -1 ${XDG_CONFIG_HOME}/X11/themes | dmenu -r -i -p "Select color theme:" -l 2)
+result=$(ls -1 ${XDG_CONFIG_HOME}/X11/themes | dmenu -r -i -p "Select color theme:" -l 9)
 
 [ -z "$result" ] && exit
 

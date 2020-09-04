@@ -1,4 +1,5 @@
 path+=('/home/rg/.local/bin')
+path+=('.')
 export PATH
 
 export EDITOR="nvim"
@@ -24,5 +25,5 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 if systemctl -q is-active graphical.target && [ ! $DISPLAY ] && [ $XDG_VTNR -eq 1 ] ; then
-	[ $(fgconsole 2> /dev/null) -eq 1 ] && exec startx -- -keeptty $DISPLAY -ardelay 300 -arinterval 25 &> /dev/null
+	[ $(fgconsole 2> /dev/null) -eq 1 ] && exec startx -- -keeptty $DISPLAY -ardelay 300 -arinterval 20 &> /dev/null
 fi

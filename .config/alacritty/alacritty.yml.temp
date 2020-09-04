@@ -136,7 +136,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -182,8 +182,8 @@ colors:
     # The dimmed foreground color is calculated automatically if it is not present.
     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
     # is `false`, the normal foreground color will be used.
-    dim_foreground: '#9a9a9a'
-    bright_foreground: '#ffffff'
+    dim_foreground: %cldfg%
+    bright_foreground: %clbfg%
 
   # Cursor colors
   #

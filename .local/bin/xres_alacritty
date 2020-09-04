@@ -19,6 +19,11 @@ background=$(xrdb -query | awk '/*background/ { print $2 }')
 sed -i "s/%clfg%/\x27${foreground}\x27/g" $target_file.in
 sed -i "s/%clbg%/\x27${background}\x27/g" $target_file.in
 
+dim_foreground=$(xrdb -query | awk '/*dim_foreground/ { print $2 }')
+bright_foreground=$(xrdb -query | awk '/*bright_foreground/ { print $2 }')
+sed -i "s/%cldfg%/\x27${dim_foreground}\x27/g" $target_file.in
+sed -i "s/%clbfg%/\x27${bright_foreground}\x27/g" $target_file.in
+
 cursor_background=$(xrdb -query | awk '/*cursor_background/ { print $2 }')
 cursor_foreground=$(xrdb -query | awk '/*cursor_foreground/ { print $2 }')
 sed -i "s/%clcfg%/\x27${cursor_foreground}\x27/g" $target_file.in
