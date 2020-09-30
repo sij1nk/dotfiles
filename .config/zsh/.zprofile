@@ -1,5 +1,6 @@
 path+=('/home/rg/.local/bin')
 path+=('.')
+path+=('/home/rg/Repos/SICStus/bin')
 export PATH
 
 export EDITOR="nvim"
@@ -18,6 +19,11 @@ export LESSHISTFILE="-"
 export WGETRC="$HOME/.config/wget/wgetrc"
 export GNUPGHOME="$HOME/.local/share/gnupg"
 export SUDO_ASKPASS="$HOME/.local/bin/passmenu"
+export NODE_REPL_HISTORY=""
+export CARGO_HOME="$HOME/.local/share/cargo"
+export RUSTUP_HOME="$HOME/.local/share/rustup"
+export FZF_DEFAULT_COMMAND='ag -p ~/.config/ag/.ignore -g ""'
+export FZF_DEFAULT_OPTS="--layout=reverse --multi --height=40% --min-height=10"
 
 # x:-y -  use y if x does not exist
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
