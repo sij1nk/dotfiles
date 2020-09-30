@@ -100,6 +100,9 @@ precmd () {
   fi
 }
 
+# Ignore CDPATH when tab completing
+zstyle ':completion*:complete:(cd|pushd):*' tag-order 'local-directories named-directories'
+
 ### KEYBINDINGS ############################################
 ############################################################
 
