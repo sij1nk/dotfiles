@@ -26,7 +26,8 @@ alias \
 	p="sudo pacman" \
 	tmr="transmission-remote" \
 	nvidia-settings="nvidia-settings --config=$HOME/.config/nvidia-settings-rc" \
-	dgit="git --git-dir $HOME/Repos/dotfiles/.git --work-tree=$HOME"
+	dgit="git --git-dir $HOME/Repos/dotfiles/.git --work-tree=$HOME" \
+	z="zathura"
 
 # File aliases
 alias \
