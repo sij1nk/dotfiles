@@ -1,9 +1,20 @@
-" Plugins
+" ======== plugins ========
 call plug#begin('~/.local/share/nvim/site/autoload')
 
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
+
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'Raimondi/delimitMate'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
+
 
 " ======== set stuff ========
 set number relativenumber
@@ -16,6 +27,12 @@ set smartindent
 set wrap
 set incsearch
 set ignorecase
+
+" Move .viminfo file to a reasonable location
+set viminfo='1000,n~/.config/nvim.viminfo
+
+" Where ins-completion gets its ideas from
+set complete+=i,t
 
 set modeline
 set modelines=5
@@ -49,9 +66,10 @@ set nowb
 set noswapfile
 
 " Tab size
-" TODO: Should be using smarttabs instead
+" TODO: Should be using smart something instead
 set tabstop=4
 set shiftwidth=4
+set smarttab
 
 " Autoread when file is changed from the outside
 set autoread
@@ -64,9 +82,16 @@ filetype plugin on
 filetype indent on
 syntax enable
 
-autocmd vimenter * colorscheme gruvbox
+" ======== netrw ========
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
 
-" Light or dark theme
+" ======== themes ========
+" autocmd vimenter * colorscheme gruvbox
+colo seoul256
+let g:seoul256_background = 234
+
 let theme = system('readlink -f ${XDG_CONFIG_HOME}/X11/current_theme | sed "s/^.*_//g"')
 if theme == "light\n"
 	set bg=light
@@ -101,9 +126,6 @@ noremap  <leader>c <Cmd>noh<CR>
 " Quicker access to Ex commands
 nnoremap ; :
 xnoremap ; :
-
-" Find files
-noremap <C-p> :fin
 
 " Space jumps to end of line
 nnoremap <Space> $
