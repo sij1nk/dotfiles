@@ -6,6 +6,7 @@ Plug 'junegunn/seoul256.vim'
 
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'prettier/vim-prettier'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'Raimondi/delimitMate'
@@ -60,9 +61,8 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore+=**/node_modules/**,**/.git/**,**/.idea/**
 
-" Linebreak on 200 characters
-set lbr
-set tw=200
+set linebreak
+set textwidth=80
 
 " Disable backups - most stuff is in VCS anyway
 set nobackup
@@ -78,6 +78,14 @@ set smarttab
 " Autoread when file is changed from the outside
 set autoread
 autocmd FocusGained,BufEnter * checktime
+
+" delimitMate options
+let delimitMate_expand_cr=2
+let delimitMate_expand_space=1
+
+" vim-prettier options
+let g:prettier#exec_cmd_path="/usr/bin/prettier"
+let g:prettier#exec_cmd_async=1
 
 " }}}
 
@@ -134,7 +142,9 @@ endfunction
 inoremap <silent> <Tab> <C-R>=CleverTab()<CR>
 
 " Non-emacs ins-completion keybinds
-inoremap <CR> <C-R>=pumvisible() ? "\<lt>C-y>" : "\<lt>CR>"<CR>
+
+" This line breaks delimitMate CR expansion
+" inoremap <silent> <CR> <C-R>=pumvisible() ? "\<lt>C-y>" : "\<lt>CR>"<CR>
 inoremap <C-j> <C-R>=pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"<CR>
 inoremap <C-k> <C-R>=pumvisible() ? "\<lt>C-p>" : "\<lt>C-j>"<CR>
 inoremap <S-Tab> <C-R>=pumvisible() ? "\<lt>C-p>" : "\<lt>S-Tab>"<CR>
@@ -157,6 +167,9 @@ noremap  <leader>c <Cmd>noh<CR>
 
 " Shortcut to vimrc
 nnoremap <leader>vrc <Cmd>vsplit $MYVIMRC<CR>
+
+" Source vimrc
+nnoremap <leader>src <Cmd>source $MYVIMRC<CR>
 
 " fzf
 noremap <C-p> <Cmd>Files<CR>
@@ -201,7 +214,7 @@ autocmd!
 augroup END
 
 " Reload sxhkd bindings after writing the file
-augroup StuffReload
+augroup ReloadStuff
 autocmd!
 	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
@@ -214,7 +227,12 @@ autocmd!
 	autocmd BufWritePost .zshrc !source ${ZDOTDIR}/.zshrc
 augroup END
 
-augroup VimReload
+augroup FormatStuff
+autocmd!
+	autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.sass,*.html PrettierAsync
+augroup END
+
+augroup ReloadVimrc
 autocmd!
 	autocmd BufRead $MYVIMRC
 				\ loadview |
