@@ -20,13 +20,16 @@ setopt HIST_IGNORE_DUPS
 
 # Command aliases
 alias \
+	cp="cp -v" \
+	mv="mv -v" \
+	mkdir="mkdir -p" \
 	ls="LC_COLLATE=C ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	please='sudo $(fc -nl -1)' \
 	p="sudo pacman" \
 	tmr="transmission-remote" \
 	nvidia-settings="nvidia-settings --config=$HOME/.config/nvidia-settings-rc" \
-	dgit="git --git-dir $HOME/Repos/dotfiles/.git --work-tree=$HOME" \
+	dgit="/usr/bin/git --git-dir=$HOME/Repos/dotfiles/.git --work-tree=$HOME" \
 	z="zathura"
 
 # File aliases
@@ -37,7 +40,7 @@ alias \
 	vrc="nvim ${XDG_CONFIG_HOME}/nvim/init.vim" \
 	drc="nvim ${XDG_CONFIG_HOME}/dunst/dunstrc" \
 	nrc="nvim ${XDG_CONFIG_HOME}/ncmpcpp/config" \
-	arc="nvim ${XDG_CONFIG_HOME}/alacritty/alacritty.yml" \
+	arc="nvim ${XDG_CONFIG_HOME}/alacritty/alacritty.yml.temp" \
 	zrc="nvim ${ZDOTDIR}/.zshrc" \
 	mrc="nvim ${XDG_CONFIG_HOME}/mutt/muttrc" \
 	xrs="nvim ${XDG_CONFIG_HOME}/X11/.Xresources"

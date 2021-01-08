@@ -4,6 +4,7 @@ call plug#begin('~/.local/share/nvim/site/autoload')
 " Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 
+Plug 'junegunn/goyo.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'prettier/vim-prettier'
@@ -13,6 +14,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 " }}}
@@ -62,7 +64,7 @@ set wildmode=list:longest,full
 set wildignore+=**/node_modules/**,**/.git/**,**/.idea/**
 
 set linebreak
-set textwidth=80
+set textwidth=100
 
 " Disable backups - most stuff is in VCS anyway
 set nobackup
@@ -86,6 +88,9 @@ let delimitMate_expand_space=1
 " vim-prettier options
 let g:prettier#exec_cmd_path="/usr/bin/prettier"
 let g:prettier#exec_cmd_async=1
+
+" rust options
+let g:rustfmt_autosave=1
 
 " }}}
 
@@ -116,14 +121,28 @@ let g:lightline = {
 let theme = system('readlink -f ${XDG_CONFIG_HOME}/X11/current_theme | sed "s/^.*_//g"')
 if theme == "light\n"
 	set bg=light
-	autocmd vimenter * highlight EndOfBuffer ctermfg=15
 	highlight EndOfBuffer ctermfg=15
 elseif theme == "dark\n"
 	set bg=dark
-	" autocmd vimenter * highlight Normal ctermbg=none
-	" autocmd vimenter * highlight EndOfBuffer ctermfg=0
-	" highlight Normal ctermbg=none
-	" highlight EndOfBuffer ctermfg=0
+	highlight Normal ctermbg=none
+	highlight EndOfBuffer ctermfg=0
+elseif theme == "black\n"
+	set bg=dark
+	augroup Colours
+	autocmd!
+		autocmd vimenter * highlight Normal ctermbg=232
+		autocmd vimenter * highlight EndOfBuffer ctermfg=232
+		autocmd vimenter * highlight Folded ctermbg=233
+		autocmd vimenter * highlight LineNr ctermbg=233
+		autocmd vimenter * highlight CursorLineNr ctermbg=234
+		autocmd vimenter * highlight FoldColumn ctermbg=233
+	augroup END
+	highlight Normal ctermbg=232
+	highlight EndOfBuffer ctermfg=232
+	highlight Folded ctermbg=233
+	highlight LineNr ctermbg=233
+	highlight CursorLineNr ctermbg=234
+	highlight FoldColumn ctermbg=233
 endif
 
 " }}}
@@ -154,13 +173,15 @@ vnoremap <C-c> "+y
 nnoremap Q @@
 
 " Increment number
-noremap <C-i> <C-a>
+" inoremap <C-i> <C-a>
 
 " Substitute
 nnoremap <leader>sg :%s//g<LEFT><LEFT>
 nnoremap <leader>sc :%s//gc<LEFT><LEFT><LEFT>
 xnoremap <leader>sg :s//g<LEFT><LEFT>
 xnoremap <leader>sc :s//gc<LEFT><LEFT><LEFT>
+noremap  <leader>df <Cmd>Goyo<CR>
+noremap  <leader>ndf <Cmd>Goyo!<CR>
 
 " Remove search highlights
 noremap  <leader>c <Cmd>noh<CR>
@@ -242,5 +263,17 @@ autocmd!
 augroup END
 
 " }}}
+
+" sessions {{{
+	let session_dir='~/.config/nvim'
+
+	augroup TypelongerSession
+	autocmd!
+		autocmd VimLeave ~/Repos/typelonger/**/* execute 'mksession! ' . session_dir . '/typelonger.vim'
+		autocmd VimEnter ~/Repos/typelonger nested execute 'source ' . session_dir . '/typelonger.vim'
+	augroup END
+
+" }}}
+
 
 " vim: foldcolumn=2 foldmethod=marker

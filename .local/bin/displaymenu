@@ -8,7 +8,7 @@ case "$result" in
 		  ;;
 	external) xrandr --output eDP-1 --off --output DP-1 --primary --mode 1440x900 --rate 74.98
 	          ;;
-	both)     xrandr --output eDP-1 --auto --output DP-1 --primary --mode 1440x900 --rate 74.98 --left-of eDP-1
+	both)     xrandr --output eDP-1 --auto --output DP-1 --primary --mode 1440x900 --rate 74.98 --above eDP-1
                   ;;
 	manual)   arandr
 	          ;;

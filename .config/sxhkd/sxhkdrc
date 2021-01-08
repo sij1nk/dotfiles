@@ -1,4 +1,4 @@
-### PROGRAMS ###
+# Programs {{{
 # Browser
 super + w
 	$BROWSER
@@ -9,13 +9,18 @@ super + c
 
 # File browser
 super + f
-	alacritty -e n
+	alacritty -t nnn -e n
 
 # Music player
 super + n
-	alacritty -e ncmpcpp -s browser
+	alacritty -t ncmpcpp -e ncmpcpp
 
-### MEDIA ###
+# E-mail client
+super + t
+	alacritty -t neomutt -e neomutt
+#}}}
+
+# Media {{{
 # Volume up
 super + bracketright
 	volumectl up
@@ -49,12 +54,9 @@ super + shift + bracketright
 # Seek backward
 super + shift + bracketleft
 	mpc seek -00:00:10
+# }}}
 
-# Playlist menu
-super + F8
-	playlistmenu
-
-### SCREENS ###
+# Brightness {{{
 # Increase brightness
 super + apostrophe
 	lightctl up
@@ -62,11 +64,9 @@ super + apostrophe
 # Decrease brightness
 super + semicolon
 	lightctl down
+#}}}
 
-# Display menu
-super + F11
-	displaymenu
-
+# Screenshots {{{
 # Take screenshot of both screens
 Print
  	screenshot
@@ -82,16 +82,16 @@ super + control + F1
 # Take screenshot of monitor 2
 super + control + F2
 	screenshot 2
+#}}}
 
-
-### MISC STUFF ###
-# Layout menu
-super + backslash
-	keyboardctl menu
-
+# Menus {{{
 # Shutdown menu
 super + F12
 	shutdownmenu
+
+# Display menu
+super + F11
+	displaymenu
 
 # Mount menu
 super + F10
@@ -101,6 +101,17 @@ super + F10
 super + F9
 	ytdlmenu "$(xclip -o)"
 
+# Playlist menu
+super + F8
+	playlistmenu
+
 # Theme selector menu
 super + F7
 	thememenu
+
+# Layout menu
+super + F6
+	keyboardctl menu
+# }}}
+
+# vim: foldcolumn=2 foldmethod=marker

@@ -26,9 +26,9 @@ fi
 wallpaperctl # Wallpaper
 slock & # Lock the screen on login
 xdotool mousemove 720 450   # Move mouse to external screen (only makes sense if external is connected)
-redshift -t 5200:3000 & # Night light
+redshift & # Night light
 slock-when-suspended & # Lock the screen if it turns off
-xcompmgr & # Start compositor (needed for transparency)
+# xcompmgr & # Start compositor (needed for transparency)
 unclutter & # Hide cursor when inactive
 dwmblocks & # Top bar
 dunst & # Notifications
