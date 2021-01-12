@@ -16,25 +16,32 @@ export CDPATH="$HOME:.."
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
-export LESSHISTFILE="-"
-export WGETRC="$HOME/.config/wget/wgetrc"
-export TASKRC="$HOME/.config/taskwarrior/taskrc"
-export GNUPGHOME="$HOME/.local/share/gnupg"
-export SUDO_ASKPASS="$HOME/.local/bin/passmenu"
-export PASSWORD_STORE_DIR="$HOME/.local/share/password-store"
 
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export TASKRC="$XDG_CONFIG_HOME/taskwarrior/taskrc"
+export AUDACITY_PATH="$XDG_CONFIG_HOME/Audacity"
+export PYENV_ROOT="$XDG_CONFIG_HOME/pyenv"
+
+export TASKDATA="$XDG_DATA_HOME/task"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
+export __GL_SHADER_DISK_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export PSQL_HISTORY="$XDG_DATA_HOME/psql_history"
+export NUGET_PACKAGES="$XDG_DATA_HOME/NuGet/packages"
+export HISTFILE="$XDG_DATA_HOME/bash_history"
+export WINEPREFIX="$XDG_DATA_HOME/wine"
+
+export LESSHISTFILE="-"
 export NODE_REPL_HISTORY=""
-export CARGO_HOME="$HOME/.local/share/cargo"
-export RUSTUP_HOME="$HOME/.local/share/rustup"
+export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
+export SUDO_ASKPASS="$HOME/.local/bin/passmenu"
 export FZF_DEFAULT_COMMAND='ag -p ~/.config/ag/.ignore -g ""'
 export FZF_DEFAULT_OPTS="--layout=reverse --multi --height=40% --min-height=10"
-
 export ASPNETCORE_Kestrel__Certificates__Default__Password="localhost"
-export ASPNETCORE_Kestrel__Certificates__Default__Path="/home/rg/.dotnet/corefx/cryptography/x509stores/localhost/localhost.pfx"
-# x:-y -  use y if x does not exist
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-
+export ASPNETCORE_Kestrel__Certificates__Default__Path="$HOME/.dotnet/corefx/cryptography/x509stores/localhost/localhost.pfx"
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 

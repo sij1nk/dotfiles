@@ -26,10 +26,12 @@ alias \
 	ls="LC_COLLATE=C ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	please='sudo $(fc -nl -1)' \
-	p="sudo pacman" \
+	vim="vim -i NONE" \
 	tmr="transmission-remote" \
 	nvidia-settings="nvidia-settings --config=$HOME/.config/nvidia-settings-rc" \
 	dgit="/usr/bin/git --git-dir=$HOME/Repos/dotfiles/.git --work-tree=$HOME" \
+	mvn="mvn --global-settings \"$XDG_DATA_HOME/m2/settings.xml\"" \
+	code="code --extensions-dir $XDG_DATA_HOME/vscode/extensions"
 	z="zathura"
 
 # File aliases
