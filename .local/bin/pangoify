@@ -1,0 +1,19 @@
+#!/bin/sh
+# Translate input into Pango markup to be used on the status bar
+# Requires: xgetres
+
+while getopts 't:sc:' c
+do
+    case $c in
+	t) text="$OPTARG" ;;
+	s) is_symbol=1 ;;
+	c) color="$OPTARG" ;;
+    esac
+done
+
+[ $is_symbol ] && query="symbol" defcolor=15 || query="text" defcolor=2
+size=$(xgetres statusbar."$query".size)
+rise=$(xgetres statusbar."$query".rise)
+color=$(xgetres *color"${color:-$defcolor}")
+
+printf '<span rise="%s" size="%s" foreground="%s">%s</span>' "$rise" "$size" "$color" "$text"
