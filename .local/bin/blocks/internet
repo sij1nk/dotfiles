@@ -6,9 +6,10 @@ if [ $(cat /sys/class/net/e*/operstate) = "up" ]; then
 elif [ $(cat /sys/class/net/w*/operstate) = "up" ]; then
     quality="$(grep "^\s*w" /proc/net/wireless | awk '{printf "%-3i\n", int ($3 * 100 / 70) }')"
     if [ $quality -lt 25 ]; then
-	color="-c 7"
+	color="-c severe"
 	icon='󰤯'
     elif [ $quality -lt 50 ]; then
+	color="-c warning"
 	icon='󰤟'
     elif [ $quality -lt 75 ]; then
 	icon='󰤢'

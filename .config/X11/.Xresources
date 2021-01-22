@@ -29,8 +29,11 @@ Xcursor.size: 32
 *color12: #9cbdbb
 *color13: #277685
 *color14: #624943
-*color15: #7c2f1f
+*color15: #b24d1b
+*color15b: #7c2f1f
 
+*colorwarning: #f4d243
+*colorsevere: #de453b
 
 ! same as color2
 term.foreground: #f9f9f9
@@ -48,8 +51,8 @@ dwm.normbgcolor: #121a27
 dmenu.normfgcolor: #bbb9c7
 dwm.normfgcolor: #bbb9c7
 ! same as color15
-dmenu.selbgcolor: #7c2f1f
-dwm.selbgcolor: #7c2f1f
+dmenu.selbgcolor: #b24d1b
+dwm.selbgcolor: #b24d1b
 ! same as color2
 dmenu.selfgcolor: #f9f9f9
 dwm.selfgcolor: #f9f9f9

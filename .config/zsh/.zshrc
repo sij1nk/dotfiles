@@ -37,7 +37,8 @@ alias \
     mvn="mvn --global-settings \"$XDG_DATA_HOME/m2/settings.xml\"" \
     code="code --extensions-dir $XDG_DATA_HOME/vscode/extensions" \
     z="zathura" \
-    fzf="fzf --color='bg+:15,info:13,border:-1,gutter:-1,spinner:5,hl:7,fg:3,header:6,fg+:10,pointer:15,marker:6,prompt:-1,hl+:2'"
+    fzf="fzf --color='bg+:15,info:13,border:-1,gutter:-1,spinner:5,hl:7,fg:3,header:6,fg+:10,pointer:15,marker:6,prompt:-1,hl+:2'" \
+    e="nvim"
 
 # }}}
 
