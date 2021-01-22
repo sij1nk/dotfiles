@@ -1,153 +1,93 @@
-" plugins {{{
+" Plugins {{{
 call plug#begin('~/.local/share/nvim/site/autoload')
 
-" Plug 'morhetz/gruvbox'
-Plug 'junegunn/seoul256.vim'
-
-Plug 'junegunn/goyo.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'prettier/vim-prettier'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'Raimondi/delimitMate'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'rust-lang/rust.vim'
+	Plug 'rust-lang/rust.vim'           " Rust editing
+	Plug 'leafgarland/typescript-vim'   " Typescript editing
+	Plug 'peitalin/vim-jsx-typescript'  " JSX/TSX editing
+	Plug 'prettier/vim-prettier'        " 'Prettier' linter integration
+	Plug 'tpope/vim-surround'           " Surround keybinds
+	Plug 'tpope/vim-commentary'         " Commenting keybinds
+	Plug 'Raimondi/delimitMate'         " Automatically close characters that come in pairs
+	Plug 'AndrewRadev/splitjoin.vim'    " Switch between single-line and multi-line statements
+	Plug 'junegunn/fzf.vim'             " 'Fzf' integration
+	Plug 'itchyny/lightline.vim'        " Status line
+	Plug 'junegunn/seoul256.vim'        " Color theme
+	Plug 'junegunn/goyo.vim'            " Distraction-free mode
 
 call plug#end()
 " }}}
 
-" set stuff {{{
-set number relativenumber
+" Settings {{{
 
-" Copy indent from current line when starting a new line
-set autoindent
+	set number         " Display line numbers
+	set ruler          " Display line and column number
+	set wrap           " Wrap lines longer that exceed the textwidth or window width
+	set linebreak      " Try not to break up words when wrapping if possible
+	set autoindent     " Copy indent from current line when starting new line
+	set smartindent    " Handle indent size changes correctly
+	set smarttab       " Respect shiftwidth when entering tab in front of a line
+	set incsearch      " Show matches while typing search string
+	set ignorecase     " Ignore case in search patterns
+	set smartcase      " Search becomes case sensitive when uppercase chars are present
+	set modeline       " Read modelines
+	set noshowmode     " Don't display -- MODE -- at the bottom
+	set splitbelow     " Prefer putting new splits below current one
+	set splitright     " Prefer putting new splits right to the current one
+	set writebackup    " Make backups when overwriting files...
+	set nobackup       " ...but remove them after the files were successfully written
+	set noswapfile     " No lame swapfiles
+	set autoread       " Auto read when file is changed from the outside
+	set magic          " Handle special characters in search patterns in a sane way
+	set showmatch      " Highlight matching bracket when inserting bracket
+	set hidden         " Keep buffers loaded when they're abandoned
+	set wildmenu       " Enhanced command-line completion
 
-" Smart autoindenting for programming
-set smartindent
-set wrap
-set incsearch
-set ignorecase
+	set complete   +=i,t    " Where ins-completion gets its ideas from
+	set scrolloff   =3      " Keep this many lines above/below cursor when scrolling
+	set matchtime   =1      " Show matching brackets for {n}/10s of a second"
+	set path        =.*/**,/usr/include " Search down into subfolders and header files
+	set viminfo     ='1000,n~/.config/nvim.viminfo " Move .viminfo file to a reasonable location
+	set history     =1000   " History of : commands and search patterns
+	set textwidth   =80     " Wrap lines longer than {n}
+	set shiftwidth  =4      " Indent size
+	set softtabstop =4      " Number of spaces that a tab counts for
+	set wildmode    =list:longest,full             " Determines what the cmd-line completion key does
+	set wildignore +=**/node_modules/**,**/.git/**,**/.idea/** " Paths cmd-line completion should ignore
 
-" Move .viminfo file to a reasonable location
-set viminfo='1000,n~/.config/nvim.viminfo
+	let delimitMate_expand_cr=2
+	let delimitMate_expand_space=1
 
-" Where ins-completion gets its ideas from
-set complete+=i,t
+	let g:prettier#exec_cmd_path="/usr/bin/prettier"
+	let g:prettier#exec_cmd_async=1
 
-set modeline
-set modelines=5
+	let g:rustfmt_autosave=1
 
-" Don't display -- MODE -- at the bottom
-set noshowmode
-
-" Search becomes case sensitive when uppercase chars are present
-set smartcase
-set splitbelow splitright
-set history=500
-set magic
-set showmatch
-set ruler
-set hid
-set scrolloff=3
-set matchtime=1
-
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
-set path=.*/**
-
-" Display all matching files when we tab complete
-set wildmenu
-set wildmode=list:longest,full
-set wildignore+=**/node_modules/**,**/.git/**,**/.idea/**
-
-set linebreak
-set textwidth=100
-
-" Disable backups - most stuff is in VCS anyway
-set nobackup
-set nowb
-set noswapfile
-
-" Tab size
-" TODO: Should be using smart something instead
-set tabstop=4
-set shiftwidth=4
-set smarttab
-
-" Autoread when file is changed from the outside
-set autoread
-autocmd FocusGained,BufEnter * checktime
-
-" delimitMate options
-let delimitMate_expand_cr=2
-let delimitMate_expand_space=1
-
-" vim-prettier options
-let g:prettier#exec_cmd_path="/usr/bin/prettier"
-let g:prettier#exec_cmd_async=1
-
-" rust options
-let g:rustfmt_autosave=1
+	let g:netrw_banner=0
+	let g:netrw_preview=1
+	let g:netrw_liststyle=3
+	let g:netrw_winsize=80
+	let g:netrw_list_hide=netrw_gitignore#Hide()
+	let g:netrw_list_hide.=',\(^\|s\s\)\zs\.\S\+'
 
 " }}}
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-syntax enable
-
-" netrw {{{
-let g:netrw_banner=0
-let g:netrw_preview=1
-let g:netrw_liststyle=3
-let g:netrw_winsize=80
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|s\s\)\zs\.\S\+'
-
-" }}}
-
-" themes {{{
-colorscheme seoul256-light
+" Themes {{{
+" set bg=light
 colorscheme seoul256
-let g:seoul256_background = 234
-let g:seoul256_light_background = 256
-let g:lightline = {
-    \ 'colorscheme': 'seoul256'
-	\ }
 
-let theme = system('readlink -f ${XDG_CONFIG_HOME}/X11/current_theme | sed "s/^.*_//g"')
-if theme == "light\n"
-	set bg=light
-	highlight EndOfBuffer ctermfg=15
-elseif theme == "dark\n"
-	set bg=dark
-	highlight Normal ctermbg=none
-	highlight EndOfBuffer ctermfg=0
-elseif theme == "black\n"
-	set bg=dark
-	augroup Colours
-	autocmd!
-		autocmd vimenter * highlight Normal ctermbg=232
-		autocmd vimenter * highlight EndOfBuffer ctermfg=232
-		autocmd vimenter * highlight Folded ctermbg=233
-		autocmd vimenter * highlight LineNr ctermbg=233
-		autocmd vimenter * highlight CursorLineNr ctermbg=234
-		autocmd vimenter * highlight FoldColumn ctermbg=233
-	augroup END
-	highlight Normal ctermbg=232
-	highlight EndOfBuffer ctermfg=232
-	highlight Folded ctermbg=233
-	highlight LineNr ctermbg=233
-	highlight CursorLineNr ctermbg=234
-	highlight FoldColumn ctermbg=233
-endif
+" TODO: finish this
+highlight Normal guibg=NONE ctermbg=NONE
+highlight LineNr ctermbg=NONE ctermfg=3
+highlight Folded ctermbg=NONE ctermfg=3
+highlight FoldColumn ctermbg=NONE ctermfg=3
+highlight EndOfBuffer ctermfg=NONE
+highlight CursorLineNr ctermbg=NONE ctermfg=2
+highlight CursorLine ctermbg=NONE
+let g:lightline = { 'colorscheme': 'ayu_light' }
 
 " }}}
 
-" remaps {{{
+" Remaps {{{
 let mapleader=","
 
 " Big brain stuff from |ins-completion|
@@ -160,8 +100,6 @@ function! CleverTab()
 endfunction
 inoremap <silent> <Tab> <C-R>=CleverTab()<CR>
 
-" Non-emacs ins-completion keybinds
-
 " This line breaks delimitMate CR expansion
 " inoremap <silent> <CR> <C-R>=pumvisible() ? "\<lt>C-y>" : "\<lt>CR>"<CR>
 inoremap <C-j> <C-R>=pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"<CR>
@@ -171,9 +109,6 @@ inoremap <silent> <Esc> <C-R>=pumvisible() ? "\<lt>C-e>" : "\<lt>Esc>"<CR>
 
 vnoremap <C-c> "+y
 nnoremap Q @@
-
-" Increment number
-" inoremap <C-i> <C-a>
 
 " Substitute
 nnoremap <leader>sg :%s//g<LEFT><LEFT>
@@ -186,18 +121,11 @@ noremap  <leader>ndf <Cmd>Goyo!<CR>
 " Remove search highlights
 noremap  <leader>c <Cmd>noh<CR>
 
-" Shortcut to vimrc
-nnoremap <leader>vrc <Cmd>vsplit $MYVIMRC<CR>
-
 " Source vimrc
 nnoremap <leader>src <Cmd>source $MYVIMRC<CR>
 
 " fzf
 noremap <C-p> <Cmd>Files<CR>
-
-" Quicker access to Ex commands
-nnoremap ; :
-xnoremap ; :
 
 " Space jumps to end of line
 nnoremap <Space> $
@@ -217,15 +145,15 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-q> <C-w><C-q>
 
-" }}}
-
-" abbrevs {{{
-iab hbs #!/bin/sh
-ab myvim $MYVIMRC
+nnoremap <BS> :edit .<CR>
 
 " }}}
 
-" autocmds {{{
+" Abbrevs {{{
+" }}}
+
+" Autocmds {{{
+autocmd FocusGained,BufEnter * checktime
 
 " Delete trailing whitespace and newlines on save
 augroup TrailingWs
@@ -238,42 +166,41 @@ augroup END
 augroup ReloadStuff
 autocmd!
 	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+	autocmd BufWritePost *dunstrc !killall dunst;notify-send "Reloaded dunst"
 
 	" Reload xrdb and alacritty colors after writing the file
 	autocmd BufWritePost *.Xresources !xrdb -merge $HOME/.config/X11/.Xresources && xres_alacritty
 
 	" Source zshrc and zprofile after editing them
 	" TODO: Does this actually work?
-	autocmd BufWritePost .zprofile !source ${ZDOTDIR}/.zprofile
-	autocmd BufWritePost .zshrc !source ${ZDOTDIR}/.zshrc
+	" autocmd BufWritePost .zprofile !source ${ZDOTDIR}/.zprofile
+	" autocmd BufWritePost .zshrc !source ${ZDOTDIR}/.zshrc
 augroup END
 
 augroup FormatStuff
 autocmd!
 	autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.sass,*.html PrettierAsync
+	autocmd BufNewFile,BufRead *.c,*.cpp set equalprg=astyle
 augroup END
 
 augroup ReloadVimrc
 autocmd!
-	autocmd BufRead $MYVIMRC
-				\ loadview |
-				\ normal zM
-	autocmd BufWritePre $MYVIMRC mkview
-	autocmd BufWritePost $MYVIMRC source $MYVIMRC
+	autocmd BufWritePost $MYVIMRC ++nested source $MYVIMRC
 augroup END
+
+
 
 " }}}
 
-" sessions {{{
+" Sessions {{{
 	let session_dir='~/.config/nvim'
 
 	augroup TypelongerSession
 	autocmd!
 		autocmd VimLeave ~/Repos/typelonger/**/* execute 'mksession! ' . session_dir . '/typelonger.vim'
-		autocmd VimEnter ~/Repos/typelonger nested execute 'source ' . session_dir . '/typelonger.vim'
+		autocmd VimEnter ~/Repos/typelonger ++nested execute 'source ' . session_dir . '/typelonger.vim'
 	augroup END
 
 " }}}
-
 
 " vim: foldcolumn=2 foldmethod=marker
