@@ -1,0 +1,26 @@
+#!/bin/sh
+# Called upon by dwmblocks when signalled
+
+# Start signaller if not running
+pidof -x mpcsignal > /dev/null 2>&1 || mpcsignal > /dev/null 2>&1 &
+
+if [ -n "$(mpc current)" ]; then
+	status=$(mpc --format "" | grep "\[" | sed "s/[^a-z]//g")
+	position=$(mpc --format "" | grep "\[" | sed "s/^.*#//;s/[[:space:]].*$//g" )
+	case "$status" in
+		playing)
+			color="-c 5"
+			color_icon="-c 13"
+			icon="󰐊" ;;
+		paused)
+			color="-c 3"
+			color_icon="-c 11"
+			icon="󰏤" ;;
+	esac
+
+	# The statusbar shits its pants if the string contains an ampersand,
+	# hence the 'sed'. It might not be the only problematic character but
+	# it's the only one I've found.
+	pangoify -s $color_icon -t "$icon"
+	pangoify $color -t " $(mpc -f %title% current | sed 's/&/and/g') [$position]"
+fi

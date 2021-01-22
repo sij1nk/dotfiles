@@ -1,3 +1,0 @@
-#!/bin/sh
-
-echo $(date +"%F %a%t%-l:%M%P")

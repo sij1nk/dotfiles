@@ -1,0 +1,22 @@
+#!/bin/sh
+
+status=$(cat /sys/class/power_supply/BAT0/status)
+cap=$(cat /sys/class/power_supply/BAT0/capacity)
+
+if [ $cap -lt 25 ]; then
+    color="-c 7"
+    [ "$status" = "Charging" ] && icon="󰂆" || icon="󰁻"
+elif [ $cap -lt 50 ]; then
+    [ "$status" = "Charging" ] && icon="󰂈" || icon="󰁼"
+elif [ $cap -lt 75 ]; then
+    [ "$status" = "Charging" ] && icon="󰂉" || icon="󰁿"
+elif [ $cap -lt 100 ]; then
+    [ "$status" = "Charging" ] && icon="󰂋" || icon="󰂂"
+else
+    [ "$status" = "Charging" ] && icon="󰂅" || icon="󰁹"
+fi
+
+[ -n "$color" ] && color_icon="$color"
+
+pangoify -s $color_icon -t "$icon"
+pangoify $color -t " $(printf "%-3i" $cap)"

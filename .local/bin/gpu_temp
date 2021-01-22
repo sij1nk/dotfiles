@@ -1,4 +1,0 @@
-#!/bin/sh
-# Requires: nvidia-utils
-
-nvidia-smi -q -d TEMPERATURE | grep "GPU Current Temp" | awk '{print $5"°C"}'

@@ -1,0 +1,35 @@
+#!/bin/sh
+# Requires: pulsemixer
+
+if [ $# -eq 0 ]; then
+	if [ $(pulsemixer --get-mute) -eq 1 ]; then
+	    pangoify -s -c 11 -t '󰖁'
+	    pangoify -c 3 -t " mut"
+	    exit
+	else
+	    volume="$(pulsemixer --get-volume | awk '{printf "%-3i", $1}')"
+	    if [ $volume -eq 0 ]; then
+		symbol='󰕿'
+	    elif [ $volume -lt 50 ]; then
+		symbol='󰖀'
+	    else
+		symbol='󰕾'
+	    fi
+	    pangoify -s -t $symbol
+	    pangoify -t " $volume"
+	    exit
+	fi
+fi
+
+# Use the value '5' if $2 is missing
+delta="${2:-5}"
+
+case "$1" in
+	up) pulsemixer --change-volume +${delta} ;;
+	down) pulsemixer --change-volume -${delta} ;;
+	mute) pulsemixer --toggle-mute ;;
+esac > /dev/null
+
+# Update dwmblocks volume module
+# update signal: 10 + 34
+kill -44 $(pidof dwmblocks)

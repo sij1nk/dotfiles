@@ -1,0 +1,23 @@
+#!/bin/sh
+# Can either display Ethernet or WiFi connection status (with signal strength in the latter case)
+
+if [ $(cat /sys/class/net/e*/operstate) = "up" ]; then
+    icon='󰌗'
+elif [ $(cat /sys/class/net/w*/operstate) = "up" ]; then
+    quality="$(grep "^\s*w" /proc/net/wireless | awk '{printf "%-3i\n", int ($3 * 100 / 70) }')"
+    if [ $quality -lt 25 ]; then
+	color="-c 7"
+	icon='󰤯'
+    elif [ $quality -lt 50 ]; then
+	icon='󰤟'
+    elif [ $quality -lt 75 ]; then
+	icon='󰤢'
+    elif [ $quality -lt 100 ]; then
+	icon='󰤥'
+    else
+	icon='󰤨'
+    fi
+
+fi
+
+pangoify -s $color -t "$icon"
