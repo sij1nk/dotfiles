@@ -2,7 +2,7 @@
 
 playlists=$(mpc lsplaylists)
 
-result=$(echo "$playlists" | dmenu -r -i -p "Choose a playlist:" -l $(echo "$playlists" | wc -l))
+result=$(echo "$playlists" | sort | dmenu -r -i -p "Choose a playlist:" -l $(echo "$playlists" | wc -l))
 
 if [ -n "$result" ]; then
 	mpc clear

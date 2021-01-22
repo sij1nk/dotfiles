@@ -1,0 +1,16 @@
+#!/bin/sh
+while true; do
+    xset -q | grep "Monitor is On"
+    if [ $? -eq 1 ]; then
+	if [ "`cat /tmp/displaystate`" != "off" ]; then
+	    echo "off" > /tmp/displaystate
+	    slock # Lock the screen if the monitor turns off
+	fi
+	sleep 1
+    else
+	if [ "`cat /tmp/displaystate`" != "on" ]; then
+	    echo "on" > /tmp/displaystate
+	fi
+	sleep 10
+    fi
+done
