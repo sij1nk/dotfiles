@@ -23,15 +23,15 @@ super + t
 # Media {{{
 # Volume up
 super + bracketright
-	volumectl up
+	volume up
 
 # Volume down
 super + bracketleft
-	volumectl down
+	volume down
 
 # Mute / unmute
 super + m
-	volumectl mute
+	volume mute
 
 # Next track
 super + control + bracketright
@@ -59,12 +59,23 @@ super + shift + bracketleft
 # Brightness {{{
 # Increase brightness
 super + apostrophe
-	lightctl up
+	brightness up
 
 # Decrease brightness
 super + semicolon
-	lightctl down
+	brightness down
 #}}}
+
+# Opacity {{{
+# Increase opacity
+super + control + apostrophe
+	setopacity up
+
+# Decrease opacity
+super + control + semicolon
+	setopacity down
+
+# }}}
 
 # Screenshots {{{
 # Take screenshot of both screens
