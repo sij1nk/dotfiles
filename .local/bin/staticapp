@@ -1,0 +1,32 @@
+#!/bin/sh
+# Open an instance of the application on the specified monitor and tag.
+# Support both standalone and terminal applications.
+
+while getopts 'sm:t:a:;' c
+do
+    case $c in
+	s) standalone=1 ;;
+	m) monitor="$OPTARG" ;;
+	t) tag="$OPTARG" ;;
+	a) app="$OPTARG" ;;
+    esac
+done
+
+# Focus first (main) monitor
+xsetroot -name "fsignal:focusmon i ${monitor:-$STATICAPP_MON}"
+
+# Move cursor to center of main monitor
+# TODO: Get rid of hardcoded values
+xdotool mousemove 960 1440
+
+# Switch to tag where app is
+xsetroot -name "fsignal:viewex ui $(expr ${tag:-$STATICAPP_TAG} - 1)"
+
+# Run app if not already running
+if [ ! $(pidof $app) ]; then
+   if [ $standalone ]; then
+       $app
+   else
+       $TERMINAL -t $(echo $app | sed -E 's/(^.*) .*$/\q/') -e $app
+   fi
+fi

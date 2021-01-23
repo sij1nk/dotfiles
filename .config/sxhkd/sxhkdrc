@@ -5,19 +5,19 @@ super + w
 
 # Discord
 super + c
-	discord
+	staticapp -s -t 7 -a discord
 
 # File browser
 super + f
-	alacritty -t nnn -e n
+	alacritty -t nnn -e nnn
 
 # Music player
 super + n
-	alacritty -t ncmpcpp -e ncmpcpp
+	staticapp -t 8 -a ncmpcpp
 
 # E-mail client
 super + t
-	alacritty -t neomutt -e neomutt
+	staticapp -t 9 -a neomutt
 #}}}
 
 # Media {{{

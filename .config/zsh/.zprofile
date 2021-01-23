@@ -1,4 +1,4 @@
-path+=('/home/rg/.local/bin/')
+path+=('/home/rg/.local/bin')
 path+=('/home/rg/.local/bin/blocks')
 path+=('/home/rg/.local/bin/menus')
 path+=('.')
@@ -53,6 +53,9 @@ export ASPNETCORE_Kestrel__Certificates__Default__Password="localhost"
 export ASPNETCORE_Kestrel__Certificates__Default__Path="$HOME/.dotnet/corefx/cryptography/x509stores/localhost/localhost.pfx"
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+
+export STATICAPP_MON=0
+export STATICAPP_TAG=1
 
 if systemctl -q is-active graphical.target && [ ! $DISPLAY ] && [ $XDG_VTNR -eq 1 ] ; then
 	[ $(fgconsole 2> /dev/null) -eq 1 ] && exec startx -- -keeptty $DISPLAY -ardelay 300 -arinterval 20 &> /dev/null
