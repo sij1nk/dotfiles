@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Update alacritty config to match Xresources colour scheme
 # Taken from a stackoverflow answer (thanks whoever it was)
 
@@ -8,9 +8,10 @@ target_file="$HOME/.config/alacritty/alacritty.yml"
 cp -f $target_file.temp $target_file.in
 
 # Numbered colors
-for i in {0..15}; do
+i=0; while [ "$i" -lt 16 ]; do
 	v=$(xrdb -query | awk '/*color'"$i":'/ { print $2 }')
 	sed -i "s/%cl${i}%/\x27${v}\x27/g" $target_file.in
+	i=$((i+1))
 done
 
 # Named colors
