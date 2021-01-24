@@ -12,5 +12,5 @@ xres_alacritty &
 xsetroot -name "fsignal:updatexres"
 killall dwmblocks && dwmblocks &
 # TODO: neovim-remote
-# TODO: ZSH_HIGHLIGHT_STYLES
+pkill -USR1 zsh
 notify-send "Theme" "Changed scheme to $result"

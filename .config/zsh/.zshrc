@@ -145,6 +145,7 @@ ZSH_HIGHLIGHT_STYLES[command]=fg=blue
 ZSH_HIGHLIGHT_STYLES[function]=fg=blue
 ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue
 
+trap "source ${ZDOTDIR}/.zshrc" USR1
 
 
 # vim: foldcolumn=2 foldmethod=marker
