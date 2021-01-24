@@ -1,0 +1,16 @@
+#!/bin/sh
+
+Xresources=${XDG_CONFIG_HOME}/X11/Xresources
+result=$(ls -1 ${XDG_CONFIG_HOME}/X11/schemes | dmenu -r -i -p "Select color scheme:" -l 9)
+
+[ -z "$result" ] && exit
+
+sed -Ei "s/(^#include.*\/).*(\"$)/\1$result\2/" $Xresources
+
+xrdb -load "$Xresources"
+xres_alacritty &
+xsetroot -name "fsignal:updatexres"
+killall dwmblocks && dwmblocks &
+# TODO: neovim-remote
+# TODO: ZSH_HIGHLIGHT_STYLES
+notify-send "Theme" "Changed scheme to $result"

@@ -1,0 +1,42 @@
+#include "schemes/lakeside"
+
+statusbar.symbol.size: 18000
+statusbar.symbol.rise: 0
+statusbar.text.size: 10000
+statusbar.text.rise: 4000
+Xcursor.size: 32
+dwm.borderpx: 0
+
+*color0:  c0
+*color1:  c1
+*color2:  c2
+*color3:  c3
+*color4:  c4
+*color5:  c5
+*color6:  c6
+*color7:  c7
+*color8:  c8
+*color9:  c9
+*color10: c10
+*color11: c11
+*color12: c12
+*color13: c13
+*color14: c14
+*color15: c15
+*colorwarning: cwarning
+*colorsevere: csevere
+
+term.foreground:        c2
+term.background:        c8
+term.cursor.foreground: c2
+term.cursor.background: c13
+dmenu.normbgcolor:      c8
+dmenu.normfgcolor:      c3
+dmenu.selbgcolor:       c15
+dmenu.selfgcolor:       c2
+dwm.normbgcolor:        c8
+dwm.normfgcolor:        c3
+dwm.selbgcolor:         c15
+dwm.selfgcolor:         c2
+dwm.normbordercolor:    c8
+dwm.selbordercolor:     c7

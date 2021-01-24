@@ -1,5 +1,4 @@
-userresources=${XDG_CONFIG_HOME}/X11/.Xresources
-current_theme=${XDG_CONFIG_HOME}/X11/current_theme
+userresources=${XDG_CONFIG_HOME}/X11/Xresources
 usermodmap=${XDG_CONFIG_HOME}/X11/.Xmodmap
 
 # merge in defaults and keymaps

@@ -3,20 +3,20 @@
 super + w
 	$BROWSER
 
-# Discord
-super + c
-	staticapp -s -t 7 -a discord
-
 # File browser
 super + f
 	alacritty -t nnn -e nnn
+
+# Discord
+super + c
+	staticapp -s -t 7 -a discord
 
 # Music player
 super + n
 	staticapp -t 8 -a ncmpcpp
 
 # E-mail client
-super + t
+super + l
 	staticapp -t 9 -a neomutt
 #}}}
 
@@ -118,7 +118,7 @@ super + F8
 
 # Theme selector menu
 super + F7
-	thememenu
+	schememenu
 
 # Layout menu
 super + F6

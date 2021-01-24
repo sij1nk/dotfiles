@@ -42,7 +42,7 @@ export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export SUDO_ASKPASS="$HOME/.local/bin/passmenu"
 export LESS_TERMCAP_md=$'\E[37m'
 export GREP_COLORS='ms=37:mc=37:sl=:cx=:fn=35:ln=32:bn=32:se=36'
-export LS_COLORS='ln=0;33:ex=0;37:ow=41;32'
+export LS_COLORS='ln=0;33:ex=0;37:ow=41;32:di=0;34'
 export LC_COLLATE="C"
 export NNN_COLORS='3333'
 export NNN_OPTS='dHo'

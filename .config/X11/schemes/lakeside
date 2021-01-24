@@ -1,0 +1,30 @@
+! COLORS (lighter-darker)
+! 0-8:  black            (default: black)
+! 1-9:  lead             (default: red)
+! 2-10: white            (default: green)
+! 3-11: lavender blush   (default: yellow)
+! 4-12: light cyan       (default: blue)
+! 5-13: cyan             (default: magenta)
+! 6-14: peanut           (default: cyan)
+! 7-15: orange           (default: white)
+
+#define c0  #3a384a
+#define c1  #435766
+#define c2  #f9f9f9
+#define c3  #bbb9c7
+#define c4  #cadedd
+#define c5  #89d9e0
+#define c6  #d1b997
+#define c7  #e58a3b
+#define c8  #121a27
+#define c9  #263947
+#define c10 #e7e6ee
+#define c11 #807d94
+#define c12 #9cbdbb
+#define c13 #277685
+#define c14 #624943
+#define c15 #b24d1b
+#define cwarning #f4d243
+#define csevere #de453b
+
+! vim: ft=xdefaults
