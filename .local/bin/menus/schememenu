@@ -9,6 +9,7 @@ sed -Ei "s/(^#include.*\/).*(\"$)/\1$result\2/" $Xresources
 
 xrdb -load "$Xresources"
 xres_alacritty &
+xres_dunst
 xsetroot -name "fsignal:updatexres"
 killall dwmblocks && dwmblocks &
 # TODO: neovim-remote

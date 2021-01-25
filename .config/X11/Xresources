@@ -40,3 +40,12 @@ dwm.selbgcolor:         c15
 dwm.selfgcolor:         c2
 dwm.normbordercolor:    c8
 dwm.selbordercolor:     c7
+dunst.low.background:      c8
+dunst.low.foreground:      c2
+dunst.low.frame:           c8
+dunst.medium.background:   c8
+dunst.medium.foreground:   c5
+dunst.medium.frame:        c8
+dunst.critical.background: c8
+dunst.critical.foreground: c7
+dunst.critical.frame:      c7

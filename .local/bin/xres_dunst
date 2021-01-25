@@ -1,0 +1,28 @@
+#!/bin/sh
+# Update dunstrc to match Xresources color scheme
+
+target_file="$XDG_CONFIG_HOME/dunst/dunstrc"
+
+cp -f $target_file.temp $target_file
+
+low_background=$(xgetres dunst.low.background)
+low_foreground=$(xgetres dunst.low.foreground)
+low_frame=$(xgetres dunst.low.frame)
+medium_background=$(xgetres dunst.medium.background)
+medium_foreground=$(xgetres dunst.medium.foreground)
+medium_frame=$(xgetres dunst.medium.frame)
+critical_background=$(xgetres dunst.critical.background)
+critical_foreground=$(xgetres dunst.critical.foreground)
+critical_frame=$(xgetres dunst.critical.frame)
+
+sed -i "s/%lowbg%/\"${low_background}\"/g" "$target_file"
+sed -i "s/%lowfg%/\"${low_foreground}\"/g" "$target_file"
+sed -i "s/%lowfr%/\"${low_frame}\"/g" "$target_file"
+sed -i "s/%normbg%/\"${medium_background}\"/g" "$target_file"
+sed -i "s/%normfg%/\"${medium_foreground}\"/g" "$target_file"
+sed -i "s/%normfr%/\"${medium_frame}\"/g" "$target_file"
+sed -i "s/%critbg%/\"${critical_background}\"/g" "$target_file"
+sed -i "s/%critfg%/\"${critical_foreground}\"/g" "$target_file"
+sed -i "s/%critfr%/\"${critical_frame}\"/g" "$target_file"
+
+killall dunst
