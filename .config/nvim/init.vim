@@ -28,7 +28,7 @@ call plug#end()
 	set smarttab       " Respect shiftwidth when entering tab in front of a line
 	set incsearch      " Show matches while typing search string
 	set ignorecase     " Ignore case in search patterns
-	set smartcase      " Search becomes case sensitive when uppercase chars are present
+	set smartcase      " Case sensitive search when uppercase chars are present
 	set modeline       " Read modelines
 	set noshowmode     " Don't display -- MODE -- at the bottom
 	set splitbelow     " Prefer putting new splits below current one
@@ -41,6 +41,7 @@ call plug#end()
 	set showmatch      " Highlight matching bracket when inserting bracket
 	set hidden         " Keep buffers loaded when they're abandoned
 	set wildmenu       " Enhanced command-line completion
+	set termguicolors  " Enables 24-bit color
 
 	set complete   +=i,t    " Where ins-completion gets its ideas from
 	set scrolloff   =3      " Keep this many lines above/below cursor when scrolling
@@ -51,8 +52,10 @@ call plug#end()
 	set textwidth   =80     " Wrap lines longer than {n}
 	set shiftwidth  =4      " Indent size
 	set softtabstop =4      " Number of spaces that a tab counts for
-	set wildmode    =list:longest,full             " Determines what the cmd-line completion key does
-	set wildignore +=**/node_modules/**,**/.git/**,**/.idea/** " Paths cmd-line completion should ignore
+	set wildmode    =list:longest,full   " Determines what the cmd-line completion key does
+
+	" Paths cmd-line completion should ignore
+	set wildignore +=**/node_modules/**,**/.git/**,**/.idea/**
 
 	let delimitMate_expand_cr=2
 	let delimitMate_expand_space=1
@@ -71,19 +74,54 @@ call plug#end()
 
 " }}}
 
-" Themes {{{
-" set bg=light
+" Colors {{{
 colorscheme seoul256
 
-" TODO: finish this
-highlight Normal guibg=NONE ctermbg=NONE
-highlight LineNr ctermbg=NONE ctermfg=3
-highlight Folded ctermbg=NONE ctermfg=3
-highlight FoldColumn ctermbg=NONE ctermfg=3
-highlight EndOfBuffer ctermfg=NONE
-highlight CursorLineNr ctermbg=NONE ctermfg=2
-highlight CursorLine ctermbg=NONE
-let g:lightline = { 'colorscheme': 'ayu_light' }
+let g:lightline = { 'colorscheme': 'lakeside_light' }
+
+function! SetHighlights(highlights)
+    for [key, value] in items(a:highlights)
+	for args in items(value)
+	    execute 'highlight ' . key . ' ' . args[0] . '=' . args[1]
+	endfor
+    endfor
+endfunction
+
+function! UpdateScheme()
+    let highlights = {}
+    let mode = substitute(system('cat ~/.config/X11/mode'), '\n\+$', '', '')
+    let xrdb = split(system('xrdb -q | grep \*color\[0-9\] | sed "s/^.*#/#/g"' ), "\n")
+    if mode ==# "dark"
+	let &bg="dark"
+	let highlights['StatusLine'] = {"guibg": xrdb[9], "guifg": xrdb[9]}
+	let highlights['StatusLineNC'] = {"guibg": xrdb[9], "guifg": xrdb[9]}
+	let highlights['VertSplit'] = {"guibg": xrdb[9], "guifg": xrdb[9]}
+	let highlights['EndOfBuffer'] = {"guifg": xrdb[9]}
+	let g:lightline = { 'colorscheme': 'lakeside' }
+    else
+	let &bg="light"
+	let highlights['StatusLine'] = {"guibg": xrdb[0], "guifg": xrdb[0]}
+	let highlights['StatusLineNC'] = {"guibg": xrdb[0], "guifg": xrdb[0]}
+	let highlights['VertSplit'] = {"guibg": xrdb[0], "guifg": xrdb[0]}
+	let highlights['EndOfBuffer'] = {"guifg": xrdb[0]}
+	let g:lightline = { 'colorscheme': 'lakeside_light' }
+    endif
+
+    call lightline#init()
+    call lightline#colorscheme()
+    call lightline#update()
+
+    let highlights['Normal'] = {"guibg": "NONE"}
+    let highlights['LineNr'] = {"guibg": "NONE", "guifg": xrdb[7]}
+    let highlights['Folded'] = {"guibg": "NONE", "guifg": xrdb[3]}
+    let highlights['FoldColumn'] = {"guibg": "NONE", "guifg": xrdb[11]}
+    let highlights['CursorLineNr'] = {"guibg": "NONE", "guifg": xrdb[2]}
+    let highlights['CursorLine'] = {"guibg": "NONE"}
+
+    call SetHighlights(highlights)
+endfunction
+
+call UpdateScheme()
 
 " }}}
 
@@ -145,31 +183,37 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-q> <C-w><C-q>
 
-nnoremap <BS> :edit .<CR>
+" Move up/down in command history
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
 
 " }}}
 
 " Abbrevs {{{
 " }}}
 
-" Autocmds {{{
+" Autocmds {{
 autocmd FocusGained,BufEnter * checktime
 
 " Delete trailing whitespace and newlines on save
-augroup TrailingWs
+augroup TrailingWhitespace
 autocmd!
 	autocmd BufWritePre * %s/\s\+$//e
 	autocmd BufWritePre * %s/\n\+\%$//e
 augroup END
 
+augroup Signals
+autocmd!
+    autocmd Signal * call UpdateScheme()
+augroup END
+
 " Reload sxhkd bindings after writing the file
 augroup ReloadStuff
 autocmd!
+	autocmd BufWritePost $MYVIMRC ++nested source $MYVIMRC
 	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
-	autocmd BufWritePost *dunstrc !killall dunst;notify-send "Reloaded dunst"
-
-	" Reload xrdb and alacritty colors after writing the file
-	autocmd BufWritePost *.Xresources !xrdb -merge $HOME/.config/X11/.Xresources && xres_alacritty
+	autocmd BufWritePost *dunstrc.temp !xres_dunst
+        autocmd BufWritePost *alacritty.yml.temp !xres_alacritty
 
 	" Source zshrc and zprofile after editing them
 	" TODO: Does this actually work?
@@ -182,13 +226,6 @@ autocmd!
 	autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.sass,*.html PrettierAsync
 	autocmd BufNewFile,BufRead *.c,*.cpp set equalprg=astyle
 augroup END
-
-augroup ReloadVimrc
-autocmd!
-	autocmd BufWritePost $MYVIMRC ++nested source $MYVIMRC
-augroup END
-
-
 
 " }}}
 

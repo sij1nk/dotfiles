@@ -1,9 +1,14 @@
 #!/bin/sh
 
 Xresources=${XDG_CONFIG_HOME}/X11/Xresources
+mode=${XDG_CONFIG_HOME}/X11/mode
 result=$(ls -1 ${XDG_CONFIG_HOME}/X11/schemes | dmenu -r -i -p "Select color scheme:" -l 9)
 
 [ -z "$result" ] && exit
+case "$result" in
+    *_light$*) echo "light" > $mode ;;
+    *) echo "dark" > $mode ;;
+esac
 
 sed -Ei "s/(^#include.*\/).*(\"$)/\1$result\2/" $Xresources
 
@@ -12,6 +17,6 @@ xres_alacritty &
 xres_dunst
 xsetroot -name "fsignal:updatexres"
 killall dwmblocks && dwmblocks &
-# TODO: neovim-remote
+pkill -USR1 nvim
 pkill -USR1 zsh
 notify-send "Theme" "Changed scheme to $result"
