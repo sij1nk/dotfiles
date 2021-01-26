@@ -16,7 +16,7 @@ super + n
 	staticapp -t 8 -a ncmpcpp
 
 # E-mail client
-super + l
+super + o
 	staticapp -t 9 -a neomutt
 #}}}
 

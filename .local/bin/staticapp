@@ -12,6 +12,8 @@ do
     esac
 done
 
+app_name=$(echo $app | sed -E 's/(^.*) .*$/\1/')
+
 # Focus first (main) monitor
 xsetroot -name "fsignal:focusmon i ${monitor:-$STATICAPP_MON}"
 
@@ -23,10 +25,10 @@ xdotool mousemove 960 1440
 xsetroot -name "fsignal:viewex ui $(expr ${tag:-$STATICAPP_TAG} - 1)"
 
 # Run app if not already running
-if [ ! $(pidof $app) ]; then
+if [ ! $(pidof $app_name) ]; then
    if [ $standalone ]; then
        $app
    else
-       $TERMINAL -t $(echo $app | sed -E 's/(^.*) .*$/\q/') -e $app
+       $TERMINAL -t $app_name -e $app
    fi
 fi
