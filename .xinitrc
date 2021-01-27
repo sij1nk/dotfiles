@@ -33,7 +33,7 @@ mpd && mpc random on # Music
 mpcsignal & # Signals to dwmblocks on music status change
 acpi_listen >> /tmp/acpi.log & # Listen for acpi events
 headphonesignal &s # Tell volume block to update when headphone is (un)plugged [in]
-transmission-daemon &
+transmission-daemon -e /tmp/transmission.log &
 
 # Enable natural scrolling for touchpad
 xinput set-prop "Elan Touchpad" "libinput Natural Scrolling Enabled" 1

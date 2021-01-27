@@ -2,17 +2,19 @@
 # Open an instance of the application on the specified monitor and tag.
 # Support both standalone and terminal applications.
 
-while getopts 'sm:t:a:;' c
+while getopts 'sm:t:a:p:;' c
 do
     case $c in
 	s) standalone=1 ;;
 	m) monitor="$OPTARG" ;;
 	t) tag="$OPTARG" ;;
 	a) app="$OPTARG" ;;
+	p) app_name="$OPTARG" ;;
     esac
 done
 
-app_name=$(echo $app | sed -E 's/(^.*) .*$/\1/')
+echo $app_name
+[ -z "$app_name" ] && app_name=$(echo $app | sed 's/\s+//g')
 
 # Focus first (main) monitor
 xsetroot -name "fsignal:focusmon i ${monitor:-$STATICAPP_MON}"
@@ -29,6 +31,6 @@ if [ ! $(pidof $app_name) ]; then
    if [ $standalone ]; then
        $app
    else
-       $TERMINAL -t $app_name -e $app
+       $TERMINAL -t $app -e $app
    fi
 fi

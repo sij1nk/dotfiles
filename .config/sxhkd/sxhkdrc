@@ -7,6 +7,9 @@ super + w
 super + f
 	alacritty -t nnn -e nnn
 
+super+t
+	staticapp -t 6 -a stig -p 'python /usr/bin/stig'
+
 # Discord
 super + c
 	staticapp -s -t 7 -a discord
