@@ -1,0 +1,19 @@
+#!/bin/sh
+# Requires: xkb-switch-git
+
+chosen=$(echo "us\nhu\ncl" | dmenu -r -i -p "Select layout:" -l 3)
+case "$chosen" in
+    us)
+	setxkbmap -model 'pc104' -layout 'us' -option -option 'compose:menu,caps:swapescape,altwin:menu_win'
+	;;
+    hu)
+	setxkbmap -model 'pc105' -layout 'hu' -variant '102_qwerty_dot_nodead' -option -option 'compose:menu,caps:swapescape,altwin:menu_win'
+	;;
+    cl)
+	setxkbmap -model 'pc104curl-z' -layout 'us(cmk_ed_us)' -option -option 'compose:menu,misc:cmk_curl_dh,caps:swapescape,altwin:menu_win'
+	;;
+esac
+
+# Update dwmblocks module
+# update signal: 14 + 34
+kill -48 $(pidof dwmblocks)

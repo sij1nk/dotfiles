@@ -1,0 +1,20 @@
+#!/bin/sh
+
+current=$(setxkbmap -print | grep xkb_symbols | sed "s/^.*pc+//;s/+.*$//")
+icon="󰌌"
+
+case "$current" in
+    "us(cmk_ed_us)")
+	pangoify -s -c 14 -t "$icon"
+	pangoify -c 6 -t " CL"
+	printf "    "
+	;;
+    "hu(102_qwerty_dot_nodead)")
+	pangoify -s -c 14 -t "$icon"
+	pangoify -c 6 -t " HU"
+	printf "    "
+	;;
+    *)
+	printf " "
+	;;
+esac
