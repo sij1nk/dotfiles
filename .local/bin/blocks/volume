@@ -18,7 +18,7 @@ if [ $# -eq 0 ]; then
 	    fi
 	    pangoify -s -t $symbol
 	    pangoify -t " $volume"
-	    printf "   "
+	    printf "    "
 	    exit
 	fi
 fi

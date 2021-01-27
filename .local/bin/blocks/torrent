@@ -2,8 +2,8 @@
 
 tmr=$(transmission-remote -l | tail -n 1)
 
-dn=$(echo $tmr | awk '{if($5 > 0) printf "%iMB/s", $5}')
-up=$(echo $tmr | awk '{if($4 > 0) printf "%iMB/s", $4}')
+dn=$(echo $tmr | awk '{if($5 > 0) printf "%iKB/s", $5}')
+up=$(echo $tmr | awk '{if($4 > 0) printf "%iKB/s", $4}')
 
 if [ -n "$dn" ] || [ -n "$up" ]; then
     [ -z "$dn" ] && dn="-"
