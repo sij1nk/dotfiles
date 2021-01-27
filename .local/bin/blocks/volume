@@ -5,6 +5,7 @@ if [ $# -eq 0 ]; then
 	if [ $(pulsemixer --get-mute) -eq 1 ]; then
 	    pangoify -s -c 11 -t '󰖁'
 	    pangoify -c 3 -t " mut"
+	    printf "    "
 	    exit
 	else
 	    volume="$(pulsemixer --get-volume | awk '{printf "%-3i", $1}')"
@@ -17,6 +18,7 @@ if [ $# -eq 0 ]; then
 	    fi
 	    pangoify -s -t $symbol
 	    pangoify -t " $volume"
+	    printf "   "
 	    exit
 	fi
 fi

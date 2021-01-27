@@ -17,3 +17,4 @@ fi
 pangoify -s $color_icon -t "󰔏"
 pangoify $color_cpu -t " $cpu°C"
 pangoify $color_gpu -t " $gpu°C"
+printf "    "

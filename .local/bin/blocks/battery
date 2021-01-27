@@ -21,3 +21,4 @@ fi
 
 pangoify -s $color_icon -t "$icon"
 pangoify $color -t " $(printf "%-3i" $cap)"
+printf "    "

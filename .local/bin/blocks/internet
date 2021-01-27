@@ -1,6 +1,7 @@
 #!/bin/sh
 # Can either display Ethernet or WiFi connection status (with signal strength in the latter case)
 
+color="-c 5"
 if [ $(cat /sys/class/net/e*/operstate) = "up" ]; then
     icon='󰌗'
 elif [ $(cat /sys/class/net/w*/operstate) = "up" ]; then
@@ -18,7 +19,9 @@ elif [ $(cat /sys/class/net/w*/operstate) = "up" ]; then
     else
 	icon='󰤨'
     fi
-
+else
+    pangoify $color -t "   "
+    exit
 fi
 
 pangoify -s $color -t "$icon"

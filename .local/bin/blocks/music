@@ -23,4 +23,5 @@ if [ -n "$(mpc current)" ]; then
 	# it's the only one I've found.
 	pangoify -s $color_icon -t "$icon"
 	pangoify $color -t " $(mpc -f %title% current | sed 's/&/and/g') [$position]"
+	printf "    "
 fi
