@@ -39,7 +39,7 @@ transmission-daemon -e /tmp/transmission.log &
 xinput set-prop "Elan Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Set up keyboard layouts
-setxkbmap -layout us,hu,us -variant ,102_qwerty_dot_nodead,colemak caps:swapescape &
+setxkbmap -layout us,hu,us -variant ,102_qwerty_dot_nodead,colemak caps:swapescape,altwin:menu_win &
 
 # Execute WM in a loop; will restart immediately after getting killed
 while true; do
