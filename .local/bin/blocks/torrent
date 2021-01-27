@@ -1,0 +1,14 @@
+#!/bin/sh
+
+tmr=$(transmission-remote -l | tail -n 1)
+
+dn=$(echo $tmr | awk '{if($4 > 0) printf "%iMB/s", $4}')
+up=$(echo $tmr | awk '{if($5 > 0) printf "%iMB/s", $5}')
+
+if [ -n "$dn" ] || [ -n "$up" ]; then
+    symbol="󰓢"
+    pangoify -s -c 11 -t "$symbol"
+    pangoify -c 3 -t " $up"
+    pangoify -c 3 -t " $dn"
+    printf "    "
+fi
