@@ -4,23 +4,27 @@
 summary="Mount"
 
 mount_block() {
-	sudo -A -p "Mounting device..." mount "$part" "$mountpoint" && \
-	  notify-send "$summary" "$part has been mounted to $mountpoint"
+    err=$(sudo -A -p "Mounting device..." mount "$part" "$mountpoint" 2>&1 >/dev/null) && \
+	  notify-send "$summary" "$part has been mounted to $mountpoint" || \
+	  notify-send "$summary" "$err"
 }
 
 unmount_block() {
-	sudo -A -p "Unmounting device..." umount "$chosen" && \
-	  notify-send "$summary" "$chosen has been unmounted"
+	err=$(sudo -A -p "Unmounting device..." umount "$chosen" 2>&1 >/dev/null) && \
+	  notify-send "$summary" "$chosen has been unmounted" || \
+	  notify-send "$summary" "$err"
 }
 
 mount_android() {
-	sudo -A -p "Mounting device..." simple-mtpfs --device "$part" "$mountpoint" -o allow_other && \
-	  notify-send "$summary" "$part has been mounted to $mountpoint"
+	err=$(sudo -A -p "Mounting device..." simple-mtpfs --device "$part" "$mountpoint" -o allow_other 2>&1 >/dev/null) && \
+	  notify-send "$summary" "$part has been mounted to $mountpoint" || \
+	  notify-send "$summary" "$err"
 }
 
 unmount_android() {
-	sudo -A -p "Unmounting device..." fusermount -u "$chosen" && \
-	  notify-send "$summary" "$chosen has been unmounted"
+	err=$(sudo -A -p "Unmounting device..." fusermount -u "$chosen" 2>&1 >/dev/null) && \
+	  notify-send "$summary" "$chosen has been unmounted" || \
+	  notify-send "$summary" "$err"
 }
 
 get_mountable_devices() {
@@ -30,7 +34,7 @@ get_mountable_devices() {
 	# Android devices
 	android=$(simple-mtpfs -l 2> /dev/null | awk '{gsub(/:.*\./, " "); printf "%s - %s\n", substr($0, 3), $1 }')
 
-	# Combine the two types of devices into one list
+	# Merge the two types of devices into one list
 	devices=$(echo "$block\n$android" | sed "/^[[:space:]]*$/d")
 }
 
