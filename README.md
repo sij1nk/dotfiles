@@ -3,7 +3,8 @@ This is my humble and ever-evolving collection of dotfiles and shell scripts.
 
 If you're looking for quality stuff you ought to look elsewhere as I'm still a bit of a newbie.
 
-[Screenshots](/Pictures/lakeside_busy.png)
+*Lakeside*
+![Screenshots](/Pictures/lakeside_busy.png)
 
 ## Key features and principles
  - lightweight
@@ -101,4 +102,5 @@ don't handle these variables in a very customization-friendly way, if at all.
 
 ### Archive:
 
+Screenshot of old setup
 ![Screenshot of old setup](https://i.imgur.com/5j28PBn.png)
