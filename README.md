@@ -82,7 +82,7 @@ not.
 ## Color schemes
 
 I've created a pair of color schemes that are meant to perfectly complement my
-[wallpapers](). GUI programs are not affected by them.
+[wallpapers](/Pictures/). GUI programs are not affected by them.
 
 When selecting a color scheme from the menu, the value of the #include macro at
 the top of Xresources changes accordingly and the existing color variables are
@@ -99,6 +99,8 @@ overwritten by the new ones. This affects the following applications:
 Notifying zsh will update the terminal colors or whatever they're called, which
 a lot (but not all) terminal programs depend on. Unfortunately, some programs
 don't handle these variables in a very customization-friendly way, if at all.
+
+(Wallpapers by [Aenami](https://www.artstation.com/aenamiart))
 
 ### Archive:
 
