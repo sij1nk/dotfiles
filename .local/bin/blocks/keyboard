@@ -15,6 +15,6 @@ case "$current" in
 	printf "    "
 	;;
     *)
-	printf " "
+	printf '\0'
 	;;
 esac
