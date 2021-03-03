@@ -1,7 +1,7 @@
 #!/bin/sh
 # Values are hardcoded for my current setup
 
-result=$(echo "laptop\nexternal\nboth\nmanual" | dmenu -r -i -p "Select output:" -l 4 -fn "monospace:size=12" )
+result=$(echo "laptop\nexternal\nboth\nmanual" | dmenu -r -i -p "Select output:" -l 4 )
 
 case "$result" in
 	laptop)   xrandr --output eDP-1 --auto --primary --output DP-1 --off
