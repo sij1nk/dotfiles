@@ -2,10 +2,10 @@
 summary="Youtube-dl"
 
 get_path() {
-    def=${1:-'~/Downloads'}
+    def=${1:-'/home/rg/Downloads'}
 
     path=$(echo '' | dmenu -it $def -p "Download path:")
-    # Path is an empty string - we either escaped the dmenu prompt, in which
+    # Path is an empty string - either we escaped the dmenu prompt, in which
     # case the script should terminate early, or we entered an empty string,
     # which should not be a valid download location
     [ -z $path ] && return 1
@@ -21,16 +21,16 @@ if [ $(echo $1 | awk '/^https?:\/\/[[:alpha:]]+\.[[:alpha:]]+/' | wc -l) -eq 1 ]
 		"Download $1 as:" -l 4 -fn "monospace:size=12" )
 	case "$result" in
 		'audio')
-			dlpath=$(get_path '~/Music') || exit
+			dlpath=$(get_path '/home/rg/Music') || exit
 			output=$(youtube-dl -f 'bestaudio' -o "${dlpath}/%(title)s.%(ext)s" "$1" 2>&1)
 			;;
 		'good video (1080p)')
-			dlpath=$(get_path '~/Videos') || exit
+			dlpath=$(get_path '/home/rg/Videos') || exit
 			output=$(youtube-dl -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' \
 				-o "${dlpath}/%(title)s[%(height)sp].%(ext)s" "$1" 2>&1)
 			;;
 		'bad video (480p)')
-			dlpath=$(get_path '~/Videos') || exit
+			dlpath=$(get_path '/home/rg/Videos') || exit
 			output=$(youtube-dl -f 'bestvideo[height<=480]+bestaudio/best[height<=480]' \
 				-o "${dlpath}/%(title)s[%(height)dp].%(ext)s" "$1" 2>&1)
 			;;

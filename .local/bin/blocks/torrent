@@ -13,4 +13,6 @@ if [ -n "$dn" ] || [ -n "$up" ]; then
     pangoify -c 3 -t " $up"
     pangoify -c 3 -t " $dn"
     printf "   "
+else
+    printf "\0"
 fi
