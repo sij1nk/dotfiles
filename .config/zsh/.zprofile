@@ -45,7 +45,7 @@ export GREP_COLORS='ms=37:mc=37:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 export LS_COLORS='ln=0;33:ex=0;37:ow=41;32:di=0;34'
 export LC_COLLATE="C"
 export NNN_COLORS='3333'
-export NNN_OPTS='dHo'
+export NNN_OPTS='do'
 export NNN_BMS='d:~/Downloads;r:~/Repos;c:~/.config;'
 export FZF_DEFAULT_COMMAND='ag -p ~/.config/ag/.ignore -g ""'
 export FZF_DEFAULT_OPTS="--layout=reverse --multi --height=40% --min-height=10"
