@@ -1,10 +1,12 @@
+eval "$(pyenv init -)"
+
 stty stop undef          # Disable ctrl-s to freeze terminal
 setopt PROMPT_SUBST      # TODO: I have no clue what this does
 setopt AUTO_PUSHD        # Perform pushd on every cd
 setopt PUSHD_IGNORE_DUPS # Do not push duplicates onto pushd stack
-setopt AUTO_CD           # If the command is a path then prepend cd
 setopt GLOB_COMPLETE     # Display matches in a menu instead of inserting all of them
-
+setopt INC_APPEND_HISTORY # Append to the history immediately
+setopt EXTENDED_HISTORY # Record timestamp of each command
 
 # Autocomplete
 autoload -U compinit
@@ -14,6 +16,9 @@ compinit
 _comp_options+=(globdots)
 
 zmodload zsh/zle
+
+# Zoxide (fancier cd command)
+eval "$(zoxide init zsh)"
 
 # History
 HISTSIZE=10000
@@ -65,9 +70,17 @@ alias \
     dgit="/usr/bin/git --git-dir=$HOME/Repos/dotfiles/.git --work-tree=$HOME" \
     mvn="mvn --global-settings \"$XDG_DATA_HOME/m2/settings.xml\"" \
     code="code --extensions-dir $XDG_DATA_HOME/vscode/extensions" \
-    z="zathura" \
+    zat="zathura" \
     fzf="fzf --color='bg+:15,info:13,border:-1,gutter:-1,spinner:5,hl:7,fg:3,header:6,fg+:10,pointer:15,marker:6,prompt:-1,hl+:2'" \
-    e="nvim"
+    e="nvim" \
+    mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc" \
+    get_idf="source $HOME/Repos/esp/esp-idf/export.sh" \
+    learnvim="nvim -u $HOME/learnvim/init.vim"
+
+    function esp32 () {
+	source $HOME/.local/bin/esp32 $1 $2 $3
+    }
+
 
 # }}}
 
@@ -86,7 +99,7 @@ alias \
 # }}}
 
 # TODO: fix all of these
-if [ -n $DISPLAY ]; then
+if [ -n $DISPLAY ] && [ $XDG_VTNR -eq 1 ]; then
 
     # Set up colors from Xresources
     colors=($(xrdb -q | grep "*color" | sort -V | awk '{print $2}'))
@@ -96,15 +109,27 @@ if [ -n $DISPLAY ]; then
 	i=$(expr $i + 1)
     done
 
-    color_chevron=$(xgetres "*color7")
-    color_cd=$(xgetres "*color5")
-    color_rprompt=$(xgetres "*color6")
+    color_chevron=$(xgetres "color.fg_flavor")
+    color_cd=$(xgetres "color.fg_inactive")
+    color_rprompt=$(xgetres "*color.fg_flavor2")
 
     # Starting out in insert mode - default prompt and cursor
     echo -ne '\e[5 q'
     PS1="%F{$color_cd}%c%f %B%F{$color_chevron}❯%b%f "
-
+else
+    PS1="%c %% "
 fi
+
+function debug-colors() {
+    echo "0 \033[0;40mblack\033[0m   \033[0;30mblack\033[0m   \033[1;30mBLACK\033[0m" 
+    echo "1 \033[0;41mred\033[0m     \033[0;31mred\033[0m     \033[1;31mRED\033[0m"
+    echo "2 \033[0;42mgreen\033[0m   \033[0;32mgreen\033[0m   \033[1;32mGREEN\033[0m" 
+    echo "3 \033[0;43myellow\033[0m  \033[0;33myellow\033[0m  \033[1;33mYELLOW\033[0m" 
+    echo "4 \033[0;44mblue\033[0m    \033[0;34mblue\033[0m    \033[1;34mBLUE\033[0m" 
+    echo "5 \033[0;45mmagenta\033[0m \033[0;35mmagenta\033[0m \033[1;35mMAGENTA\033[0m" 
+    echo "6 \033[0;46mcyan\033[0m    \033[0;36mcyan\033[0m    \033[1;36mCYAN\033[0m" 
+    echo "7 \033[0;47mwhite\033[0m   \033[0;37mwhite\033[0m   \033[1;37mWHITE\033[0m" 
+}
 
 # Executes every time the keymap changes
 # (changing between vi modes)
@@ -168,11 +193,43 @@ done
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2> /dev/null
 
-ZSH_HIGHLIGHT_STYLES[unknown-token]=bg=black
-ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue
-ZSH_HIGHLIGHT_STYLES[command]=fg=blue
-ZSH_HIGHLIGHT_STYLES[function]=fg=blue
-ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue
+
+# ZSH_HIGHLIGHT_STYLES[builtin]=fg=blue,bold
+# ZSH_HIGHLIGHT_STYLES[command]=fg=blue,bold
+# ZSH_HIGHLIGHT_STYLES[function]=fg=blue,bold
+
+ZSH_HIGHLIGHT_STYLES[default]=none
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green,bold
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,bold
+ZSH_HIGHLIGHT_STYLES[commandseparator]=white,bold
+ZSH_HIGHLIGHT_STYLES[path]=underline
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]=underline
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]=
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=magenta,bold
+ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=blue
+ZSH_HIGHLIGHT_STYLES[command-substitution]=none
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[process-substitution]=none
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=cyan,bold
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=yellow,bold
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[rc-quote]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=cyan
+ZSH_HIGHLIGHT_STYLES[assign]=fg=magenta
+ZSH_HIGHLIGHT_STYLES[redirection]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[comment]=fg=white
+ZSH_HIGHLIGHT_STYLES[named-fd]=none
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=white,bold
+
 
 trap "source ${ZDOTDIR}/.zshrc" USR1
 

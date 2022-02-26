@@ -11,9 +11,9 @@ do
     esac
 done
 
-[ $is_symbol ] && query="symbol" defcolor=15 || query="text" defcolor=2
+[ $is_symbol ] && query="symbol" defcolor="color.fg_flavor" || query="text" defcolor="color.fg_main"
 size=$(xgetres statusbar."$query".size)
-rise=$(xgetres statusbar."$query".rise)
-color=$(xgetres *color"${color:-$defcolor}")
+rise=$(xgetres statusbar."$query".elevation)
+color=$(xgetres "${color:-$defcolor}")
 
 printf '<span rise="%s" size="%s" foreground="%s">%s</span>' "$rise" "$size" "$color" "$text"

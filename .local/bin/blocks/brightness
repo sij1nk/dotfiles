@@ -1,9 +1,10 @@
 #!/bin/sh
 # Requires brightnessctl
 
+brightness="$(awk 'BEGIN {printf("%-3d\n", '"$(brightnessctl g)"' / '"$(brightnessctl m)"' * 100)}')"
+
 # No arguments - query brightness level
 if [ $# -eq 0 ]; then
-    brightness="$(awk 'BEGIN {printf("%-3d\n", '"$(brightnessctl g)"' / '"$(brightnessctl m)"' * 100)}')"
     pangoify -s -t '󰃞'
     pangoify -t " $brightness"
     printf "    "
@@ -14,10 +15,18 @@ else
     delta="${2:-5}"
 
     case "$1" in
-	up) brightnessctl s +${delta}% ;;
-	down) brightnessctl s ${delta}%- ;;
+	up) 
+	    laptop=$((brightness+delta)) 
+	    ;;
+	down) 
+	    laptop=$((brightness-delta)) 
+	    ;;
     esac
 
+    external=$((laptop-30))
+
+    brightnessctl s ${laptop}% 
+    ddcutil setvcp 10 ${external}
 
     # Update dwmblocks brightness module
     # update signal: 11 + 34

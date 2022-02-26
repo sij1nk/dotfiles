@@ -3,8 +3,8 @@
 
 if [ $# -eq 0 ]; then
 	if [ $(pulsemixer --get-mute) -eq 1 ]; then
-	    pangoify -s -c 11 -t '󰖁'
-	    pangoify -c 3 -t " mut"
+	    pangoify -s -c "color.bg_inactive" -t '󰖁'
+	    pangoify -c "color.fg_inactive" -t " mut"
 	    printf "    "
 	    exit
 	else

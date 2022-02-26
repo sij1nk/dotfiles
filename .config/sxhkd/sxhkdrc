@@ -57,6 +57,10 @@ super + shift + bracketright
 # Seek backward
 super + shift + bracketleft
 	mpc seek -00:00:10
+
+# Toggle microphone
+super + u
+	toggle_mic
 # }}}
 
 # Brightness {{{
@@ -67,15 +71,33 @@ super + apostrophe
 # Decrease brightness
 super + semicolon
 	brightness down
+
+# Increase blue light
+super + shift + apostrophe
+	adjust_redshift up
+
+# Decrease blue light
+super + shift + semicolon
+	adjust_redshift down
 #}}}
+
+# Fonts {{{
+
+super + ctrl + minus
+	conf
+
+super + ctrl + equal
+	conf +
+
+# }}}
 
 # Opacity {{{
 # Increase opacity
-super + control + apostrophe
+    super + control + apostrophe
 	setopacity up
 
 # Decrease opacity
-super + control + semicolon
+	super + control + semicolon
 	setopacity down
 
 # }}}
@@ -113,7 +135,7 @@ super + F10
 
 # Youtube-dl menu
 super + F9
-	ytdlmenu "$(xclip -o)"
+	ytdlmenu "$(xclip -o)" > /tmp/y.tmp 2>&1
 
 # Playlist menu
 super + F8
@@ -125,7 +147,7 @@ super + F7
 
 # Layout menu
 super + F6
-	keyboardctl menu
+	keyboardmenu
 # }}}
 
 # vim: foldcolumn=2 foldmethod=marker

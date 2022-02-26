@@ -9,12 +9,12 @@ if [ -n "$(mpc current)" ]; then
 	position=$(mpc --format "" | grep "\[" | sed "s/^.*#//;s/[[:space:]].*$//g" )
 	case "$status" in
 		playing)
-			color="-c 4"
-			color_icon="-c 5"
+			color="-c color.fg_flavor3"
+			color_icon="-c color.bg_flavor3"
 			icon="󰐊" ;;
 		paused)
-			color="-c 3"
-			color_icon="-c 11"
+			color="-c color.fg_inactive"
+			color_icon="-c color.bg_inactive"
 			icon="󰏤" ;;
 	esac
 

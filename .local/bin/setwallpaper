@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# There is noticeable lag every time feh chooses a new wallpaper
-# while true; do
-#   mons=$(xrandr | grep "*" | wc -l)
-#   feh --bg-fill --randomize $(for i in $(seq $mons); do echo -n "$HOME/Wallpapers "; done )
-#   sleep 600
-# done
+mons=$(xrandr --current | grep ".* connected" | awk '{printf("%s ", $1)}')
 
-# xwallpaper --output eDP-1 --zoom $HOME/Wallpapers/chip_fall.jpg --output DP-1 --zoom $HOME/Wallpapers/1493866178173.png
+d1=$(echo $mons | cut -d\  -f1)
+d2=$(echo $mons | cut -d\  -f2)
 
-xwallpaper --output eDP-1 --zoom $HOME/Wallpapers/Aenami_A_Quiet_Mind.jpg --output DP-1 --zoom $HOME/Wallpapers/Aenami_Serenity.jpg
+wp1=$(xgetres "x.wallpaper.1")
+wp2=$(xgetres "x.wallpaper.2")
+
+xwallpaper --output $d1 --zoom "$wp1" \
+           --output $d2 --zoom "$wp2"

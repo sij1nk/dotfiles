@@ -4,10 +4,10 @@ status=$(cat /sys/class/power_supply/BAT0/status)
 cap=$(cat /sys/class/power_supply/BAT0/capacity)
 
 if [ $cap -lt 25 ]; then
-    color="-c severe"
+    color="-c color.fg_error"
     [ "$status" = "Charging" ] && icon="󰂆" || icon="󰁻"
 elif [ $cap -lt 50 ]; then
-    color="-c warning"
+    color="-c color.fg_warning"
     [ "$status" = "Charging" ] && icon="󰂈" || icon="󰁼"
 elif [ $cap -lt 75 ]; then
     [ "$status" = "Charging" ] && icon="󰂉" || icon="󰁿"

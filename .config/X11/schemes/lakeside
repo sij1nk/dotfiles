@@ -9,7 +9,7 @@
 ! 7-15: orange           (default: white)
 
 #define c0  #3a384a
-#define c1  #435766
+#define c1  #8ca0af
 #define c2  #f9f9f9
 #define c3  #bbb9c7
 #define c4  #cadedd
@@ -17,7 +17,7 @@
 #define c6  #d1b997
 #define c7  #e58a3b
 #define c8  #121a27
-#define c9  #263947
+#define c9  #4b6374
 #define c10 #e7e6ee
 #define c11 #807d94
 #define c12 #9cbdbb

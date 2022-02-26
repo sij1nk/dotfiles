@@ -5,13 +5,13 @@ icon="󰌌"
 
 case "$current" in
     "us(cmk_ed_us)")
-	pangoify -s -c 14 -t "$icon"
-	pangoify -c 6 -t " CL"
+	pangoify -s -c "color.bg_flavor" -t "$icon"
+	pangoify -c "color.fg_flavor" -t " CL"
 	printf "    "
 	;;
     "hu(102_qwerty_dot_nodead)")
-	pangoify -s -c 14 -t "$icon"
-	pangoify -c 6 -t " HU"
+	pangoify -s -c "color.bg_flavor" -t "$icon"
+	pangoify -c "color.fg_flavor" -t " HU"
 	printf "    "
 	;;
     *)

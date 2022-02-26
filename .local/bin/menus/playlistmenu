@@ -8,5 +8,6 @@ if [ -n "$result" ]; then
 	mpc clear
 	mpc load "$result"
 	notify-send "Music" "Loading playlist: $result"
+	echo "$result" > /tmp/current_playlist
 	mpc play
 fi

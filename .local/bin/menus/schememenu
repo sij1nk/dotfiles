@@ -12,6 +12,15 @@ esac
 
 sed -Ei "s/(^#include.*\/).*(\"$)/\1$result\2/" $Xresources
 
+# TODO:
+# environment variables: ls, nnn, grep
+# htop?
+# ncmpcpp
+# git?
+# taskwarrior
+# nvim
+# wallpapers
+
 xrdb -load "$Xresources"
 xres_alacritty &
 xres_dunst

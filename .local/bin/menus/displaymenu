@@ -1,16 +1,53 @@
 #!/bin/sh
 # Values are hardcoded for my current setup
 
-result=$(echo "laptop\nexternal\nboth\nmanual" | dmenu -r -i -p "Select output:" -l 4 )
+mons=$(xrandr --current | grep ".* connected")
 
-case "$result" in
-	laptop)   xrandr --output eDP-1 --auto --primary --output DP-1 --off
-		  ;;
-	external) xrandr --output eDP-1 --off --output DP-1 --primary --mode 1440x900 --rate 74.98
+mons_count=$(echo "$mons" | wc -l)
+
+# Connected monitors on a single line, delimited by spaces
+mons=$(echo "$mons" | awk '{printf("%s ", $1)}')
+
+d1=$(echo $mons | cut -d\  -f1)
+d2=$(echo $mons | cut -d\  -f2)
+
+if [ $mons_count -ge 2 ]; then
+    if [ $# -lt 1 ]; then
+	result=$(echo "d1\nd2\nboth\nmanual" | 
+	    dmenu -r -i -p "Select output:" -l 10 )
+    else
+	result=$1
+    fi
+
+    if [ "$result" = "both" ]; then
+	if [ $# -lt 2 ]; then
+	    alignment=$(echo "left-of\nright-of\nabove\nbelow\nsame-as" |
+		dmenu -r -i -p "d2 should be ... d1")
+	else
+	    alignment=$2
+	fi
+    fi
+
+    # Always use highest available refresh rate on d2
+    case "$result" in
+	d1)       xrandr --output $d1 --auto --output $d2 --off
 	          ;;
-	both)     xrandr --output eDP-1 --primary --auto --output DP-1 --mode 1440x900 --rate 74.98 --above eDP-1
-                  ;;
+	d2)       xrandr --output $d1 --off --output $d2 --auto --rate 1000
+	          ;;
+	both)     xrandr --output $d1 --primary --auto --output $d2 --auto --rate 1000 --$alignment $d1
+	          ;;
 	manual)   arandr
 	          ;;
-esac
-setwallpaper &
+    esac
+else
+    echo "OK" | dmenu -i -p "No external monitors found."
+    xrandr --output $d1 --auto
+
+    # Disable all disconnected monitors that still have an area associated with
+    # them
+    xrandr --listactivemonitors | tail -n +3 | awk '{print $4}' | while read mon; do
+	xrandr --output $mon --off
+    done
+fi
+
+[ $XDG_VTNR -eq 1 ] && setwallpaper &

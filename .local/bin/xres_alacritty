@@ -5,7 +5,7 @@
 target_file="$HOME/.config/alacritty/alacritty.yml"
 
 # Alacritty applies colors when the config file is written, so we want to do it all in one write
-cp -f $target_file.temp $target_file.in
+cp -f $target_file.template $target_file.in
 
 # Numbered colors
 i=0; while [ "$i" -lt 16 ]; do
@@ -27,3 +27,4 @@ sed -i "s/%clcbg%/\x27${cursor_background}\x27/g" $target_file.in
 
 # Replace target file with updated one
 cp -f $target_file.in $target_file
+rm $target_file.in
