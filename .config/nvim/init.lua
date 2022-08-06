@@ -42,11 +42,10 @@ require('nvim-treesitter.configs').setup {
 	--     node_decremental = "grm",
 	-- },
  --    },
- 
+
     -- indent works on JSX but on large files it crawls to a halt
     indent = {
 	enable = true,
-	disable = {'c'}
     },
 }
 
@@ -65,10 +64,11 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 
 local lsp = require('lspconfig')
 
-lsp.pyright.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
-} 
+-- NOTE(rg): pyright gives a lot of false positives
+-- lsp.pyright.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities
+-- }
 
 lsp.clangd.setup {}
 
@@ -113,7 +113,7 @@ require('rust-tools.hover_actions').hover_actions()
 
 local cmp = require('cmp')
 cmp.setup {
-    -- preselect = cmp.PreselectMode.None,
+    preselect = cmp.PreselectMode.None,
  --    completion = {
 	-- autocomplete = true
  --    },
@@ -136,7 +136,7 @@ cmp.setup {
 	    select = false,
 	},
 	-- TODO: decide whether to keep word or not
-	['<Esc>'] = cmp.mapping.abort(),
+	-- ['<Esc>'] = cmp.mapping.abort(),
     },
     sources = {
 	{ name = 'nvim_lsp' },
@@ -145,6 +145,3 @@ cmp.setup {
 	{ name = 'buffer' },
     },
 }
-
--- how to print shit from command line: call v:lua.print(...)
--- or lua print(...)

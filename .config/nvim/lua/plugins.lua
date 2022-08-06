@@ -3,7 +3,7 @@ return require('packer').startup(function()
 
     use {
 	'nvim-telescope/telescope.nvim',
-	requires = { 
+	requires = {
 	    {'nvim-lua/plenary.nvim'},
 	    {'nvim-treesitter/nvim-treesitter'},
 	    {'kyazdani42/nvim-web-devicons'},
@@ -25,13 +25,6 @@ return require('packer').startup(function()
     -- colors
     use 'norcalli/nvim-colorizer.lua';
     use 'savq/melange'; -- default
-    use 'jaredgorski/fogbell.vim'; -- black/white
-    use 'AlessandroYorba/alduin'; -- dark, rustic
-    use 'bluz71/vim-nightfly-guicolors'; 
-    use 'kyazdani42/blue-moon';
-    use 'sainnhe/everforest'; -- green
-    use 'sainnhe/sonokai';
-    use 'EdenEast/nightfox.nvim';
 
     use 'neovim/nvim-lspconfig';
     use 'simrat39/rust-tools.nvim';
@@ -43,5 +36,7 @@ return require('packer').startup(function()
     use 'hrsh7th/vim-vsnip'; -- Snippet engine
 
     use 'nvim-telescope/telescope-ui-select.nvim';
+
+    use 'sbdchd/neoformat';
 
 end)

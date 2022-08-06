@@ -1,6 +1,7 @@
 path+=('/home/rg/.local/bin')
 path+=('/home/rg/.local/bin/blocks')
 path+=('/home/rg/.local/bin/menus')
+path+=('/home/rg/.local/bin/scripts')
 path+=('.')
 path+=('/home/rg/Repos/SICStus/bin')
 path+=('/home/rg/.dotnet/tools')
@@ -51,8 +52,16 @@ export XAUTHORITY=$XDG_RUNTIME_DIR/Xauthority
 export SUDO_ASKPASS="$HOME/.local/bin/menus/passmenu"
 # TODO: make these colorscheme dependent
 export LESS_TERMCAP_md=$'\E[1;36m'
-export LS_COLORS="ln=0;33:ex=1;35:ow=41;32:di=1;37"
-export NNN_COLORS='6666'
+# export LS_COLORS="ln=0;33:ex=1;35:ow=41;32:di=1;37"
+# export NNN_COLORS='6666'
+export NNN_FCOLORS='030304020006060001030501'
+# firefox pixel-by-pixel touchpad scrolling
+export MOZ_USE_XINPUT=1
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=2
+export MCFLY_DISABLE_MENU=TRUE
+
+export QT_SCALE_FACTOR=1.5
 
 export LC_COLLATE="C"
 export NNN_OPTS='do'
@@ -70,5 +79,5 @@ export STATICAPP_TAG=1
 # NOTE(rg): sometimes graphical.target is not active at this point and startx doesn't run
 # if systemctl -q is-active graphical.target && [ ! $DISPLAY ] && [ $XDG_VTNR -eq 1 ] ; then
 if [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ]; then
-	[ $(fgconsole 2> /dev/null) -eq 1 ] && exec startx -- -keeptty $DISPLAY -ardelay 300 -arinterval 20 &> /dev/null
+	[ $(fgconsole 2> /dev/null) -eq 1 ] && exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &> /dev/null
 fi

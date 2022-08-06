@@ -46,6 +46,18 @@ function pumEsc()
     return vim.fn.pumvisible() == 1 and t'<C-e>' or t'<Esc>'
 end
 
+function fuckOff() 
+    if vim.fn.pumvisible() == 1 then
+	print('yes')
+    else
+	print('no')
+    end
+    return ''
+end
+
+map('i', '<Leader>x', 'v:lua.fuckOff()', { silent = true, expr = true })
+
+
 -- select all
 map('', '<C-a>', 'ggVG')
 
@@ -57,6 +69,10 @@ map('n', '<Leader>sg', ':%s//g<Left><Left>', { silent = false })
 map('n', '<Leader>sc', ':%s//gc<Left><Left>', { silent = false })
 map('x', '<Leader>sg', ':s//g<Left><Left>', { silent = false })
 map('x', '<Leader>sc', ':s//gc<Left><Left>', { silent = false })
+
+-- quicksave
+map('n', '<Leader>w', '<Cmd>write<CR>')
+map('n', '<Leader>wa', '<Cmd>wall<CR>')
 
 -- source vimrc
 map('n', '<Leader>vrc', '<Cmd>source $MYVIMRC<CR>')
@@ -76,10 +92,10 @@ map('v', '<C-c>', '"+y')
 -- FIXME: this might break delimiterMate
 map('i', '<CR>', 'v:lua.pumEnter()', { silent = true, expr = true })
 
-map('i', '<C-j>', 'v:lua.pumCj()', { silent = true, expr = true })
-map('i', '<C-k>', 'v:lua.pumCk()', { silent = true, expr = true })
-map('i', '<S-Tab>', 'v:lua.pumSTab()', { silent = true, expr = true })
-map('i', '<Esc>', 'v:lua.pumEsc()', { silent = true, expr = true })
+-- map('i', '<C-j>', 'v:lua.pumCj()', { silent = true, expr = true })
+-- map('i', '<C-k>', 'v:lua.pumCk()', { silent = true, expr = true })
+-- map('i', '<S-Tab>', 'v:lua.pumSTab()', { silent = true, expr = true })
+-- map('i', '<Esc>', 'v:lua.pumEsc()', { silent = true, expr = true })
 
 -- move up/down in history in cmd mode
 map('c', '<C-j>', '<Down>', { silent = false })
@@ -100,4 +116,5 @@ map('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n', '<Leader>d', '<Cmd>lua vim.lsp.buf.type_definition()<CR>')
 map('n', 'g[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 map('n', 'g]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-map('n', '<Leader><Tab>', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+map('n', '<M-CR>', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+map('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>')

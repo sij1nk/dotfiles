@@ -10,6 +10,14 @@ local function nvim_create_augroups(definitions)
     end
 end
 
+function update_background()
+    conf_dir = os.getenv('XDG_CONFIG_HOME')
+    mode_file = conf_dir .. '/X11/mode'
+    mode = io.open(mode_file):read()
+
+    vim.o.background = mode
+end
+
 local autocmds = {
     -- fix splits when window is resized
     VimWindowResize = {
@@ -26,8 +34,14 @@ local autocmds = {
     ColorschemeAutoReload = {
 	{"BufWritePost", "colors.lua", [[source <afile>]]};
     };
+    SchemeUpdate = {
+	{"Signal", "*", [[lua update_background()]]}
+    };
     LSPShowLineDiagnostics = {
-	{"CursorHold", "*", [[lua vim.lsp.diagnostic.show_line_diagnostics()]]}
+	{"CursorHold", "*", [[lua vim.diagnostic.open_float({focus = false})]]}
+    };
+    JSFormatting = {
+	{"BufWritePre", "*.js,*.jsx,*ts,*tsx", "Neoformat"}
     };
     CSharpFormatting = {
 	{"FileType", "cs", [[lua vim.o.expandtab = true]]}

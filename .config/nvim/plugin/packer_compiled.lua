@@ -75,16 +75,6 @@ _G.packer_plugins = {
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
-  alduin = {
-    loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/alduin",
-    url = "https://github.com/AlessandroYorba/alduin"
-  },
-  ["blue-moon"] = {
-    loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/blue-moon",
-    url = "https://github.com/kyazdani42/blue-moon"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -105,25 +95,15 @@ _G.packer_plugins = {
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  everforest = {
-    loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/everforest",
-    url = "https://github.com/sainnhe/everforest"
-  },
-  ["fogbell.vim"] = {
-    loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/fogbell.vim",
-    url = "https://github.com/jaredgorski/fogbell.vim"
-  },
   melange = {
     loaded = true,
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/melange",
     url = "https://github.com/savq/melange"
   },
-  ["nightfox.nvim"] = {
+  neoformat = {
     loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
-    url = "https://github.com/EdenEast/nightfox.nvim"
+    path = "/home/rg/.local/share/nvim/site/pack/packer/start/neoformat",
+    url = "https://github.com/sbdchd/neoformat"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -175,11 +155,6 @@ _G.packer_plugins = {
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/rust.vim",
     url = "https://github.com/rust-lang/rust.vim"
   },
-  sonokai = {
-    loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/sonokai",
-    url = "https://github.com/sainnhe/sonokai"
-  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -194,11 +169,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/rg/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["vim-nightfly-guicolors"] = {
-    loaded = true,
-    path = "/home/rg/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
-    url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
   ["vim-vsnip"] = {
     loaded = true,
