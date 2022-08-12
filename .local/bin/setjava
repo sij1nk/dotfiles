@@ -1,9 +1,0 @@
-#!/bin/sh
-
-[ $# -ne 1 ] && echo 'Usage: setjava VERSION' && exit
-
-ver=$1
-
-([ "$ver" != "8" ] && [ "$ver" != "11" ] && [ "$ver" != "17" ]) && ver=8
-
-sudo archlinux-java set java-"$ver"-openjdk

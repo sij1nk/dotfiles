@@ -1,0 +1,10 @@
+
+[Default Applications]
+x-scheme-handler/msteams=teams.desktop
+text/html=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+image/png=imv.desktop
+application/pdf=org.pwmt.zathura.desktop
+text/markdown=nvim.desktop
+image/jpeg=imv.desktop

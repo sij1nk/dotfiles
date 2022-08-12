@@ -1,0 +1,6 @@
+#!/bin/sh
+
+path=$(which $1)
+[ $? -ne 0 ] && exit 1
+
+nvim $(which $1)

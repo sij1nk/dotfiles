@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sleep 1
+
+br=$(cat "/tmp/current_brightness" 2> /dev/null)
+[ $? -eq 1 ] && exit 1
+
+ddcutil setvcp 10 ${br}

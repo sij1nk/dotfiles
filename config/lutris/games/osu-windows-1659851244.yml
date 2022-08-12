@@ -1,0 +1,7 @@
+game:
+  exe: drive_c/osu/osu!.exe
+  prefix: /home/rg/Games/osu
+wine:
+  dxvk: true
+  esync: true
+  version: lutris-7.2-2-x86_64

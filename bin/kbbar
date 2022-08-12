@@ -1,0 +1,15 @@
+#!/bin/sh
+
+inputs=$(swaymsg -t get_inputs)
+
+active_index=$(echo "$inputs" | jq '.[0].xkb_active_layout_index')
+
+tooltip=$(echo "$inputs" | jq ".[0].xkb_layout_names["$active_index"]" | sed -E 's/"//g')
+
+case "$active_index" in 
+    0) text="us" ;;
+    1) text="hu" ;;
+    2) text="c-dh" ;;
+esac
+
+echo -e "$text\n$tooltip"

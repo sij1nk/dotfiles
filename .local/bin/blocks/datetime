@@ -1,5 +1,0 @@
-#!/bin/sh
-
-pangoify -s -t "󱑆"
-pangoify -t " $(date +"%b %0e, %_l:%M%P")"
-printf "    "

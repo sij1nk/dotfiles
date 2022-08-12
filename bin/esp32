@@ -1,0 +1,10 @@
+#!/bin/bash
+# should be sourced
+
+PORT=/dev/ttyUSB0
+
+if ! which idf.py > /dev/null; then
+    . /home/rg/Repos/esp-idf-v4.4.2/export.sh
+fi
+
+idf.py --ccache -p $PORT $@ 

@@ -1,8 +1,0 @@
-#!/bin/sh
-
-while true; do
-	inotifywait -e modify /tmp/acpi.log
-	if [ -n "$(tail -n 1 /tmp/acpi.log | grep HEADPHONE)" ]; then
-		kill -44 $(pidof dwmblocks)
-	fi
-done

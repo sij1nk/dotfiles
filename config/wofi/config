@@ -1,0 +1,15 @@
+colors=/home/rg/.config/wofi/colors
+allow_images=true
+insensitive=true
+parse_search=true
+term=alacritty
+no_actions=true
+sort_order=alphabetical
+hide_scroll=true
+image_size=48
+prompt=
+
+key_up=Alt_L-k
+key_down=Alt_L-j
+key_left=Alt_L-h
+key_right=Alt_L-l

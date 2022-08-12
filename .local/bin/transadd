@@ -1,8 +1,0 @@
-#!/bin/sh
-# Mimeapp script for adding torrent to transmission-daemon.
-# It also starts transmission-daemon if it's not running.
-
-# transmission-daemon sometimes fails to take requests in its first moments, hence the sleep
-pidof transmission-daemon > /dev/null || (transmission-daemon -e /tmp/transmission.log && notify-send "Starting transmission daemon..." && sleep 3)
-
-transmission-remote -a "$@" && notify-send "Torrent" "Torrent added"
