@@ -1,5 +1,7 @@
 [user]
-	email = angurg98@gmail.com
-	name = anguaive
+{{#with git}}
+	email = {{email}}
+	name = {{name}}
+{{/with}}
 [core]
 	autocrlf = false

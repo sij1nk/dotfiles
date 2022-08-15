@@ -102,6 +102,7 @@
 	    "format": "{percent}% {icon}",
 	    "format-icons": ["", "", "", "", "", "", "", "", ""]
 	},
+{{#if waybar.battery}}
 	"battery": {
 	    "states": {
 		// "good": 95,
@@ -119,6 +120,7 @@
 	"battery#bat2": {
 	    "bat": "BAT2"
 	},
+{{/if}}
 	"network": {
 	    // "interface": "wlp2*", // (Optional) To force the use of this interface
 	    "format-wifi": "{essid} ({signalStrength}%) ",

@@ -1,0 +1,65 @@
+[helpers]
+
+[x11.files]
+".xinitrc" = "~/.xinitrc"
+
+[x11.variables]
+x11.enable = true
+
+[wallpapers.files]
+"wall.png" = "~/Pictures/Wallpapers/wall.png"
+
+[scripts.files]
+scripts = "~/.scripts"
+
+[zsh.files]
+"config/zsh" = "~/.config/zsh"
+".zshenv" = "~/.zshenv"
+
+[btop.files]
+"config/btop" = "~/.config/btop"
+
+[fontconfig.files]
+"config/fontconfig" = "~/.config/fontconfig"
+
+[gammastep.files]
+"config/gammastep" = "~/.config/gammastep"
+
+[gammastep.variables]
+gammastep.temp-day = 4500
+gammastep.temp-night = 3200
+
+[git.files]
+"config/git" = "~/.config/git"
+
+[mpd.files]
+"config/mpd" = "~/.config/mpd"
+
+[nvim.files]
+"config/nvim" = "~/.config/nvim"
+
+[sway.files]
+"config/sway" = "~/.config/sway"
+
+[swaylock.files]
+"config/swaylock" = "~/.config/swaylock"
+
+[vifm.files]
+"config/vifm" = "~/.config/vifm"
+"config/vifm/vifm-help.txt" = { target = "~/.config/vifm/vifm-help.txt", type = "symbolic" }
+
+[waybar.files]
+"config/waybar" = "~/.config/waybar"
+
+[waybar.variables]
+waybar.fontsize = 24
+waybar.battery = false
+
+[wofi.files]
+"config/wofi" = "~/.config/wofi"
+
+[xkb.files]
+"config/xkb" = "~/.config/xkb"
+
+[zathura.files]
+"config/zathura" = '~/.config/zathura'

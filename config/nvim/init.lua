@@ -110,8 +110,9 @@ local opts = {
     }
 }
 
-require('rust-tools').setup(opts)
-require('rust-tools.hover_actions').hover_actions()
+-- TODO: this is broken
+-- require('rust-tools').setup(opts)
+-- require('rust-tools.hover_actions').hover_actions()
 
 local cmp = require('cmp')
 cmp.setup {
