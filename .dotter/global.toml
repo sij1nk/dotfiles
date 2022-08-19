@@ -12,6 +12,12 @@ x11.enable = true
 [scripts.files]
 scripts = "~/.scripts"
 
+[alacritty.files]
+"config/alacritty" = "~/.config/alacritty"
+
+[alacritty.variables]
+alacritty.font_size = 20
+
 [zsh.files]
 "config/zsh" = "~/.config/zsh"
 ".zshenv" = "~/.zshenv"
@@ -28,6 +34,9 @@ scripts = "~/.scripts"
 [gammastep.variables]
 gammastep.temp-day = 4500
 gammastep.temp-night = 3200
+
+[lutris.files]
+"config/lutris" = "~/.config/lutris"
 
 [git.files]
 "config/git" = "~/.config/git"
