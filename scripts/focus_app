@@ -1,0 +1,13 @@
+#!/bin/bash
+
+swaymsg mode "default"
+
+BINARY=$1
+WORKSPACE=$2
+
+swaymsg workspace "$WORKSPACE" > /dev/null
+
+if ! pgrep "$BINARY" > /dev/null; then
+    $BINARY > /dev/null 2> /dev/null &
+fi
+

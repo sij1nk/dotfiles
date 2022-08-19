@@ -55,6 +55,43 @@ gammastep.temp-night = 3200
 waybar.fontsize = 24
 waybar.battery = false
 
+[[waybar.variables.apps]]
+binary = "teams" 
+selector = "'[class=\"Microsoft Teams - Preview\"]'"
+workspace = 10 
+key = 't'
+
+[[waybar.variables.apps]]
+binary = "discord"
+selector = "'[class=\"discord\"]'"
+workspace = 9
+key = 'd' 
+
+[[waybar.variables.apps]]
+binary = "spotify"
+selector = "'[class=\"Spotify\"]'"
+workspace = 8
+key = 's'
+
+[[waybar.variables.apps]]
+# using apostrophes to make launch script threat it as a single argument
+binary = "'alacritty --class vimpc -e vimpc'"
+selector = "'[app_id=\"vimpc\"]'"
+workspace = 7
+key = 'm'
+
+[[waybar.variables.apps]]
+binary = "firefox"
+selector = "'[class=\"firefox\"]'"
+workspace = 6
+key = 'w'
+
+[[waybar.variables.apps]]
+binary = "krita"
+selector = "'[class=\"krita\"]'"
+workspace = 5
+key = 'k'
+
 [wofi.files]
 "config/wofi" = "~/.config/wofi"
 

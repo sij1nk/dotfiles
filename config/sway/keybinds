@@ -102,8 +102,7 @@ bindsym {
     $mod+bracketright exec pulsemixer --change-volume +5
     $mod+ctrl+m exec pulsemixer --toggle-mute
 
-# menus:
-    $mod+a mode "menus" 
+    $mod+a mode "command_layer"
 
 # applications:
 # TODO: email / calendar application
@@ -116,7 +115,10 @@ bindsym {
     $mod+m workspace number 8; exec "$term -t ncmpcpp -e ncmpcpp"
 }
 
-mode "menus" {
+mode "command_layer" {
+{{#each apps}}
+    bindsym $mod+{{key}} exec focus_app {{binary}} {{workspace}}
+{{/each}}
     bindsym 2 exec ytdlmenu $(wl-paste) > /tmp/y.txt 2>&1
     bindsym 1 exec kbmenu
     bindsym 0 exec powermenu

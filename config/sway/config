@@ -80,6 +80,10 @@ seat seat0 {
     hide_cursor 5000
 }
 
+{{#each apps}}
+assign {{selector}} {{workspace}}
+{{/each}}
+
 default_border pixel 4
 
 include /etc/sway/config.d/*
