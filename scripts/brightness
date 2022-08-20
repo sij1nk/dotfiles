@@ -24,9 +24,11 @@ else
     case "$1" in
 	up) 
 	    new=$((br+delta)) 
+	    [ $new -gt 100 ] && new=100
 	    ;;
 	down) 
 	    new=$((br-delta)) 
+	    [ $new -lt 0 ] && new=0
 	    ;;
     esac
 
