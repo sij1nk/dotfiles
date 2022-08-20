@@ -78,8 +78,7 @@ gammastep.temp-night = 3200
 "config/waybar" = "~/.config/waybar"
 
 [waybar.variables]
-waybar.fontsize = 24
-waybar.battery = false
+waybar.fontsize = 21
 
 [[waybar.variables.apps]]
 binary = "teams" 

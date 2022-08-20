@@ -10,6 +10,7 @@ case "$active_index" in
     0) text="us" ;;
     1) text="hu" ;;
     2) text="c-dh" ;;
+    3) text="c-dh (vim)" ;;
 esac
 
 echo "$text\n$tooltip"
