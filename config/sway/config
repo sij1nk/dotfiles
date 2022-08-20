@@ -71,6 +71,14 @@ input * {
 	pointer_accel -0.5
 }
 
+{{#if laptop}}
+input type:touchpad {
+    dwt disabled
+    natural_scroll enabled
+    tap enabled
+    pointer_accel 0
+}
+{{/if }}
 
 #
 # Status Bar:
