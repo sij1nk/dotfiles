@@ -18,7 +18,7 @@
 	},
 	"custom/brightness": {
 	    "format": "☀ {}",
-	    "exec": "$HOME/.local/bin/brightness",
+	    "exec": "$HOME/.scripts/brightness",
 	    "interval": "once",
 	    "on-scroll-up": "$HOME/.local/bin/brightness up",
 	    "on-scroll-down": "$HOME/.local/bin/brightness down",
@@ -26,7 +26,7 @@
 	    },
 	"custom/kb": {
 	    "format": "⌨ {}",
-	    "exec": "$HOME/.local/bin/kbbar",
+	    "exec": "$HOME/.scripts/kbbar",
 	    "interval": "once",
 	    "on-click": "kbmenu",
 	    "signal": 1
