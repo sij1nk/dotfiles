@@ -4,7 +4,13 @@
 
 br=$(cat "/tmp/current_brightness" 2> /dev/null)
 if [ $? -eq 1 ]; then
+    {{#if laptop}}
+    br="$(awk 'BEGIN {printf("%-3d\n", '"$(brightnessctl g)"' / '"$(brightnessctl m)"' * 100)}')"
+    {{else }}
+# If the file doesn't exist, we need to query 
+# (ddcutil takes a long time, that's why we tried to avoid it)
     br=$(ddcutil getvcp 10 | sed -E 's/^.*current value =\s+//g;s/,.*$//g')
+    {{/if }}
 fi
 
 # No arguments - query brightness level

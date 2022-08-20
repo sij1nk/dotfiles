@@ -5,4 +5,10 @@ sleep 1
 br=$(cat "/tmp/current_brightness" 2> /dev/null)
 [ $? -eq 1 ] && exit 1
 
+#{{#if laptop}}
+brightnessctl s ${br}%
+n_outputs=$(swaymsg -t get_outputs | jq '. | length')
+[ n_outputs -eq 1 ] && return
+#{{/if }}
+
 ddcutil setvcp 10 ${br}
