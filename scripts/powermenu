@@ -1,0 +1,11 @@
+#!/bin/sh
+
+result=$(echo -e "shutdown\nreboot\nsuspend" | wofi -d --prompt "Choose operation")
+
+case "$result" in
+    shutdown) shutdown now ;;
+    reboot) reboot ;;
+    suspend) systemctl suspend
+esac
+
+swaymsg mode "default"
