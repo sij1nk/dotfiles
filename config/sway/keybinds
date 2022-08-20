@@ -114,7 +114,7 @@ bindsym {
 
 mode "command_layer" {
 {{#each apps}}
-    bindsym $mod+{{key}} exec focus_app {{binary}} {{workspace}}
+    bindsym $mod+{{key}} exec focus_app {{binary}} {{workspace}} {{selector}}
 {{/each}}
     bindsym 2 exec ytdlmenu $(wl-paste) > /tmp/y.txt 2>&1
     bindsym 1 exec kbmenu

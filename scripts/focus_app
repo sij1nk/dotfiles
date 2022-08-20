@@ -4,10 +4,13 @@ swaymsg mode "default"
 
 BINARY=$1
 WORKSPACE=$2
+SELECTOR=$3
 
 swaymsg workspace "$WORKSPACE" > /dev/null
 
 if ! pgrep "$BINARY" > /dev/null; then
     $BINARY > /dev/null 2> /dev/null &
+else
+    swaymsg "$SELECTOR" focus
 fi
 
