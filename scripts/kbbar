@@ -12,4 +12,4 @@ case "$active_index" in
     2) text="c-dh" ;;
 esac
 
-echo -e "$text\n$tooltip"
+echo "$text\n$tooltip"

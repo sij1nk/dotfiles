@@ -1,6 +1,6 @@
 #!/bin/sh
 
-result=$(echo -e "shutdown\nreboot\nsuspend" | wofi -d --prompt "Choose operation")
+result=$(echo "shutdown\nreboot\nsuspend" | wofi -d --prompt "Choose operation")
 
 case "$result" in
     shutdown) shutdown now ;;

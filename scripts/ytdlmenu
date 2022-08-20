@@ -5,10 +5,9 @@ swaymsg mode "default"
 [ $# -ne 1 ] && echo "Usage: ytdlmenu URL" && exit
 
 if [ $(echo $1 | awk '/^https?:\/\/[[:alpha:]]+\.[[:alpha:]]+/' | wc -l) -eq 1 ]; then
-    result=$(echo -e "audio\n1080p video\n480p video" | wofi -d --prompt "Download $1 as:")
+    result=$(echo "audio\n1080p video\n480p video" | wofi -d --prompt "Download $1 as:")
     [ -z "$result" ] && exit 0
     alacritty --hold -e ytdl "$result" "$1"
 else
     notify-send "Youtube-dl" "Invalid URL."
 fi
-
