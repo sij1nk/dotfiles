@@ -1,8 +1,8 @@
 #window {
     font-family: monospace;
     font-size: 26px;
-    background-color: --wofi-color1;
-    color: --wofi-color5;
+    background-color: {{color.surface}};
+    color: {{color.text}};
 }
 
 * {
@@ -14,12 +14,16 @@
 }
 
 #entry:selected {
-    background-color: --wofi-color13;
+    background-color: {{color.rose}};
+}
+
+#entry:selected #text {
+    color: {{color.base}};
 }
 
 #input {
-    background-color: --wofi-color0;
-    color: --wofi-color5;
+    background-color: {{color.base}};
+    color: {{color.text}};
     min-height: 36px;
     border: none;
     border-radius: 0;

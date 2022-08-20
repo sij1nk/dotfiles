@@ -110,9 +110,6 @@ bindsym {
 # alacritty to something else, the commands utilizing them will break
     $mod+Return exec $term
     $mod+p exec $menu
-    $mod+w exec $BROWSER
-    $mod+n exec "$term -t nnn -e nnn"
-    $mod+m workspace number 8; exec "$term -t ncmpcpp -e ncmpcpp"
 }
 
 mode "command_layer" {

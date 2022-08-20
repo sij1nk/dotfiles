@@ -25,6 +25,23 @@ alacritty.font_size = 20
 [btop.files]
 "config/btop" = "~/.config/btop"
 
+[colors.variables]
+color.base = "#191724"
+color.surface = "#1f1d2e"
+color.overlay = "#26233a"
+color.muted = "#6e6a86"
+color.subtle = "#908caa"
+color.text = "#e0def4"
+color.love = "#eb6f92"
+color.gold = "#f6c177"
+color.rose = "#ebbcba"
+color.pine = "#31748f"
+color.foam = "#9ccfd8"
+color.iris = "#c4a7e7"
+color.hllow = "#21202e"
+color.hlmed = "#403d52"
+color.hlhi = "#524f67"
+
 [fontconfig.files]
 "config/fontconfig" = "~/.config/fontconfig"
 
