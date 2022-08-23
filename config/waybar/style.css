@@ -150,7 +150,11 @@ label:focus {
 }
 
 #cpu {
-    color: {{color.love}};
+{{#if laptop}}
+    color: {{color.intel_blue}};
+{{else}}
+    color: {{color.amd_red}}
+{{/if}}
 }
 
 #temperature {
