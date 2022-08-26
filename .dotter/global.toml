@@ -17,6 +17,7 @@ scripts = "~/.scripts"
 
 [alacritty.variables]
 alacritty.font_size = 20
+alacritty.opacity = 0.95
 
 [zsh.files]
 "config/zsh" = "~/.config/zsh"
