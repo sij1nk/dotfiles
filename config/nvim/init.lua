@@ -84,10 +84,11 @@ lsp.tsserver.setup {}
 --     capabilities = capabilities
 -- }
 
+rust_tools = require('rust-tools')
+
 local opts = {
     tools = {
 	autoSetHints = true,
-	hover_with_actions = true,
 	inlay_hints = {
 	    show_parameter_hints = false,
 	    parameter_hints_prefix = "",
@@ -95,7 +96,12 @@ local opts = {
 	},
     },
     server = {
-	on_attach = on_attach,
+	on_attach = function(_, bufnr)
+	    -- Hover actions
+	    vim.keymap.set("n", "K", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+	    -- Code action groups
+	    vim.keymap.set("n", "M-CR", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+	end,
 	capabilities = capabilities,
 	settings = {
 	    ['rust-analyzer'] = {
@@ -110,9 +116,7 @@ local opts = {
     }
 }
 
--- TODO: this is broken
--- require('rust-tools').setup(opts)
--- require('rust-tools.hover_actions').hover_actions()
+rust_tools.setup(opts)
 
 local cmp = require('cmp')
 cmp.setup {

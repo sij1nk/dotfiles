@@ -91,10 +91,13 @@ alias \
     e="nvim" \
     mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc" \
     get_idf="source $HOME/Repos/esp/esp-idf/export.sh" \
-    learnvim="nvim -u $HOME/learnvim/init.vim" \ 
+    learnvim="nvim -u $HOME/learnvim/init.vim" \
+    plm="cd $HOME/Repos/bmetk-plm/" \
+    plmssp="cd $HOME/Repos/bmetk-plm-server-side-processing/"
+
 
     function esp32 () {
-	source $HOME/.local/bin/esp32 $@
+	source $HOME/.scripts/esp32 $@
     }
 
 alias \
