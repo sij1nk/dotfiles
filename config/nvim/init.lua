@@ -27,6 +27,9 @@ telescope.setup {
 telescope.load_extension("ui-select")
 
 require('nvim-treesitter.configs').setup {
+    autotag = {
+	enable = true,
+    },
     -- highlighting also slows things down a bit
     highlight = {
 	enable = true,

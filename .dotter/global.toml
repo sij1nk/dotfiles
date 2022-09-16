@@ -55,9 +55,6 @@ color.amd_red = "ed1c24"
 gammastep.temp-day = 4500
 gammastep.temp-night = 3200
 
-[lutris.files]
-"config/lutris" = "~/.config/lutris"
-
 [git.files]
 "config/git" = "~/.config/git"
 
