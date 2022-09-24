@@ -94,8 +94,9 @@ alias \
     learnvim="nvim -u $HOME/learnvim/init.vim" \
     plm="cd $HOME/Repos/bmetk-plm/" \
     plmssp="cd $HOME/Repos/bmetk-plm-server-side-processing/" \
-    hx="helix"
-
+    hx="helix" \
+    ssh="$HOME/scripts/ssh-ident" \
+    rsync="BINARY_SSH=rsync $HOME/scripts/ssh-ident"
 
     function esp32 () {
 	source $HOME/.scripts/esp32 $@
