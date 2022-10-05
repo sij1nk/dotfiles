@@ -43,7 +43,7 @@ color.hllow = "#21202e"
 color.hlmed = "#403d52"
 color.hlhi = "#524f67"
 color.intel_blue = "#0071c5"
-color.amd_red = "ed1c24"
+color.amd_red = "#ed1c24"
 
 [fontconfig.files]
 "config/fontconfig" = "~/.config/fontconfig"
