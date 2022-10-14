@@ -93,7 +93,8 @@ alias \
     get_idf="source $HOME/Repos/esp/esp-idf/export.sh" \
     learnvim="nvim -u $HOME/learnvim/init.vim" \
     plm="cd $HOME/Repos/bmetk-plm/" \
-    plmssp="cd $HOME/Repos/bmetk-plm-server-side-processing/"
+    plmssp="cd $HOME/Repos/bmetk-plm-server-side-processing/" \
+    hx="helix"
 
 
     function esp32 () {

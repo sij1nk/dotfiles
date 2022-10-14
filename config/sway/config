@@ -100,5 +100,6 @@ assign {{selector}} {{workspace}}
 {{/each}}
 
 default_border pixel 4
+smart_borders on
 
 include /etc/sway/config.d/*

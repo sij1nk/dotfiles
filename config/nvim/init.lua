@@ -112,7 +112,7 @@ local opts = {
 		    command = 'clippy'
 		},
 		procMacro = {
-		    enable = false
+		    enable = true
 		}
 	    }
 	},
