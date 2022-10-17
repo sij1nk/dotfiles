@@ -96,12 +96,9 @@ alias \
     plmssp="cd $HOME/Repos/bmetk-plm-server-side-processing/" \
     hx="helix" \
     ssh="$HOME/scripts/ssh-ident" \
-<<<<<<< HEAD
     rsync="BINARY_SSH=rsync $HOME/scripts/ssh-ident"
-=======
     rsync="BINARY_SSH=rsync $HOME/scripts/ssh-ident" \
     hx="helix"
->>>>>>> 754dc58 (Some changes)
 
     function esp32 () {
 	source $HOME/.scripts/esp32 $@
