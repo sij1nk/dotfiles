@@ -145,8 +145,7 @@ cmp.setup {
 	    behavior = cmp.ConfirmBehavior.Replace,
 	    select = false,
 	},
-	-- TODO: decide whether to keep word or not
-	-- ['<Esc>'] = cmp.mapping.abort(),
+	['<Esc>'] = cmp.mapping.abort(),
     },
     sources = {
 	{ name = 'nvim_lsp' },
