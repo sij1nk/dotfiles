@@ -1,7 +1,6 @@
 path+=('/home/rg/.local/bin')
 path+=('/home/rg/.local/share/cargo/bin')
 path+=('/home/rg/.scripts')
-path+=('/home/rg/.dotnet')
 path+=('/home/rg/.dotnet/tools')
 path+=('.')
 export PATH

@@ -104,6 +104,13 @@ bindsym {
     $mod+bracketright exec pulsemixer --change-volume +5
     $mod+ctrl+m exec pulsemixer --toggle-mute
 
+    $mod+ctrl+p exec confset playerctl toggle
+    $mod+ctrl+shift+p exec confset playerctl select-player
+    $mod+ctrl+bracketleft exec confset playerctl prev
+    $mod+ctrl+bracketright exec confset playerctl next
+    $mod+ctrl+shift+bracketleft exec confset playerctl skip -- -10
+    $mod+ctrl+shift+bracketright exec confset playerctl skip 10
+
     $mod+a mode "command_layer"
 
 # applications:

@@ -1,0 +1,107 @@
+#!/usr/bin/python3
+import argparse
+import subprocess
+
+XMAX = 15200
+YMAX = 9500
+AR = 1.6
+
+def get_mons():
+    res = subprocess.run('xrandr --listactivemonitors | tail -n +2', capture_output=True, shell=True)
+    # this is readable right?
+    mons = [(int(r[0]), int(r[1].split('x')[1])) for r in [r.split()[2].split('/') for r in res.stdout.decode('ascii').splitlines()]]
+    mons_dict = {f'HEAD-{i}':m for i,m in enumerate(mons)}
+
+    return mons_dict
+
+def get_screen_aspect_ratio():
+    pass
+
+def get_device_id():
+    res = subprocess.run('xsetwacom --list devices | grep stylus | awk \'{print $8}\'', capture_output=True, shell=True)
+    try:
+        return int(res.stdout)
+    except ValueError:
+        # device isn't connected
+        return None
+
+def set_area(device_id, x, y, x2, y2, output):
+    res = subprocess.run(f'xsetwacom set {device_id} Area {x} {y} {x2} {y2}', capture_output=True, shell=True)
+    res2 = subprocess.run(f'xsetwacom set {device_id} MapToOutput {output}', capture_output=True, shell=True)
+    for r in [res, res2]:
+        if r.returncode != 0 or r.stderr:
+            print('Error: ' + r.stderr.decode('ascii')[:-1])
+            exit(1)
+
+    print(f'Tablet area set to ({x} {y} {x2} {y2}) on {output}')
+
+mons = get_mons()
+parser = argparse.ArgumentParser(description='x')
+
+parser.add_argument(
+        'size',
+        metavar='S [1-100]',
+        type=int,
+        choices=range(1, 101),
+        help='Size of area in percents'
+)
+
+parser.add_argument(
+        '-y',
+        metavar='V [0-100]',
+        default=50,
+        type=int,
+        choices=range(0, 101),
+        help='Vertical alignment of area (50 = middle)'
+)
+
+parser.add_argument(
+        '-x',
+        metavar='H [0-100]',
+        default=50,
+        type=int,
+        choices=range(0, 101),
+        help='Horizontal alignment of area (50 = middle)'
+)
+
+parser.add_argument(
+        '-o', '--output',
+        type=str,
+        default=list(mons.keys())[0],
+        choices=mons.keys(),
+        help='Which output the tablet area should be mapped to')
+
+id = get_device_id()
+if not id:
+    print('Device is not connected!')
+    exit(0)
+
+args = parser.parse_args()
+
+sw = mons[args.output][0]
+sh = mons[args.output][1]
+
+
+width = int(XMAX * args.size / 100)
+height = int(YMAX * args.size / 100)
+
+sar = sw / sh
+if sar < AR:
+    width = int(height / sh * sw)
+elif sar > AR:
+    height = int(width / sw * sh)
+else:
+    pass
+
+print(width, height)
+
+xrem = XMAX - width
+yrem = YMAX - height
+
+x = int(xrem * args.x / 100)
+x2 = XMAX - (xrem - x)
+
+y = int(yrem * args.y / 100)
+y2 = YMAX - (yrem - y)
+
+set_area(id, x, y, x2, y2, args.output)
