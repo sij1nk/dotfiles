@@ -125,3 +125,7 @@ key = 'k'
 
 [zathura.files]
 "config/zathura" = '~/.config/zathura'
+
+[ncmpcpp.files]
+"config/ncmpcpp" = '~/.config/ncmpcpp'
+"config/ncmpcpp/config" = { target = "~/.config/ncmpcpp/config", type = "symbolic" }
