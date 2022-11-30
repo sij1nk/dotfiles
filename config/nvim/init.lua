@@ -145,7 +145,9 @@ cmp.setup {
 	    behavior = cmp.ConfirmBehavior.Replace,
 	    select = false,
 	},
-	['<Esc>'] = cmp.mapping.abort(),
+	-- Keep this unmapped! If it is mapped, you'll have to double tap escape to exit insert
+	-- mode sometimes, instead of a single tap
+	-- ['<Esc>'] = cmp.mapping.abort(),
     },
     sources = {
 	{ name = 'nvim_lsp' },
