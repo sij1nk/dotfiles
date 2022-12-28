@@ -24,7 +24,8 @@ window#waybar.solo {
 }
 */
 
-#workspaces button {
+#workspaces button,
+#tags button {
     padding: 0 8px;
     margin: 0;
     background-color: transparent;
@@ -34,24 +35,36 @@ window#waybar.solo {
     border-radius: 0;
 }
 
-#workspaces button:hover {
+#workspaces button:hover,
+#tags button:hover {
     box-shadow: inherit;
     text-shadow: inherit;
     background: {{color.hlhi}};
 }
 
-#workspaces button.focused {
-    background-color: {{color.rose}};
+#workspaces button.urgent,
+#tags button.urgent {
+    background-color: {{color.love}};
     color: {{color.base}};
 }
 
-#workspaces button.urgent {
-    background-color: {{color.love}};
+#tags button.occupied {
+    background-color: {{color.hlmed}};
+}
+
+#workspaces button.focused,
+#tags button.focused {
+    background-color: {{color.rose}};
     color: {{color.base}};
 }
 
 #mode {
     background-color: #64727D;
+}
+
+#mode.command {
+    background-color: #64727D;
+    color: {{color.rose}};
 }
 
 #clock,

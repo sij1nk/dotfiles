@@ -1,6 +1,10 @@
 #!/bin/sh
 
+{{#if riverwm}}
+riverctl enter-mode normal
+{{else}}
 swaymsg mode "default"
+{{/if}}
 
 [ $# -ne 1 ] && echo "Usage: ytdlmenu URL" && exit
 

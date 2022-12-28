@@ -50,7 +50,17 @@ export MCFLY_DISABLE_MENU=TRUE
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
+export XKB_DEFAULT_LAYOUT="us"
+export XKB_DEFAULT_VARIANT="basic"
+export XKB_DEFAULT_OPTIONS="caps:swapescape,altwin:menu_win"
+
+{{#if riverwm}}
+[ $(tty) = "/dev/tty1" ] && river
+{{else}}
+# Not sure if exec is needed and I don't feel like trying right now
 [ $(tty) = "/dev/tty1" ] && exec sway
+{{/if}}
+
 {{#if x11.enable}}
 [ $(tty) = "/dev/tty2" ] && exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &> /dev/null
 {{/if}}

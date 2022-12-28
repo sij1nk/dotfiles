@@ -1,5 +1,11 @@
 #!/bin/sh
 
+{{#if riverwm}}
+riverctl enter-mode normal
+{{else}}
+swaymsg mode "default"
+{{/if}}
+
 result=$(echo "shutdown\nreboot\nsuspend" | wofi -d --prompt "Choose operation")
 
 case "$result" in
@@ -8,4 +14,3 @@ case "$result" in
     suspend) systemctl suspend
 esac
 
-swaymsg mode "default"

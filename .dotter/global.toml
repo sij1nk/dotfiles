@@ -7,10 +7,11 @@
 x11.enable = true
 
 [wallpapers.files]
-"wall.png" = "~/Pictures/Wallpapers/wall.png"
+"wall.png" = { target = "~/Pictures/Wallpapers/wall.png", type = "symbolic"}
 
 [scripts.files]
 scripts = "~/.scripts"
+"scripts/plsdo" = { target = "~/.scripts/plsdo", type = "symbolic" }
 
 [alacritty.files]
 "config/alacritty" = "~/.config/alacritty"
@@ -129,3 +130,9 @@ key = 'k'
 [ncmpcpp.files]
 "config/ncmpcpp" = '~/.config/ncmpcpp'
 "config/ncmpcpp/config" = { target = "~/.config/ncmpcpp/config", type = "symbolic" }
+
+[river.files]
+"config/river/init" = '~/.config/river/init'
+
+[kanshi.files]
+"config/kanshi/config" = '~/.config/kanshi/config'

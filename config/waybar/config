@@ -6,7 +6,11 @@
     // "margin": 12,
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
+    {{#if riverwm}}
+    "modules-left": ["river/tags", "river/mode"],
+    {{else}}
     "modules-left": ["sway/workspaces", "sway/mode"],
+    {{/if}}
     "modules-right": [
 	"pulseaudio",
 	"custom/brightness",
@@ -50,6 +54,9 @@
 	}
     },
     "sway/mode": {
+	"format": "<span style=\"italic\">{}</span>"
+    },
+    "river/mode": {
 	"format": "<span style=\"italic\">{}</span>"
     },
     "mpd": {
