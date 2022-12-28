@@ -141,6 +141,7 @@ riverctl spawn "swaybg -i ~/Pictures/Wallpapers/wall.png -m fill"
 riverctl spawn "waybar"
 riverctl spawn "gammastep"
 riverctl spawn "kanshi"
+riverctl spawn "wired --run"
 
 riverctl input "1267:5:Elan_Touchpad" accel-profile "flat"
 riverctl input "1267:5:Elan_Touchpad" pointer-accel 0.5
