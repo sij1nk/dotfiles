@@ -118,9 +118,10 @@ riverctl map command None S spawn 'focus_app spotify 128'
 riverctl map command Super D spawn 'focus_app discord 256'
 riverctl map command None D spawn 'focus_app discord 256'
 
-riverctl background-color 0x002b36
-riverctl border-color-focused 0xebbcba
-riverctl border-color-unfocused 0x1f1d2e
+riverctl background-color 0x191724
+riverctl border-color-focused 0xf6c177
+# Pull alpha to 80% (cc), same as the current alacritty opacity
+riverctl border-color-unfocused 0x191724cc
 riverctl border-width 4
 riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-output-change
@@ -137,7 +138,7 @@ riverctl set-repeat 50 250
 riverctl float-filter-add app-id float
 riverctl float-filter-add title "popup title with spaces"
 
-riverctl spawn "swaybg -i ~/Pictures/Wallpapers/wall.png -m fill"
+riverctl spawn "swaybg -i ~/Pictures/Wallpapers/wall_tide.jpg -m fill"
 riverctl spawn "waybar"
 riverctl spawn "gammastep"
 riverctl spawn "kanshi"
@@ -153,5 +154,5 @@ riverctl input "1267:5:Elan_Touchpad" tap enabled
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-exec rivertile -view-padding 0 -outer-padding 0
+exec rivertile -view-padding 8 -outer-padding 8
 

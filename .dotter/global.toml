@@ -7,7 +7,8 @@
 x11.enable = true
 
 [wallpapers.files]
-"wall.png" = { target = "~/Pictures/Wallpapers/wall.png", type = "symbolic"}
+"wall_bloom.png" = { target = "~/Pictures/Wallpapers/wall_bloom.png", type = "symbolic"}
+"wall_tide.jpg" = { target = "~/Pictures/Wallpapers/wall_tide.jpg", type = "symbolic"}
 
 [scripts.files]
 scripts = "~/.scripts"
