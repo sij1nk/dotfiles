@@ -1,0 +1,18 @@
+#!/usr/bin/sh
+
+ENTRY_PATH=$1
+
+if ! [ -e "$ENTRY_PATH" ]; then
+    echo "File does not exist"
+    return
+fi
+
+ENTRY_NAME=$(basename "$ENTRY_PATH")
+
+USER_ENTRY_PATH="~/.local/share/applications/$ENTRY_NAME"
+
+cp "$ENTRY_PATH" ~/.local/share/applications
+
+cd  ~/.local/share/applications
+
+echo "NoDisplay=true" >> $ENTRY_NAME
