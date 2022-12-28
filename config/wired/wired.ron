@@ -84,7 +84,7 @@
                 //background_color: Color(r: 0.15686, g: 0.15686, b: 0.15686, a: 1.0),
                 background_color: Color(hex: "{{color.surface}}"),
                 border_color: Color(hex: "{{color.pine}}"),
-                border_color_low: Color(hex: "{{color.foam}}"),
+                border_color_low: Color(hex: "{{color.surface}}"),
                 border_color_critical: Color(hex: "{{color.love}}"),
                 border_color_paused: Color(hex: "{{color.rose}}"),
 
@@ -117,12 +117,12 @@
             // https://github.com/Toqozz/wired-notify/wiki/TextBlock
             params: TextBlock((
                 text: "%s",
-                font: "Iosevka Semibold 16",
+                font: "Iosevka Semibold 14",
                 ellipsize: Middle,
                 color: Color(hex: "{{color.text}}"),
                 color_hovered: Color(hex: "{{color.subtle}}"),
                 padding: Padding(left: 12.0, right: 12.0, top: 12.0, bottom: 12.0),
-                dimensions: (width: (min: 50, max: 150), height: (min: 0, max: 0)),
+                dimensions: (width: (min: 50, max: 300), height: (min: 0, max: 0)),
             )),
         ),
 
@@ -139,7 +139,7 @@
                 color: Color(hex: "{{color.text}}"),
                 color_hovered: Color(hex: "{{color.subtle}}"),
                 padding: Padding(left: 12.0, right: 12.0, top: 0.0, bottom: 12.0),
-                width: (min: 150, max: 250),
+                width: (min: 150, max: 300),
                 scroll_speed: 0.1,
                 lhs_dist: 35.0,
                 rhs_dist: 35.0,

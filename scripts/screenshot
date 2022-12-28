@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+
+FULL=$1
+
+if [ "$FULL" = "full" ]; then
+    grim 
+
+    [ $? -eq 0 ] && notify-send "Screenshot" "Screenshot taken of the entire display" -u low
+else
+    grim -g "$(slurp)"
+
+    [ $? -eq 0 ] && notify-send "Screenshot" "Screenshot taken of selected area" -u low
+fi
+

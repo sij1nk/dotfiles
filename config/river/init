@@ -92,6 +92,9 @@ riverctl map normal Super+Control H send-layout-cmd rivertile "main-location lef
 
 riverctl map normal Super P spawn "wofi --show=drun --prompt=Launch | xargs riverctl spawn"
 
+riverctl map normal Super+Control S spawn "screenshot"
+riverctl map normal Super+Control+Shift S spawn "screenshot full"
+
 for mode in normal locked
 do
     riverctl map $mode Super bracketleft spawn 'pulsemixer --change-volume -5'
