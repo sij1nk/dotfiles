@@ -57,6 +57,8 @@ end
 
 map('i', '<Leader>x', 'v:lua.fuckOff()', { silent = true, expr = true })
 
+map('n', '<C-h>', '<Cmd>NvimTreeToggle<CR>')
+
 
 -- select all
 map('', '<C-a>', 'ggVG')
@@ -106,6 +108,10 @@ map('c', 'w!!', 'w !sudo tee > /dev/null %', { silent = false })
 
 -- telescope find files
 map('n', '<C-p>', '<Cmd>Telescope find_files<CR>')
+map('n', '<C-g>', '<Cmd>Telescope live_grep<CR>')
+map('n', '<Leader><C-g>', '<Cmd>Telescope grep_string<CR>')
+map('n', '<Leader><C-m>', '<Cmd>Telescope man_pages<CR>')
+map('n', '<Leader><C-o>', '<Cmd>Telescope colorscheme<CR>')
 
 -- LSP 
 map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>')

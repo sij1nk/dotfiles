@@ -1,13 +1,102 @@
 require 'options'
 require 'plugins'
-require 'colors'
 require 'autocmd'
 require 'utils'
 require 'map'
 require 'rename'
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+local lib = require("nvim-tree.lib")
+local view = require("nvim-tree.view")
+
+
+local function collapse_all()
+    require("nvim-tree.actions.tree-modifiers.collapse-all").fn()
+end
+
+local function edit_or_open()
+    -- open as vsplit on current node
+    local action = "edit"
+    local node = lib.get_node_at_cursor()
+
+    -- Just copy what's done normally with vsplit
+    if node.link_to and not node.nodes then
+	require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+	view.close() -- Close the tree if file was opened
+
+    elseif node.nodes ~= nil then
+	lib.expand_or_collapse(node)
+
+    else
+	require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+	view.close() -- Close the tree if file was opened
+    end
+
+end
+
+local function vsplit_preview()
+    -- open as vsplit on current node
+    local action = "vsplit"
+    local node = lib.get_node_at_cursor()
+
+    -- Just copy what's done normally with vsplit
+    if node.link_to and not node.nodes then
+	require('nvim-tree.actions.node.open-file').fn(action, node.link_to)
+
+    elseif node.nodes ~= nil then
+	lib.expand_or_collapse(node)
+
+    else
+	require('nvim-tree.actions.node.open-file').fn(action, node.absolute_path)
+
+    end
+
+    -- Finally refocus on tree if it was lost
+    view.focus()
+end
+
+require("nvim-tree").setup {
+    -- open_on_setup = true,
+    hijack_unnamed_buffer_when_opening = true,
+    update_focused_file = {
+	enable = true
+    },
+    diagnostics = {
+	enable = true
+    },
+    modified = {
+	enable = true
+    },
+    renderer = {
+	add_trailing = true,
+	group_empty = true,
+	highlight_opened_files = "name",
+    },
+    view = {
+	width = {},
+	mappings = {
+	    custom_only = false,
+	    list = {
+		{ key = "l", action = "edit", action_cb = edit_or_open },
+		{ key = "L", action = "vsplit_preview", action_cb = vsplit_preview },
+		{ key = "h", action = "close_node" },
+		{ key = "H", action = "collapse_all", action_cb = collapse_all }
+	    }
+	}
+    },
+    actions = {
+	open_file = {
+	    quit_on_open = false
+	}
+    }
+}
+
 require('nvim-autopairs').setup {}
 require('colorizer').setup {}
+
+
 
 telescope = require('telescope')
 telescope.setup {
@@ -34,17 +123,17 @@ require('nvim-treesitter.configs').setup {
     highlight = {
 	enable = true,
     },
- -- these seems to cause a lot of slowdown when editing large files and I don't
- -- really use them anyway
- --    incremental_selection = {
-	-- enable = true,
-	-- keymaps = {
-	--     init_selection = "gnn",
-	--     node_incremental = "grn",
-	--     scope_incremental = "grc",
-	--     node_decremental = "grm",
-	-- },
- --    },
+    -- these seems to cause a lot of slowdown when editing large files and I don't
+    -- really use them anyway
+    --    incremental_selection = {
+    -- enable = true,
+    -- keymaps = {
+    --     init_selection = "gnn",
+    --     node_incremental = "grn",
+    --     scope_incremental = "grc",
+    --     node_decremental = "grm",
+    -- },
+    --    },
 
     -- indent works on JSX but on large files it crawls to a halt
     indent = {
@@ -62,7 +151,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- this is supposed to disallow focusing into the diagnostics hover window
 -- but I don't think it actually works
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, { focusable = false }
+vim.lsp.handlers.hover, { focusable = false }
 )
 
 local lsp = require('lspconfig')
@@ -121,12 +210,39 @@ local opts = {
 
 rust_tools.setup(opts)
 
+require('rose-pine').setup {
+    dark_variant = "main",
+    dim_nc_background = true,
+
+    groups = {
+	background = 'surface',
+	border = "muted"
+    },
+
+    highlight_groups = {
+	NvimTreeNormal = { bg = 'base', fg = 'text' },
+	CursorLine = { bg = "overlay" },
+	StatusLine = { bg = "rose", fg = "base" },
+	NvimTreeOpenedFile = { fg = "rose" },
+	-- fg only works on non-highlighted files
+	NormalNC = { fg = "muted" }
+    }
+}
+
+
+require('catppuccin').setup {
+    integrations = {
+	telescope = true,
+	nvimtree = true
+    }
+}
+
 local cmp = require('cmp')
 cmp.setup {
     preselect = cmp.PreselectMode.None,
- --    completion = {
-	-- autocomplete = true
- --    },
+    --    completion = {
+    -- autocomplete = true
+    --    },
     snippet = {
 	expand = function(args)
 	    vim.fn["vsnip#anonymous"](args.body)
@@ -156,3 +272,5 @@ cmp.setup {
 	{ name = 'buffer' },
     },
 }
+
+require 'colors'
