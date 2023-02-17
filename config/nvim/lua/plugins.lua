@@ -35,7 +35,7 @@ return require('packer').startup(function()
     }
 
     use 'neovim/nvim-lspconfig';
-    use 'simrat39/rust-tools.nvim';
+    use 'kdarkhan/rust-tools.nvim';
     use 'hrsh7th/nvim-cmp'; -- Completion framework
     use 'hrsh7th/cmp-nvim-lsp'; -- LSP completion source
     use 'hrsh7th/cmp-vsnip'; -- snippet completion source

@@ -154,6 +154,9 @@ riverctl input "1267:5:Elan_Touchpad" middle-emulation enabled
 riverctl input "1267:5:Elan_Touchpad" natural-scroll enabled
 riverctl input "1267:5:Elan_Touchpad" tap enabled
 
+riverctl input "1241:44368:USB_Gaming_Mouse" accel-profile "flat"
+riverctl input "1241:44368:USB_Gaming_Mouse" pointer-accel -0.5
+
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile

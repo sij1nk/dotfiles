@@ -24,7 +24,7 @@ client.urgent {{color.love}} {{color.love}} {{color.base}} {{color.love}}
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/wall.png fill
+output * bg ~/Pictures/Wallpapers/wall_bloom.png fill
 #
 # Example configuration:
 #
