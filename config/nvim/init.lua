@@ -224,8 +224,6 @@ require('rose-pine').setup {
 	CursorLine = { bg = "overlay" },
 	StatusLine = { bg = "rose", fg = "base" },
 	NvimTreeOpenedFile = { fg = "rose" },
-	-- fg only works on non-highlighted files
-	NormalNC = { fg = "muted" }
     }
 }
 

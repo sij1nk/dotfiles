@@ -55,9 +55,11 @@ export XKB_DEFAULT_VARIANT="basic"
 export XKB_DEFAULT_OPTIONS="caps:swapescape,altwin:menu_win"
 
 {{#if riverwm}}
+export XDG_CURRENT_DESKTOP=river
 [ $(tty) = "/dev/tty1" ] && river
 {{else}}
 # Not sure if exec is needed and I don't feel like trying right now
+export XDG_CURRENT_DESKTOP=sway
 [ $(tty) = "/dev/tty1" ] && exec sway
 {{/if}}
 

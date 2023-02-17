@@ -125,8 +125,9 @@ mode "command_layer" {
 {{#each apps}}
     bindsym $mod+{{key}} exec focus_app {{binary}} {{workspace}} {{selector}}
 {{/each}}
-    bindsym 2 exec ytdlmenu $(wl-paste) > /tmp/y.txt 2>&1
-    bindsym 1 exec kbmenu
-    bindsym 0 exec powermenu
+    bindsym 3 exec swaymsg mode "default" && plsdo game
+    bindsym 2 exec swaymsg mode "default" && ytdlmenu $(wl-paste) > /tmp/y.txt 2>&1
+    bindsym 1 exec swaymsg mode "default" && plsdo keyboard_layout
+    bindsym 0 exec swaymsg mode "default" && plsdo power
     bindsym Escape mode "default"
 }

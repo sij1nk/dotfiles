@@ -13,4 +13,4 @@ case "$active_index" in
     3) text="c-dh (vim)" ;;
 esac
 
-echo "$text\n$tooltip"
+echo -e "$text\n$tooltip"
