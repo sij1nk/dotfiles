@@ -67,14 +67,18 @@ bindsym {
     $mod+v splitv
 
 # Switch the current container between different layout styles
-    $mod+control+s layout stacking
-    $mod+control+t layout tabbed
-    $mod+control+e layout toggle split
+# NOTE: commented, because unused (aside from mistaken presses)
+    # $mod+control+s layout stacking
+    # $mod+control+t layout tabbed
+    # $mod+control+e layout toggle split
 
     $mod+o workspace back_and_forth
 
 # Make the current focus fullscreen
     $mod+f fullscreen
+
+    $mod+control+s exec "screenshot"
+    $mod+control+shift+s exec "screenshot full"
 
 # Toggle the current focus between tiling and floating mode
     $mod+Shift+space floating toggle

@@ -14,6 +14,8 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu wofi --show=drun --prompt=Launch | xargs swaymsg exec --
 
+exec "wired --run"
+
 # border bg text
 client.focused {{color.rose}} {{color.rose}} {{color.base}} {{color.love}}
 client.focused_inactive {{color.subtle}} {{color.subtle}} {{color.text}} {{color.love}}
