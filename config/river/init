@@ -11,6 +11,7 @@
 # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
 riverctl csd-filter-add title spotify
+riverctl float-filter-add title spotify
 
 riverctl map normal Super Return spawn alacritty
 riverctl map normal Super Q close
@@ -109,9 +110,9 @@ riverctl declare-mode command
 riverctl map normal Super A enter-mode command
 riverctl map command None Escape enter-mode normal
 
-riverctl map command None 0 spawn 'powermenu'
-riverctl map command None 1 spawn 'kbmenu'
-riverctl map command None 2 spawn 'ytdlmenu $(wl-paste) > /tmp/y.txt 2>&1'
+riverctl map command None 0 spawn 'riverctl enter-mode normal && plsdo power'
+riverctl map command None 1 spawn 'riverctl enter-mode normal && plsdo keyboard_layout'
+riverctl map command None 2 spawn 'riverctl enter-mode normal && ytdlmenu $(wl-paste) > /tmp/y.txt 2>&1'
 riverctl map command Super K spawn 'focus_app krita 16'
 riverctl map command None K spawn 'focus_app krita 16'
 riverctl map command Super W spawn 'focus_app firefox 32'
@@ -147,6 +148,7 @@ riverctl spawn "gammastep"
 riverctl spawn "kanshi"
 riverctl spawn "wired --run"
 
+# TODO: update asus touchpad identifier
 riverctl input "1267:5:Elan_Touchpad" accel-profile "flat"
 riverctl input "1267:5:Elan_Touchpad" pointer-accel 0.5
 riverctl input "1267:5:Elan_Touchpad" disable-while-typing disabled
@@ -154,8 +156,14 @@ riverctl input "1267:5:Elan_Touchpad" middle-emulation enabled
 riverctl input "1267:5:Elan_Touchpad" natural-scroll enabled
 riverctl input "1267:5:Elan_Touchpad" tap enabled
 
-riverctl input "1241:44368:USB_Gaming_Mouse" accel-profile "flat"
-riverctl input "1241:44368:USB_Gaming_Mouse" pointer-accel -0.5
+# riverctl keyboard-layout -variant basic -options caps:swapescape us
+# riverctl keyboard-layout -variant 102_qwerty_dot_nodead -options caps:swapescape,altwin:menu_win hu 
+# riverctl keyboard-layout -variant colemak_dh -options caps:swapescape,altwin:menu_win us
+# riverctl keyboard-layout -variant colemak_dh_vim -options caps:swapescape,altwin:menu_win us
+riverctl keyboard-layout -variant basic,102_qwerty_dot_nodead,colemak_dh,colemak_dh_vim -options caps:swapescape,altwin:menu_win,grp:ctrl_space_toggle us,hu,us,us
+
+riverctl input "pointer-1241-44368-USB_Gaming_Mouse" accel-profile "flat"
+riverctl input "pointer-1241-44368-USB_Gaming_Mouse" pointer-accel -0.5
 
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.

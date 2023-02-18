@@ -1,0 +1,27 @@
+[[layouts]]
+name = "English (US)"
+label = "us"
+variant = "basic"
+options = "caps:swapescape,altwin:menu_win"
+layout = "us"
+
+[[layouts]]
+name = "Hungarian (QWERTY, 102-key, dot, no dead keys)"
+label = "hu"
+variant = "102_qwerty_dot_nodead"
+options = "caps:swapescape,altwin:menu_win"
+layout = "hu"
+
+[[layouts]]
+name = "English (Colemak-DH)"
+label = "c-dh"
+variant = "colemak_dh"
+options = "caps:swapescape,altwin:menu_win"
+layout = "us"
+
+[[layouts]]
+name = "English (Colemak-DH with vim keys)"
+label = "us"
+variant = "colemak_dh_vim"
+options = "caps:swapescape,altwin:menu_win"
+layout = "us"
