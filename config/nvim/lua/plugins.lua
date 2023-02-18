@@ -13,6 +13,8 @@ return require('packer').startup(function()
 
     use 'nvim-tree/nvim-tree.lua'
 
+    use 'gpanders/editorconfig.nvim'
+
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
     use {
@@ -29,6 +31,7 @@ return require('packer').startup(function()
 
     -- colors
     use 'norcalli/nvim-colorizer.lua';
+    use 'kdheepak/monochrome.nvim';
     use { "catppuccin/nvim", as = "catppuccin" };
     use {
 	    'rose-pine/neovim',
