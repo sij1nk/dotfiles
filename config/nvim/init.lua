@@ -11,7 +11,6 @@ vim.g.loaded_netrwPlugin = 1
 local lib = require("nvim-tree.lib")
 local view = require("nvim-tree.view")
 
-
 local function collapse_all()
     require("nvim-tree.actions.tree-modifiers.collapse-all").fn()
 end
@@ -116,13 +115,22 @@ telescope.setup {
 
 telescope.load_extension("ui-select")
 
+local function ts_disable_on_large_buffers(lang, bufnr)
+    if #vim.api.nvim_buf_get_lines(bufnr, 0, -1, false) > 5000 then
+	return true
+    end
+    return false
+end
+
 require('nvim-treesitter.configs').setup {
     autotag = {
 	enable = true,
+	disable = ts_disable_on_large_buffers
     },
     -- highlighting also slows things down a bit
     highlight = {
 	enable = true,
+	disable = ts_disable_on_large_buffers
     },
     -- these seems to cause a lot of slowdown when editing large files and I don't
     -- really use them anyway
@@ -139,6 +147,7 @@ require('nvim-treesitter.configs').setup {
     -- indent works on JSX but on large files it crawls to a halt
     indent = {
 	enable = true,
+	disable = ts_disable_on_large_buffers
     },
 }
 
