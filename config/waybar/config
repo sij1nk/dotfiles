@@ -12,6 +12,7 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     {{/if}}
     "modules-right": [
+	"custom/omo",
 	"pulseaudio",
 	"custom/brightness",
 	"cpu",
@@ -24,6 +25,10 @@
 	"clock"
     ],
     // Modules configuration
+    "custom/omo": {
+	"exec": "omo get --notify",
+	"interval": 1
+    },
     "sway/workspaces": {
 	"disable-scroll": true,
 	"all-outputs": true,
