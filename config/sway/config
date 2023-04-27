@@ -93,7 +93,7 @@ bar {
 }
 
 seat seat0 {
-    xcursor_theme Adwaita 36
+    xcursor_theme Bibata-Modern-Ice 36
     hide_cursor 5000
 }
 
