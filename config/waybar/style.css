@@ -1,12 +1,12 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Iosevka, sans-serif;
-    font-size: {{waybar.fontsize}};
+    font-family: Iosevka;
+    font-size: 21;
 }
 
 window#waybar {
-    background-color: {{color.base}};
-    color: {{color.text}};
+    background-color: #191724;
+    color: #e0def4;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -29,7 +29,7 @@ window#waybar.solo {
     padding: 0 8px;
     margin: 0;
     background-color: transparent;
-    color: {{color.text}};
+    color: #e0def4;
     /* Avoid rounded borders under each workspace name */
     border: none;
     border-radius: 0;
@@ -39,23 +39,23 @@ window#waybar.solo {
 #tags button:hover {
     box-shadow: inherit;
     text-shadow: inherit;
-    background: {{color.hlhi}};
+    background: #524f67;
 }
 
 #workspaces button.urgent,
 #tags button.urgent {
-    background-color: {{color.love}};
-    color: {{color.base}};
+    background-color: #eb6f92;
+    color: #191724;
 }
 
 #tags button.occupied {
-    background-color: {{color.hlmed}};
+    background-color: #403d52;
 }
 
 #workspaces button.focused,
 #tags button.focused {
-    background-color: {{color.rose}};
-    color: {{color.base}};
+    background-color: #ebbcba;
+    color: #191724;
 }
 
 #mode {
@@ -64,7 +64,7 @@ window#waybar.solo {
 
 #mode.command {
     background-color: #64727D;
-    color: {{color.rose}};
+    color: #ebbcba;
 }
 
 #clock,
@@ -85,7 +85,7 @@ window#waybar.solo {
 #mpd {
     margin: 6px 6px;
     padding: 4px 16px; 
-    background-color: {{color.surface}};
+    background-color: #1f1d2e;
     border-radius: 4px;
 }
 
@@ -95,7 +95,7 @@ window#waybar.solo {
 }
 
 #clock {
-    color: {{color.text}};
+    color: #e0def4;
 }
 
 /*
@@ -128,7 +128,7 @@ window#waybar.solo {
 */
 
 label:focus {
-    background-color: {{color.foam}};
+    background-color: #9ccfd8;
 }
 
 /* TODO(rg):
@@ -151,38 +151,34 @@ label:focus {
 */
 
 #pulseaudio {
-    color: {{color.iris}};
+    color: #c4a7e7;
 }
 
 #pulseaudio.muted {
-    color: {{color.muted}};
+    color: #6e6a86;
 }
 
 #custom-brightness {
-    color: {{color.gold}};
+    color: #f6c177;
 }
 
 #cpu {
-{{#if laptop}}
-    color: {{color.intel_blue}};
-{{else}}
-    color: {{color.amd_red}}
-{{/if}}
+    color: #ed1c24
 }
 
 #temperature {
-    color: {{color.rose}};
+    color: #ebbcba;
 }
 
 #temperature.critical {
-    background-color: {{color.rose}};
-    color: {{color.base}};
+    background-color: #ebbcba;
+    color: #191724;
 }
 
 #memory {
-    color: {{color.foam}};
+    color: #9ccfd8;
 }
 
 #custom-kb {
-    color: {{color.pine}};
+    color: #31748f;
 }
