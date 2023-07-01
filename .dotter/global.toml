@@ -7,12 +7,13 @@
 x11.enable = true
 
 [wallpapers.files]
-"wall_bloom.png" = { target = "~/Pictures/Wallpapers/wall_bloom.png", type = "symbolic"}
-"wall_tide.jpg" = { target = "~/Pictures/Wallpapers/wall_tide.jpg", type = "symbolic"}
+"kanehira_colors.jpg" = { target = "~/Pictures/Wallpapers/kanehira_colors.jpg", type = "symbolic"}
+"kanehira_evening.jpg" = { target = "~/Pictures/Wallpapers/kanehira_evening.jpg", type = "symbolic"}
 
 [scripts.files]
 scripts = "~/.scripts"
 "scripts/plsdo" = { target = "~/.scripts/plsdo", type = "symbolic" }
+"scripts/eww" = { target = "~/.scripts/eww", type = "symbolic" }
 
 [alacritty.files]
 "config/alacritty" = "~/.config/alacritty"
@@ -20,6 +21,15 @@ scripts = "~/.scripts"
 [alacritty.variables]
 alacritty.font_size = 20
 alacritty.opacity = 0.95
+
+[hypr.files]
+"config/hypr" = "~/.config/hypr"
+
+[helix.files]
+"config/helix" = "~/.config/helix"
+
+[eww.files]
+"config/eww" = "~/.config/eww"
 
 [zsh.files]
 "config/zsh" = "~/.config/zsh"

@@ -1,0 +1,28 @@
+#!/usr/bin/sh
+
+while getopts c:e:w:t value
+do
+  case $value in
+    c) class="$OPTARG" ;;
+    e) executable="$OPTARG" ;;
+    w) workspace="$OPTARG" ;;
+    t) terminal=1 ;;
+  esac
+done
+
+[ -z $class ] && echo 'window class not specified' && exit 1
+: "${executable:=$class}"
+
+if [ 0 -eq $(hyprctl clients -j | jq -r "map(select(.class == \"$class\")) | length") ]
+then
+  [ $workspace ] && hyprctl dispatch workspace $workspace > /dev/null 
+
+  if [ 1 -eq $terminal ]
+  then
+    exec alacritty --class $class -e $executable &
+  else
+    exec $executable &
+  fi
+fi
+
+hyprctl dispatch focuswindow $class > /dev/null

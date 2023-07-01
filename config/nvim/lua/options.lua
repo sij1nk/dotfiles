@@ -49,4 +49,4 @@ vim.o.wildignore = "**/node_modules/**,**/.git/**,**/.idea/**,**/.vs/**"
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.shortmess = vim.o.shortmess .. "c"
 
-vim.g.mapleader = ","
+vim.g.mapleader = " "

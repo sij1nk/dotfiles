@@ -1,6 +1,7 @@
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
+
     use {
 	'nvim-telescope/telescope.nvim',
 	requires = {
@@ -12,6 +13,8 @@ return require('packer').startup(function()
     }
 
     use 'nvim-tree/nvim-tree.lua'
+
+    use 'codethread/qmk.nvim'
 
     use 'gpanders/editorconfig.nvim'
 
@@ -26,6 +29,7 @@ return require('packer').startup(function()
 
     use 'terminalnode/sway-vim-syntax';
 
+    use 'elkowar/yuck.vim'
     use 'rust-lang/rust.vim';
     -- use 'OmniSharp/omnisharp-vim';
 

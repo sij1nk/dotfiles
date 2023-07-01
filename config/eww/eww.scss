@@ -1,0 +1,52 @@
+/* Colors */
+$base: #191724;
+$surface: #1f1d2e;
+$overlay: #26233a;
+$muted: #6e6a86;
+$subtle: #908caa;
+$text: #e0def4;
+$love: #eb6f92;
+$gold: #f6c177;
+$rose: #ebbcba;
+$pine: #31748f;
+$foam: #9ccfd8;
+$iris: #c4a7e7;
+$hllow: #21202e;
+$hlmed: #403d52;
+$hlhi: #524f67;
+    
+/* TODO: Not sure what this does */
+*{
+    all: unset;
+}
+
+.eww-bar {
+    background-color: $overlay;
+    color: $text;
+}
+
+.time-container {
+    border: 3px solid red;
+}
+
+.shutdown-container {
+    border: 3px solid blue;
+}
+
+.tabs-container {
+    font-family: Cartograph CF;
+    margin: 2px;
+}
+
+.tab-column {
+}
+
+.tab-button {
+    font-size: 1.5rem;
+    border-radius: 8px;
+    background-color: $gold;
+    color: $base;
+    padding: 4px 6px;
+    margin: 2px;
+}
+

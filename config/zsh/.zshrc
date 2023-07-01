@@ -80,7 +80,6 @@ alias \
     mv="mv -v" \
     mkdir="mkdir -p" \
     ls="exa -l --icons --group-directories-first" \
-    grep="grep --color=auto" \
     please='sudo $(fc -nl -1)' \
     vim="vim -i NONE" \
     tmr="transmission-remote" \
@@ -88,26 +87,18 @@ alias \
     mvn="mvn --global-settings \"$XDG_DATA_HOME/m2/settings.xml\"" \
     code="code --extensions-dir $XDG_DATA_HOME/vscode/extensions" \
     zat="zathura" \
-    e="nvim" \
     mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc" \
-    get_idf="source $HOME/Repos/esp/esp-idf/export.sh" \
-    learnvim="nvim -u $HOME/learnvim/init.vim" \
-    plm="cd $HOME/Repos/bmetk-plm/" \
-    plmssp="cd $HOME/Repos/bmetk-plm-server-side-processing/" \
     hx="helix" \
-
-    function esp32 () {
-	source $HOME/.scripts/esp32 $@
-    }
+    e="helix ."
 
 alias \
-    zpr="nvim ${ZDOTDIR}/.zprofile" \
-    swy="nvim ${XDG_CONFIG_HOME}/sway/config" \
-    vrc="nvim ${XDG_CONFIG_HOME}/nvim/init.vim" \
-    nrc="nvim ${XDG_CONFIG_HOME}/ncmpcpp/config" \
-    arc="nvim ${XDG_CONFIG_HOME}/alacritty/alacritty.yml.temp" \
-    zrc="nvim ${ZDOTDIR}/.zshrc" \
-    mrc="nvim ${XDG_CONFIG_HOME}/mutt/muttrc"
+    zpr="hx ${ZDOTDIR}/.zprofile" \
+    swy="hx ${XDG_CONFIG_HOME}/sway/config" \
+    vrc="hx ${XDG_CONFIG_HOME}/nvim/init.vim" \
+    nrc="hx ${XDG_CONFIG_HOME}/ncmpcpp/config" \
+    arc="hx ${XDG_CONFIG_HOME}/alacritty/alacritty.yml.temp" \
+    zrc="hx ${ZDOTDIR}/.zshrc" \
+    mrc="hx ${XDG_CONFIG_HOME}/mutt/muttrc"
 
 # TODO: fix all of these
 if [ -n $DISPLAY ] && [ $XDG_VTNR -eq 1 ]; then
@@ -165,25 +156,19 @@ bindkey -v			# vi mode
 export KEYTIMEOUT=1		# reduce latency when pressing <ESC>
 
 # Use vim keys in tabcomplete menu
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'm' vi-backward-char
+bindkey -M menuselect 'n' vi-down-line-or-history
+bindkey -M menuselect 'e' vi-up-line-or-history
+bindkey -M menuselect 'i' vi-forward-char
+bindkey -M vicmd 'm' vi-backward-char
+bindkey -M vicmd 'n' vi-down-line-or-history
+bindkey -M vicmd 'e' vi-up-line-or-history
+bindkey -M vicmd 'i' vi-forward-char
+bindkey -M vicmd 'h' vi-insert
 
 for keymap in $(bindkey -l | tail); do
-    bindkey -M $keymap '^J' down-history
-    bindkey -M $keymap '^K' up-history
-    # Disable dumb characters in all keymaps
-    bindkey -M $keymap -s '^[[A'  '' # Up arrow
-    bindkey -M $keymap -s '^[[B'  '' # Down arrow
-    bindkey -M $keymap -s '^[[C'  '' # Right arrow
-    bindkey -M $keymap -s '^[[D'  '' # Left arrow
-    bindkey -M $keymap -s '^[[2~' '' # Insert
-    bindkey -M $keymap -s '^[[3~' '' # Delete
-    bindkey -M $keymap -s '^[[H'  '' # Home
-    bindkey -M $keymap -s '^[[F'  '' # End
-    bindkey -M $keymap -s '^[[5~' '' # PgUp
-    bindkey -M $keymap -s '^[[6~' '' # PgDn
+    bindkey -M $keymap '^N' down-history
+    bindkey -M $keymap '^E' up-history
 done
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2> /dev/null

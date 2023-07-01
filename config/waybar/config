@@ -1,9 +1,8 @@
 {
     // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "position": "right", // Waybar position (top|bottom|left|right)
     // "height": 48, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    // "margin": 12,
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
@@ -20,7 +19,8 @@
     "sway/workspaces": {
 	"disable-scroll": true,
 	"all-outputs": true,
-	"format": "{name}"
+	"format": "{name}",
+	"rotate": 270
     },
     "custom/brightness": {
 	"format": "<span font='waybar-icons'>☀</span> {}",
@@ -28,41 +28,50 @@
 	"interval": "once",
 	"on-scroll-up": "$HOME/.local/bin/brightness up",
 	"on-scroll-down": "$HOME/.local/bin/brightness down",
-	"signal": 2
+	"signal": 2,
+	"rotate": 270
     },
     "custom/kb": {
 	"format": "<span font='waybar-icons'></span> {}",
 	"exec": "$HOME/.scripts/kbbar",
 	"interval": "once",
 	"on-click": "kbmenu",
-	"signal": 1
+	"signal": 1,
+	"rotate": 270
     },
     "sway/mode": {
-	"format": "<span style='italic'>{}</span>"
+	"format": "<span style='italic'>{}</span>",
+	"rotate": 270
     },
     "river/mode": {
-	"format": "<span style='italic'>{}</span>"
+	"format": "<span style='italic'>{}</span>",
+	"rotate": 270
     },
     "tray": {
 	// "icon-size": 21,
-	"spacing": 10
+	"spacing": 10,
+	"rotate": 270
     },
     "clock": {
 	// "timezone": "America/New_York",
 	"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-	"format": "{:%Y-%m-%d %H:%M}"
+	"format": "{:%Y-%m-%d %H:%M}",
+	"rotate": 270
     },
     "cpu": {
 	"format": "<span font='waybar-icons'></span> {usage}",
-	"tooltip": false
+	"tooltip": false,
+	"rotate": 270
     },
     "memory": {
-	"format": "<span font='waybar-icons'></span> {used:0.1f}/{total:0.1f}"
+	"format": "<span font='waybar-icons'></span> {used:0.1f}/{total:0.1f}",
+	"rotate": 270
     },
     "temperature": {
 	"hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
 	"critical-threshold": 80,
-	"format": "<span font='waybar-icons'></span> {temperatureC}"
+	"format": "<span font='waybar-icons'></span> {temperatureC}",
+	"rotate": 270
     },
     "battery": {
 	"states": {
@@ -76,7 +85,8 @@
 	"format-alt": "{time} {icon}",
 	// "format-good": "", // An empty format will hide the module
 	// "format-full": "",
-	"format-icons": ["", "", "", "", ""]
+	"format-icons": ["", "", "", "", ""],
+	"rotate": 270
     },
     "battery#bat2": {
 	"bat": "BAT2"
@@ -98,7 +108,8 @@
 	    "car": "",
 	    "default": ["", "", ""]
 	},
-	"on-click": "pulsemixer"
+	"on-click": "pulsemixer",
+	"rotate": 270
     }
 }
 

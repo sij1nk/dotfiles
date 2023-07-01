@@ -14,16 +14,12 @@ local function map(modes, lhs, rhs, opts)
     end
 end
 
-local function t(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+local function unmap(modes, lhs)
+    vim.keymap.del(modes, lhs)
 end
 
-function cleverTab()
-    if vim.fn.getline('.'):sub(1, vim.fn.col('.')-1):match([[^%s*$]]) then
-	return t'<Tab>'
-    else 
-	return t'<C-n>'
-    end
+local function t(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 function pumCj()
@@ -46,25 +42,51 @@ function pumEsc()
     return vim.fn.pumvisible() == 1 and t'<C-e>' or t'<Esc>'
 end
 
-function fuckOff() 
-    if vim.fn.pumvisible() == 1 then
-	print('yes')
+function changeKeyboardLayout(layout) 
+    if layout == "qwerty" then
+	map('n', 'h', '<Left>', { noremap = false})
+	map('n', 'j', '<Down>', { noremap = false})
+	map('n', 'k', '<Up>', { noremap = false})
+	map('n', 'l', '<Right>', { noremap = false})
+
+	map('n', 'n', 'n')
+	map('n', 'i', 'i')
+	map('n', 'e', 'e')
+	map('n', 'm', 'm')
+
+    elseif layout == "c-dh" then
+	map('n', 'm', '<Left>', { noremap = false})
+	map('n', 'n', '<Down>', { noremap = false})
+	map('n', 'e', '<Up>', { noremap = false})
+	map('n', 'i', '<Right>', { noremap = false})
+
+	map('n', 'k', 'n')
+	map('n', 'h', 'i')
+	map('n', 'l', 'e')
+	map('n', 'j', 'm')
+
+	-- TODO: telescope
+	-- TODO: nvim-tree
+	-- TODO: other stuff
+	-- TODO: other modes (visual, ex, etc.)
     else
-	print('no')
+	vim.notify("Layout '" .. layout .. "' is not recognized!",
+	    vim.log.levels.ERROR)
+	return
     end
-    return ''
+
+    vim.notify("Changed keyboard layout to '" .. layout .. "'", vim.log.levels.INFO)
 end
 
-map('i', '<Leader>x', 'v:lua.fuckOff()', { silent = true, expr = true })
 
+map('n', '<Space>', '<Nop>')
 map('n', '<C-h>', '<Cmd>NvimTreeToggle<CR>')
-
 
 -- select all
 map('', '<C-a>', 'ggVG')
 
--- clever tab
-map('i', '<Tab>', 'v:lua.cleverTab()', { expr = true })
+-- help
+map('n', '<Leader>?', ':h <c-r><c-w><cr>')
 
 -- substitute
 map('n', '<Leader>sg', ':%s//g<Left><Left>', { silent = false })
@@ -72,9 +94,15 @@ map('n', '<Leader>sc', ':%s//gc<Left><Left>', { silent = false })
 map('x', '<Leader>sg', ':s//g<Left><Left>', { silent = false })
 map('x', '<Leader>sc', ':s//gc<Left><Left>', { silent = false })
 
--- quicksave
+map('n', '<Leader>q', '<Cmd>quit<CR>')
+map('n', '<Leader>Q', '<Cmd>qall!<CR>')
 map('n', '<Leader>w', '<Cmd>write<CR>')
-map('n', '<Leader>wa', '<Cmd>wall<CR>')
+map('n', '<Leader>W', '<Cmd>wall<CR>')
+map('n', '<Leader>vs', '<Cmd>vs<CR>')
+map('n', '<Leader>sp', '<Cmd>sp<CR>')
+
+map('n', 'gm', '0')
+map('n', 'gi', '$')
 
 -- source vimrc
 map('n', '<Leader>vrc', '<Cmd>source $MYVIMRC<CR>')
@@ -83,21 +111,20 @@ map('n', '<Leader>vrc', '<Cmd>source $MYVIMRC<CR>')
 map('n', '<Leader>c', '<Cmd>noh<CR>')
 
 -- close quickfix
-map('n', '<Leader>q', '<Cmd>cclose<CR>')
+map('n', '<Leader>z', '<Cmd>cclose<CR>')
 
 map('n', 'Q', '@@')
-map('nx', '<Space>', '$')
 
 -- copy into system clipboard
 map('v', '<C-c>', '"+y')
 
 -- FIXME: this might break delimiterMate
+-- FIXME: ...also not sure if these do anything...
 map('i', '<CR>', 'v:lua.pumEnter()', { silent = true, expr = true })
-
--- map('i', '<C-j>', 'v:lua.pumCj()', { silent = true, expr = true })
--- map('i', '<C-k>', 'v:lua.pumCk()', { silent = true, expr = true })
--- map('i', '<S-Tab>', 'v:lua.pumSTab()', { silent = true, expr = true })
--- map('i', '<Esc>', 'v:lua.pumEsc()', { silent = true, expr = true })
+map('i', '<C-j>', 'v:lua.pumCj()', { silent = true, expr = true })
+map('i', '<C-k>', 'v:lua.pumCk()', { silent = true, expr = true })
+map('i', '<S-Tab>', 'v:lua.pumSTab()', { silent = true, expr = true })
+map('i', '<Esc>', 'v:lua.pumEsc()', { silent = true, expr = true })
 
 -- move up/down in history in cmd mode
 map('c', '<C-j>', '<Down>', { silent = false })
@@ -112,17 +139,19 @@ map('n', '<C-g>', '<Cmd>Telescope live_grep<CR>')
 map('n', '<Leader><C-g>', '<Cmd>Telescope grep_string<CR>')
 map('n', '<Leader><C-m>', '<Cmd>Telescope man_pages<CR>')
 map('n', '<Leader><C-o>', '<Cmd>Telescope colorscheme<CR>')
+map('n', '<Leader><C-d>', '<Cmd>Telescope lsp_definitions<CR>')
+map('n', '<Leader><C-f>', '<Cmd>Telescope commands<CR>')
 
 -- LSP 
-map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
+map('n', 'N', '<Cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
 map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
 map('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
-map('n', 'gi', '<Cmd>lua vim.lsp.buf.implementation()<CR>')
+map('n', 'gC', '<Cmd>lua vim.lsp.buf.implementation()<CR>')
 map('n', '<Leader>d', '<Cmd>lua vim.lsp.buf.type_definition()<CR>')
 map('n', '<Leader>r', '<Cmd>lua vim.lsp.buf.rename()<CR>')
 map('n', 'g[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 map('n', 'g]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 map('n', '<M-CR>', '<cmd>lua vim.lsp.buf.code_action()<CR>')
 map('n', '<Leader>f', '<Cmd>lua vim.lsp.buf.formatting()<CR>')
-map('i', '<C-Space>', '<Cmd>lua vim.lsp.buf.completion()<CR>')
+map('n', '<Leader>t', '<Cmd>lua vim.lsp.buf.completion()<CR>')

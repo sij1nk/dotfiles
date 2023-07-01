@@ -83,10 +83,10 @@ window#waybar.solo {
 #custom-brightness,
 #custom-kb,
 #mpd {
-    margin: 6px 6px;
-    padding: 4px 16px; 
-    background-color: #1f1d2e;
-    border-radius: 4px;
+    margin: 4px 8px;
+    padding: 12px 8px; 
+    background-color: #26233a;
+    border-radius: 8px;
 }
 
 #window,
@@ -163,7 +163,7 @@ label:focus {
 }
 
 #cpu {
-    color: #ed1c24
+    color: #ed1c24;
 }
 
 #temperature {

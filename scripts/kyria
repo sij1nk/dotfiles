@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+dir=~/Repos/qmk_firmware/keyboards/splitkb/kyria/keymaps/sijink
+$EDITOR $dir 
+
+confirm "Recompile keymap with 'qmk compile'" 
+[ 0 -eq $? ] && qmk compile

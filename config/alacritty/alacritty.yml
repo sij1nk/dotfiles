@@ -136,15 +136,15 @@ font:
     #style: Bold
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: Cartograph CF
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    style: Italic
 
   # Bold italic font face
   #bold_italic:
@@ -750,11 +750,11 @@ selection:
 key_bindings:
   - { key: V,         mods: Control|Shift,              action: Paste          }
   - { key: C,         mods: Control|Shift,              action: Copy           }
-  - { key: Equals,    mods: Control,                    action: IncreaseFontSize }
+  - { key: Minus,     mods: Control|Alt,                action: IncreaseFontSize }
   - { key: Minus,     mods: Control,                    action: DecreaseFontSize }
-  - { key: N,         mods: Control|Shift,              action: SpawnNewInstance }
-  - { key: J,         mods: Alt,                        action: ScrollLineDown }
-  - { key: K,         mods: Alt,                        action: ScrollLineUp,   }
+  - { key: K,         mods: Control|Shift,              action: SpawnNewInstance }
+  - { key: N,         mods: Alt,                        action: ScrollLineDown }
+  - { key: E,         mods: Alt,                        action: ScrollLineUp,   }
 
   # Vi Mode
   #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
