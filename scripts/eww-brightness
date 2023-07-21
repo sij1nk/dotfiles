@@ -1,0 +1,37 @@
+#!/usr/bin/sh
+
+delta="0.1"
+file=/tmp/eww-brightness
+pidfile=/tmp/eww-brightness.pid
+
+get_class() {
+  if [ $brightness -le 25 ]; then
+    class="color-none"
+  elif [ $brightness -le 50 ]; then
+    class="color-low"
+  elif [ $brightness -le 75 ]; then
+    class="color-med"
+  else
+    class="color-hi"
+  fi
+}
+
+echo $$ > $pidfile
+
+case "$1" in
+  up) busctl --user call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d $delta ;;
+  down) busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -$delta ;;
+  set) busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d $2 ;;
+esac
+
+brightness=$(printf %.0f $(echo "100 * \
+  $(busctl --user get-property rs.wl-gammarelay / rs.wl.gammarelay Brightness \
+    | sed 's/d //g')" | bc))
+
+get_class
+
+echo "[$brightness,\"$class\"]" >> $file
+
+eww update brightness-shown=true
+sleep 1
+[ $$ -eq $(cat $pidfile) ] && eww update brightness-shown=false

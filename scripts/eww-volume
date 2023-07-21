@@ -1,0 +1,47 @@
+#!/usr/bin/sh
+
+delta=5
+file=/tmp/eww-volume
+pidfile=/tmp/eww-volume.pid
+
+get_volume() {
+  volume=$(pulsemixer --get-volume | sed 's/ .*$//g')
+}
+
+get_icon_and_class() {
+  if [ $volume -le 0 ]; then
+    icon="" # volume-xmark
+    class="color-none"
+  elif [ $volume -le 20 ]; then
+    icon="" # volume-off
+    class="color-low"
+  elif [ $volume -le 40 ]; then
+    icon="" # volume-low
+    class="color-med"
+  else
+    icon="" # volume-high
+    class="color-hi"
+  fi
+}
+
+echo $$ > $pidfile 
+
+case "$1" in 
+  up) pulsemixer --change-volume +$delta ;;
+  down) pulsemixer --change-volume -$delta ;;
+  mute) pulsemixer --toggle-mute ;;
+esac
+
+if [ 1 -eq $(pulsemixer --get-mute) ]; then
+  volume=0
+else
+  get_volume
+fi
+
+get_icon_and_class
+
+echo "[$volume,\"$icon\",\"$class\"]" >> $file
+
+eww update volume-shown=true
+sleep 1
+[ $$ -eq $(cat $pidfile) ] && eww update volume-shown=false

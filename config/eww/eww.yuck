@@ -1,4 +1,37 @@
-(defwindow example
+(defvar primary-ids "[9, 1, 3, 5, 7]")
+(defvar secondary-ids "[8, 10, 2, 4, 6]")
+
+(defvar brightness-shown false)
+(defvar gamma-shown false)
+(defvar cpu-shown false)
+(defvar volume-shown false)
+
+(defpoll calendar-day :interval "1m" `date '+%d'`)
+
+(deflisten brightness
+  :initial "100"
+  `tail -F /tmp/eww-brightness`
+)
+
+(deflisten gamma
+  :initial "4200"
+  `tail -F /tmp/eww-gamma`
+)
+
+(deflisten volume
+  :initial "[0,\"\", \"color-none\"]"
+  `tail -F /tmp/eww-volume`)
+
+(deflisten selected-ids 
+  :initial "[1,10,[]]"
+  `tail -F /tmp/hypr-active-workspaces`)
+
+(deflisten show-all
+  :initial "0"
+  `tail -F /tmp/eww-show-all`
+)
+
+(defwindow primary
   :monitor 0
   :geometry (geometry 
               :x "0"
@@ -6,57 +39,192 @@
               :width "56px"
               :height "100%"
               :anchor "left center")
-  :stacking "overlay"
+  :stacking "fg"
   :exclusive true
-  (box :orientation "v"
-       :class "eww-bar"
-       :space-evenly false
-    (tabs)
-    (time)
-    (shutdown)
+  (centerbox
+    :orientation "v"
+    (box 
+      :valign "start"
+      :orientation "v"
+      (button 
+        :onclick "wofi --show drun --prompt=Launch &"
+        :class "menu-container icon"
+        ""
+      )
+    )
+    (box 
+      :valign "center"
+      :height 200
+      (hypr-workspaces :ids primary-ids :monitor 0))
+    (box 
+      :space-evenly false
+      :spacing 12
+      :orientation "v"
+      :valign "end"
+      (box 
+        :orientation "v"
+        :spacing 12
+        :class "block"
+        (status 
+          :shown brightness-shown
+          :shown-name "brightness-shown"
+          :val {brightness[0]}
+          :onscroll "eww-brightness {}"
+          (box
+            :class "status-icon ${brightness[1]}"
+            ""
+          )
+        )
+        (status
+          :shown gamma-shown
+          :shown-name "gamma-shown"
+          :val {round(gamma[0] / 100, 0)}
+          :onscroll "eww-gamma {}"
+          (box 
+            :class "status-icon ${gamma[1]}"
+            ""
+          )
+        )
+        (status 
+          :shown cpu-shown 
+          :shown-name "cpu-shown"
+          :val {round(EWW_TEMPS?.K10TEMP_TCTL ?: 0, 0)} 
+          :onclick "hypr-singleton-window -c btop -w 7 -t"
+          (cpu-icon :val {round(EWW_TEMPS?.K10TEMP_TCTL ?: 0, 0)})
+        )
+        (status 
+          :shown volume-shown
+          :shown-name "volume-shown"
+          :val {volume[0]}
+          :onscroll "eww-volume {}"
+          :onclick "hypr-singleton-window -c pulsemixer -w 7 -t"
+          (box 
+            :class "status-icon ${volume[2]}"
+            {volume[1]}
+          )
+        )
+      )
+      (time)
+      (shutdown)
+    )
   ))
 
-(defvar odd-tabs "[1, 3, 5, 7, 9]")
-(defvar even-tabs "[2, 4, 6, 8, 0]")
-(defvar tabs "[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]")
-
-(defwidget tabs []
-  (box :orientation "h"
-       :class "tabs-container"
-       :valign "start"
-       :halign "center"
-    (tab-column :tab-list odd-tabs)
-    (tab-column :tab-list even-tabs)
+(defwindow secondary
+  :monitor 1
+  :geometry (geometry  
+              :x "0" 
+              :y "0" 
+              :width "100%" 
+              :height "40px" 
+              :anchor "center top")
+  :stacking "bg"
+  :exclusive true
+  (centerbox 
+    :orientation "h" 
+    (box)
+    (box
+      :halign "center"
+      :width 160
+      (hypr-workspaces :ids secondary-ids :monitor 1))
+    (box)
   ))
 
-(defwidget tab-column [tab-list]
-  (box :orientation "v"
-       :valign "center"
-       :class "tab-column"
-    (for entry in tab-list
-      (tab-button :number entry
-        ))
-  ))
+(defwindow cal
+  :monitor 0
+  :geometry (geometry 
+              :x "16px"
+              :y "16px"
+              :width "16%"
+              :height "16%"
+              :anchor "left bottom"
+  )
+  :stacking "overlay"
+  :exclusive false
+  (box 
+    :class "calendar-container"
+    (calendar
+    ))
+)
 
-(defwidget tab-button [number]
-  (button :onclick "notify-send 'click' 'tab ${number}"
-          :class "tab-button"
-          :halign "center"
-    ""
-  ))
+(defwidget hypr-workspaces [ids monitor]
+  (eventbox
+    :vexpand true
+    :hexpand true
+    (box 
+      :vexpand true
+      :hexpand true
+      :valign "fill"
+      :orientation {monitor == 0 ? "v" :"h" }
+      :class "hypr-workspaces monitor-${monitor}"
+      (for id in ids
+        (hypr-workspace :id id :monitor monitor)
+      )
+    )
+  )
+)
+
+(defwidget hypr-workspace [id monitor]
+  (eventbox 
+    :onclick "hypr-workspace -w ${id}"
+    :class 
+      "hypr-workspace monitor-${monitor} \ 
+       ${selected-ids[monitor] == id ? "hypr-workspace-active" : ""} \
+       ${arraylength(search(selected-ids[2], id)) > 0 ? "hypr-workspace-occupied" : ""} \
+      "
+    :halign "center"
+    :valign "center"
+    (box :class "hypr-workspace-inner monitor-${monitor}")
+  )
+)
+
+; takes icon widget as child
+(defwidget status [shown shown-name val ?onscroll ?onclick]
+  (eventbox 
+    :halign "center"
+    :valign "center"
+    :onhover "eww update ${shown-name}=true"
+    :onhoverlost "eww update ${shown-name}=false"
+    :onscroll onscroll
+    :onclick onclick
+    (overlay
+      (revealer :width 40 :reveal {shown || show-all == 1} :duration "100ms" val)
+      (revealer :reveal {!shown && show-all == 0} :duration "100ms"
+        (children)
+      )
+    )
+  )
+)
+
+(defwidget cpu-icon [val]
+  (button :class 
+    "status-icon 
+      ${val > 55 ? "color-hi" :
+        val > 45 ? "color-med" :
+        val > 35 ? "color-low" :
+        "color-none"}"
+    ""
+  )
+)
+
 
 (defwidget time []
-  (box :orientation "v"
-       :class "time-container"
-       :valign "end"
-       :vexpand true
-    hour
-    min))
+  (eventbox 
+    :onclick "eww open cal"
+    :onrightclick "eww close cal"
+    (box
+      :orientation "v"
+      :class "time-container block"
+      hour
+      min
+    )
+  ))
+
 (defpoll hour :interval "1s" "date '+%H'")
 (defpoll min :interval "1s" "date '+%M'")
 
-
 (defwidget shutdown []
-  (box :class "shutdown-container"
-       :valign "end"
-    "shut"))
+  (button 
+    :class "shutdown-container icon"
+    :onclick "plsdo power"
+    ""
+  ))

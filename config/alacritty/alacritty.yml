@@ -752,7 +752,7 @@ key_bindings:
   - { key: C,         mods: Control|Shift,              action: Copy           }
   - { key: Minus,     mods: Control|Alt,                action: IncreaseFontSize }
   - { key: Minus,     mods: Control,                    action: DecreaseFontSize }
-  - { key: K,         mods: Control|Shift,              action: SpawnNewInstance }
+  - { key: T,         mods: Control|Shift,              action: SpawnNewInstance }
   - { key: N,         mods: Alt,                        action: ScrollLineDown }
   - { key: E,         mods: Alt,                        action: ScrollLineUp,   }
 

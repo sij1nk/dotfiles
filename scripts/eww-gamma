@@ -1,0 +1,35 @@
+#!/usr/bin/sh
+
+delta=200
+file=/tmp/eww-gamma
+pidfile=/tmp/eww-gamma.pid
+
+get_class() {
+  if [ $temp -le 2500 ]; then
+    class="color-hot"
+  elif [ $temp -le 4500 ]; then
+    class="color-warm"
+  elif [ $temp -le 6000 ]; then
+    class="color-neutral"
+  else
+    class="color-cold"
+  fi
+}
+
+echo $$ > $pidfile
+
+case "$1" in
+  up) busctl --user call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n $delta ;;
+  down) busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -$delta ;;
+  set) busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q $2 ;;
+esac
+
+temp=$(busctl --user get-property rs.wl-gammarelay / rs.wl.gammarelay Temperature | sed 's/q //g')
+
+get_class
+
+echo "[$temp,\"$class\"]" >> $file
+
+eww update gamma-shown=true
+sleep 1
+[ $$ -eq $(cat $pidfile) ] && eww update gamma-shown=false
