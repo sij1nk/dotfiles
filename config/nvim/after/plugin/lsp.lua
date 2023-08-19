@@ -1,3 +1,5 @@
+local mu = require('sijink.map_utils')
+
 require('neodev').setup()
 
 local lsp = require('lspconfig')
@@ -26,12 +28,12 @@ local function on_attach(client, bufnr)
 
   vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { buffer = bufnr, desc = "Go to definition" })
   vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', { buffer = bufnr, desc = "Go to declaration" })
-  vim.keymap.set('n', 'gi', function() telescope.lsp_implementations({ show_line = false }) end,
+  mu.kb_aware_map('n', 'gi', function() telescope.lsp_implementations({ show_line = false }) end,
     { buffer = bufnr, desc = "Go to implementation" })
   vim.keymap.set('n', 'gr', function() telescope.lsp_references({ show_line = false }) end,
     { buffer = bufnr, desc = "Go to references" })
-  vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = bufnr, desc = "Hover" })
-  vim.keymap.set({'n', 'i'}, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+  mu.kb_aware_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = bufnr, desc = "Hover" })
+  mu.kb_aware_map({'n', 'i'}, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
     { buffer = bufnr, desc = "Get signature help" })
   vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr, desc = "Rename" })
   vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.code_action()<cr>',
@@ -55,6 +57,8 @@ require('mason-lspconfig').setup({
     end,
     ["lua_ls"] = function()
       lsp.lua_ls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
         settings = {
           Lua = {
             format = {

@@ -41,6 +41,8 @@
         "/home/rg/.local/share/nvim/lazy/telescope.nvim/lua",
         "/home/rg/.local/share/nvim/lazy/cmp-calc/lua",
         "/home/rg/.local/share/nvim/lazy/nvim-cmp/lua",
-        "/home/rg/.config/nvim/lua"
+        "/home/rg/.config/nvim/lua",
+        "${3rd}/luv/library",
+        "${3rd}/luv/library"
     ]
 }

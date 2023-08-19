@@ -1,3 +1,5 @@
+local mu = require('sijink.map_utils')
+
 require('luasnip/loaders/from_vscode').lazy_load()
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
@@ -46,7 +48,7 @@ local confirm_behavior = {
 }
 
 cmp.setup({
-  mapping = {
+  mapping = mu.transform_mapping_table({
     ['<C-Space>'] = cmp.mapping.complete(),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -96,7 +98,7 @@ cmp.setup({
       end
       fallback()
     end)
-  },
+  }, { remap_modifiers = true }),
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
