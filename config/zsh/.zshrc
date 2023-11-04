@@ -167,6 +167,8 @@ bindkey -M vicmd 'e' vi-up-line-or-history
 bindkey -M vicmd 'i' vi-forward-char
 bindkey -M vicmd 'h' vi-insert
 
+bindkey '^?' backward-delete-char
+
 for keymap in $(bindkey -l | tail); do
     bindkey -M $keymap '^N' down-history
     bindkey -M $keymap '^E' up-history
