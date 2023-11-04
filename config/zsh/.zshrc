@@ -22,6 +22,7 @@ if [ "$TERM" = "linux" ]; then
   "
   # get rid of artifacts
   clear
+
 fi
 
 stty stop undef          # Disable ctrl-s to freeze terminal
@@ -44,7 +45,7 @@ zmodload zsh/zle
 # History
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.cache/history
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
