@@ -5,8 +5,8 @@ path+=('/home/rg/.dotnet/tools')
 path+=('.')
 export PATH
 
-export EDITOR="helix"
-export VISUAL="helix"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export BROWSER="firefox"
 export TERMINAL="alacritty"
 export READER="zathura"
@@ -56,8 +56,15 @@ export XKB_DEFAULT_OPTIONS="caps:escape"
 
 # Not sure if exec is needed and I don't feel like trying right now
 export XDG_CURRENT_DESKTOP=Hyprland
-[ $(tty) = "/dev/tty1" ] && exec Hyprland
+if [ $(tty) = "/dev/tty1" ]; then
+  export KYRIA=1
+  exec Hyprland
+fi
+
 
 {{#if x11.enable}}
-[ $(tty) = "/dev/tty2" ] && exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &> /dev/null
+if [ $(tty) = "/dev/tty2" ]; then
+  export KYRIA=0
+  exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &> /dev/null
+fi
 {{/if}}
