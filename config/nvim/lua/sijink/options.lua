@@ -1,5 +1,6 @@
 vim.o.number = true
-vim.o.wrap = false
+vim.o.wrap = true
+vim.o.textwidth = 99
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.showmode = false
