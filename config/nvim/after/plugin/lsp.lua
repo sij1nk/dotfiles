@@ -76,7 +76,12 @@ require('mason-lspconfig').setup({
     end,
     ["rust_analyzer"] = function()
       require("rust-tools").setup({
-        server = { on_attach = on_attach, capabilities = capabilities }
+        server = { on_attach = on_attach, capabilities = capabilities },
+        tools = {
+          inlay_hints = {
+            only_current_line = true,
+          }
+        }
       })
     end,
     ["tsserver"] = function()

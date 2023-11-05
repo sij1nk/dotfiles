@@ -50,6 +50,7 @@ require('rose-pine').setup({
     ['@variable'] = { fg = "text", italic = false },
     ['@parameter'] = { fg = "iris", italic = false },
     ['@property'] = { fg = "iris", italic = false },
+    MyHighlight = { fg = "iris" }
   }
 })
 
