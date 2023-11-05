@@ -9,8 +9,8 @@ local M = {}
 
 local kyria_remaps = {
   i = "h",
-  m = "j",
-  n = "k",
+  m = "k",
+  n = "j",
   e = "l",
   h = "m",
   j = "n",
@@ -18,13 +18,19 @@ local kyria_remaps = {
   l = "i"
 }
 
-local kyria = nil
-local kyria_env = os.getenv("KYRIA")
-if kyria_env ~= nil and tonumber(kyria_env) > 0 then
-  kyria = true
-else
-  kyria = false
+M.is_kyria = function()
+  local kyria = nil
+  local kyria_env = os.getenv("KYRIA")
+  if kyria_env ~= nil and tonumber(kyria_env) > 0 then
+    kyria = true
+  else
+    kyria = false
+  end
+
+  return kyria
 end
+
+local kyria = M.is_kyria()
 
 local function dump(thing)
   if type(thing) == 'table' then
@@ -119,6 +125,9 @@ M.transform_mapping_table = function(table, opts)
   return ret
 end
 
+-- transforms lhs according to the kyria_remaps table:
+-- whenever a key in lhs appears as a "key" in kyria_remaps,
+-- it's replaced with the corresponding value
 M.kb_aware_map = function(mode, lhs, rhs, opts)
   if not kyria then
     vim.keymap.set(mode, lhs, rhs, opts)

@@ -1,5 +1,7 @@
 local mu = require('sijink.map_utils')
 
+local kyria = mu.is_kyria()
+
 vim.g.mapleader = ' '
 
 mu.kb_aware_map('n', 'gh', '^', { desc = "Move to line content beginning" })
@@ -10,7 +12,6 @@ vim.keymap.set('n', '<leader>c', '<cmd>nohlsearch<cr>', { desc = "Disable search
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>a', 'maggVG', { desc = "Select all" }) -- 'a to jump back
 vim.keymap.set('n', '<leader>=', "maggVG='a", { desc = "Format all naively" }) -- TODO: jump back to exact position
 vim.keymap.set('n', '<leader>f', "<cmd>FormatLock<cr>", { desc = "Format all smartly" }) -- TODO: jump back to exact position
-mu.kb_aware_map('n', "J", "mJJ'J", { desc = "Join lines" })
 mu.kb_aware_map('n', 'n', "nzz", { desc = "Next search result" })
 mu.kb_aware_map('n', 'N', "Nzz", { desc = "Previous search result" })
 
@@ -57,6 +58,8 @@ mu.kb_aware_map({'n', 'v', 'x'}, 'e', 'e')
 mu.kb_aware_map({'n', 'v', 'x'}, 'E', 'E')
 mu.kb_aware_map({'n', 'v', 'x'}, 'i', 'i')
 mu.kb_aware_map({'n', 'v', 'x'}, 'I', 'I')
+mu.kb_aware_map({'n', 'v', 'x'}, 'gj', 'gj')
+mu.kb_aware_map({'n', 'v', 'x'}, 'gk', 'gk')
 mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>h', '<C-w>h')
 mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>H', '<C-w>H')
 mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>j', '<C-w>j')
@@ -65,3 +68,17 @@ mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>k', '<C-w>k')
 mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>K', '<C-w>K')
 mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>l', '<C-w>l')
 mu.kb_aware_map({'n', 'v', 'x'}, '<C-w>L', '<C-w>L')
+
+-- Some canary remaps for putting most navigation actions on mnei,
+-- especially because w and b on canary are not in great positions
+-- The way I've done this seemed like a bit of a hack at first, 
+-- but there's no way of avoiding "surgical" changes like these 
+-- wherever the keyboard layout changes
+if kyria then
+  vim.keymap.set('n', 'M', 'b')
+  vim.keymap.set('n', 'N', '<C-d>')
+  vim.keymap.set('n', 'E', '<C-u>')
+  vim.keymap.set('n', 'I', 'w')
+  vim.keymap.set('n', 'ga', 'K')
+  vim.keymap.set('n', "J", "mJJ'J", { desc = "Join lines" })
+end

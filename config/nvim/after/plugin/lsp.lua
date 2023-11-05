@@ -32,7 +32,7 @@ local function on_attach(client, bufnr)
     { buffer = bufnr, desc = "Go to implementation" })
   vim.keymap.set('n', 'gr', function() telescope.lsp_references({ show_line = false }) end,
     { buffer = bufnr, desc = "Go to references" })
-  mu.kb_aware_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = bufnr, desc = "Hover" })
+  mu.kb_aware_map('n', 'ga', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = bufnr, desc = "Hover" })
   mu.kb_aware_map({'n', 'i'}, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
     { buffer = bufnr, desc = "Get signature help" })
   vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr, desc = "Rename" })
