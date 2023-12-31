@@ -185,5 +185,7 @@ require('lazy').setup({
       screensaver = 1000 * 60 * 5, -- 5 minutes
       filetypes = { "*" }
     }
-  }
+  },
+
+  { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true}
 })
