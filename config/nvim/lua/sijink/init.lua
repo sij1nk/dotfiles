@@ -223,4 +223,6 @@ require("lazy").setup({
   },
 
   { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true },
+
+  { "folke/neodev.nvim", opts = {} },
 })
