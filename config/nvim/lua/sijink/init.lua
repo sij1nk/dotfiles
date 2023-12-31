@@ -1,5 +1,6 @@
 require('sijink.map')
 require('sijink.options')
+require('sijink.clipboard')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
