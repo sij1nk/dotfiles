@@ -1,3 +1,11 @@
+local wk = require('which-key')
+
+wk.register({
+  ["<leader>g"] = {
+    name = "Telescope"
+  }
+})
+
 local mu = require('sijink.map_utils')
 
 local telescope = require('telescope')
@@ -48,11 +56,11 @@ vim.keymap.set('n', '<C-p>', function()
   end,
   { desc = "Telescope" }
 )
-vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = "Telescope: Live grep" })
-vim.keymap.set('n', '<leader>G', builtin.grep_string, { desc = "Telescope: Grep string" })
-mu.kb_aware_map('n', '<leader>hm', builtin.man_pages, { desc = "Telescope: Man pages" })
-mu.kb_aware_map('n', '<leader>hh', builtin.help_tags, { desc = "Telescope: Help tags" })
-mu.kb_aware_map('n', '<leader>hk', builtin.keymaps, { desc = "Telescope: Keymaps" })
+vim.keymap.set('n', '<leader>gg', builtin.live_grep, { desc = "Telescope: Live grep" })
+vim.keymap.set('n', '<leader>gG', builtin.grep_string, { desc = "Telescope: Grep string" })
+mu.kb_aware_map('n', '<leader>gm', builtin.man_pages, { desc = "Telescope: Man pages" })
+mu.kb_aware_map('n', '<leader>gh', builtin.help_tags, { desc = "Telescope: Help tags" })
+mu.kb_aware_map('n', '<leader>gk', builtin.keymaps, { desc = "Telescope: Keymaps" })
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = "Telescope: Git commits" })
 vim.keymap.set('n', '<leader>gC', builtin.git_bcommits, { desc = "Telescope: Git buffer commits" })
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = "Telescope: Git branches" })

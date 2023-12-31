@@ -38,11 +38,11 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr, desc = "Rename" })
   vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.code_action()<cr>',
     { buffer = bufnr, desc = "Get code actions" })
-  vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>',
+  vim.keymap.set('n', '<leader>dd', '<cmd>lua vim.diagnostic.open_float()<cr>',
     { buffer = bufnr, desc = "Show diagnostic details" })
-  vim.keymap.set("n", "[d", '<cmd>lua vim.diagnostic.goto_prev()<cr>',
+  vim.keymap.set("n", "<leader>dk", '<cmd>lua vim.diagnostic.goto_prev()<cr>',
     { buffer = bufnr, desc = "Go to previous diagnostic" })
-  vim.keymap.set("n", "]d", '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = bufnr, desc = "Go to next diagnostic" })
+  vim.keymap.set("n", "<leader>dj", '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = bufnr, desc = "Go to next diagnostic" })
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -194,6 +194,12 @@ lint.linters_by_ft = {
   markdown = {
     "markdownlint"
   }
+}
+
+local markdownlint = lint.linters.markdownlint
+-- MD024: allow multiple headings with the same content
+markdownlint.args = {
+  '--disable MD024 --'
 }
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {

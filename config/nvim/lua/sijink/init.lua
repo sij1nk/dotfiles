@@ -1,6 +1,5 @@
 require('sijink.map')
 require('sijink.options')
-require('sijink.autocmd')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 

@@ -22,6 +22,7 @@ mu.kb_aware_map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
 vim.keymap.set('x', "<leader>p", "\"_dP", { desc = "Paste, but keep clipboard"})
 
 -- saving
+
 vim.keymap.set('n', '<leader>ww', '<cmd>write<cr>', { desc = "Write"})
 vim.keymap.set('n', '<leader>wa', '<cmd>wall<cr>', { desc = "Write all"})
 -- TODO: needs sudo password
