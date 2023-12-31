@@ -38,7 +38,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 vim.api.nvim_create_autocmd('BufWritePost', {
   group = vim.api.nvim_create_augroup('FormatCpp', {}),
-  pattern = {"*.cpp", "*.cxx", "*.h", "*.hpp", "*.hxx"}
+  pattern = {"*.cpp", "*.cxx", "*.h", "*.hpp", "*.hxx"},
+  command = "FormatWrite"
 })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
