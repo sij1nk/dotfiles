@@ -1,6 +1,6 @@
-local mu = require('sijink.map_utils')
+local mu = require("sijink.map_utils")
 
-require('neo-tree').setup({
+require("neo-tree").setup({
   close_if_last_window = true,
   window = {
     same_level = true,
@@ -12,18 +12,18 @@ require('neo-tree').setup({
       ["k"] = "none",
       ["m"] = "move",
       ["e"] = "toggle_auto_expand_width",
-    })
+    }),
   },
   filesystem = {
     filtered_items = {
       visible = true,
-      hide_dotfiles = false
+      hide_dotfiles = false,
     },
     follow_current_file = {
-      enabled = true
-    }
-  }
+      enabled = true,
+    },
+  },
 })
 
-mu.kb_aware_map('n', '<C-h>', '<cmd>Neotree toggle left<cr>', { desc = "File tree"})
-vim.keymap.set('n', '<leader>p', '<cmd>Neotree float<cr>', { desc = "Floating file tree"})
+mu.kb_aware_map("n", "<C-h>", "<cmd>Neotree toggle left<cr>", { desc = "File tree" })
+vim.keymap.set("n", "<leader>p", "<cmd>Neotree float<cr>", { desc = "Floating file tree" })

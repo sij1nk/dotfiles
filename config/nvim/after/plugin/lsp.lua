@@ -1,54 +1,91 @@
-local mu = require('sijink.map_utils')
+local mu = require("sijink.map_utils")
 
-require('neodev').setup()
+require("neodev").setup()
 
-local lsp = require('lspconfig')
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local schemastore = require('schemastore')
-local telescope = require('telescope.builtin')
-local tstools_api = require('typescript-tools.api')
+local lsp = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local schemastore = require("schemastore")
+local telescope = require("telescope.builtin")
+local tstools_api = require("typescript-tools.api")
 
 local function on_attach(client, bufnr)
   vim.b.minicursorword_disable = true
 
-  if client.name == 'tsserver' then
+  if client.name == "tsserver" then
     client.server_capabilities.documentFormattingProvider = false
   end
 
   if client.server_capabilities.documentHighlight then
-    vim.cmd
-      [[
+    vim.cmd([[
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]]
+    ]])
   end
 
-  vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { buffer = bufnr, desc = "Go to definition" })
-  vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', { buffer = bufnr, desc = "Go to declaration" })
-  mu.kb_aware_map('n', 'gi', function() telescope.lsp_implementations({ show_line = false }) end,
-    { buffer = bufnr, desc = "Go to implementation" })
-  vim.keymap.set('n', 'gr', function() telescope.lsp_references({ show_line = false }) end,
-    { buffer = bufnr, desc = "Go to references" })
-  mu.kb_aware_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = bufnr, desc = "Hover" })
-  mu.kb_aware_map({'n', 'i'}, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
-    { buffer = bufnr, desc = "Get signature help" })
-  vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = bufnr, desc = "Rename" })
-  vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.code_action()<cr>',
-    { buffer = bufnr, desc = "Get code actions" })
-  vim.keymap.set('n', '<leader>dd', '<cmd>lua vim.diagnostic.open_float()<cr>',
-    { buffer = bufnr, desc = "Show diagnostic details" })
-  vim.keymap.set("n", "<leader>dk", '<cmd>lua vim.diagnostic.goto_prev()<cr>',
-    { buffer = bufnr, desc = "Go to previous diagnostic" })
-  vim.keymap.set("n", "<leader>dj", '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = bufnr, desc = "Go to next diagnostic" })
+  vim.keymap.set(
+    "n",
+    "gd",
+    "<cmd>lua vim.lsp.buf.definition()<cr>",
+    { buffer = bufnr, desc = "Go to definition" }
+  )
+  vim.keymap.set(
+    "n",
+    "gD",
+    "<cmd>lua vim.lsp.buf.declaration()<cr>",
+    { buffer = bufnr, desc = "Go to declaration" }
+  )
+  mu.kb_aware_map("n", "gi", function()
+    telescope.lsp_implementations({ show_line = false })
+  end, { buffer = bufnr, desc = "Go to implementation" })
+  vim.keymap.set("n", "gr", function()
+    telescope.lsp_references({ show_line = false })
+  end, { buffer = bufnr, desc = "Go to references" })
+  mu.kb_aware_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = bufnr, desc = "Hover" })
+  mu.kb_aware_map(
+    { "n", "i" },
+    "<C-k>",
+    "<cmd>lua vim.lsp.buf.signature_help()<cr>",
+    { buffer = bufnr, desc = "Get signature help" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>r",
+    "<cmd>lua vim.lsp.buf.rename()<cr>",
+    { buffer = bufnr, desc = "Rename" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>s",
+    "<cmd>lua vim.lsp.buf.code_action()<cr>",
+    { buffer = bufnr, desc = "Get code actions" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dd",
+    "<cmd>lua vim.diagnostic.open_float()<cr>",
+    { buffer = bufnr, desc = "Show diagnostic details" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dk",
+    "<cmd>lua vim.diagnostic.goto_prev()<cr>",
+    { buffer = bufnr, desc = "Go to previous diagnostic" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dj",
+    "<cmd>lua vim.diagnostic.goto_next()<cr>",
+    { buffer = bufnr, desc = "Go to next diagnostic" }
+  )
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
-require('mason').setup()
-require('mason-lspconfig').setup({
+require("mason").setup()
+require("mason-lspconfig").setup({
   ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "jsonls" },
   automatic_installation = true,
   handlers = {
@@ -62,16 +99,16 @@ require('mason-lspconfig').setup({
         settings = {
           Lua = {
             format = {
-              enable = true
+              enable = true,
             },
             workspaces = {
-              checkThirdParty = false
+              checkThirdParty = false,
             },
             telemetry = {
-              enabled = false
-            }
-          }
-        }
+              enabled = false,
+            },
+          },
+        },
       })
     end,
     ["rust_analyzer"] = function()
@@ -80,17 +117,17 @@ require('mason-lspconfig').setup({
         tools = {
           inlay_hints = {
             only_current_line = true,
-          }
-        }
+          },
+        },
       })
     end,
     ["tsserver"] = function()
-      require('typescript-tools').setup({
+      require("typescript-tools").setup({
         on_attach = on_attach,
         capabilities = capabilities,
         handlers = {
           -- ignore no-unused-vars error; handled by eslint instead
-          ["textDocument/publishDiagnostics"] = tstools_api.filter_diagnostics({ 6133 })
+          ["textDocument/publishDiagnostics"] = tstools_api.filter_diagnostics({ 6133 }),
         },
         settings = {
           separate_diagnostic_server = true,
@@ -101,8 +138,8 @@ require('mason-lspconfig').setup({
           tsserver_max_memory = "auto",
           tsserver_format_options = {},
           tsserver_file_preferences = {},
-          complete_function_calls = false
-        }
+          complete_function_calls = false,
+        },
       })
     end,
     ["jsonls"] = function()
@@ -113,12 +150,12 @@ require('mason-lspconfig').setup({
           json = {
             schemas = schemastore.json.schemas({
               select = {
-                "package.json"
-              }
+                "package.json",
+              },
             }),
-            validate = { enable = true }
-          }
-        }
+            validate = { enable = true },
+          },
+        },
       })
     end,
     ["yamlls"] = function()
@@ -129,14 +166,14 @@ require('mason-lspconfig').setup({
           yaml = {
             schemaStore = {
               enable = false,
-              url = ""
+              url = "",
             },
-            schemas = schemastore.yaml.schemas()
-          }
-        }
+            schemas = schemastore.yaml.schemas(),
+          },
+        },
       })
-    end
-  }
+    end,
+  },
 })
 
 local diagnostic_signs = {
@@ -173,37 +210,39 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "single",
-  focusable = false
+  focusable = false,
 })
 
-local lint = require('lint')
+local lint = require("lint")
 lint.linters_by_ft = {
   javascript = {
-    "eslint_d"
+    "eslint_d",
   },
   typescript = {
-    "eslint_d"
+    "eslint_d",
   },
   javascriptreact = {
-    "eslint_d"
+    "eslint_d",
   },
   typescriptreact = {
-    "eslint_d"
+    "eslint_d",
   },
   -- TODO: no worky?
   markdown = {
-    "markdownlint"
-  }
+    "markdownlint",
+  },
 }
 
 local markdownlint = lint.linters.markdownlint
 -- MD024: allow multiple headings with the same content
 markdownlint.args = {
-  '--disable MD024 --'
+  "--disable MD024 --",
 }
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
   group = vim.api.nvim_create_augroup("Lint", {}),
   pattern = "*",
-  callback = function() lint.try_lint() end
+  callback = function()
+    lint.try_lint()
+  end,
 })

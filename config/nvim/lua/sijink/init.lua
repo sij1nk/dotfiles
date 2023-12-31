@@ -1,54 +1,54 @@
-require('sijink.map')
-require('sijink.options')
-require('sijink.clipboard')
+require("sijink.map")
+require("sijink.options")
+require("sijink.clipboard")
 
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- Auto-install lazy.nvim if not present
 if not vim.uv.fs_stat(lazypath) then
-  print('Installing lazy.nvim...')
+  print("Installing lazy.nvim...")
   vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
-  print('Done.')
+  print("Done.")
 end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+require("lazy").setup({
   {
-    'rose-pine/neovim',
-    name = 'rose-pine',
+    "rose-pine/neovim",
+    name = "rose-pine",
     lazy = false,
-    priority = 1000
+    priority = 1000,
   },
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.2",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      { 'nvim-telescope/telescope-ui-select.nvim' }
-    }
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
       -- for JSX/TSX comments (and possibly in similar embedded languages)
-      'JoosepAlviste/nvim-ts-context-commentstring'
-    }
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
   },
   {
     -- automatically insert closing parens, quotes, etc.
     "windwp/nvim-autopairs",
     event = "InsertEnter",
-    opts = {}
+    opts = {},
   },
   { "windwp/nvim-ts-autotag" }, -- automatically close and rename HTML tags
   { "numToStr/Comment.nvim" },
@@ -61,45 +61,80 @@ require('lazy').setup({
       "MunifTanjim/nui.nvim",
       {
         -- select which split to open a file in, if there are multiple
-        's1n7ax/nvim-window-picker',
-        name = 'window-picker',
-        event = 'VeryLazy',
-        version = '2.*',
+        "s1n7ax/nvim-window-picker",
+        name = "window-picker",
+        event = "VeryLazy",
+        version = "2.*",
         config = function()
-          require('window-picker').setup({
+          require("window-picker").setup({
             selection_chars = "tnseriao",
           })
-        end
-      }
-    }
+        end,
+      },
+    },
   },
-  { 'NvChad/nvim-colorizer.lua' }, -- visualize color(code)s
-  { 'mbbill/undotree' },
+  { "NvChad/nvim-colorizer.lua" }, -- visualize color(code)s
+  { "mbbill/undotree" },
   {
     -- highlight same words as word under cursor
-    'echasnovski/mini.cursorword',
-    version = '*',
+    "echasnovski/mini.cursorword",
+    version = "*",
     config = function()
-      require('mini.cursorword').setup({
-        delay = 50
+      require("mini.cursorword").setup({
+        delay = 50,
       })
-    end
+    end,
   },
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    opts = {},
   },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
     },
   },
   {
@@ -113,51 +148,51 @@ require('lazy').setup({
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
-    }
+    },
   },
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
-    opts = {}
+    opts = {},
   },
-  { 'mhartington/formatter.nvim' },
+  { "mhartington/formatter.nvim" },
 
   -- COMPLETIONS
-  { 'hrsh7th/nvim-cmp' }, -- completion engine
-  { 'hrsh7th/cmp-buffer' }, -- buffer completions
-  { 'hrsh7th/cmp-path' }, -- path completions
-  { 'hrsh7th/cmp-cmdline' }, -- cmdline completions
-  { 'hrsh7th/cmp-nvim-lsp' }, -- LSP completions
-  { 'hrsh7th/cmp-calc' },
-  { 
+  { "hrsh7th/nvim-cmp" }, -- completion engine
+  { "hrsh7th/cmp-buffer" }, -- buffer completions
+  { "hrsh7th/cmp-path" }, -- path completions
+  { "hrsh7th/cmp-cmdline" }, -- cmdline completions
+  { "hrsh7th/cmp-nvim-lsp" }, -- LSP completions
+  { "hrsh7th/cmp-calc" },
+  {
     -- snippet completions
-    'saadparwaiz1/cmp_luasnip',
+    "saadparwaiz1/cmp_luasnip",
     dependencies = {
-      { 
+      {
         -- snippet engine
-        'L3MON4D3/LuaSnip', 
+        "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",
         dependencies = {
-          "rafamadriz/friendly-snippets"
-        }
-      }, 
-    }
+          "rafamadriz/friendly-snippets",
+        },
+      },
+    },
   },
 
   -- LSP
-  { 'neovim/nvim-lspconfig' },
-  { 
+  { "neovim/nvim-lspconfig" },
+  {
     "williamboman/mason.nvim",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim"
-    }
+      "williamboman/mason-lspconfig.nvim",
+    },
   },
-  { 'mfussenegger/nvim-lint' },
-  { 'simrat39/rust-tools.nvim' }, -- some extra goodies necessary for Rust LSP
+  { "mfussenegger/nvim-lint" },
+  { "simrat39/rust-tools.nvim" }, -- some extra goodies necessary for Rust LSP
   {
     -- extra goodies for typescript
-    'pmizio/typescript-tools.nvim',
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
   { "folke/neodev.nvim" }, -- LSP stuff for the neovim API
   { "b0o/schemastore.nvim" },
@@ -165,27 +200,27 @@ require('lazy').setup({
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-      cycle_results = false
+      cycle_results = false,
     },
   },
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
     event = "LspAttach",
-    opts = { text = { spinner = "earth" }, max_messages = 3 } -- TODO: max_messages unimpl
+    opts = { text = { spinner = "earth" }, max_messages = 3 }, -- TODO: max_messages unimpl
   },
 
   -- Stupid
-  { 'eandrju/cellular-automaton.nvim' },
+  { "eandrju/cellular-automaton.nvim" },
   {
-    'folke/drop.nvim',
+    "folke/drop.nvim",
     event = "VimEnter",
     enabled = false,
     opts = {
       screensaver = 1000 * 60 * 5, -- 5 minutes
-      filetypes = { "*" }
-    }
+      filetypes = { "*" },
+    },
   },
 
-  { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true}
+  { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true },
 })

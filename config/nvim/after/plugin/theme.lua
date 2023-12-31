@@ -2,24 +2,24 @@ vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.o.fillchars = "vert: ,eob: "
 
-require('colorizer').setup({
+require("colorizer").setup({
   filetypes = { "lua", "html", "css", "scss" },
-  mode = "virtualtext"
+  mode = "virtualtext",
 })
 
-require('rose-pine').setup({
+require("rose-pine").setup({
   dark_variant = "main",
   dim_nc_background = true, -- nc ~ non-current windows
   disable_italics = false, -- italics are only an issue on WSL + Zellij + Windows Terminal
 
   groups = { -- TODO
-    background = 'surface',
-    border = 'muted',
+    background = "surface",
+    border = "muted",
   },
 
   highlight_groups = {
     Cursor = { bg = "highlight_high", fg = "text" }, -- handled by the terminal emulator; might not do anything
-    CursorLine = { bg = 'highlight_low' },
+    CursorLine = { bg = "highlight_low" },
     StatusLine = { bg = "rose", fg = "base" },
     NeoTreeRootName = { bg = "surface", fg = "iris", bold = true },
     WindowPickerStatusLineNC = { bg = "pine", fg = "base" },
@@ -28,11 +28,11 @@ require('rose-pine').setup({
     LspReferenceRead = { bg = "pine" },
     LspReferenceWrite = { bg = "iris" },
     Pmenu = { bg = "base" },
-    PmenuSel = { bg = "foam", fg = "base"},
+    PmenuSel = { bg = "foam", fg = "base" },
     CmpItemMenu = { fg = "highlight_high" },
     CmpItemKindText = { fg = "rose" },
     -- TODO: highlights for more kinds
-    WhichKeyFloat = { bg = "overlay"},
+    WhichKeyFloat = { bg = "overlay" },
     NormalFloat = { bg = "overlay", fg = "text" },
     FloatBorder = { bg = "overlay", fg = "overlay" },
     TelescopeNormal = { bg = "base" },
@@ -47,11 +47,11 @@ require('rose-pine').setup({
     TelescopeSelection = { bg = "foam", fg = "base" },
     TelescopeSelectionCaret = { bg = "foam", fg = "foam" },
     TelescopePromptPrefix = { fg = "text" }, -- TODO: doesn't work?
-    ['@variable'] = { fg = "text", italic = false },
-    ['@parameter'] = { fg = "iris", italic = false },
-    ['@property'] = { fg = "iris", italic = false },
-    MyHighlight = { fg = "iris" }
-  }
+    ["@variable"] = { fg = "text", italic = false },
+    ["@parameter"] = { fg = "iris", italic = false },
+    ["@property"] = { fg = "iris", italic = false },
+    MyHighlight = { fg = "iris" },
+  },
 })
 
-vim.cmd.colorscheme('rose-pine')
+vim.cmd.colorscheme("rose-pine")

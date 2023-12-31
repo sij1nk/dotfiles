@@ -1,6 +1,6 @@
-local mu = require('sijink.map_utils')
+local mu = require("sijink.map_utils")
 
-require('luasnip/loaders/from_vscode').lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load()
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
 
@@ -35,11 +35,12 @@ local icons = {
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0
+    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 local select_behavior = { behavior = cmp.SelectBehavior.Select }
 local confirm_behavior = {
@@ -49,11 +50,11 @@ local confirm_behavior = {
 
 cmp.setup({
   mapping = mu.transform_mapping_table({
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ["<C-Space>"] = cmp.mapping.complete(),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item(select_behavior)
-      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
+      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
       -- they way you will only jump inside the snippet region
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
@@ -63,7 +64,7 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ['<C-j>'] = cmp.mapping.select_next_item(select_behavior),
+    ["<C-j>"] = cmp.mapping.select_next_item(select_behavior),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item(select_behavior)
@@ -73,10 +74,10 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ['<C-k>'] = cmp.mapping.select_prev_item(select_behavior),
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    ['<CR>'] = cmp.mapping(function(fallback)
+    ["<C-k>"] = cmp.mapping.select_prev_item(select_behavior),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<CR>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         local entry = cmp.get_selected_entry()
         if not entry then
@@ -90,20 +91,20 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i", "s", "c"}),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<Esc>'] = cmp.mapping(function(fallback)
+    end, { "i", "s", "c" }),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<Esc>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.abort()
       end
       fallback()
-    end)
+    end),
   }, { remap_modifiers = true }),
   preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
-    end
+    end,
   },
   sources = {
     { name = "nvim_lsp" },
@@ -126,13 +127,13 @@ cmp.setup({
         calc = "[Calc]"
       })[entry.source.name] ]]
       return item
-    end
+    end,
   },
   window = {
     -- completion = cmp.config.window.bordered()
     -- documentation = cmp.config.window.bordered()
   },
   experimental = {
-    ghost_text = { hl_group = "NonText" } -- TODO: ghost text doesn't work?
-  }
+    ghost_text = { hl_group = "NonText" }, -- TODO: ghost text doesn't work?
+  },
 })
