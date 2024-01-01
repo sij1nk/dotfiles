@@ -115,17 +115,17 @@ cmp.setup({
   },
   formatting = {
     -- fields = { "abbr", "kind", "menu" },
-    fields = { "abbr", "kind" }, -- menu ~ source. not very helpful
+    fields = { "abbr", "kind", "menu" }, -- menu ~ source
 
     format = function(entry, item)
       item.kind = string.format("%s %s", icons[item.kind], item.kind)
-      --[[ item.menu = ({
+      item.menu = ({
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
         calc = "[Calc]"
-      })[entry.source.name] ]]
+      })[entry.source.name]
       return item
     end,
   },
