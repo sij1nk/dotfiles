@@ -13,4 +13,6 @@ if wsl == 1 then
       ["*"] = [[win32yank -o --lf]],
     },
   }
+else
+  vim.o.clipboard = "unnamedplus"
 end
