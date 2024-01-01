@@ -1,6 +1,6 @@
 local wsl = vim.fn.has("wsl")
 
-if wsl then
+if wsl == 1 then
   vim.o.clipboard = "unnamedplus"
 
   vim.g.clipboard = {
