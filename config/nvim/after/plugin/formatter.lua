@@ -46,6 +46,12 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
+  group = vim.api.nvim_create_augroup("FormatLua", {}),
+  pattern = { "*.lua" },
+  command = "FormatWrite",
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
   group = vim.api.nvim_create_augroup("FormatRust", {}),
   pattern = { "*.rs" },
   command = "FormatWrite",

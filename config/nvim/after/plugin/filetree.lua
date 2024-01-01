@@ -26,4 +26,3 @@ require("neo-tree").setup({
 })
 
 mu.kb_aware_map("n", "<C-h>", "<cmd>Neotree toggle left<cr>", { desc = "File tree" })
-vim.keymap.set("n", "<leader>p", "<cmd>Neotree float<cr>", { desc = "Floating file tree" })
