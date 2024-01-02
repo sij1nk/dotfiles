@@ -112,6 +112,7 @@ cmp.setup({
     { name = "path" },
     { name = "buffer" },
     { name = "calc" },
+    { name = "neorg" },
   },
   formatting = {
     -- fields = { "abbr", "kind", "menu" },
@@ -124,7 +125,8 @@ cmp.setup({
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
-        calc = "[Calc]"
+        calc = "[Calc]",
+        neorg = "[Neorg]",
       })[entry.source.name]
       return item
     end,

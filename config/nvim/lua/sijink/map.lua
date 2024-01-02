@@ -1,6 +1,7 @@
 local mu = require("sijink.map_utils")
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 mu.kb_aware_map("n", "gh", "^", { desc = "Move to line content beginning" })
 mu.kb_aware_map("n", "gH", "0", { desc = "Move to line beginning" })

@@ -226,4 +226,37 @@ require("lazy").setup({
   { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true },
 
   { "folke/neodev.nvim", opts = {} },
+
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    -- tag = "*",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {}, -- Loads default behaviour
+          ["core.completion"] = {
+            config = {
+              engine = "nvim-cmp",
+            },
+          },
+          ["core.concealer"] = {
+            config = {
+              icon_preset = "diamond",
+            },
+          }, -- Adds pretty icons to your documents
+          ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = "~/Notes",
+              },
+              default_workspace = "notes",
+            },
+          },
+          ["core.ui.calendar"] = {},
+        },
+      })
+    end,
+  },
 })
