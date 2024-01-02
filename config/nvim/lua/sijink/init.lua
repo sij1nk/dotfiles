@@ -221,6 +221,7 @@ require("lazy").setup({
       filetypes = { "*" },
     },
   },
+  { "tamton-aquib/duck.nvim" },
 
   { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true },
 
