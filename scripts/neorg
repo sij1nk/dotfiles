@@ -11,13 +11,14 @@ save() {
   git push
 }
 
-command=$1
+workspace=$1
+command=$2
 
 [ "$command" = "commit" ] && save && exit 0
 
-cd ~/Notes
+cd "$workspace"
 git pull
-nvim ./index.norg 
+nvim ./index.norg
 
 exit_if_no_changes
 
