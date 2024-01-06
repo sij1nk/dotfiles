@@ -43,12 +43,12 @@ mods = "Control|Shift"
 
 [[keyboard.bindings]]
 action = "ScrollLineDown"
-key = "N"
+key = "J"
 mods = "Alt"
 
 [[keyboard.bindings]]
 action = "ScrollLineUp"
-key = "E"
+key = "K"
 mods = "Alt"
 
 [scrolling]

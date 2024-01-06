@@ -83,23 +83,7 @@ alias \
     ls="exa -l --icons --group-directories-first" \
     please='sudo $(fc -nl -1)' \
     vim="vim -i NONE" \
-    tmr="transmission-remote" \
-    dgit="/usr/bin/git --git-dir=$HOME/Repos/dotfiles/.git --work-tree=$HOME" \
-    mvn="mvn --global-settings \"$XDG_DATA_HOME/m2/settings.xml\"" \
-    code="code --extensions-dir $XDG_DATA_HOME/vscode/extensions" \
     zat="zathura" \
-    mbsync="mbsync -c $XDG_CONFIG_HOME/mbsync/mbsyncrc" \
-    hx="helix" \
-    e="helix ."
-
-alias \
-    zpr="hx ${ZDOTDIR}/.zprofile" \
-    swy="hx ${XDG_CONFIG_HOME}/sway/config" \
-    vrc="hx ${XDG_CONFIG_HOME}/nvim/init.vim" \
-    nrc="hx ${XDG_CONFIG_HOME}/ncmpcpp/config" \
-    arc="hx ${XDG_CONFIG_HOME}/alacritty/alacritty.yml.temp" \
-    zrc="hx ${ZDOTDIR}/.zshrc" \
-    mrc="hx ${XDG_CONFIG_HOME}/mutt/muttrc"
 
 # TODO: fix all of these
 if [ -n $DISPLAY ] && [ $XDG_VTNR -eq 1 ]; then
@@ -157,21 +141,21 @@ bindkey -v			# vi mode
 export KEYTIMEOUT=1		# reduce latency when pressing <ESC>
 
 # Use vim keys in tabcomplete menu
-bindkey -M menuselect 'm' vi-backward-char
-bindkey -M menuselect 'n' vi-down-line-or-history
-bindkey -M menuselect 'e' vi-up-line-or-history
-bindkey -M menuselect 'i' vi-forward-char
-bindkey -M vicmd 'm' vi-backward-char
-bindkey -M vicmd 'n' vi-down-line-or-history
-bindkey -M vicmd 'e' vi-up-line-or-history
-bindkey -M vicmd 'i' vi-forward-char
-bindkey -M vicmd 'h' vi-insert
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M vicmd 'h' vi-backward-char
+bindkey -M vicmd 'j' vi-down-line-or-history
+bindkey -M vicmd 'k' vi-up-line-or-history
+bindkey -M vicmd 'l' vi-forward-char
+bindkey -M vicmd 'i' vi-insert
 
 bindkey '^?' backward-delete-char
 
 for keymap in $(bindkey -l | tail); do
-    bindkey -M $keymap '^N' down-history
-    bindkey -M $keymap '^E' up-history
+    bindkey -M $keymap '^J' down-history
+    bindkey -M $keymap '^K' up-history
 done
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 2> /dev/null
@@ -214,5 +198,3 @@ ZSH_HIGHLIGHT_STYLES[named-fd]=none
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=white,bold
 
 trap "source ${ZDOTDIR}/.zshrc" USR1
-
-# vim: foldcolumn=2 foldmethod=marker

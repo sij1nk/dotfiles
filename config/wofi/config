@@ -9,7 +9,7 @@ hide_scroll=true
 image_size=48
 prompt=
 
-key_up=E
-key_down=N
-key_left=M
-key_right=I
+key_up=K
+key_down=J
+key_left=H
+key_right=L

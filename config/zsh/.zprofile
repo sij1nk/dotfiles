@@ -57,7 +57,7 @@ export XKB_DEFAULT_OPTIONS="caps:escape"
 # Not sure if exec is needed and I don't feel like trying right now
 export XDG_CURRENT_DESKTOP=Hyprland
 if [ $(tty) = "/dev/tty1" ]; then
-  export KYRIA=1
+  export KYRIA=0
   exec Hyprland
 fi
 
