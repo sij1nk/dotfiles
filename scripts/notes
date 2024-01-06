@@ -1,17 +1,25 @@
 #!/bin/sh
 
+exit_if_no_changes() {
+  [ -z "$(git diff)" ] && echo "No changes made to workspace - skipping commit" && exit 0
+}
+
 save() {
+  exit_if_no_changes
   git add .
-  git commit -m "$(date "+%Y-%m-%d %X")"
+  git commit -m "$(date "+%Y-%m-%d %I:%M:%S %p")"
   git push
 }
+
+command=$1
+
+[ "$command" = "commit" ] && save && exit 0
 
 cd ~/Notes
 git pull
 nvim ./index.norg 
 
-# No changes made - no need to commit
-[ -z "$(git diff)" ] && exit 0
+exit_if_no_changes
 
 # Only commit automatically if last commit was more than an hour ago
 # Otherwise, ask for confirmation
