@@ -1,3 +1,25 @@
 #!/bin/sh
 
-nvim ~/Notes/index.norg 
+save() {
+  git add .
+  git commit -m "$(date "+%Y-%m-%d %X")"
+  git push
+}
+
+cd ~/Notes
+git pull
+nvim ./index.norg 
+
+# No changes made - no need to commit
+[ -z "$(git diff)" ] && exit 0
+
+# Only commit automatically if last commit was more than an hour ago
+# Otherwise, ask for confirmation
+if [ $(( $(date +%s) - $(git log -n 1 --date raw | head -n 3 | tail -n 1 | awk '{print $2}') )) -lt 3600 ] 
+then
+  confirm "Last commit was made less than an hour ago. Would you like to create a commit anyway?" 
+  [ 0 -eq $? ] && save
+else
+  save
+fi
+
