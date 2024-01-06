@@ -25,9 +25,6 @@ alacritty.opacity = 0.95
 [hypr.files]
 "config/hypr" = "~/.config/hypr"
 
-[helix.files]
-"config/helix" = "~/.config/helix"
-
 [eww.files]
 "config/eww" = "~/.config/eww"
 
@@ -60,13 +57,6 @@ color.amd_red = "#ed1c24"
 [fontconfig.files]
 "config/fontconfig" = "~/.config/fontconfig"
 
-[gammastep.files]
-"config/gammastep" = "~/.config/gammastep"
-
-[gammastep.variables]
-gammastep.temp-day = 4500
-gammastep.temp-night = 3200
-
 [git.files]
 "config/git" = "~/.config/git"
 
@@ -76,64 +66,12 @@ gammastep.temp-night = 3200
 [nvim.files]
 "config/nvim" = "~/.config/nvim"
 
-[sway.files]
-"config/sway" = "~/.config/sway"
-
-[swaylock.files]
-"config/swaylock" = "~/.config/swaylock"
-
 [vifm.files]
 "config/vifm" = "~/.config/vifm"
 "config/vifm/vifm-help.txt" = { target = "~/.config/vifm/vifm-help.txt", type = "symbolic" }
 
-[waybar.files]
-"config/waybar" = "~/.config/waybar"
-
-[waybar.variables]
-waybar.fontsize = 21
-
-[[waybar.variables.apps]]
-binary = "teams" 
-selector = "'[class=\"Microsoft Teams - Preview\"]'"
-workspace = 10 
-key = 't'
-
-[[waybar.variables.apps]]
-binary = "discord"
-selector = "'[class=\"discord\"]'"
-workspace = 9
-key = 'd' 
-
-[[waybar.variables.apps]]
-binary = "spotify"
-selector = "'[class=\"Spotify\"]'"
-workspace = 8
-key = 's'
-
-[[waybar.variables.apps]]
-# using apostrophes to make launch script threat it as a single argument
-binary = "'alacritty --class vimpc -e vimpc'"
-selector = "'[app_id=\"vimpc\"]'"
-workspace = 7
-key = 'm'
-
-[[waybar.variables.apps]]
-binary = "firefox"
-selector = "'[class=\"firefox\"]'"
-workspace = 6
-key = 'w'
-
-[[waybar.variables.apps]]
-binary = "krita"
-selector = "'[class=\"krita\"]'"
-workspace = 5
-key = 'k'
-
 [wofi.files]
 "config/wofi" = "~/.config/wofi"
-
-[xkb.files]
-"config/xkb" = "~/.config/xkb"
 
 [zathura.files]
 "config/zathura" = '~/.config/zathura'
@@ -141,12 +79,6 @@ key = 'k'
 [ncmpcpp.files]
 "config/ncmpcpp" = '~/.config/ncmpcpp'
 "config/ncmpcpp/config" = { target = "~/.config/ncmpcpp/config", type = "symbolic" }
-
-[river.files]
-"config/river/init" = '~/.config/river/init'
-
-[kanshi.files]
-"config/kanshi/config" = '~/.config/kanshi/config'
 
 [wired.files]
 "config/wired/wired.ron" = '~/.config/wired/wired.ron'
