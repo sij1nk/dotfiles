@@ -14,156 +14,76 @@ $iris: #c4a7e7;
 $hllow: #21202e;
 $hlmed: #403d52;
 $hlhi: #524f67;
-    
+
 /* TODO: Not sure what this does */
 *{
-    all: unset;
+  all: unset;
 }
 
 window {
-    background-color: $base;
-    font-family: Iosevka;
-    font-size: 20px;
-    color: $text;
+  background-color: $base;
+  font-family: CozetteVector Nerd Font;
+  font-size: 20px;
+  color: $text;
 }
 
-calendar.header {
-    font-size: 24px;
-    font-weight: bold;
-    color: $rose;
+.debug {
+  border: 1px solid red;
 }
 
-calendar:selected {
+.time {
+  font-size: 24px;
+}
+
+.statuslist {
+  margin-right: 12px;
+}
+
+.status {
+  &:hover {
     background-color: $hlmed;
-}
-calendar.highlight {
-    color: $subtle;
-}
-
-.background.cal {
-    background-color: $overlay;
-    border-radius: 16px;
-    box-shadow: inset 1px 1px 6px $base;
-}
-
-.calendar-container {
-    padding: 16px;
-}
-
-tooltip {
-    background-color: $base;
-    border: 1px solid red;
-    border-radius: 8px;
-    font-family: Iosevka;
-    font-size: 20px;
-}
-
-.block {
-    background-color: $overlay;
-    border-radius: 8px;
-    padding: 8px 0 8px 0;
-    margin: 0 8px 0 8px;
-}
-.blockw {
-    background-color: $pine;
-    padding: 18px;
-}
-
-.time-container {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.icon {
-    font-family: waybar-icons;
-    font-size: 32px;
-    color: $hlmed;
-
-    &:not(.alive):hover {
-        color: $hlhi;
-    }
-} 
-
-.icon.alive {
-    color: $rose;
+  }
 }
 
 .status-icon {
-    font-family: waybar-icons;
-    font-size: 24px;
+  font-family: CozetteVector Nerd Font;
+  font-size: 32px;
 }
 
-.color-none {
-    color: $muted;
-}
-.color-low {
-    color: $text;
-}
-.color-med {
-    color: $foam;
-}
-.color-hi {
-    color: $pine;
-}
-.color-hot {
-    color: $love;
-}
-.color-warm {
-    color: $gold;
-}
-.color-neutral {
-    color: $text;
-}
-.color-cold {
-    color: $foam;
+.brightness-icon {
+  color: $gold;
 }
 
-
-.shutdown-container {
-    padding-bottom: 12px;
-    color: $love;
-    &:hover {
-        text-shadow: 0px 0px 4px $love;
-    }
+.gamma-icon {
+  color: $iris;
 }
 
-.menu-container {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    color: $base;
-    background-color: $iris;
+.cpu-icon {
+  color: $love;
+}
 
-    &:hover {
-        text-shadow: 0px 0px 4px $text;
-    }
+.volume-icon {
+  color: $foam;
 }
 
 .hypr-workspace {
-    border-radius: 1000px;
-    background-color: $overlay;
+  font-size: 40px;
+  &.occupied {
+    color: $subtle;
+  }
+  &.active {
+    color: $love;
+  }
 }
 
-.hypr-workspace:hover:not(.hypr-workspace-active) {
-    border: 1px solid $rose;
+.hypr-workspace.active .hypr-workspace-empty {
+  opacity: 0;
 }
 
-.hypr-workspace-active {
-    background-color: $rose;
+.hypr-workspace:not(.occupied):not(.active) .hypr-workspace-filled {
+  opacity: 0;
 }
 
-.hypr-workspace-occupied {
-    background-color: $hlhi;
+.hypr-workspace:not(.occupied) .hypr-workspace-empty {
+  color: $hlmed;
 }
-
-.hypr-workspace-active.hypr-workspace-occupied {
-    background-color: $rose;
-}
-
-.hypr-workspace-inner.monitor-0 {
-    padding: 12px;
-}
-
-.hypr-workspace-inner.monitor-1 {
-    padding: 10px;
-}
-

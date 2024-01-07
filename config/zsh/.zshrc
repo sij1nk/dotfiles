@@ -84,6 +84,7 @@ alias \
     please='sudo $(fc -nl -1)' \
     vim="vim -i NONE" \
     zat="zathura" \
+    notes="neorg ~/Notes" \
 
 # TODO: fix all of these
 if [ -n $DISPLAY ] && [ $XDG_VTNR -eq 1 ]; then
