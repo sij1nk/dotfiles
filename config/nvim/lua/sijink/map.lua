@@ -32,20 +32,20 @@ vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { silent = false, desc =
 -- TODO: should do 'noh' after done; probably can't be done through keymap.set
 vim.keymap.set(
   "n",
-  "<leader>sw",
+  "<leader>vw",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left><Left>]],
   { desc = "sed word" }
 )
 vim.keymap.set(
   "n",
-  "<leader>sW",
+  "<leader>vW",
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gC<Left><Left><Left>]],
   { desc = "sed word with confirm" }
 )
-vim.keymap.set("n", "<leader>sg", [[:%s//g<Left><Left>]], { desc = "sed" })
-vim.keymap.set("n", "<leader>sG", [[:%s//gc<Left><Left>]], { desc = "sed with confirm" })
-vim.keymap.set("x", "<leader>sg", [[:s//g<Left><Left>]], { desc = "sed" })
-vim.keymap.set("x", "<leader>sG", [[:s//gc<Left><Left>]], { desc = "sed with confirm" })
+vim.keymap.set("n", "<leader>vg", [[:%s//g<Left><Left>]], { desc = "sed" })
+vim.keymap.set("n", "<leader>vG", [[:%s//gc<Left><Left>]], { desc = "sed with confirm" })
+vim.keymap.set("x", "<leader>vg", [[:s//g<Left><Left>]], { desc = "sed" })
+vim.keymap.set("x", "<leader>vG", [[:s//gc<Left><Left>]], { desc = "sed with confirm" })
 
 mu.kb_aware_map("c", "<C-h>", "<Left>", { silent = false })
 mu.kb_aware_map("c", "<C-j>", "<Down>", { silent = false })
