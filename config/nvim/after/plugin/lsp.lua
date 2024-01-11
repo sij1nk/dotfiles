@@ -48,7 +48,7 @@ local function on_attach(client, bufnr)
     { "n", "i" },
     "<C-k>",
     "<cmd>lua vim.lsp.buf.signature_help()<cr>",
-    { buffer = bufnr, desc = "Get signature help" }
+    { buffer = bufnr, desc = "Signature help" }
   )
   vim.keymap.set(
     "n",
@@ -60,7 +60,7 @@ local function on_attach(client, bufnr)
     "n",
     "<leader>s",
     "<cmd>lua vim.lsp.buf.code_action()<cr>",
-    { buffer = bufnr, desc = "Get code actions" }
+    { buffer = bufnr, desc = "Code actions" }
   )
   vim.keymap.set(
     "n",
