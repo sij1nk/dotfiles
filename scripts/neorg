@@ -1,12 +1,12 @@
 #!/bin/sh
 
 exit_if_no_changes() {
-  [ -z "$(git diff)" ] && echo "No changes made to workspace - skipping commit" && exit 0
+  [ -z "$(git diff --staged)" ] && echo "No changes made to workspace - skipping commit" && exit 0
 }
 
 save() {
-  exit_if_no_changes
   git add .
+  exit_if_no_changes
   git commit -m "$(date "+%Y-%m-%d %I:%M:%S %p")"
   git push
 }
@@ -14,9 +14,10 @@ save() {
 workspace=$1
 command=$2
 
+cd "$workspace"
+
 [ "$command" = "commit" ] && save && exit 0
 
-cd "$workspace"
 git pull
 nvim ./index.norg
 
