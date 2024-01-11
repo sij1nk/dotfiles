@@ -2,7 +2,18 @@ require("sijink.map")
 require("sijink.options")
 require("sijink.clipboard")
 
+local function env_or_default(env_var, default_value)
+  local value = os.getenv(env_var)
+  if value == nil then
+    return default_value
+  else
+    return value
+  end
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local notes_path = env_or_default("NEORG_NOTES_WORKSPACE_DIR", "~/Notes")
+local worknotes_path = env_or_default("NEORG_WORKNOTES_WORKSPACE_DIR", "~/Worknotes")
 
 -- Auto-install lazy.nvim if not present
 if not vim.uv.fs_stat(lazypath) then
@@ -249,7 +260,8 @@ require("lazy").setup({
           ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
               workspaces = {
-                notes = "~/Notes",
+                notes = notes_path,
+                worknotes = worknotes_path,
               },
               default_workspace = "notes",
             },
