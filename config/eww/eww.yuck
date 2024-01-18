@@ -6,13 +6,13 @@
   `tail -F /tmp/eww-brightness`
 )
 
-(deflisten gamma
+(deflisten colortemp
   :initial "4200"
-  `tail -F /tmp/eww-gamma`
+  `tail -F /tmp/eww-colortemp`
 )
 
 (deflisten volume
-  :initial "[0,\"\", \"color-none\"]"
+  :initial "0"
   `tail -F /tmp/eww-volume`)
 
 (deflisten selected-ids 
@@ -117,7 +117,7 @@
       :orientation "h"
       :spacing 8
     (widget-status 
-        :val {brightness[0]}
+        :val brightness
         :onscroll "eww-brightness {}"
       (box
           :class "status-icon brightness-icon"
@@ -125,10 +125,10 @@
         )
       )
     (widget-status
-        :val {round(gamma[0] / 100, 0)}
-        :onscroll "eww-gamma {}"
+        :val {round(colortemp / 100, 0)}
+        :onscroll "eww-colortemp {}"
       (box 
-          :class "status-icon gamma-icon"
+          :class "status-icon colortemp-icon"
           ""
         )
       )
@@ -141,7 +141,7 @@
         )
       )
     (widget-status 
-        :val {volume[0]}
+        :val volume
         :onscroll "eww-volume {}"
         :onclick "hypr-singleton-window -c pulsemixer -w 7 -t"
       (box 
