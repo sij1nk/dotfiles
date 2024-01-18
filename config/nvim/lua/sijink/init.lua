@@ -242,7 +242,7 @@ require("lazy").setup({
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
     -- tag = "*",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", { "nvim-neorg/neorg-telescope" } },
     config = function()
       require("neorg").setup({
         load = {
@@ -267,6 +267,7 @@ require("lazy").setup({
             },
           },
           ["core.ui.calendar"] = {},
+          ["core.integrations.telescope"] = {},
         },
       })
     end,
