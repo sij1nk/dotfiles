@@ -1,12 +1,12 @@
 #!/bin/sh
 
 exit_if_no_changes() {
-  [ -z "$(git diff --staged)" ] && echo "No changes made to workspace - skipping commit" && exit 0
+  [ -z "$(git status --short)" ] && echo "No changes made to workspace - skipping commit" && exit 0
 }
 
 save() {
-  git add .
   exit_if_no_changes
+  git add .
   git commit -m "$(date "+%Y-%m-%d %I:%M:%S %p")"
   git push
 }
@@ -21,15 +21,4 @@ cd "$workspace"
 git pull
 nvim ./index.norg
 
-exit_if_no_changes
-
-# Only commit automatically if last commit was more than an hour ago
-# Otherwise, ask for confirmation
-if [ $(( $(date +%s) - $(git log -n 1 --date raw | head -n 3 | tail -n 1 | awk '{print $2}') )) -lt 3600 ] 
-then
-  confirm "Last commit was made less than an hour ago. Would you like to create a commit anyway?" 
-  [ 0 -eq $? ] && save
-else
-  save
-fi
-
+save
