@@ -6,21 +6,17 @@
 )
 
 (deflisten brightness
-  :initial "100"
   `tail -F /tmp/eww-brightness`
 )
 
 (deflisten colortemp
-  :initial "4200"
   `tail -F /tmp/eww-colortemp`
 )
 
 (deflisten volume
-  :initial "0"
   `tail -F /tmp/eww-volume`)
 
 (deflisten selected-ids 
-  :initial "[1,10,[]]"
   `tail -F /tmp/hypr-active-workspaces`)
 
 (defwindow primary
