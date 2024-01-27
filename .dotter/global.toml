@@ -82,3 +82,6 @@ color.amd_red = "#ed1c24"
 
 [wired.files]
 "config/wired/wired.ron" = '~/.config/wired/wired.ron'
+
+[desktop_entries.files]
+"config/desktop_entries" = '~/.local/share/applications'

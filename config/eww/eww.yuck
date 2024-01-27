@@ -17,7 +17,7 @@
   `tail -F /tmp/eww-volume`)
 
 (deflisten selected-ids 
-  `tail -F /tmp/hypr-active-workspaces`)
+  `tail -F /tmp/eww-workspaces`)
 
 (defwindow primary
   :monitor 1
@@ -58,6 +58,7 @@
 (eventbox
     :vexpand true
     :hexpand true
+    :onscroll "[ {} = 'up' ] && val='next' || val='prev'; plsdo workspace focus $val ${monitor}"
   (box 
       :vexpand true
       :hexpand true
@@ -73,7 +74,7 @@
 
 (defwidget widget-hypr-workspace [id monitor]
 (eventbox 
-    :onclick "hypr-workspace -w ${id}"
+    :onclick "plsdo workspace focus id ${id}"
     :class "hypr-workspace monitor-${monitor} \
       ${selected-ids[monitor] == id ? "active" : ""} \
       ${arraylength(search(selected-ids[2], id)) > 0 ? "occupied" : ""} \
@@ -143,7 +144,7 @@
       )
     (widget-status 
         :val {round(EWW_TEMPS?.K10TEMP_TCTL ?: 0, 0)} 
-        :onclick "hypr-singleton-window -c btop -w 7 -t"
+        :onclick "plsdo workspace open_pinned btop"
       (box 
           :class "status-icon cpu-icon"
           ""
@@ -152,7 +153,7 @@
     (widget-status 
         :val volume
         :onscroll "eww-volume {}"
-        :onclick "hypr-singleton-window -c pulsemixer -w 7 -t"
+        :onclick "plsdo workspace open_pinned pulsemixer"
       (box 
           :class "status-icon volume-icon"
           ""

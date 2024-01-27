@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=ncmpcpp
+GenericName=Music client
+Comment=Mpd client with a curses interface
+Exec=alacritty --class %c -e %c
+Terminal=false
+Categories=System;Music;ConsoleOnly;
+Keywords=system;music

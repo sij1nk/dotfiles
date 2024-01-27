@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=pulsemixer
+GenericName=Audio mixer
+Comment=CLI and curses mixer for PulseAudio
+Exec=alacritty --class %c -e %c
+Terminal=false
+Categories=System;Audio;ConsoleOnly;
+Keywords=system;audio
