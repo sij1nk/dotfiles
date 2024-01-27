@@ -77,7 +77,7 @@
     :onclick "plsdo workspace focus id ${id}"
     :class "hypr-workspace monitor-${monitor} \
       ${selected-ids[monitor] == id ? "active" : ""} \
-      ${arraylength(search(selected-ids[2], id)) > 0 ? "occupied" : ""} \
+      ${jq(selected-ids, ".[2] | map(select(. == ${id})) | length") > 0 ? "occupied" : ""} \
       "
     :halign "center"
     :valign "center"
