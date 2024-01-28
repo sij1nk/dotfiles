@@ -85,3 +85,6 @@ color.amd_red = "#ed1c24"
 
 [desktop_entries.files]
 "config/desktop_entries" = '~/.local/share/applications'
+
+[newsboat.files]
+"config/newsboat" = "~/.config/newsboat"

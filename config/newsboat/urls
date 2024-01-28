@@ -1,0 +1,131 @@
+# Tags: 
+# by platform: reddit blog yt pod
+# by topic: tech programming gaming cooking finance politics music random
+# by interests (optional): rust neovim workflow
+
+# Queries
+"query:== reddit == :tags # \"reddit\""
+"query:== blog == :tags # \"blog\""
+"query:== youtube ==:tags # \"yt\""
+"query:== rust == :tags # \"rust\""
+"query:== neovim == :tags # \"neovim\""
+"query:== workflow ==:tags # \"workflow\""
+# "query:== podcast ==:tags # \"pod\""
+
+# Reddit
+https://old.reddit.com/r/rust.rss ~r/rust reddit programming rust
+https://old.reddit.com/r/programmingHungary.rss ~r/programmingHungary reddit programming
+https://old.reddit.com/r/neovim.rss ~r/neovim reddit tech neovim workflow
+https://old.reddit.com/r/zellij.rss ~r/zellij reddit tech workflow
+https://old.reddit.com/r/unixporn.rss ~r/unixporn reddit tech workflow
+
+# Blogs
+https://oxide.computer/blog/feed blog tech
+https://fasterthanli.me/index.xml blog programming rust
+https://nanotipsforvim.prose.sh/rss blog programming neovim
+https://blog.orhun.dev/rss.xml blog programming
+https://zamundaaa.github.io/feed.xml blog programming rust
+https://werat.dev/index.xml blog programming
+https://blog.rust-lang.org/feed.xml blog programming rust
+https://blog.rust-lang.org/inside-rust/feed.xml blog programming rust
+https://krebsonsecurity.com/feed/ blog tech
+https://hacks.mozilla.org/feed/ blog programming
+https://cdn.jwz.org/blog/feed/ blog programming
+https://worldofbs.com/rss.xml blog programming
+https://iximiuz.com/feed.rss blog programming
+https://solar.lowtechmagazine.com/posts/index.xml blog programming
+https://harshal.sheth.io/feed.xml blog programming
+https://faultlore.com/blah/rss.xml blog programming rust
+https://avi.im/blag/index.xml blog programming
+https://caseymuratori.com/blog_atom.rss blog programming
+https://blog.pragmaticengineer.com/feed/ blog tech
+https://css-tricks.com/feed/ blog programming
+https://benhoyt.com/writings/rss.xml blog programming
+https://thesquareplanet.com/feed.xml blog programming rust
+https://medium.com/feed/helsing blog programming
+https://medium.com/feed/@kelseyhightower blog programming
+https://bcantrill.dtrace.org/rss blog programming
+https://www.cppstories.com/index.xml blog programming
+https://yingtongli.me/blog/feed.xml blog programming
+https://www.internalpointers.com/rss blog programming
+https://oleksandrkvl.github.io/feed.xml blog programming
+https://marcmutz.wordpress.com/feed/ blog programming
+https://feeds.feedburner.com/rickstrahl blog programming
+https://kentcdodds.com/blog/rss.xml blog programming
+https://lexoral.com/rss.xml blog tech
+https://semaphoreci.com/feed blog tech
+https://surma.dev/index.xml blog programming
+https://neovim.io/news.xml blog programming neovim
+https://www.bigsoft.co.uk/blog/?tempskin=_rss2 blog programming
+https://250bpm.com/rss.xml blog programming
+https://blog.m-ou.se/index.xml blog programming rust
+https://raphlinus.github.io/feed.xml blog programming rust
+https://matklad.github.io/feed.xml blog programming rust
+https://limpet.net/mbrubeck/atom.xml blog programming rust
+https://polymonster.github.io/feed blog programming rust
+https://model-checking.github.io/kani-verifier-blog/feed.xml blog programming rust
+https://nnethercote.github.io/feed.xml blog programming rust
+https://billydm.github.io/atom.xml blog programming rust
+https://ianthehenry.com/feed.xml blog programming
+https://jvns.ca/atom.xml blog programming
+https://ohadravid.github.io/index.xml blog programming
+https://www.brandons.me/feed.xml blog programming rust
+https://stevedonovan.github.io/rustifications/feed.xml blog programming rust
+https://blog.turbo.fish/rss.xml blog programming rust
+https://blog.pnkfx.org/atom.xml blog programming rust
+https://blog.burntsushi.net/index.xml blog programming rust
+https://aloso.github.io/feed.xml blog programming rust
+https://pwy.io/feed.xml blog programming rust
+https://kdheepak.com/index.xml blog programming rust
+https://lucumr.pocoo.org/feed.atom blog programming rust
+https://www.ralfj.de/blog/feed.xml blog programming rust
+https://os.phil-opp.com/rss.xml blog programming rust
+https://without.boats/index.xml blog programming rust
+https://smallcultfollowing.com/babysteps//index.xml blog programming rust
+https://kobzol.github.io/feed.xml blog programming rust
+
+# YouTube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0RC7CFacGKgHhnPrTl7UgQ yt "~yt/Dörner Csenge" finance
+https://www.youtube.com/feeds/videos.xml?channel_id=UC3ts8coMP645hZw9JSD3pqQ yt "~yt/Andreas Kling" programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4NNPgQ9sOkBjw6GlkgCylg yt "~yt/Ben Vallack" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4qASCM1dcRl5NPtdso97yg yt "~yt/BLOPA DH :D" music
+https://www.youtube.com/feeds/videos.xml?channel_id=UC8u-3rEnw9oTWp-AzAjE58g yt "~yt/Dialko" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA yt "~yt/Computerphile" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UC9_p50tH3WmMslWRWKnM7dQ yt "~yt/Adam Ragusea" cooking
+https://www.youtube.com/feeds/videos.xml?channel_id=UCAL3JXZSzSm8AlZyD3nQdBA yt "~yt/Primitive Technology" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBKNuaxVlSNvIN139KplUKw yt "~yt/Vhyrro" programming neovim workflow
+https://www.youtube.com/feeds/videos.xml?channel_id=UCD6VugMZKRhSyzWEWA9W2fg yt "~yt/SsethTzeentach" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDq5v10l4wkV5-ZBIJJFbzQ yt "~yt/Ethan Chlebowski" cooking
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEFpEvuosfPGlV1VyUF6QOA yt "~yt/Partizán" politics
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFKDEp9si4RmHFWJW1vYsMA yt "~yt/EthosLab" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCOvz3kkYZtCTeXKdiuMG8eg yt "~yt/MadSeasonShow" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCOxtz12SJHLzY2Ylo5O9jpA yt "~yt/bits & hits" music
+https://www.youtube.com/feeds/videos.xml?channel_id=UCPo9tTdY_fPVITnU0eI2Ndg yt "~yt/Jeremy Lawlilet" music
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRIZtPl9nb9RiXc9btSTQNw yt "~yt/Food Wishes" cooking
+https://www.youtube.com/feeds/videos.xml?channel_id=UCS0N5baNlQWJCUrhCEo8WlA yt "~yt/Ben Eater" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCS1TedAX9-5yRl9Tx5E2qmg yt "~yt/voxelbee" programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUMwY9iS8oMyWDYIe6_RmoA yt "~yt/No Boilerplate" programming rust
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUdZY_KRQndvMIPD-8_uXRw yt "~yt/eli_handle_b․wav" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUkRj4qoT1bsWpE_C8lZYoQ yt "~yt/ThinMatrix" programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCV0b2b07Gq1OtT8iLB2Zwhw yt "~yt/LudZip" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UCW5OrUZ4SeUYkUg1XqcjFYA yt "~yt/GeoWizard" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw yt "~yt/3Blue1Brown" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UC_iD0xppBwwsrM9DegC5cQQ yt "~yt/Jon Gjengset" programming rust
+https://www.youtube.com/feeds/videos.xml?channel_id=UCaTznQhurW5AaiYPbhEA-KA yt "~yt/Molly Rocket" programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbUx0H90I6TqUcqT0TWv9wg yt "~yt/Podel" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdC0An4ZPNr_YiFiYoVbwaw yt "~yt/Daily Dose Of Internet" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA yt "~yt/Gamers Nexus" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w yt "~yt/Louis Rossmann" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UClOGLGPOqlAiLmOvXW5lKbw yt "~yt/MandaloreGaming" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCly0QRJAaJ2UGSGycOQoOdA yt "~yt/Alexander Sannikov" tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCmtyQOKKmrMVaKuRXz02jbQ yt "~yt/Sebastian Lague" programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCnaP100kTBB_WGM9IiF73yw yt "~yt/Mathilification" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCnr8mOKSn-UD3CgALDoqLDQ yt "~yt/LivAverageGamer" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCpWEeICUoxrhkjTID4j7-tw yt "~yt/Threefold" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqqJQ_cXSat0KIAVfIfKkVA yt "~yt/J. Kenji López-Alt" cooking
+https://www.youtube.com/feeds/videos.xml?channel_id=UCs4fQRyl1TJvoeOdekW6lYA yt "~yt/fasterthanlime" programming rust
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA yt "~yt/Fireship" programming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCtAJObaoDVP24wcJEGcyWNg yt "~yt/Travelers Of Musical Dreams" music
+https://www.youtube.com/feeds/videos.xml?channel_id=UCv3mh2P-q3UCtR9-2q8B-ZA yt "~yt/The Urban Rescue Ranch" random
+https://www.youtube.com/feeds/videos.xml?channel_id=UCx6GR83AbXiSX2gesCxSPPw yt "~yt/Empyriangaming" gaming
+https://www.youtube.com/feeds/videos.xml?channel_id=UCyhnYIvIKK_--PiJXCMKxQQ yt "~yt/Joseph Anderson" gaming

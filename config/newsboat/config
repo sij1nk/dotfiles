@@ -1,0 +1,55 @@
+include /usr/share/doc/newsboat/contrib/colorschemes/gruvbox
+
+# reload all feeds at startup
+auto-reload yes
+
+# reload periodically (in minutes)
+reload-time 60
+
+# reload in parallel
+reload-threads 4
+
+prepopulate-query-feeds yes
+
+# -- navigation --
+
+goto-next-feed no
+
+browser "plsdo workspace open_pinned \"Firefox Web Browser\"; firefox --new-tab %u"
+
+bind-key j down feedlist
+bind-key k up feedlist
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key j next searchresultslist
+bind-key k prev searchresultslist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key j down article
+bind-key k up article
+bind-key l open feedlist
+bind-key l open articlelist
+bind-key h quit 
+bind-key q hard-quit
+
+# -- highlights --
+
+# youtube
+highlight-article "tags # \"yt\" and tags # \"tech\"" magenta default
+highlight-article "tags # \"yt\" and tags # \"programming\"" white default
+highlight-article "tags # \"yt\" and tags # \"cooking\"" red default
+highlight-article "tags # \"yt\" and tags # \"finance\"" blue default dim
+highlight-article "tags # \"yt\" and tags # \"politics\"" blue default dim
+highlight-article "tags # \"yt\" and tags # \"random\"" blue default
+highlight-article "tags # \"yt\" and tags # \"gaming\"" blue default
+highlight-article "tags # \"yt\" and tags # \"music\"" yellow default
+
+highlight-article "tags !# \"yt\" and unread = \"yes\"" default default
+highlight-article "tags !# \"yt\"" default default dim
+
+highlight-feed "feedtitle # \"==\"" default default bold
+highlight-feed "tags # \"yt\"" default default invis
+highlight-feed "tags # \"reddit\"" red default
+highlight-feed "tags # \"blog\"" magenta default
+
+color listfocus default default standout

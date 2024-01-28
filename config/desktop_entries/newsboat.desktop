@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=newsboat
+GenericName=News Aggregator
+Comment=News aggregator, RSS/Atom reader for the terminal
+Exec=alacritty --class %c -e %c
+Terminal=false
+Categories=System;News;ConsoleOnly;
+Keywords=system;news

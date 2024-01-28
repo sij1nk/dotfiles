@@ -268,6 +268,7 @@ require("lazy").setup({
           },
           ["core.ui.calendar"] = {},
           ["core.integrations.telescope"] = {},
+          ["core.esupports.metagen"] = {},
         },
       })
     end,
