@@ -199,3 +199,5 @@ ZSH_HIGHLIGHT_STYLES[named-fd]=none
 ZSH_HIGHLIGHT_STYLES[arg0]=fg=white,bold
 
 trap "source ${ZDOTDIR}/.zshrc" USR1
+
+eval "$(zoxide init zsh --cmd cd)"

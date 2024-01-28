@@ -38,8 +38,8 @@ mods = "Control"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
-key = "T"
-mods = "Control|Shift"
+key = "Enter"
+mods = "Alt"
 
 [[keyboard.bindings]]
 action = "ScrollLineDown"
