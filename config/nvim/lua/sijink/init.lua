@@ -53,6 +53,11 @@ require("lazy").setup({
     dependencies = {
       -- for JSX/TSX comments (and possibly in similar embedded languages)
       "JoosepAlviste/nvim-ts-context-commentstring",
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        enabled = true,
+        commit = "73e44f43c70289c70195b5e7bc6a077ceffddda4",
+      },
     },
   },
   {

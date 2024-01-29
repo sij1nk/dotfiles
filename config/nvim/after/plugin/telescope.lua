@@ -51,6 +51,7 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<C-p>", function()
   builtin.find_files({
     find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
+    follow = true,
   })
 end, { desc = "Telescope" })
 vim.keymap.set("n", "<leader>gg", builtin.live_grep, { desc = "Telescope: Live grep" })
