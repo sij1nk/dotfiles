@@ -128,7 +128,7 @@
       )
     (widget-status 
         :val brightness
-        :onscroll "eww-brightness {}"
+        :onscroll "plsdo brightness -d {} 10"
       (box
           :class "status-icon brightness-icon"
           ""
@@ -136,7 +136,7 @@
       )
     (widget-status
         :val {round(colortemp / 100, 0)}
-        :onscroll "eww-colortemp {}"
+        :onscroll "plsdo colortemp -d {} 200"
       (box 
           :class "status-icon colortemp-icon"
           ""
