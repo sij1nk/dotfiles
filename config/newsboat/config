@@ -11,11 +11,13 @@ reload-threads 4
 
 prepopulate-query-feeds yes
 
+datetime-format "%y-%m-%d"
+
 # -- navigation --
 
 goto-next-feed no
 
-browser "plsdo workspace open_pinned \"Firefox Web Browser\"; firefox --new-tab %u"
+browser "plsdo workspace open_pinned \"Firefox Web Browser\"; firefox --new-tab %u; plsdo workspace open_pinned newsboat"
 
 bind-key j down feedlist
 bind-key k up feedlist
