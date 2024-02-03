@@ -1,7 +1,11 @@
 (defvar primary-ids "[9, 1, 3, 5, 7]")
 (defvar secondary-ids "[8, 10, 2, 4, 6]")
 
+; Eww wants some of the initial values to exist, otherwise it logs errors when
+; loading. Initial values should be unused!
+
 (deflisten keyboard-layout
+  :initial "[0,\"us\"]"
   `tail -F /tmp/eww-keyboard-layout`
 )
 
@@ -10,13 +14,16 @@
 )
 
 (deflisten colortemp
+  :initial "0"
   `tail -F /tmp/eww-colortemp`
 )
 
 (deflisten volume
+  :initial "[0,\"unmuted\"]"
   `tail -F /tmp/eww-volume`)
 
 (deflisten selected-ids 
+  :initial "[0,0,[]]"
   `tail -F /tmp/eww-workspaces`)
 
 (defwindow primary
@@ -90,17 +97,17 @@
 )
 
 ; takes icon widget as child
-(defwidget widget-status [val ?onscroll ?onclick]
+(defwidget widget-status [val ?onscroll ?onclick ?onrightclick ?value-class]
 (eventbox 
     :halign "center"
-    :valign "top"
     :onscroll onscroll
     :onclick onclick
+    :onrightclick onrightclick
     :width 72 
     :class "status"
     (box :spacing 2
       (children)
-      (box :halign "start" :class "status-value" val))
+      (box :halign "start" :class "status-value ${value-class}" val))
 ))
 
 (defwidget widget-media []
@@ -151,11 +158,13 @@
         )
       )
     (widget-status 
-        :val volume
-        :onscroll "eww-volume {}"
+        :val {volume[0]}
+        :onscroll "plsdo volume set -d {} 5"
         :onclick "plsdo workspace open_pinned pulsemixer"
+        :onrightclick "plsdo volume toggle-mute"
+        :value-class "volume-${volume[1]}"
       (box 
-          :class "status-icon volume-icon"
+          :class "status-icon volume-icon volume-${volume[1]}"
           ""
         )
       )
