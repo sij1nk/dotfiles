@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=notes
+GenericName=Notes and knowledge base
+Comment=Neorg notes and knowledge base
+Exec=alacritty --class %c -e neorg
+Terminal=false
+Categories=System;ConsoleOnly;
+Keywords=system;notes
