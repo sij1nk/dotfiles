@@ -22,8 +22,8 @@ $hlhi: #524f67;
 
 window {
   background-color: $base;
-  font-family: CozetteVector Nerd Font;
-  font-size: 20px;
+  font-family: monospace-system-bar;
+  font-size: 22px;
   color: $text;
 }
 
@@ -46,8 +46,8 @@ window {
 }
 
 .status-icon {
-  font-family: CozetteVector Nerd Font;
-  font-size: 32px;
+  font-family: monospace-system-bar;
+  font-size: 36px;
 }
 
 .keyboard-layout-icon {
@@ -75,7 +75,7 @@ window {
 }
 
 .hypr-workspace {
-  font-size: 40px;
+  font-size: 44px;
   &.occupied {
     color: $subtle;
   }
