@@ -40,7 +40,7 @@
     :orientation "h"
     :hexpand true
   (widget-media)
-  (widget-hypr-workspaces :ids primary-ids :monitor 0)
+  (widget-hypr-workspaces :ids primary-ids :monitor 1)
   (widget-statuslist)
   ))
 
@@ -57,7 +57,7 @@
 (centerbox 
     :orientation "h" 
   (box)
-  (widget-hypr-workspaces :ids secondary-ids :monitor 1)
+  (widget-hypr-workspaces :ids secondary-ids :monitor 0)
   (box)
   ))
 
