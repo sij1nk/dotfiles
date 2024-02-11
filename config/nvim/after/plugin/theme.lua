@@ -8,6 +8,9 @@ require("colorizer").setup({
 })
 
 require("rose-pine").setup({
+  styles = {
+    transparency = true,
+  },
   dark_variant = "main",
   dim_nc_background = true, -- nc ~ non-current windows
   disable_italics = false, -- italics are only an issue on WSL + Zellij + Windows Terminal
