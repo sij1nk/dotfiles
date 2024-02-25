@@ -86,3 +86,6 @@ color.amd_red = "#ed1c24"
 
 [newsboat.files]
 "config/newsboat" = "~/.config/newsboat"
+
+[fish.files]
+"config/fish" = "~/.config/fish"
