@@ -96,6 +96,8 @@ if status is-interactive
   bind -M insert -k nul accept-autosuggestion # ctrl-space
   bind -M insert \t complete-and-search
   bind -M visual \t complete-and-search
+  bind -M insert \n down-line
+  bind -M insert \v up-line
   set fzf_history_opts --preview=""
   zoxide init fish --cmd cd | source
 
