@@ -12,8 +12,6 @@ x11.enable = true
 
 [scripts.files]
 scripts = "~/.scripts"
-"scripts/plsdo" = { target = "~/.scripts/plsdo", type = "symbolic" }
-"scripts/eww" = { target = "~/.scripts/eww", type = "symbolic" }
 
 [alacritty.files]
 "config/alacritty" = "~/.config/alacritty"
