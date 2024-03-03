@@ -242,7 +242,7 @@ markdownlint.args = {
   "--disable MD024 --",
 }
 
-vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufWinEnter", "InsertLeave", "BufWritePost" }, {
   group = vim.api.nvim_create_augroup("Lint", {}),
   pattern = "*",
   callback = function()
