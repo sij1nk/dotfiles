@@ -22,6 +22,9 @@ mu.kb_aware_map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
 -- keep clipboard when pasting
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste, but keep clipboard" })
 
+-- spellcheck
+vim.keymap.set("n", "<leader>SS", "<cmd>set spell!<cr>", { desc = "Toggle spell checking" })
+
 -- saving
 
 vim.keymap.set("n", "<leader>ww", "<cmd>write<cr>", { desc = "Write" })

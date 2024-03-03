@@ -27,3 +27,8 @@ vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 8
 vim.o.softtabstop = 2
+
+-- Spellcheck
+vim.o.spell = false -- toggle whenever necessary
+vim.o.spelllang = "en_us,hu"
+vim.o.spellcapcheck = ""
