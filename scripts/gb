@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-if [ $1 ]; then
+if [ "$1" ]; then
     branch=$1
 else
     branch=$(git branch -a | fzf | sed 's/\*\?\s*//g')
@@ -20,7 +20,7 @@ current=$(git branch --show-current)
 
 is_remote_branch=$(echo "$branch" | grep "^remotes/origin/.*")
 
-if [ $is_remote_branch ]; then
+if [ "$is_remote_branch" ]; then
     git checkout --track "$branch"
 else
     git checkout "$branch"

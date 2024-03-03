@@ -1,6 +1,8 @@
 #!/bin/sh
 
-path=$(which $1)
-[ $? -ne 0 ] && exit 1
+if ! path=$(which "$1")
+then
+  exit 1
+fi
 
-nvim $(which $1)
+$EDITOR "$path"

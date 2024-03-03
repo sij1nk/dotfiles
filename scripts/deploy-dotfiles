@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd ~/.dotfiles
-dotter $@
+cd ~/.dotfiles || exit 1
+dotter "$@"

@@ -1,9 +1,9 @@
 #!/usr/bin/sh
 # https://stackoverflow.com/a/27875395
 
-printf "\033[1m$1 (y/n)?\033[0m "
+printf "\033[1m%s (y/n)?\033[0m " "$1"
 old_stty=$(stty -g)
-stty raw -echo; answer=$(head -c 1); stty $old_stty
+stty raw -echo; answer=$(head -c 1); stty "$old_stty"
 echo
 if [ "$answer" != "${answer#[Yy]}" ]; then
   exit 0
