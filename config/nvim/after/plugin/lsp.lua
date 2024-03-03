@@ -8,6 +8,27 @@ local schemastore = require("schemastore")
 local telescope = require("telescope.builtin")
 local tstools_api = require("typescript-tools.api")
 
+local function set_diagnostic_keymaps(bufnr)
+  vim.keymap.set(
+    "n",
+    "<leader>dd",
+    "<cmd>lua vim.diagnostic.open_float()<cr>",
+    { buffer = bufnr, desc = "Show diagnostic details" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dk",
+    "<cmd>lua vim.diagnostic.goto_prev()<cr>",
+    { buffer = bufnr, desc = "Go to previous diagnostic" }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dj",
+    "<cmd>lua vim.diagnostic.goto_next()<cr>",
+    { buffer = bufnr, desc = "Go to next diagnostic" }
+  )
+end
+
 local function on_attach(client, bufnr)
   vim.b.minicursorword_disable = true
 
@@ -62,24 +83,7 @@ local function on_attach(client, bufnr)
     "<cmd>lua vim.lsp.buf.code_action()<cr>",
     { buffer = bufnr, desc = "Code actions" }
   )
-  vim.keymap.set(
-    "n",
-    "<leader>dd",
-    "<cmd>lua vim.diagnostic.open_float()<cr>",
-    { buffer = bufnr, desc = "Show diagnostic details" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>dk",
-    "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-    { buffer = bufnr, desc = "Go to previous diagnostic" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>dj",
-    "<cmd>lua vim.diagnostic.goto_next()<cr>",
-    { buffer = bufnr, desc = "Go to next diagnostic" }
-  )
+  set_diagnostic_keymaps(bufnr)
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -214,7 +218,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 local lint = require("lint")
-lint.linters_by_ft = {
+lint.linters_by_ft = vim.tbl_extend("keep", lint.linters_by_ft, {
   javascript = {
     "eslint_d",
   },
@@ -234,7 +238,7 @@ lint.linters_by_ft = {
   sh = {
     "shellcheck",
   },
-}
+})
 
 local markdownlint = lint.linters.markdownlint
 -- MD024: allow multiple headings with the same content
@@ -245,7 +249,12 @@ markdownlint.args = {
 vim.api.nvim_create_autocmd({ "BufWinEnter", "InsertLeave", "BufWritePost" }, {
   group = vim.api.nvim_create_augroup("Lint", {}),
   pattern = "*",
-  callback = function()
+  callback = function(args)
+    if not vim.tbl_get(lint.linters_by_ft, vim.bo.filetype) then
+      return
+    end
+
+    set_diagnostic_keymaps(args.buf)
     lint.try_lint()
   end,
 })
