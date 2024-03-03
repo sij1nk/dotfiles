@@ -32,7 +32,7 @@ else
   abbr -a ll 'ls -la'
 end
 
-set -x PATH 'home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '/home/rg/.scripts' '.'
+set -x PATH '/home/rg/.scripts' 'home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '.'
 
 set -x EDITOR nvim
 set -x VISUAL nvim
