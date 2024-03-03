@@ -88,7 +88,7 @@ require("lazy").setup({
       },
     },
   },
-  { "NvChad/nvim-colorizer.lua" }, -- visualize color(code)s
+  { "norcalli/nvim-colorizer.lua" }, -- visualize color(code)s
   { "mbbill/undotree" },
   {
     -- highlight same words as word under cursor
@@ -272,7 +272,12 @@ require("lazy").setup({
           },
           ["core.ui.calendar"] = {},
           ["core.integrations.telescope"] = {},
-          ["core.esupports.metagen"] = {},
+          ["core.esupports.metagen"] = {
+            config = {
+              type = "auto",
+              -- TODO: include weekday name (%A)
+            },
+          },
         },
       })
     end,

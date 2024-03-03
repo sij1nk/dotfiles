@@ -1,0 +1,166 @@
+// If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+keybinds clear-defaults=true {
+  locked {
+    bind "Alt g" { SwitchToMode "Normal"; }
+  }
+  normal {
+    bind "Alt w" {
+      LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+        floating true
+        ignore_case true
+      }
+    }
+    bind "Alt \\" {
+      LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij_forgot.wasm" {
+        floating true
+      }
+    }
+  }
+  shared_except "locked" {
+    bind "Alt n" { NewPane; }
+    bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+    bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+    bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+    bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+    bind "Alt [" { PreviousSwapLayout; }
+    bind "Alt ]" { NextSwapLayout; }
+  }
+  shared_except "normal" "locked" {
+    bind "Enter" "Esc" { SwitchToMode "Normal"; }
+  }
+  pane {
+    bind "Alt p" { SwitchToMode "Normal"; }
+    bind "h" "Left" { MoveFocus "Left"; }
+    bind "l" "Right" { MoveFocus "Right"; }
+    bind "j" "Down" { MoveFocus "Down"; }
+    bind "k" "Up" { MoveFocus "Up"; }
+    bind "p" { SwitchFocus; }
+    bind "n" { NewPane; SwitchToMode "Normal"; }
+    bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
+    bind "r" { NewPane "Right"; SwitchToMode "Normal"; }
+    bind "x" { CloseFocus; SwitchToMode "Normal"; }
+    bind "f" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+    bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
+    bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
+    bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
+    bind "c" { SwitchToMode "RenamePane"; PaneNameInput 0;}
+  }
+  resize {
+    bind "Alt n" { SwitchToMode "Normal"; }
+    bind "h" "Left" { Resize "Increase Left"; }
+    bind "j" "Down" { Resize "Increase Down"; }
+    bind "k" "Up" { Resize "Increase Up"; }
+    bind "l" "Right" { Resize "Increase Right"; }
+    bind "H" { Resize "Decrease Left"; }
+    bind "J" { Resize "Decrease Down"; }
+    bind "K" { Resize "Decrease Up"; }
+    bind "L" { Resize "Decrease Right"; }
+    bind "=" "+" { Resize "Increase"; }
+    bind "-" { Resize "Decrease"; }
+  }
+  move {
+    bind "Alt m" { SwitchToMode "Normal"; }
+    bind "n" "Tab" { MovePane; }
+    bind "p" { MovePaneBackwards; }
+    bind "h" "Left" { MovePane "Left"; }
+    bind "j" "Down" { MovePane "Down"; }
+    bind "k" "Up" { MovePane "Up"; }
+    bind "l" "Right" { MovePane "Right"; }
+  }
+  tab {
+    bind "Alt a" { SwitchToMode "Normal"; }
+    bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+    bind "h" "Left" "Up" "k" { GoToPreviousTab; }
+    bind "l" "Right" "Down" "j" { GoToNextTab; }
+    bind "n" { NewTab; SwitchToMode "Normal"; }
+    bind "x" { CloseTab; SwitchToMode "Normal"; }
+    bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
+    bind "b" { BreakPane; SwitchToMode "Normal"; }
+    bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
+    bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
+  }
+  scroll {
+    bind "Alt s" { SwitchToMode "Normal"; }
+    bind "e" { EditScrollback; SwitchToMode "Normal"; }
+    bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+    bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+    bind "j" "Down" { ScrollDown; }
+    bind "k" "Up" { ScrollUp; }
+    bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+    bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+    bind "d" { HalfPageScrollDown; }
+    bind "u" { HalfPageScrollUp; }
+  }
+  search {
+    bind "Alt s" { SwitchToMode "Normal"; }
+    bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
+    bind "j" "Down" { ScrollDown; }
+    bind "k" "Up" { ScrollUp; }
+    bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+    bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+    bind "d" { HalfPageScrollDown; }
+    bind "u" { HalfPageScrollUp; }
+    bind "n" { Search "down"; }
+    bind "p" { Search "up"; }
+    bind "c" { SearchToggleOption "CaseSensitivity"; }
+    bind "w" { SearchToggleOption "Wrap"; }
+    bind "o" { SearchToggleOption "WholeWord"; }
+  }
+  entersearch {
+    bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
+    bind "Enter" { SwitchToMode "Search"; }
+  }
+  renametab {
+    bind "Ctrl c" { SwitchToMode "Normal"; }
+    bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
+  }
+  renamepane {
+    bind "Ctrl c" { SwitchToMode "Normal"; }
+    bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
+  }
+  session {
+    bind "q" { Quit; }
+    bind "o" { SwitchToMode "Normal"; }
+    bind "s" { SwitchToMode "Scroll"; }
+    bind "d" { Detach; }
+    bind "w" {
+      LaunchOrFocusPlugin "zellij:session-manager" {
+        floating true
+        move_to_focused_tab true
+      };
+      SwitchToMode "Normal"
+    }
+  }
+  shared_except "locked" {
+    bind "Alt g" { SwitchToMode "Locked"; }
+  }
+  shared_except "pane" "locked" {
+    bind "Alt p" { SwitchToMode "Pane"; }
+  }
+  shared_except "resize" "locked" {
+    bind "Alt n" { SwitchToMode "Resize"; }
+  }
+  shared_except "scroll" "locked" {
+    bind "Alt s" { SwitchToMode "Scroll"; }
+  }
+  shared_except "session" "locked" {
+    bind "Alt o" { SwitchToMode "Session"; }
+  }
+  shared_except "tab" "locked" {
+    bind "Alt a" { SwitchToMode "Tab"; }
+  }
+  shared_except "move" "locked" {
+    bind "Alt m" { SwitchToMode "Move"; }
+  }
+}
+
+plugins {
+  tab-bar { path "tab-bar"; }
+  status-bar { path "status-bar"; }
+  strider { path "strider"; }
+  compact-bar { path "compact-bar"; }
+  session-manager { path "session-manager"; }
+}
+
+theme "rose-pine-moon"
+default_layout "default"

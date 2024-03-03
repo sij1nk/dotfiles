@@ -4,6 +4,8 @@ abbr -a cp 'cp -v'
 abbr -a mv 'mv -v'
 abbr -a mkdir 'mkdir -p'
 
+abbr -a z zellij
+
 abbr -a g git
 abbr -a ga 'git add -p'
 abbr -a gco 'git checkout'
@@ -32,7 +34,7 @@ else
   abbr -a ll 'ls -la'
 end
 
-set -x PATH '/home/rg/.scripts' 'home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '.'
+set -x PATH '/home/rg/.scripts' '/home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '.'
 
 set -x EDITOR nvim
 set -x VISUAL nvim

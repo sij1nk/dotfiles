@@ -44,12 +44,12 @@ mods = "Alt"
 [[keyboard.bindings]]
 action = "ScrollLineDown"
 key = "J"
-mods = "Alt"
+mods = "Control|Alt"
 
 [[keyboard.bindings]]
 action = "ScrollLineUp"
 key = "K"
-mods = "Alt"
+mods = "Control|Alt"
 
 [scrolling]
 history = 10000

@@ -89,3 +89,6 @@ color.amd_red = "#ed1c24"
 
 [fish.files]
 "config/fish" = "~/.config/fish"
+
+[zellij.files]
+"config/zellij" = "~/.config/zellij"
