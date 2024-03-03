@@ -231,6 +231,9 @@ lint.linters_by_ft = {
   markdown = {
     "markdownlint",
   },
+  sh = {
+    "shellcheck",
+  },
 }
 
 local markdownlint = lint.linters.markdownlint
