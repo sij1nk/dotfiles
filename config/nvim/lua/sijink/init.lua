@@ -107,6 +107,7 @@ require("lazy").setup({
   },
   {
     "folke/flash.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {},
     keys = {
@@ -268,6 +269,16 @@ require("lazy").setup({
                 worknotes = worknotes_path,
               },
               default_workspace = "notes",
+            },
+          },
+          ["core.export"] = {
+            config = {
+              export_dir = "<export-dir>/<language>-export",
+            },
+          },
+          ["core.export.markdown"] = {
+            config = {
+              extensions = "all",
             },
           },
           ["core.ui.calendar"] = {},

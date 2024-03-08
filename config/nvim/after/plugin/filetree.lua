@@ -15,6 +15,7 @@ require("neo-tree").setup({
     }),
   },
   filesystem = {
+    group_empty_dirs = true,
     filtered_items = {
       visible = true,
       hide_dotfiles = false,
