@@ -203,7 +203,7 @@ require("lazy").setup({
     },
   },
   { "mfussenegger/nvim-lint" },
-  { "simrat39/rust-tools.nvim" }, -- some extra goodies necessary for Rust LSP
+  { "mrcjkb/rustaceanvim", version = "^4", ft = { "rust" } }, -- some extra goodies necessary for Rust LSP
   {
     -- extra goodies for typescript
     "pmizio/typescript-tools.nvim",

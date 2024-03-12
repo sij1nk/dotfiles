@@ -90,7 +90,7 @@ local capabilities = cmp_nvim_lsp.default_capabilities()
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "jsonls" },
+  ensure_installed = { "lua_ls", "tsserver", "jsonls" },
   automatic_installation = true,
   handlers = {
     function(server_name)
@@ -111,16 +111,6 @@ require("mason-lspconfig").setup({
             telemetry = {
               enabled = false,
             },
-          },
-        },
-      })
-    end,
-    ["rust_analyzer"] = function()
-      require("rust-tools").setup({
-        server = { on_attach = on_attach, capabilities = capabilities },
-        tools = {
-          inlay_hints = {
-            only_current_line = true,
           },
         },
       })
