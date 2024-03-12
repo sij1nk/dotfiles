@@ -88,7 +88,7 @@ require("lazy").setup({
       },
     },
   },
-  { "norcalli/nvim-colorizer.lua" }, -- visualize color(code)s
+  { "NvChad/nvim-colorizer.lua" }, -- visualize color(code)s
   { "mbbill/undotree" },
   {
     -- highlight same words as word under cursor
