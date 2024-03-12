@@ -1,0 +1,6 @@
+#!/bin/sh
+
+layout=$(fd . -e kdl /home/rg/.config/zellij/layouts | xargs basename -s .kdl | fzf)
+
+zellij d "$layout" --force
+zellij -s "$layout" --layout "$layout"
