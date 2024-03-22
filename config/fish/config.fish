@@ -34,7 +34,7 @@ else
   abbr -a ll 'ls -la'
 end
 
-set -x PATH '/home/rg/.scripts' '/home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '.'
+set -x PATH '/home/rg/.scripts' '/home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '/home/rg/.local/share/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin' '.'
 
 set -x EDITOR nvim
 set -x VISUAL nvim
