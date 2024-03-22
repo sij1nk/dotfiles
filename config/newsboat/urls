@@ -10,7 +10,7 @@
 "query:== rust == :tags # \"rust\""
 "query:== neovim == :tags # \"neovim\""
 "query:== workflow ==:tags # \"workflow\""
-# "query:== podcast ==:tags # \"pod\""
+"query:== podcast ==:tags # \"pod\""
 
 # Reddit
 https://old.reddit.com/r/rust.rss ~r/rust reddit programming rust
@@ -129,3 +129,6 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCtAJObaoDVP24wcJEGcyWNg yt 
 https://www.youtube.com/feeds/videos.xml?channel_id=UCv3mh2P-q3UCtR9-2q8B-ZA yt "~yt/The Urban Rescue Ranch" random
 https://www.youtube.com/feeds/videos.xml?channel_id=UCx6GR83AbXiSX2gesCxSPPw yt "~yt/Empyriangaming" gaming
 https://www.youtube.com/feeds/videos.xml?channel_id=UCyhnYIvIKK_--PiJXCMKxQQ yt "~yt/Joseph Anderson" gaming
+
+# Podcasts
+https://feeds.transistor.fm/oxide-and-friends pod tech
