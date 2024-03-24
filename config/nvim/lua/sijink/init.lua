@@ -68,6 +68,13 @@ require("lazy").setup({
   { "windwp/nvim-ts-autotag" }, -- automatically close and rename HTML tags
   { "numToStr/Comment.nvim" },
   {
+    "stevearc/oil.nvim",
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = true,
+    enabled = false,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
