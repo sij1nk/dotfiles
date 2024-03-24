@@ -9,8 +9,8 @@ mu.kb_aware_map("n", "gl", "$", { desc = "Move to line end" })
 
 vim.keymap.set("n", "<leader>c", "<cmd>nohlsearch<cr>", { desc = "Disable search highlights " })
 vim.keymap.set({ "n", "v", "x" }, "<leader>a", "maggVG", { desc = "Select all" }) -- 'a to jump back
-vim.keymap.set("n", "<leader>==", "maggVG='a", { desc = "Format all naively" }) -- TODO: jump back to exact position
-vim.keymap.set("n", "<leader>=f", "<cmd>FormatLock<cr>", { desc = "Format all smartly" }) -- TODO: jump back to exact position
+vim.keymap.set("n", "<leader>f=", "maggVG=`a", { desc = "Format all naively" })
+vim.keymap.set("n", "<leader>ff", "<cmd>FormatLock<cr>", { desc = "Format all smartly" })
 mu.kb_aware_map("n", "J", "mJJ'J", { desc = "Join lines" })
 mu.kb_aware_map("n", "n", "nzz", { desc = "Next search result" })
 mu.kb_aware_map("n", "N", "Nzz", { desc = "Previous search result" })
