@@ -92,3 +92,6 @@ color.amd_red = "#ed1c24"
 
 [zellij.files]
 "config/zellij" = "~/.config/zellij"
+
+[tridactyl.files]
+"config/tridactyl" = "~/.config/tridactyl/"
