@@ -3,5 +3,8 @@
 	email = {{email}}
 	name = {{name}}
 {{/with}}
+[diff]
+        colormoved = "default"
+        colormovedws = "allow-indentation-change"
 [core]
 	autocrlf = false
