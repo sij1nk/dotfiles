@@ -5,4 +5,5 @@ wk.register({
   ["<leader>v"] = { name = "Replace" },
   ["<leader>w"] = { name = "Write" },
   ["<leader>f"] = { name = "Format" },
+  ["<leader>m"] = { name = "Theme" },
 })

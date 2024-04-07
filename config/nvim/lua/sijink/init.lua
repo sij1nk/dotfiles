@@ -1,6 +1,12 @@
 require("sijink.map")
 require("sijink.options")
 require("sijink.clipboard")
+local theme = require("sijink.theme")
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = vim.api.nvim_create_augroup("Startup", {}),
+  callback = theme.update_theme_from_file,
+})
 
 local function env_or_default(env_var, default_value)
   local value = os.getenv(env_var)

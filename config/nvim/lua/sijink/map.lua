@@ -1,4 +1,5 @@
 local mu = require("sijink.map_utils")
+local theme = require("sijink.theme")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
@@ -24,6 +25,15 @@ vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste, but keep clipboard" })
 
 -- spellcheck
 vim.keymap.set("n", "<leader>SS", "<cmd>set spell!<cr>", { desc = "Toggle spell checking" })
+
+-- theme
+vim.keymap.set(
+  "n",
+  "<leader>mt",
+  theme.toggle,
+  { desc = "Toggle between light and dark background" }
+)
+vim.keymap.set("n", "<leader>mu", theme.update_theme_from_file, { desc = "Update theme" })
 
 -- saving
 
