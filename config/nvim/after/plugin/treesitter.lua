@@ -61,6 +61,8 @@ require("nvim-treesitter.configs").setup({
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = { query = "@function.outer", desc = "Select around function" },
         ["if"] = { query = "@function.inner", desc = "Select inner function" },
+        ["ap"] = { query = "@parameter.outer", desc = "Select around argument" },
+        ["ip"] = { query = "@parameter.inner", desc = "Select inner argument" },
         ["ac"] = { query = "@class.outer", desc = " Select around class region" },
         -- You can optionally set descriptions to the mappings (used in the desc parameter of
         -- nvim_buf_set_keymap) which plugins like which-key display
