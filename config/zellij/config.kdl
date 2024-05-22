@@ -66,6 +66,8 @@ keybinds clear-defaults=true {
     bind "j" "Down" { MovePane "Down"; }
     bind "k" "Up" { MovePane "Up"; }
     bind "l" "Right" { MovePane "Right"; }
+    bind "b" { MoveTab "Left"; }
+    bind "w" { MoveTab "Right"; }
   }
   tab {
     bind "Alt a" { SwitchToMode "Normal"; }
