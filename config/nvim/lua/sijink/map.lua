@@ -37,8 +37,8 @@ vim.keymap.set("n", "<leader>mu", theme.update_theme_from_file, { desc = "Update
 
 -- saving
 
-vim.keymap.set("n", "<leader>ww", "<cmd>write<cr>", { desc = "Write" })
-vim.keymap.set("n", "<leader>wa", "<cmd>wall<cr>", { desc = "Write all" })
+vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Write" })
+vim.keymap.set("n", "<leader>W", "<cmd>wall<cr>", { desc = "Write all" })
 -- TODO: needs sudo password
 vim.keymap.set("c", "w!!", "w !sudo tee > /dev/null %", { silent = false, desc = "Sudo write" })
 
