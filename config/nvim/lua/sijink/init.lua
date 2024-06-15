@@ -8,18 +8,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = theme_persistence.update_theme_from_file,
 })
 
-local function env_or_default(env_var, default_value)
-  local value = os.getenv(env_var)
-  if value == nil then
-    return default_value
-  else
-    return value
-  end
-end
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local notes_path = env_or_default("NEORG_NOTES_WORKSPACE_DIR", "~/Notes")
-local worknotes_path = env_or_default("NEORG_WORKNOTES_WORKSPACE_DIR", "~/Worknotes")
 
 -- Auto-install lazy.nvim if not present
 if not vim.uv.fs_stat(lazypath) then
@@ -39,14 +28,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { import = "sijink.plugins.theme" },
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      { "nvim-telescope/telescope-ui-select.nvim" },
-    },
-  },
+  { import = "sijink.plugins.diagnostics" },
+  { import = "sijink.plugins.neorg" },
+  { import = "sijink.plugins.stupid" },
+  { import = "sijink.plugins.telescope" },
+
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -68,13 +54,6 @@ require("lazy").setup({
   },
   { "windwp/nvim-ts-autotag" }, -- automatically close and rename HTML tags
   { "numToStr/Comment.nvim" },
-  {
-    "stevearc/oil.nvim",
-    opts = {},
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = true,
-    enabled = false,
-  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
@@ -221,13 +200,6 @@ require("lazy").setup({
   { "folke/neodev.nvim" }, -- LSP stuff for the neovim API
   { "b0o/schemastore.nvim" },
   {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      cycle_results = false,
-    },
-  },
-  {
     "j-hui/fidget.nvim",
     tag = "legacy",
     event = "LspAttach",
@@ -235,70 +207,8 @@ require("lazy").setup({
   },
 
   -- Stupid
-  { "eandrju/cellular-automaton.nvim" },
-  {
-    "folke/drop.nvim",
-    event = "VimEnter",
-    enabled = false,
-    opts = {
-      screensaver = 1000 * 60 * 5, -- 5 minutes
-      filetypes = { "*" },
-    },
-  },
-  { "tamton-aquib/duck.nvim" },
 
   { "danymat/neogen", dependencies = "nvim-treesitter/nvim-treesitter", config = true },
 
   { "folke/neodev.nvim", opts = {} },
-
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    -- tag = "*",
-    dependencies = { "nvim-lua/plenary.nvim", { "nvim-neorg/neorg-telescope" } },
-    config = function()
-      require("neorg").setup({
-        load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp",
-            },
-          },
-          ["core.concealer"] = {
-            config = {
-              icon_preset = "diamond",
-            },
-          }, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = notes_path,
-                worknotes = worknotes_path,
-              },
-              default_workspace = "notes",
-            },
-          },
-          ["core.export"] = {
-            config = {
-              export_dir = "<export-dir>/<language>-export",
-            },
-          },
-          ["core.export.markdown"] = {
-            config = {
-              extensions = "all",
-            },
-          },
-          ["core.ui.calendar"] = {},
-          ["core.integrations.telescope"] = {},
-          ["core.esupports.metagen"] = {
-            config = {
-              type = "auto",
-              -- TODO: include weekday name (%A)
-            },
-          },
-        },
-      })
-    end,
-  },
 })
