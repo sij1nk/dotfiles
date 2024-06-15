@@ -1,11 +1,11 @@
 require("sijink.map")
 require("sijink.options")
 require("sijink.clipboard")
-local theme = require("sijink.theme")
+local theme_persistence = require("sijink.theme_persistence")
 
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("Startup", {}),
-  callback = theme.update_theme_from_file,
+  callback = theme_persistence.update_theme_from_file,
 })
 
 local function env_or_default(env_var, default_value)
@@ -38,12 +38,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    lazy = false,
-    priority = 1000,
-  },
+  { import = "sijink.plugins.theme" },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {

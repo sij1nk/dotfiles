@@ -32,3 +32,7 @@ vim.o.softtabstop = 2
 vim.o.spell = false -- toggle whenever necessary
 vim.o.spelllang = "en_us,hu"
 vim.o.spellcapcheck = ""
+
+vim.o.background = "dark"
+vim.o.termguicolors = true
+vim.o.fillchars = "vert: ,eob: "

@@ -1,5 +1,5 @@
 local mu = require("sijink.map_utils")
-local theme = require("sijink.theme")
+local theme_persistence = require("sijink.theme_persistence")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
@@ -30,10 +30,10 @@ vim.keymap.set("n", "<leader>SS", "<cmd>set spell!<cr>", { desc = "Toggle spell 
 vim.keymap.set(
   "n",
   "<leader>mt",
-  theme.toggle,
+  theme_persistence.toggle,
   { desc = "Toggle between light and dark background" }
 )
-vim.keymap.set("n", "<leader>mu", theme.update_theme_from_file, { desc = "Update theme" })
+vim.keymap.set("n", "<leader>mu", theme_persistence.update_theme_from_file, { desc = "Update theme" })
 
 -- saving
 
