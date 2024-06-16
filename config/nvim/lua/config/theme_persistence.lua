@@ -6,10 +6,6 @@ local get_cache_filepath = function()
   return os.getenv("XDG_CACHE_HOME") .. "/" .. cache_filename
 end
 
-local notify_nvim_instances = function()
-  os.execute("pkill -USR1 nvim")
-end
-
 local write_theme_to_file = function(theme)
   local filename = get_cache_filepath()
   local file = io.open(filename, "w+")
@@ -20,7 +16,11 @@ local write_theme_to_file = function(theme)
 
   file:write(theme .. "\n")
   file:flush()
-  notify_nvim_instances()
+  M.notify_nvim_instances()
+end
+
+M.notify_nvim_instances = function()
+  os.execute("pkill -USR1 nvim")
 end
 
 M.update_theme_from_file = function()
@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "nvim-theme",
   callback = function()
     M.update_theme_from_file()
-    notify_nvim_instances()
+    M.notify_nvim_instances()
   end,
 })
 

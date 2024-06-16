@@ -19,15 +19,10 @@ return {
         },
 
         highlight_groups = {
-          Cursor = { bg = "highlight_high", fg = "text" }, -- handled by the terminal emulator; might not do anything
+          Cursor = { bg = "subtle", fg = "text" }, -- handled by the terminal emulator; might not do anything
           CursorLine = { bg = "highlight_low" },
-          StatusLine = { bg = "rose", fg = "base" },
           NeoTreeRootName = { bg = "surface", fg = "iris", bold = true },
           WindowPickerStatusLineNC = { bg = "pine", fg = "base" },
-          MiniCursorword = { bg = "highlight_low" },
-          LspReferenceText = { bg = "gold" },
-          LspReferenceRead = { bg = "pine" },
-          LspReferenceWrite = { bg = "iris" },
           Pmenu = { bg = "base" },
           PmenuSel = { bg = "foam", fg = "base" },
           CmpItemMenu = { fg = "highlight_high" },
@@ -52,18 +47,16 @@ return {
           ["@parameter"] = { fg = "iris", italic = false },
           ["@property"] = { fg = "iris", italic = false },
           MyHighlight = { fg = "iris" },
+          IblIndent = { fg = "highlight_med" },
         },
       })
     end,
   },
+
   {
-    "NvChad/nvim-colorizer.lua", -- visualize color(code)s
-    lazy = false,
-    config = function()
-      require("colorizer").setup({
-        filetypes = { "lua", "html", "css", "scss" },
-        mode = "virtualtext",
-      })
-    end,
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "rose-pine",
+    },
   },
 }
