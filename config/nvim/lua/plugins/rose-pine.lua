@@ -5,7 +5,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require("rose-pine").setup({
+      local opts = {
         styles = {
           transparency = true,
         },
@@ -43,13 +43,21 @@ return {
           TelescopeSelection = { bg = "foam", fg = "base" },
           TelescopeSelectionCaret = { bg = "foam", fg = "foam" },
           TelescopePromptPrefix = { fg = "text" }, -- TODO: doesn't work?
-          ["@variable"] = { fg = "text", italic = false },
-          ["@parameter"] = { fg = "iris", italic = false },
-          ["@property"] = { fg = "iris", italic = false },
+          -- ["@variable"] = { fg = "text", italic = false },
+          -- ["@parameter"] = { fg = "iris", italic = false },
+          -- ["@property"] = { fg = "iris", italic = false },
           MyHighlight = { fg = "iris" },
           IblIndent = { fg = "highlight_med" },
+          CodeBlock = { bg = "base" },
         },
-      })
+      }
+
+      for i = 1, 6 do
+        opts.highlight_groups["Headline" .. i] = { bg = "overlay" }
+      end
+      opts.highlight_groups["Headline"] = { link = "Headline1" }
+
+      require("rose-pine").setup(opts)
     end,
   },
 
