@@ -20,20 +20,20 @@ abbr -a gl 'git log'
 abbr -a glg 'git log --oneline --graph'
 abbr -a vim 'vim -i NONE'
 
-if command -v zathura > /dev/null
-  abbr -a zat 'zathura'
+if command -v zathura >/dev/null
+    abbr -a zat zathura
 end
 
-if command -v neorg > /dev/null
-  abbr -a notes "neorg ~/Notes"
+if command -v neorg >/dev/null
+    abbr -a notes "neorg ~/Notes"
 end
 
-if command -v eza > /dev/null
-  abbr -a ls 'eza -l --icons --group-directories-first'
-  abbr -a ll 'eza -la --icons --group-directories-first'
+if command -v eza >/dev/null
+    abbr -a ls 'eza -l --icons --group-directories-first'
+    abbr -a ll 'eza -la --icons --group-directories-first'
 else
-  abbr -a ls 'ls -l'
-  abbr -a ll 'ls -la'
+    abbr -a ls 'ls -l'
+    abbr -a ll 'ls -la'
 end
 
 set -x PATH '/home/rg/.scripts' '/home/rg/.local/bin' $PATH '/home/rg/.local/share/cargo/bin' '/home/rg/.local/share/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin' '.'
@@ -65,12 +65,12 @@ set -x QT_SCALE_FACTOR 1.5
 # this breaks multimc on x11 (and probably other qt apps as well)
 # set -x QT_QPA_PLATFORM=wayland
 
-set -x LESSHISTFILE "-"
+set -x LESSHISTFILE -
 set -x NODE_REPL_HISTORY ""
 set -x XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
-set -x LC_COLLATE "C"
+set -x LC_COLLATE C
 
-set -x NNN_OPTS "doe"
+set -x NNN_OPTS doe
 
 set -x _JAVA_AWT_WM_NONREPARENTING 1
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
@@ -79,41 +79,89 @@ set -x XKB_DEFAULT_LAYOUT "us,hu"
 set -x XKB_DEFAULT_VARIANT "basic,102_qwerty_dot_nodead"
 set -x XKB_DEFAULT_OPTIONS "caps:escape"
 
-set __fish_git_prompt_showuntr 'yes'
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showcolorhints 'yes'
+set -x ROSEPINE_MAIN_BASE "#191724"
+set -x ROSEPINE_MAIN_SURFACE "#1f1d2e"
+set -x ROSEPINE_MAIN_OVERLAY "#26233a"
+set -x ROSEPINE_MAIN_MUTED "#6e6a86"
+set -x ROSEPINE_MAIN_SUBTLE "#908caa"
+set -x ROSEPINE_MAIN_TEXT "#e0def4"
+set -x ROSEPINE_MAIN_LOVE "#eb6f92"
+set -x ROSEPINE_MAIN_GOLD "#f6c177"
+set -x ROSEPINE_MAIN_ROSE "#ebbcba"
+set -x ROSEPINE_MAIN_PINE "#31748f"
+set -x ROSEPINE_MAIN_FOAM "#9ccfd8"
+set -x ROSEPINE_MAIN_IRIS "#c4a7e7"
+set -x ROSEPINE_MAIN_HL_LOW "#21202e"
+set -x ROSEPINE_MAIN_HL_MED "#403d52"
+set -x ROSEPINE_MAIN_HL_HI "#524f67"
 
-if command -v fd > /dev/null
-  set -x FZF_DEFAULT_COMMAND "fd --type f"
-else if command -v fdfind > /dev/null
-  set -x FZF_DEFAULT_COMMAND "fdfind --type f"
+set -x ROSEPINE_MOON_BASE "#232136"
+set -x ROSEPINE_MOON_SURFACE "#2a273f"
+set -x ROSEPINE_MOON_OVERLAY "#393552"
+set -x ROSEPINE_MOON_MUTED "#6e6a86"
+set -x ROSEPINE_MOON_SUBTLE "#908caa"
+set -x ROSEPINE_MOON_TEXT "#e0def4"
+set -x ROSEPINE_MOON_LOVE "#eb6f92"
+set -x ROSEPINE_MOON_GOLD "#f6c177"
+set -x ROSEPINE_MOON_ROSE "#ea9a97"
+set -x ROSEPINE_MOON_PINE "#3e8fb0"
+set -x ROSEPINE_MOON_FOAM "#9ccfd8"
+set -x ROSEPINE_MOON_IRIS "#c4a7e7"
+set -x ROSEPINE_MOON_HL_LOW "#2a283e"
+set -x ROSEPINE_MOON_HL_MED "#44415a"
+set -x ROSEPINE_MOON_HL_HI "#56526e"
+
+set -x ROSEPINE_DAWN_BASE "#faf4ed"
+set -x ROSEPINE_DAWN_SURFACE "#fffaf3"
+set -x ROSEPINE_DAWN_OVERLAY "#f2e9e1"
+set -x ROSEPINE_DAWN_MUTED "#9893a5"
+set -x ROSEPINE_DAWN_SUBTLE "#797593"
+set -x ROSEPINE_DAWN_TEXT "#575279"
+set -x ROSEPINE_DAWN_LOVE "#b4637a"
+set -x ROSEPINE_DAWN_GOLD "#ea9d34"
+set -x ROSEPINE_DAWN_ROSE "#d7827e"
+set -x ROSEPINE_DAWN_PINE "#286983"
+set -x ROSEPINE_DAWN_FOAM "#56949f"
+set -x ROSEPINE_DAWN_IRIS "#907aa9"
+set -x ROSEPINE_DAWN_HL_LOW "#f4ede8"
+set -x ROSEPINE_DAWN_HL_MED "#dfdad9"
+set -x ROSEPINE_DAWN_HL_HI "#cecacd"
+
+set __fish_git_prompt_showuntr yes
+set __fish_git_prompt_showdirtystate yes
+set __fish_git_prompt_showcolorhints yes
+
+if command -v fd >/dev/null
+    set -x FZF_DEFAULT_COMMAND "fd --type f"
+else if command -v fdfind >/dev/null
+    set -x FZF_DEFAULT_COMMAND "fdfind --type f"
 end
 
 set -x FZF_DEFAULT_OPTS "--bind j:down,k:up,space:toggle --bind 'start:unbind(j)+unbind(k)+unbind(i)'" \
-"--bind 'esc:rebind(j)+rebind(k)+rebind(i)+change-prompt([NORMAL] > )'" \
-"--bind 'i:unbind(j)+unbind(k)+unbind(i)+change-prompt([INSERT] > )'" \
-"--prompt '[INSERT] > ' --ansi"
+    "--bind 'esc:rebind(j)+rebind(k)+rebind(i)+change-prompt([NORMAL] > )'" \
+    "--bind 'i:unbind(j)+unbind(k)+unbind(i)+change-prompt([INSERT] > )'" \
+    "--prompt '[INSERT] > ' --ansi"
 
 if status is-interactive
-  fish_config theme choose "Rosé Pine Moon"
-  fish_vi_key_bindings
-  bind -M insert -k nul accept-autosuggestion # ctrl-space
-  bind -M insert \t complete-and-search
-  bind -M visual \t complete-and-search
-  bind -M insert \n down-line
-  bind -M insert \v up-line
-  set fzf_history_opts --preview=""
-  zoxide init fish --cmd cd | source
+    fish_config theme choose "Rosé Pine Moon"
+    fish_vi_key_bindings
+    bind -M insert -k nul accept-autosuggestion # ctrl-space
+    bind -M insert \t complete-and-search
+    bind -M visual \t complete-and-search
+    bind -M insert \n down-line
+    bind -M insert \v up-line
+    set fzf_history_opts --preview=""
+    zoxide init fish --cmd cd | source
 
-  set -x XDG_CURRENT_DESKTOP Hyprland
-  if test (tty) = "/dev/tty1"
-    set -x KYRIA=0
-    exec Hyprland
-  end
+    set -x XDG_CURRENT_DESKTOP Hyprland
+    if test (tty) = /dev/tty1
+        set -x KYRIA=0
+        exec Hyprland
+    end
 
 
-  if test (tty) = "/dev/tty2"
-    set -x KYRIA=0
-    exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &> /dev/null
-  end
+    if test (tty) = /dev/tty2
+        set -x KYRIA=0
+        exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &>/dev/null
+    end
 end
