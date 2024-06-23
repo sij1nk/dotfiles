@@ -68,9 +68,6 @@ color.amd_red = "#ed1c24"
 "config/vifm" = "~/.config/vifm"
 "config/vifm/vifm-help.txt" = { target = "~/.config/vifm/vifm-help.txt", type = "symbolic" }
 
-[wofi.files]
-"config/wofi" = "~/.config/wofi"
-
 [zathura.files]
 "config/zathura" = '~/.config/zathura'
 

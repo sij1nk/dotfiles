@@ -4,70 +4,69 @@ summary="Youtube-dl"
 [ $# -ne 2 ] && echo "Missing argument" && exit 1
 
 get_path() {
-    def=${1:-'/home/rg/Downloads'}
+	def=${1:-'/home/rg/Downloads'}
 
-    path=$(echo "$def" | wofi -d --prompt "Download path:")
-    # Path is an empty string - either we escaped the dmenu prompt, in which
-    # case the script should terminate early, or we entered an empty string,
-    # which should not be a valid download location
-    [ -z $path ] && return 1
+	path=$(echo "$def" | bemenu --prompt "Download path:")
+	# Path is an empty string - either we escaped the dmenu prompt, in which
+	# case the script should terminate early, or we entered an empty string,
+	# which should not be a valid download location
+	[ -z $path ] && return 1
 
-    mkdir -p $path
-    echo $path
+	mkdir -p $path
+	echo $path
 }
 
 result=$1
 video_link=$2
 
 case "$result" in
-    'audio')
-        dlpath=$(get_path '/home/rg/Music') || exit
-        output=$(yt-dlp -x --audio-format mp3 \
-            -o "${dlpath}/%(title)s.%(ext)s" "$video_link" | tee /dev/tty)
-        ;;
+'audio')
+	dlpath=$(get_path '/home/rg/Music') || exit
+	output=$(yt-dlp -x --audio-format mp3 \
+		-o "${dlpath}/%(title)s.%(ext)s" "$video_link" | tee /dev/tty)
+	;;
 
-    '1080p video')
-        dlpath=$(get_path '/home/rg/Videos') || exit
-        output=$(yt-dlp -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' \
-            -o "${dlpath}/%(title)s[%(height)sp].%(ext)s" "$video_link" | tee /dev/tty)
-        ;;
+'1080p video')
+	dlpath=$(get_path '/home/rg/Videos') || exit
+	output=$(yt-dlp -f 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' \
+		-o "${dlpath}/%(title)s[%(height)sp].%(ext)s" "$video_link" | tee /dev/tty)
+	;;
 
-    '480p video')
-        dlpath=$(get_path '/home/rg/Videos') || exit
-        output=$(yt-dlp -f 'bestvideo[height<=480]+bestaudio/best[height<=480]' \
-            -o "${dlpath}/%(title)s[%(height)dp].%(ext)s" "$video_link" | tee /dev/tty)
-        ;;
+'480p video')
+	dlpath=$(get_path '/home/rg/Videos') || exit
+	output=$(yt-dlp -f 'bestvideo[height<=480]+bestaudio/best[height<=480]' \
+		-o "${dlpath}/%(title)s[%(height)dp].%(ext)s" "$video_link" | tee /dev/tty)
+	;;
 
-    *) exit ;;
+*) exit ;;
 
 esac && (
-    # Download was successful
-    # 1) downloaded item is a playlist
-    playlist=$(echo "$output" | tail -n 1 | grep "\[download\] Finished downloading playlist: ")
-    if [ $? -eq 0 ]; then
-        notif=$(echo "$playlist" | sed "s/\[download\] //")
-        notify-send "$summary" 
-        exit
-    fi
+	# Download was successful
+	# 1) downloaded item is a playlist
+	playlist=$(echo "$output" | tail -n 1 | grep "\[download\] Finished downloading playlist: ")
+	if [ $? -eq 0 ]; then
+		notif=$(echo "$playlist" | sed "s/\[download\] //")
+		notify-send "$summary"
+		exit
+	fi
 
-    # 2) downloaded item is a single video and it was already present
-    merged=$(echo "$output" | grep "\[download\].*has already been downloaded$")
-    if [ $? -eq 0 ]; then
-        notif="Requested video is already downloaded."
-        notify-send "$summary" "$notif"
-        exit
-    fi
+	# 2) downloaded item is a single video and it was already present
+	merged=$(echo "$output" | grep "\[download\].*has already been downloaded$")
+	if [ $? -eq 0 ]; then
+		notif="Requested video is already downloaded."
+		notify-send "$summary" "$notif"
+		exit
+	fi
 
-    # 3) downloaded item is a single video (new)
-    notif=$(echo "$output" | grep "\[download\] Destination:" | head -n 1 | sed -r "s/^.*\///g;s/\.f[[:digit:]]+\././g")
-    notify-send "$summary" "Finished downloading:\n\'$notif\'"
+	# 3) downloaded item is a single video (new)
+	notif=$(echo "$output" | grep "\[download\] Destination:" | head -n 1 | sed -r "s/^.*\///g;s/\.f[[:digit:]]+\././g")
+	notify-send "$summary" "Finished downloading:\n\'$notif\'"
 ) || (
-    # Download failed - print error message
-    notif=$(echo "$output" | grep "ERROR: " | tail -n 1 | sed "s/^ERROR: //")
-    echo "$summary"
-    echo "$notif"
-    notify-send "$summary" "$notif"
-    sleep 5
-    exit
+	# Download failed - print error message
+	notif=$(echo "$output" | grep "ERROR: " | tail -n 1 | sed "s/^ERROR: //")
+	echo "$summary"
+	echo "$notif"
+	notify-send "$summary" "$notif"
+	sleep 5
+	exit
 )
-

@@ -1,4 +1,3 @@
-
 abbr -a e nvim
 abbr -a cp 'cp -v'
 abbr -a mv 'mv -v'
@@ -79,53 +78,16 @@ set -x XKB_DEFAULT_LAYOUT "us,hu"
 set -x XKB_DEFAULT_VARIANT "basic,102_qwerty_dot_nodead"
 set -x XKB_DEFAULT_OPTIONS "caps:escape"
 
-set -x ROSEPINE_MAIN_BASE "#191724"
-set -x ROSEPINE_MAIN_SURFACE "#1f1d2e"
-set -x ROSEPINE_MAIN_OVERLAY "#26233a"
-set -x ROSEPINE_MAIN_MUTED "#6e6a86"
-set -x ROSEPINE_MAIN_SUBTLE "#908caa"
-set -x ROSEPINE_MAIN_TEXT "#e0def4"
-set -x ROSEPINE_MAIN_LOVE "#eb6f92"
-set -x ROSEPINE_MAIN_GOLD "#f6c177"
-set -x ROSEPINE_MAIN_ROSE "#ebbcba"
-set -x ROSEPINE_MAIN_PINE "#31748f"
-set -x ROSEPINE_MAIN_FOAM "#9ccfd8"
-set -x ROSEPINE_MAIN_IRIS "#c4a7e7"
-set -x ROSEPINE_MAIN_HL_LOW "#21202e"
-set -x ROSEPINE_MAIN_HL_MED "#403d52"
-set -x ROSEPINE_MAIN_HL_HI "#524f67"
-
-set -x ROSEPINE_MOON_BASE "#232136"
-set -x ROSEPINE_MOON_SURFACE "#2a273f"
-set -x ROSEPINE_MOON_OVERLAY "#393552"
-set -x ROSEPINE_MOON_MUTED "#6e6a86"
-set -x ROSEPINE_MOON_SUBTLE "#908caa"
-set -x ROSEPINE_MOON_TEXT "#e0def4"
-set -x ROSEPINE_MOON_LOVE "#eb6f92"
-set -x ROSEPINE_MOON_GOLD "#f6c177"
-set -x ROSEPINE_MOON_ROSE "#ea9a97"
-set -x ROSEPINE_MOON_PINE "#3e8fb0"
-set -x ROSEPINE_MOON_FOAM "#9ccfd8"
-set -x ROSEPINE_MOON_IRIS "#c4a7e7"
-set -x ROSEPINE_MOON_HL_LOW "#2a283e"
-set -x ROSEPINE_MOON_HL_MED "#44415a"
-set -x ROSEPINE_MOON_HL_HI "#56526e"
-
-set -x ROSEPINE_DAWN_BASE "#faf4ed"
-set -x ROSEPINE_DAWN_SURFACE "#fffaf3"
-set -x ROSEPINE_DAWN_OVERLAY "#f2e9e1"
-set -x ROSEPINE_DAWN_MUTED "#9893a5"
-set -x ROSEPINE_DAWN_SUBTLE "#797593"
-set -x ROSEPINE_DAWN_TEXT "#575279"
-set -x ROSEPINE_DAWN_LOVE "#b4637a"
-set -x ROSEPINE_DAWN_GOLD "#ea9d34"
-set -x ROSEPINE_DAWN_ROSE "#d7827e"
-set -x ROSEPINE_DAWN_PINE "#286983"
-set -x ROSEPINE_DAWN_FOAM "#56949f"
-set -x ROSEPINE_DAWN_IRIS "#907aa9"
-set -x ROSEPINE_DAWN_HL_LOW "#f4ede8"
-set -x ROSEPINE_DAWN_HL_MED "#dfdad9"
-set -x ROSEPINE_DAWN_HL_HI "#cecacd"
+set -x BEMENU_OPTS "-f --binding vim --vim-esc-exits --ignorecase \
+  --single-instance --fixed-height -l 10 --no-overlap --monitor HDMI-A-1 \
+  --tb $ROSEPINE_MAIN_BASE --tf $ROSEPINE_MAIN_TEXT \
+  --fb $ROSEPINE_MAIN_BASE --ff $ROSEPINE_MAIN_FOAM \
+  --nb $ROSEPINE_MAIN_BASE --nf $ROSEPINE_MAIN_TEXT \
+  --hb $ROSEPINE_MAIN_LOVE --hf $ROSEPINE_MAIN_BASE \
+  --sb $ROSEPINE_MAIN_GOLD --sf $ROSEPINE_MAIN_BASE \
+  --ab $ROSEPINE_MAIN_SURFACE --af $ROSEPINE_MAIN_TEXT \
+  -W 0.4"
+set -x BEMENU_SCALE 1.5
 
 set __fish_git_prompt_showuntr yes
 set __fish_git_prompt_showdirtystate yes
