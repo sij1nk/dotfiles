@@ -7,8 +7,8 @@
 x11.enable = true
 
 [wallpapers.files]
-"kanehira_colors.jpg" = { target = "~/Pictures/Wallpapers/kanehira_colors.jpg", type = "symbolic"}
-"kanehira_evening.jpg" = { target = "~/Pictures/Wallpapers/kanehira_evening.jpg", type = "symbolic"}
+"kanehira_colors.jpg" = { target = "~/Pictures/Wallpapers/kanehira_colors.jpg", type = "symbolic" }
+"kanehira_evening.jpg" = { target = "~/Pictures/Wallpapers/kanehira_evening.jpg", type = "symbolic" }
 
 [scripts.files]
 scripts = "~/.scripts"
