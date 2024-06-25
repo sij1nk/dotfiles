@@ -3,3 +3,4 @@ cache/
 cache.toml
 config/btop/btop.log
 config/vifm/vifminfo.json
+config/fish/fish_variables

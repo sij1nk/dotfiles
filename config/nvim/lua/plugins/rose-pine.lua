@@ -43,12 +43,16 @@ return {
           TelescopeSelection = { bg = "foam", fg = "base" },
           TelescopeSelectionCaret = { bg = "foam", fg = "foam" },
           TelescopePromptPrefix = { fg = "text" }, -- TODO: doesn't work?
-          -- ["@variable"] = { fg = "text", italic = false },
-          -- ["@parameter"] = { fg = "iris", italic = false },
-          -- ["@property"] = { fg = "iris", italic = false },
           MyHighlight = { fg = "iris" },
           IblIndent = { fg = "highlight_med" },
           CodeBlock = { bg = "base" },
+          -- rose-pine italicizes a lot of stuff by default, which is annoying with fancy italic fonts
+          ["@variable"] = { fg = "text", italic = false },
+          ["@parameter"] = { fg = "iris", italic = false },
+          ["@property"] = { fg = "foam", italic = false },
+          ["@constant"] = { fg = "gold", bold = true, italic = true },
+          ["@constant.macro"] = { fg = "love" },
+          LspInlayHint = { fg = "highlight_med", bg = "base", blend = 10, italic = true },
         },
       }
 
