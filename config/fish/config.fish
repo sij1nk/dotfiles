@@ -83,11 +83,11 @@ set -x XKB_DEFAULT_OPTIONS "caps:escape"
 
 set -x BEMENU_OPTS "-f --binding vim --vim-esc-exits --ignorecase \
   --single-instance --fixed-height -l 10 --no-overlap --monitor HDMI-A-1 \
-  --tb $ROSEPINE_MAIN_BASE --tf $ROSEPINE_MAIN_TEXT \
-  --fb $ROSEPINE_MAIN_BASE --ff $ROSEPINE_MAIN_FOAM \
-  --nb $ROSEPINE_MAIN_BASE --nf $ROSEPINE_MAIN_TEXT \
-  --hb $ROSEPINE_MAIN_LOVE --hf $ROSEPINE_MAIN_BASE \
-  --sb $ROSEPINE_MAIN_GOLD --sf $ROSEPINE_MAIN_BASE \
+  --tb $ROSEPINE_MAIN_OVERLAY --tf $ROSEPINE_MAIN_TEXT \
+  --fb $ROSEPINE_MAIN_OVERLAY --ff $ROSEPINE_MAIN_FOAM \
+  --nb $ROSEPINE_MAIN_OVERLAY --nf $ROSEPINE_MAIN_TEXT \
+  --hb $ROSEPINE_MAIN_LOVE --hf $ROSEPINE_MAIN_OVERLAY \
+  --sb $ROSEPINE_MAIN_GOLD --sf $ROSEPINE_MAIN_OVERLAY \
   --ab $ROSEPINE_MAIN_SURFACE --af $ROSEPINE_MAIN_TEXT \
   -W 0.4"
 set -x BEMENU_SCALE 1.5
