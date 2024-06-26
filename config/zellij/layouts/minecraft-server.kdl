@@ -5,7 +5,7 @@ layout {
     }
     children
   }
-  tab name="term" cwd="~/Games/minecraft-server/" split_direction="vertical" {
+  tab name="term" cwd="~/Games/minecraft-server/" split_direction="horizontal" {
     pane name="server"
     pane name="misc"
   }
