@@ -25,6 +25,12 @@ vim.keymap.set(
   { desc = "Replace word with confirm" }
 )
 
+-- hack to get group desciption for tresitter textobject swap binds to work
+wk.register({
+  ["gS"] = { name = "Swap", x = "which_key_ignore" },
+})
+vim.keymap.set("n", "gSx", "")
+
 -- more similar window split commands to zellij
 
 vim.keymap.del("n", "<leader>w-")

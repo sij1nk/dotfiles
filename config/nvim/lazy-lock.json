@@ -33,6 +33,7 @@
   "mini.ai": { "branch": "main", "commit": "ebf806de0292ef89b2756cfb0b55040901d1c441" },
   "mini.files": { "branch": "main", "commit": "34602e87159c3b0e270da103f37a2860bbfd62bd" },
   "mini.pairs": { "branch": "main", "commit": "18a2d9d7106d08d3560d07c03dcbf5680c8675cc" },
+  "mini.surround": { "branch": "main", "commit": "af280fc18792b4d142aab4c1638a8949a38ff33a" },
   "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },
   "neorg": { "branch": "main", "commit": "c901b8efa529dc985361e863c08fd4a91f0c0f98" },
   "neorg-telescope": { "branch": "main", "commit": "fe255a3432ce639de7a374ccfb8602f517244dcd" },
