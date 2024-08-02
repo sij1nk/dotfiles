@@ -1,0 +1,4 @@
+[manager]
+sort_by = "natural"
+sort_translit = true
+linemode = "permissions"

@@ -92,3 +92,6 @@ color.amd_red = "#ed1c24"
 
 [tridactyl.files]
 "config/tridactyl" = "~/.config/tridactyl/"
+
+[yazi.files]
+"config/yazi" = { target = "~/.config/yazi/", type = "symbolic" }
