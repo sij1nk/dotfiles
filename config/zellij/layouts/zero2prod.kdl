@@ -1,0 +1,15 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+    children
+  }
+  tab name="vim" cwd="~/Repos/@rust/zero2prod/" focus=true {
+    pane edit="." borderless=true
+  }
+  tab name="term" cwd="~/Repos/@rust/zero2prod" split_direction="vertical" {
+    pane name="git"
+    pane name="cargo"
+  }
+}
