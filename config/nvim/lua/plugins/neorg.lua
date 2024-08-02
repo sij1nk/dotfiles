@@ -13,11 +13,17 @@ return {
     priority = 1000,
     config = true,
   },
+  { "benlubas/neorg-conceal-wrap" },
   {
     "nvim-neorg/neorg",
     version = "*",
     ft = "norg",
-    dependencies = { "vhyrro/luarocks.nvim", "nvim-lua/plenary.nvim", { "nvim-neorg/neorg-telescope" } },
+    dependencies = {
+      "vhyrro/luarocks.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-neorg/neorg-telescope",
+      "benlubas/neorg-conceal-wrap",
+    },
     config = function()
       local notes_path = env_or_default("NEORG_NOTES_WORKSPACE_DIR", "~/Notes")
       local worknotes_path = env_or_default("NEORG_WORKNOTES_WORKSPACE_DIR", "~/Worknotes")
@@ -61,6 +67,7 @@ return {
               -- TODO: include weekday name (%A)
             },
           },
+          ["external.conceal-wrap"] = {},
         },
       })
 
