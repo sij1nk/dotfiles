@@ -8,8 +8,7 @@ sessions=$(zellij list-sessions --no-formatting)
 current_session=$(echo "$sessions" | grep "(current)" | awk '{print $1}')
 found_session=$(echo "$sessions" | awk '{print $1}' | grep -x "$layout")
 
-if [ -n "$found_session" ]
-then
+if [ -n "$found_session" ]; then
   [ "$current_session" = "$found_session" ] && echo "You're already on this layout" && exit 1
   zellij kill-session "$current_session"
   zellij attach "$found_session"
