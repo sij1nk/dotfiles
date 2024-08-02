@@ -5,6 +5,10 @@
 vim.g.maplocalleader = ","
 vim.o.list = false
 
+vim.g.cmp_widths = {
+  abbr = 60,
+}
+
 local wsl = vim.fn.has("wsl")
 
 if wsl == 1 then
