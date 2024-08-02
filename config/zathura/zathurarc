@@ -22,7 +22,7 @@ set notification-error-fg       "#555169"
 set notification-warning-bg     "#ebbcba"
 set notification-warning-fg     "#555169"
 
-set highlight-color             "#ebbcba"
+set highlight-color             "rgba(235, 188, 186, 0.5)"
 set highlight-active-color      "#eb6f92"
 
 set completion-bg               "#6e6a86"
