@@ -2,3 +2,8 @@
 on = "T"
 run = "plugin --sync hide-preview"
 desc = "Hide or show preview"
+
+[[manager.prepend_keymap]]
+on = ["c", "a"]
+run = "plugin compress"
+desc = "Archive selected files"
