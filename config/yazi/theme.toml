@@ -6,7 +6,7 @@
 cwd = { fg = "#9ccfd8" }
 
 # Hovered
-hovered = { fg = "#e0def4", bg = "#26233a" }
+hovered = { reversed = true }
 preview_hovered = { underline = true }
 
 # Find
@@ -137,9 +137,16 @@ rules = [
   { mime = "application/x-7z-compressed", fg = "#eb6f92" },
   { mime = "application/x-rar", fg = "#eb6f92" },
 
+  # Symlink
+  { name = "*", is = "link", fg = "#c4a7e7" },
+  { name = "*", is = "exec", fg = "#ebbcba" },
+
+  # Empty file
+  { mime = "inode/x-empty", fg = "#eb6f92" },
+
   # Fallback
   { name = "*", fg = "#e0def4" },
-  { name = "*/", fg = "#908caa" },
+  { name = "*/", fg = "#9ccfd8" },
 ]
 
 # : }}}
