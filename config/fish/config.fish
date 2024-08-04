@@ -72,8 +72,6 @@ set -x NODE_REPL_HISTORY ""
 set -x XAUTHORITY "$XDG_RUNTIME_DIR/Xauthority"
 set -x LC_COLLATE C
 
-set -x NNN_OPTS doeA
-
 set -x _JAVA_AWT_WM_NONREPARENTING 1
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
 
