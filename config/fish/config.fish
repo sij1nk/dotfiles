@@ -9,6 +9,7 @@ abbr -a g git
 abbr -a ga 'git add -p'
 abbr -a gco 'git checkout'
 abbr -a gcm 'git commit'
+abbr -a gca 'git commit --amend'
 abbr -a gp 'git push'
 abbr -a gs 'git status -s'
 abbr -a gr 'git restore'
@@ -51,7 +52,6 @@ set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_DATA_HOME "$HOME/.local/share"
 set -x XDG_CACHE_HOME "$HOME/.cache"
 
-set -x WGETRC "$XDG_CONFIG_HOME/wget/wgetrc"
 set -x AUDACITY_PATH "$XDG_CONFIG_HOME/Audacity"
 
 set -x GNUPGHONE "$XDG_DATA_HOME/gnupg"
