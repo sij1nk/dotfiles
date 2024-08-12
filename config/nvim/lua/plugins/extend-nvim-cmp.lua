@@ -43,6 +43,7 @@ return {
         ["<C-k>"] = cmp.mapping.select_prev_item(select_behavior),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-c>"] = cmp.mapping.abort(),
         ["<Esc>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.abort()
