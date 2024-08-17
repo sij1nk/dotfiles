@@ -9,8 +9,8 @@ vim.keymap.set("n", "gl", "$", { desc = "Move to line end" })
 -- custom replace keymaps instead of the weird nvim-spectre stuff
 
 local wk = require("which-key")
-wk.register({
-  ["<leader>r"] = { name = "Replace" },
+wk.add({
+  { "<leader>r", group = "Replace" },
 })
 
 vim.keymap.set("n", "<leader>rg", [[:%s//g<Left><Left>]], { desc = "Replace" })
@@ -26,29 +26,19 @@ vim.keymap.set(
 )
 
 -- hack to get group desciption for tresitter textobject swap binds to work
-wk.register({
-  ["gS"] = { name = "Swap", x = "which_key_ignore" },
+wk.add({
+  { "gS", group = "Swap" },
+  { "gSx", hidden = true },
 })
 vim.keymap.set("n", "gSx", "")
 
 -- more similar window split commands to zellij
 
-vim.keymap.del("n", "<leader>w-")
-vim.keymap.del("n", "<leader>w|")
 vim.keymap.del("n", "<leader>-")
 vim.keymap.del("n", "<leader>|")
 
 vim.keymap.set("n", "<leader>wd", "<C-W>s", { desc = "Split Window Below" })
 vim.keymap.set("n", "<leader>wr", "<C-W>v", { desc = "Split Window Right" })
-
-wk.register({
-  w = {
-    ["-"] = "which_key_ignore",
-    ["|"] = "which_key_ignore",
-  },
-  ["-"] = "which_key_ignore",
-  ["|"] = "which_key_ignore",
-}, { prefix = "<leader>" })
 
 -- the "move lines" keybinds use Alt, which would conflict with zellij...
 -- I didn't bother with removing the which-key hints for these, since I don't actually know
