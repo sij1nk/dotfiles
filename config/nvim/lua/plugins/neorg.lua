@@ -29,7 +29,13 @@ return {
       local worknotes_path = env_or_default("NEORG_WORKNOTES_WORKSPACE_DIR", "~/Worknotes")
       require("neorg").setup({
         load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
+          ["core.defaults"] = {
+            config = {
+              disable = {
+                "core.todo-introspector",
+              },
+            },
+          }, -- Loads default behaviour
           ["core.completion"] = {
             config = {
               engine = "nvim-cmp",
