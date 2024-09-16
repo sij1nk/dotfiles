@@ -44,6 +44,11 @@ return {
           ["core.concealer"] = {
             config = {
               icon_preset = "diamond",
+              icons = {
+                code_block = {
+                  conceal = true,
+                },
+              },
             },
           }, -- Adds pretty icons to your documents
           ["core.dirman"] = { -- Manages Neorg workspaces
