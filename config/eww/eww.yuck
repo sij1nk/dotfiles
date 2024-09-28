@@ -1,5 +1,6 @@
-(defvar primary-ids "[9, 1, 3, 5, 7]")
-(defvar secondary-ids "[8, 10, 2, 4, 6]")
+(defvar primary-ids "[1, 2, 3, 4, 5]")
+(defvar secondary-ids "[6, 7, 8, 9, 10]")
+(defvar all-ids "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
 
 ; Eww wants some of the initial values to exist, otherwise it logs errors when
 ; loading. Initial values should be unused!
@@ -22,12 +23,12 @@
   :initial "[0,\"unmuted\"]"
   `tail -F /tmp/eww-volume`)
 
-(deflisten selected-ids 
-  :initial "[0,0,[]]"
+(deflisten workspace-state
+  :initial "{\"active_primary_workspace_id\":0,\"active_secondary_workspace_id\":null,\"occupied_workspace_ids\":[]}"
   `tail -F /tmp/eww-workspaces`)
 
 (defwindow primary
-  :monitor 1
+  :monitor "HDMI-A-1" 
   :geometry (geometry 
     :x "0"
     :y "0%"
@@ -40,24 +41,42 @@
     :orientation "h"
     :hexpand true
   (widget-media)
-  (widget-hypr-workspaces :ids primary-ids :monitor 1)
+  (widget-hypr-workspaces :ids primary-ids :monitor "primary")
+  (widget-statuslist)
+  ))
+
+(defwindow primary-single
+  :monitor "HDMI-A-1" 
+  :geometry (geometry 
+    :x "0"
+    :y "0%"
+    :width "100%"
+    :height "44px"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+(centerbox
+    :orientation "h"
+    :hexpand true
+  (widget-media)
+  (widget-hypr-workspaces :ids all-ids :monitor "primary")
   (widget-statuslist)
   ))
 
 (defwindow secondary
-  :monitor 0
+  :monitor "DP-1" 
   :geometry (geometry  
     :x "0" 
     :y "0" 
     :width "100%" 
     :height "36px" 
     :anchor "center top")
-  :stacking "bg"
+  :stacking "fg"
   :exclusive true
 (centerbox 
     :orientation "h" 
   (box)
-  (widget-hypr-workspaces :ids secondary-ids :monitor 0)
+  (widget-hypr-workspaces :ids secondary-ids :monitor "secondary")
   (box)
   ))
 
@@ -71,7 +90,6 @@
       :hexpand true
       :valign "fill"
       :orientation "h"
-      :class "hypr-workspaces monitor-${monitor}"
     (for id in ids
       (widget-hypr-workspace :id id :monitor monitor)
       )
@@ -79,13 +97,13 @@
   )
 )
 
+; workspace-state
 (defwidget widget-hypr-workspace [id monitor]
 (eventbox 
     :onclick "plsdo workspace focus id ${id}"
-    :class "hypr-workspace monitor-${monitor} \
-      ${selected-ids[monitor] == id ? "active" : ""} \
-      ${jq(selected-ids, ".[2] | map(select(. == ${id})) | length") > 0 ? "occupied" : ""} \
-      "
+    :class "hypr-workspace \
+      ${workspace-state["active_${monitor}_workspace_id"] == id ? "active" : ""} \
+      ${jq(workspace-state, ".occupied_workspace_ids | contains([${id}])") ? "occupied" : ""}"
     :halign "center"
     :valign "center"
     :width 60
