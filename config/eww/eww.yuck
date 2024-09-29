@@ -19,9 +19,9 @@
   `tail -F /tmp/eww-colortemp`
 )
 
-(deflisten volume
-  :initial "[0,\"unmuted\"]"
-  `tail -F /tmp/eww-volume`)
+(deflisten audio
+  :initial "{\"value\":25,\"is_muted\":false,\"output\":\"Headphones\"}"
+  `tail -F /tmp/eww-audio`)
 
 (deflisten workspace-state
   :initial "{\"active_primary_workspace_id\":0,\"active_secondary_workspace_id\":null,\"occupied_workspace_ids\":[]}"
@@ -180,14 +180,14 @@
         )
       )
     (widget-status 
-        :val {volume[0]}
-        :onscroll "plsdo volume set -d {} 5"
+        :val {audio.volume}
+        :onscroll "[ {} = 'up' ] && val=5 || val=-5; plsdo audio volume set -r $val"
         :onclick "plsdo workspace open_pinned pulsemixer"
-        :onrightclick "plsdo volume toggle-mute"
-        :value-class "volume-${volume[1]}"
+        :onrightclick "plsdo audio volume toggle-mute"
+        :value-class "volume-${audio.is_muted ? "muted" : "unmuted"}"
       (box 
-          :class "status-icon volume-icon volume-${volume[1]}"
-          ""
+          :class "status-icon volume-icon volume-${audio.is_muted ? "muted" : "unmuted"}"
+          {audio.output == "Headphones" ? "" : audio.output == "Speakers" ? "" : "?"}
         )
       )
     )
