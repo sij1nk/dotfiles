@@ -27,6 +27,10 @@
   :initial "{\"active_primary_workspace_id\":0,\"active_secondary_workspace_id\":null,\"occupied_workspace_ids\":[]}"
   `tail -F /tmp/eww-workspaces`)
 
+(deflisten submap
+  :initial ""
+  `tail -F /tmp/hypr-submap`)
+
 (defwindow primary
   :monitor "HDMI-A-1" 
   :geometry (geometry 
@@ -97,7 +101,6 @@
   )
 )
 
-; workspace-state
 (defwidget widget-hypr-workspace [id monitor]
 (eventbox 
     :onclick "plsdo workspace focus id ${id}"
@@ -139,6 +142,7 @@
     :halign "end"
     :class "statuslist"
     :spacing 8 
+  (widget-submap)
   (box 
       :orientation "h"
       :spacing 8
@@ -189,6 +193,10 @@
     )
   (widget-time)
   )
+)
+
+(defwidget widget-submap []
+  (box :class "${strlength(submap) > 0 ? "submap" : ""}" {strlength(submap) > 0 ? submap : ""})
 )
 
 (defwidget widget-time []

@@ -16,7 +16,7 @@ $hlmed: #403d52;
 $hlhi: #524f67;
 
 /* TODO: Not sure what this does */
-*{
+* {
   all: unset;
 }
 
@@ -94,4 +94,13 @@ window {
 
 .hypr-workspace:not(.occupied) .hypr-workspace-empty {
   color: $hlmed;
+}
+
+.submap {
+  font-style: italic;
+  background-color: $hlmed;
+  margin: 8px 0 8px 0;
+  padding: 0 8px 0 8px;
+  opacity: 0.8;
+  color: $rose;
 }
