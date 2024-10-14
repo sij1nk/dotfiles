@@ -17,6 +17,9 @@ keybinds clear-defaults=true {
     }
   }
   shared_except "locked" {
+    bind "Alt 1" { GoToTab 1; }
+    bind "Alt 2" { GoToTab 2; }
+    bind "Alt 3" { GoToTab 3; }
     bind "Alt n" { NewPane; }
     bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
     bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
@@ -84,6 +87,7 @@ keybinds clear-defaults=true {
   scroll {
     bind "Alt s" { SwitchToMode "Normal"; }
     bind "e" { EditScrollback; SwitchToMode "Normal"; }
+    bind ">" { DumpScreen "/tmp/zellij-dump.txt"; }
     bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
     bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
     bind "j" "Down" { ScrollDown; }

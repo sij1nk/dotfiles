@@ -2,6 +2,7 @@ abbr -a e nvim
 abbr -a cp 'cp -v'
 abbr -a mv 'mv -v'
 abbr -a mkdir 'mkdir -p'
+abbr -a less 'less -R'
 
 abbr -a z zellij
 
@@ -19,6 +20,7 @@ abbr -a grh 'git reset --hard'
 abbr -a gl 'git log'
 abbr -a glg 'git log --oneline --graph'
 abbr -a vim 'vim -i NONE'
+abbr -a tf terraform
 
 if command -v zathura >/dev/null
     abbr -a zat zathura

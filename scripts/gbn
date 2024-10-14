@@ -1,0 +1,54 @@
+#!/usr/bin/sh
+
+# -p prefix
+# -i id
+# name
+usage() {
+  echo "Usage: $0 [-p prefix] [-i pbi-id] NAME" 1>&2
+  exit 1
+}
+
+if ! git status >>/dev/null 2>&1; then
+  echo "Not in a git repository; aborting"
+  exit 1
+fi
+
+params="$(getopt -o "p:i:" --name "$0" -- "$@")"
+eval set -- "$params"
+
+while true; do
+  case "$1" in
+  -p)
+    prefix=$2
+    shift 2
+    ;;
+  -i)
+    id=$2
+    shift 2
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *)
+    usage
+    ;;
+  esac
+done
+
+[ -z "$1" ] && usage
+
+prefix=${prefix+"$prefix"/}
+id=${id+"$id"_}
+branch_name="$prefix$id$1"
+
+if confirm "Creating branch '${branch_name}'. Are you sure"; then
+  git checkout -b "$branch_name"
+else
+  exit 1
+fi
+
+remote=$(git remote | head -n 1)
+if [ -n "$remote" ] && confirm "Creating upstream branch '$remote/$branch_name'. Are you sure"; then
+  git push --set-upstream "$remote" "$branch_name"
+fi

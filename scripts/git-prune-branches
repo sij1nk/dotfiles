@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Comma-separated list of branch name prefixes which we'd like to prune
+prefixes_to_prune=bug,bugfix,fix,feature,chore,refactor,release,ci,spike
+
+repo=${1:-$(realpath .)}
+git_folder="$repo/.git"
+
+if ! [ -d "$git_folder" ]; then
+  echo "$git_folder is not a git repository; aborting"
+  exit 1
+fi
+
+cd "$repo"
+
+prefixes_string=$(echo "$prefixes_to_prune" | sed 's/,/\\|/g')
+regex="^[[:space:]]*\($prefixes_string\)"
+branches=$(git branch | grep "$regex")
+
+n=$(echo "$branches" | wc -l)
+total=$(git branch | wc -l)
+
+echo "$branches"
+if confirm "The local branches listed above ($n/$total) will be deleted. Are you sure"; then
+  branches_concat=$(echo "$branches" | tr '\n' ' ')
+  # Don't double quote, so branch names are passed as separate arguments to git branch -D
+  git branch -D $branches_concat
+fi
