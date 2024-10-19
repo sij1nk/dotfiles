@@ -9,8 +9,10 @@ set newtab about:blank
 set profiledir /home/rg/.mozilla/firefox/lysl9wik.default-release
 set theme auto
 set hintchars fjdksla;
+set editorcmd /usr/bin/alacritty -e /usr/bin/nvim '+normal!%lGzv%c|'
 
 " Binds
+unbind <C-l>
 unbind <C-f>
 unbind Escape
 unbind <Escape>
@@ -162,6 +164,7 @@ bind gK composite findnext --search-from-view --reverse; findselect
 bind ,<Space> nohlsearch
 bind <C-m> composite escapehatch; tabclose #
 bind <C-Space> composite escapehatch; tabclose #
+bind ge editor
 
 bind h scrollpx -50
 bind j scrollline 10
