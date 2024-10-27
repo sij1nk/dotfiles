@@ -1,0 +1,43 @@
+#/usr/bin/sh
+# zellij-generate-layout
+
+cwd=$(zoxide query --interactive)
+[ -z "$cwd" ] && exit 1
+
+template="layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location=\"zellij:compact-bar\"
+    }
+    children
+  }
+  tab name=\"vim\" cwd=\"$cwd\" focus=true {
+    pane edit=\".\" borderless=true
+  }
+  tab name=\"term\" cwd=\"$cwd\" split_direction=\"vertical\" {
+    pane name=\"term\"
+    pane name=\"git\"
+  }
+}"
+
+basename=$(basename "$cwd")
+layouts="$(fd . -e kdl /home/rg/.config/zellij/layouts | xargs basename -s .kdl)"
+
+echo "Enter a template name (if empty string is given, will default to \"$basename\")"
+while true; do
+  echo -n "> "
+  read -r template_name
+  if [ -z "$template_name"]; then
+    template_name="$basename"
+  fi
+  if echo "$layouts" | grep "$template_name" > /dev/null 2>&1; then
+      echo "A layout with the name \"$template_name\" already exists! Choose another name"
+    else 
+      break
+    fi
+done 
+
+filename="/home/rg/.dotfiles/config/zellij/layouts/${template_name}.kdl"
+echo "$template" > $filename
+
+deploy-dotfiles --force
