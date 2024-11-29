@@ -1,3 +1,4 @@
+[general]
 import = ["/home/rg/.config/alacritty/rose-pine.toml"]
 
 [colors]
