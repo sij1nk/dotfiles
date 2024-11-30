@@ -1,0 +1,45 @@
+#!/usr/bin/sh
+
+sessions="$(zellij ls --no-formatting 2>/dev/null)"
+
+called_from_zellij="$(echo "$sessions" | grep "(current)")"
+[ -n "$called_from_zellij" ] && echo "You are already in a zellij session" 1>&2 && exit 1
+
+session_names="$(echo "$sessions" | awk '{print $1}')"
+session_names_with_default=$(printf '%s\ndefault' "$session_names" | sort | uniq)
+
+attach_to_default() {
+  if echo "$session_names" | grep "default"; then
+    zellij attach default
+  else
+    zellij --session default --new-session-with-layout default
+  fi
+}
+
+if [ -n "$1" ]; then
+  found_session=$(echo "$session_names_with_default" | grep -x "$1")
+  if [ -n "$found_session" ]; then
+    if [ "$found_session" = "default" ]; then
+      attach_to_default
+    else
+      zellij attach "$found_session"
+    fi
+  else
+    echo "Found no session named '$1'" 1>&2
+    exit 1
+  fi
+else
+  sessions_count=$(echo "$session_names_with_default" | sed '/^\s*$/d' | wc -l)
+  if [ "$sessions_count" -eq 1 ]; then
+    # if there is 1 item, it must be "default"
+    attach_to_default
+  else
+    chosen_session=$(echo "$session_names_with_default" | fzf --tail="$sessions_count")
+    [ -z "$chosen_session" ] && exit 0
+    if [ "$chosen_session" = "default" ]; then
+      attach_to_default
+    else
+      zellij attach "$chosen_session"
+    fi
+  fi
+fi

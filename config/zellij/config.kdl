@@ -136,6 +136,15 @@ keybinds clear-defaults=true {
       };
       SwitchToMode "Normal"
     }
+    bind "j" { 
+      LaunchOrFocusPlugin "file:~/.config/zellij/plugins/zellij-sessionizer.wasm" {
+        floating true
+        move_to_focused_tab true
+        cwd "/"
+        root_dirs "/home/rg;/home/rg/Repos;/home/rg/Repos/@rust"
+        session_layout "default"
+      }; SwitchToMode "Normal";
+    }
   }
   shared_except "locked" {
     bind "Alt g" { SwitchToMode "Locked"; }
