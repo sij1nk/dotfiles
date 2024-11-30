@@ -20,8 +20,11 @@ bind <C-6> buffer #
 bind <A-p> pin
 bind <A-m> mute toggle
 bind <F1> help
-bind o bmarks
-bind O fillcmdline tab
+set newtab about:blank
+set newtabfocus urlbar
+" bind o bmarks
+bind o fillcmdline open
+bind O current_url open 
 bind w fillcmdline winopen
 bind W current_url winopen
 bind f hint
@@ -40,8 +43,9 @@ bind yo clipboard yankorg
 bind yt clipboard yanktitle
 bind gh home
 bind gH home true
-bind p clipboard open
-bind P clipboard tabopen
+" TODO: need xclip-compatible interface to read from clipboard
+" bind p clipboard open
+" bind P clipboard tabopen
 bind <C-e> scrollline 10
 bind n findnext --search-from-view
 bind <C-y> scrollline -10
@@ -165,6 +169,11 @@ bind ,<Space> nohlsearch
 bind <C-m> composite escapehatch; tabclose #
 bind <C-Space> composite escapehatch; tabclose #
 bind ge editor
+
+unbind <C-j>
+unbind <C-k>
+bind --mode=exmaps <C-j> !s ydotool key 15:1 15:0
+bind --mode=exmaps <C-k> !s ydotool key 42:1 15:1 15:0 42:0
 
 bind h scrollpx -50
 bind j scrollline 10
