@@ -1,5 +1,41 @@
 #!/usr/bin/sh
 
+# usage: zo [-m|--mode MODE] [SESSION]
+# - only works outside of a zellij session
+# - if SESSION is given, will try to attach to SESSION
+# - if SESSION is not given, will open a picker determined by MODE
+# - MODE is either 'text' (default, fzf) or 'gui' (bemenu)
+
+output=$(getopt -n zo -o 'm:' --long 'mode:' -- "$@")
+
+eval set -- "$output"
+unset output
+
+mode="text"
+
+while true; do
+  case "$1" in
+  '-m' | '--mode')
+    case "$2" in
+    'gui')
+      mode="gui"
+      ;;
+    *) ;;
+    esac
+    shift 2
+    continue
+    ;;
+  '--')
+    shift
+    continue
+    ;;
+  *)
+    given_session=$1
+    break
+    ;;
+  esac
+done
+
 sessions="$(zellij ls --no-formatting 2>/dev/null)"
 
 called_from_zellij="$(echo "$sessions" | grep "(current)")"
@@ -8,38 +44,52 @@ called_from_zellij="$(echo "$sessions" | grep "(current)")"
 session_names="$(echo "$sessions" | awk '{print $1}')"
 session_names_with_default=$(printf '%s\ndefault' "$session_names" | sort | uniq)
 
-attach_to_default() {
-  if echo "$session_names" | grep "default"; then
-    zellij attach default
+zellij_cmd() {
+  if [ "$mode" = "gui" ]; then
+    alacritty -e zellij "$@"
   else
-    zellij --session default --new-session-with-layout default
+    zellij "$@"
   fi
 }
 
-if [ -n "$1" ]; then
-  found_session=$(echo "$session_names_with_default" | grep -x "$1")
+attach_to_default() {
+  if echo "$session_names" | grep "default"; then
+    zellij_cmd attach default
+  else
+    zellij_cmd --session default --new-session-with-layout default
+  fi
+}
+
+if [ -n "$given_session" ]; then
+  found_session=$(echo "$session_names_with_default" | grep -x "$given_session")
   if [ -n "$found_session" ]; then
     if [ "$found_session" = "default" ]; then
       attach_to_default
     else
-      zellij attach "$found_session"
+      zellij_cmd attach "$found_session"
     fi
   else
-    echo "Found no session named '$1'" 1>&2
+    echo "Found no session named '$given_session'" 1>&2
     exit 1
   fi
 else
+  if [ "$mode" = "gui" ]; then
+    fzf_cmd="bemenu --prompt 'Open layout' -l "
+  else
+    fzf_cmd="fzf --tail="
+  fi
   sessions_count=$(echo "$session_names_with_default" | sed '/^\s*$/d' | wc -l)
   if [ "$sessions_count" -eq 1 ]; then
     # if there is 1 item, it must be "default"
     attach_to_default
   else
-    chosen_session=$(echo "$session_names_with_default" | fzf --tail="$sessions_count")
+
+    chosen_session=$(echo "$session_names_with_default" | eval "$fzf_cmd$sessions_count" 2>/dev/null)
     [ -z "$chosen_session" ] && exit 0
     if [ "$chosen_session" = "default" ]; then
       attach_to_default
     else
-      zellij attach "$chosen_session"
+      zellij_cmd attach "$chosen_session"
     fi
   fi
 fi
