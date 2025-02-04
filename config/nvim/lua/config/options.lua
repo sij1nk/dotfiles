@@ -4,6 +4,7 @@
 
 vim.g.maplocalleader = ","
 vim.o.list = false
+vim.o.swapfile = false
 
 vim.g.cmp_widths = {
   abbr = 60,
