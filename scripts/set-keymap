@@ -1,0 +1,12 @@
+#!/usr/bin/sh
+
+# subcommands: canary, qwerty (use getopt)
+# - configs treat qwerty as default, we get canary config by applying a diff on top of default
+# - we get default by reverting the canary diff
+# - shouldn't be able to apply diff twice, or revert twice (should be no-op)
+
+# TODO: diff generation (will be in a different script)
+# - should never stage or commit canary changes! always should be unstaged
+# - when generating new diffs, existing diff must be applied
+cd ~/.dotfiles || exit 1
+git diff ":(exclude)canary.diff" >canary.diff

@@ -1,0 +1,47 @@
+diff --git a/config/alacritty/alacritty.toml b/config/alacritty/alacritty.toml
+index d21e9ab..0fff2a8 100644
+--- a/config/alacritty/alacritty.toml
++++ b/config/alacritty/alacritty.toml
+@@ -20,22 +20,22 @@ family = "monospace"
+ [[keyboard.bindings]]
+ action = "Paste"
+ key = "V"
+-mods = "Control|Shift"
++mods = "Control|Alt"
+ 
+ [[keyboard.bindings]]
+ action = "Copy"
+ key = "C"
+-mods = "Control|Shift"
++mods = "Control|Alt"
+ 
+ [[keyboard.bindings]]
+ action = "IncreaseFontSize"
+-key = "Minus"
++key = "."
+ mods = "Control|Alt"
+ 
+ [[keyboard.bindings]]
+ action = "DecreaseFontSize"
+-key = "Minus"
+-mods = "Control"
++key = ","
++mods = "Control|Alt"
+ 
+ [[keyboard.bindings]]
+ action = "SpawnNewInstance"
+@@ -44,12 +44,12 @@ mods = "Alt"
+ 
+ [[keyboard.bindings]]
+ action = "ScrollLineDown"
+-key = "J"
++key = "N"
+ mods = "Control|Alt"
+ 
+ [[keyboard.bindings]]
+ action = "ScrollLineUp"
+-key = "K"
++key = "E"
+ mods = "Control|Alt"
+ 
+ [scrolling]
