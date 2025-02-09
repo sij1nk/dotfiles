@@ -26,10 +26,6 @@ alacritty.opacity = 0.95
 [eww.files]
 "config/eww" = "~/.config/eww"
 
-[zsh.files]
-"config/zsh" = "~/.config/zsh"
-".zshenv" = "~/.zshenv"
-
 [btop.files]
 "config/btop" = "~/.config/btop"
 
