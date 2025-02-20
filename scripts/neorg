@@ -1,22 +1,22 @@
 #!/bin/sh
 
-exit_if_no_changes() {
-  [ -z "$(git status --short)" ] && echo "No changes made to workspace - skipping commit" && exit 0
-}
-
 save() {
-  exit_if_no_changes
-  git add .
-  git commit -m "$(date "+%Y-%m-%d %I:%M:%S %p")"
-  git push
+  if [ -n "$(git status --short)" ]; then
+    git add .
+    git commit -m "$(date "+%Y-%m-%d %I:%M:%S %p")"
+    git push
+  else
+    echo "No changes made to workspace - skipping commit"
+  fi
 }
 
 workspace=$1
 command=$2
 
-cd "$workspace"
+cd "$workspace" || (echo "Workspace folder was not found" && exit 1)
 
-[ "$command" = "commit" ] && save && exit 0
+save
+[ "$command" = "commit" ] && exit 0
 
 git pull
 nvim ./index.norg
