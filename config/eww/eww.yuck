@@ -187,7 +187,10 @@
         :value-class "volume-${audio.is_muted ? "muted" : "unmuted"}"
       (box 
           :class "status-icon volume-icon volume-${audio.is_muted ? "muted" : "unmuted"}"
-          {audio.output == "Headphones" ? "" : audio.output == "Speakers" ? "" : "?"}
+          {audio.output == "Headphones" ? "" :
+           audio.output == "Speakers" ? "" :
+           audio.output == "Earbuds" ? "" :
+           "?"}
         )
       )
     )
