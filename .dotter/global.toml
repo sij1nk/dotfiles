@@ -91,3 +91,6 @@ color.amd_red = "#ed1c24"
 
 [yazi.files]
 "config/yazi" = { target = "~/.config/yazi/", type = "symbolic" }
+
+[less.files]
+"config/lesskey" = "~/.config/lesskey"

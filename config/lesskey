@@ -1,0 +1,9 @@
+j forw-line
+k back-line
+J forw-line-force
+K back-line-force
+h left-scroll
+l right-scroll
+n repeat-search
+N reverse-search
+q quit
