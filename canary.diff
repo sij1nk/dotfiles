@@ -45,6 +45,231 @@ index d21e9ab..0fff2a8 100644
  mods = "Control|Alt"
  
  [scrolling]
+diff --git a/config/hypr/hyprland.conf b/config/hypr/hyprland.conf
+index 7951b76..2e70516 100644
+--- a/config/hypr/hyprland.conf
++++ b/config/hypr/hyprland.conf
+@@ -141,123 +141,120 @@ $gcs = SUPER + SHIFT + CONTROL
+ $gac = SUPER + ALT + CONTROL
+ $gacs = SUPER + ALT + CONTROL + SHIFT
+ 
+-bind = $gac,n,exec, alacritty
+-bind = $gacs,n,exec, alacritty -e btop
+-
+ bind = $g, y, togglefloating
+ 
+-bind = $g, backspace, exec, plsdo keyboard_layout choose
++bind = $g, backspace, exec, plsdo keyboard_layout choose # TODO: probably dont need?
+ bind = $g, n, exec, plsdo workspace open_pinned notes
+ bind = $g, m, exec, plsdo workspace open_pinned ncmpcpp
+-bind = $g, f, exec, plsdo workspace open_pinned newsboat
+-bind = $g, w, exec, plsdo workspace open_pinned Firefox
+-bind = $g, v, exec, plsdo workspace open_pinned pulsemixer
+-bind = $g, c, exec, plsdo workspace open_pinned btop
++bind = $g, l, exec, plsdo workspace open_pinned newsboat
++bind = $g, t, exec, plsdo workspace open_pinned Firefox
++bind = $g, h, exec, plsdo workspace open_pinned pulsemixer
++bind = $g, u, exec, plsdo workspace open_pinned btop
+ bind = $g, o, exec, zo -m gui
+ bind = $g, return, exec, alacritty
+ bind = $g, q, killactive,
+-bind = $gs, q, exec, hyprkill
+-bind = $gs, s, exec, plsdo power
++bind = $gacs, q, exec, hyprkill
++bind = $gac, q, exec, plsdo power
+ bind = $g, p, exec, j4-dmenu-desktop --dmenu='bemenu --prompt Launch'
+-bind = $gcs, bracketleft, pseudo, # dwindle
+-bind = $gcs, bracketright, togglesplit, # dwindle
+-bind = $g, semicolon, fullscreenstate,2 2
+-bind = $gs, semicolon, fullscreenstate,-1 2
+-bind = $gcs, z, exec, sleep 1 && hyprctl dispatch dpms off # probably unused 
+-bind = $gcs, slash, exec, sleep 1 && hyprctl dispatch dpms on # probably unused
+-bind = $gs, period, exec, hyprpicker | cliphist store
+-bind = $gs, comma, exec, cliphist list | sort -rn | bemenu --prompt 'Clipboard' -l 24 | cliphist decode | wl-copy
++bind = $g, quote, pseudo,
++bind = $g, w, togglesplit,
++bind = $g, f, fullscreenstate,2 2
++bind = $gs, f, fullscreenstate,-1 2
++bind = $gac, w, exec, sleep 1 && hyprctl dispatch dpms off
++bind = $gacs, w, exec, sleep 1 && hyprctl dispatch dpms on
++bind = $g, k, exec, hyprpicker | cliphist store
++bind = $g, c, exec, cliphist list | sort -rn | bemenu --prompt 'Clipboard' -l 24 | cliphist decode | wl-copy
+ bind = $g, slash, exec, busctl --user call rs.wl-gammarelay / rs.wl.gammarelay ToggleInverted
+-bind = ,pause,exec,echo 1 >> /tmp/eww-show-all && eww open cal # probably unused
+-bindr = ,pause,exec,echo 0 >> /tmp/eww-show-all && eww close cal # probably unused
+-bind = $g + SHIFT, b, exec, [float] pidof bluetui || alacritty -e bluetui
+-
+-bind = $g, h, movefocus, l
+-bind = $g, j, movefocus, d
+-bind = $g, k, movefocus, u
+-bind = $g, l, movefocus, r
+-bind = $gs, h, movewindow, l
+-bind = $gs, j, movewindow, d
+-bind = $gs, k, movewindow, u
+-bind = $gs, l, movewindow, r
+-bind = $a, tab, cyclenext
+-bind = $g + CONTROL, h, exec, plsdo workspace focus prev-current
+-bind = $g + CONTROL, l, exec, plsdo workspace focus next-current
+-bind = $gcs, h, exec, plsdo workspace move prev-current
+-bind = $gcs, l, exec, plsdo workspace move next-current
+-
+-bind = $g, 1, exec, plsdo workspace focus id 1
+-bind = $g, space, exec, plsdo workspace focus id 1
+-bind = $g, 2, exec, plsdo workspace focus id 2
+-bind = $g, 3, exec, plsdo workspace focus id 3
+-bind = $g, 4, exec, plsdo workspace focus id 4
+-bind = $g, 5, exec, plsdo workspace focus id 5
+-bind = $g, 6, exec, plsdo workspace focus id 6
+-bind = $g, 7, exec, plsdo workspace focus id 7
+-bind = $g, 8, exec, plsdo workspace focus id 8
+-bind = $g, 9, exec, plsdo workspace focus id 9
+-bind = $g, 0, exec, plsdo workspace focus id 10
+-bind = $g, a, exec, screenshot
+-
+-bind = $gs, 1, exec, plsdo workspace move id 1
+-bind = $gs, space, exec, plsdo workspace focus id 1
+-bind = $gs, 2, exec, plsdo workspace move id 2
+-bind = $gs, 3, exec, plsdo workspace move id 3
+-bind = $gs, 4, exec, plsdo workspace move id 4
+-bind = $gs, 5, exec, plsdo workspace move id 5
+-bind = $gs, 6, exec, plsdo workspace move id 6
+-bind = $gs, 7, exec, plsdo workspace move id 7
+-bind = $gs, 8, exec, plsdo workspace move id 8
+-bind = $gs, 9, exec, plsdo workspace move id 9
+-bind = $gs, 0, exec, plsdo workspace move id 10
+-bind = $gs, a, exec, screenshot full
+-
+-bind = $g, mouse_down, workspace, e+1
+-bind = $g, mouse_up, workspace, e-1
+-
+-bind = $g,bracketleft,exec,plsdo audio volume set -r -5
+-bind = $g,backslash,exec,plsdo audio volume toggle-mute
+-bind = $gs,m,exec,plsdo audio output choose
+-bind = $g,bracketright,exec,plsdo audio volume set -r +5
+-bind = $gs,minus,exec,mpc seekthrough -10
+-bind = $gs,bracketleft,exec,mpc prev
+-bind = $gs,backslash,exec,mpc toggle
+-bind = $gs,bracketright,exec,mpc next
+-bind = $gs,equal,exec,mpc seekthrough +10
+-
+-bind = $g,b,submap,resize
+-submap = resize
+-binde = ,h,resizeactive,-10 0
+-binde = ,j,resizeactive,0 10
+-binde = ,k,resizeactive,0 -10
+-binde = ,l,resizeactive,10 0
+-bind = ,escape,submap,reset
+-submap = reset
+-
+-bind = $g,x,submap,swap
+-submap = swap
+-bind = ,h,swapwindow,l
+-bind = ,h,submap,reset
+-bind = ,j,swapwindow,d
+-bind = ,j,submap,reset
+-bind = ,k,swapwindow,u
+-bind = ,k,submap,reset
+-bind = ,l,swapwindow,r
+-bind = ,l,submap,reset
+-bind = ,escape,submap,reset
+-submap = reset
++bind = $g, b, exec, [float] pidof bluetui || alacritty -e bluetui
++
++bind = $g, s, exec, screenshot
++bind = $gs, s, exec, screenshot full
++
++bind = $gac , m, movefocus, l 
++bind = $gac , n, movefocus, d 
++bind = $gac , e, movefocus, u 
++bind = $gac , i, movefocus, r 
++bind = $gacs, m, movewindow, l 
++bind = $gacs, n, movewindow, d 
++bind = $gacs, e, movewindow, u 
++bind = $gacs, i, movewindow, r 
++bind = $gac , f, exec, plsdo workspace focus prev-current 
++bind = $gac , o, exec, plsdo workspace focus next-current 
++bind = $gacs, f, exec, plsdo workspace move prev-current 
++bind = $gacs, o, exec, plsdo workspace move next-current 
++bind = $a, tab, cyclenext # TODO: better alt-tab behavior (task)
++
++bind = $g, 1, exec, plsdo workspace focus id 1 
++bind = $g, space, exec, plsdo workspace focus id 1 
++bind = $g, 2, exec, plsdo workspace focus id 2 
++bind = $g, 3, exec, plsdo workspace focus id 3 
++bind = $g, 4, exec, plsdo workspace focus id 4 
++bind = $g, 5, exec, plsdo workspace focus id 5 
++bind = $g, 6, exec, plsdo workspace focus id 6 
++bind = $g, 7, exec, plsdo workspace focus id 7 
++bind = $g, 8, exec, plsdo workspace focus id 8 
++bind = $g, 9, exec, plsdo workspace focus id 9 
++bind = $g, 0, exec, plsdo workspace focus id 10 
++
++bind = $gs, 1, exec, plsdo workspace move id 1 
++bind = $gs, space, exec, plsdo workspace focus id 1 
++bind = $gs, 2, exec, plsdo workspace move id 2 
++bind = $gs, 3, exec, plsdo workspace move id 3 
++bind = $gs, 4, exec, plsdo workspace move id 4 
++bind = $gs, 5, exec, plsdo workspace move id 5 
++bind = $gs, 6, exec, plsdo workspace move id 6 
++bind = $gs, 7, exec, plsdo workspace move id 7 
++bind = $gs, 8, exec, plsdo workspace move id 8 
++bind = $gs, 9, exec, plsdo workspace move id 9 
++bind = $gs, 0, exec, plsdo workspace move id 10 
++
++bind = $g, mouse_down, workspace, e+1 
++bind = $g, mouse_up, workspace, e-1 
++
++bind = $gs,a,exec,plsdo audio output choose
++# TODO: bind media keys from nav layer
++bind = ,xf86audiolowervolume,exec,plsdo audio volume set -r -5 
++bind = ,xf86audiomute,exec,plsdo audio volume toggle-mute 
++bind = ,xf86audioraisevolume,exec,plsdo audio volume set -r +5 
++bind = ,xf86audiorewind,exec,mpc seekthrough -10 
++bind = ,xf86audioprev,exec,mpc prev 
++bind = ,xf86audioplay,exec,mpc toggle 
++bind = ,xf86audionext,exec,mpc next 
++bind = ,xf86audioforward,exec,mpc seekthrough +10 
++
++bind = $g,z,submap,resize 
++submap = resize 
++binde = ,m,resizeactive,-10 0 
++binde = ,n,resizeactive,0 10 
++binde = ,e,resizeactive,0 -10 
++binde = ,i,resizeactive,10 0 
++bind = ,escape,submap,reset 
++submap = reset 
++
++bind = $g,x,submap,swap 
++submap = swap 
++bind = ,m,swapwindow,l 
++bind = ,m,submap,reset 
++bind = ,n,swapwindow,d 
++bind = ,n,submap,reset 
++bind = ,e,swapwindow,u 
++bind = ,e,submap,reset 
++bind = ,i,swapwindow,r 
++bind = ,i,submap,reset 
++bind = ,escape,submap,reset 
++submap = reset 
+ 
+ bind = $g,comma,submap,brightness
+ submap = brightness
+-binde = ,j,exec,plsdo brightness -d down 5
+-binde = ,k,exec,plsdo brightness -d up 5
++binde = ,n,exec,plsdo brightness -d down 5
++binde = ,e,exec,plsdo brightness -d up 5
+ bind = ,escape,submap,reset
+ submap = reset
+ 
+ bind = $g,period,submap,gamma
+ submap = gamma
+-binde = ,j,exec,plsdo colortemp -d down 200
+-binde = ,k,exec,plsdo colortemp -d up 200
++binde = ,n,exec,plsdo colortemp -d down 200
++binde = ,e,exec,plsdo colortemp -d up 200
+ bind = ,escape,submap,reset
+ submap = reset
+  
 diff --git a/config/lesskey b/config/lesskey
 index 7a18134..8a1988c 100644
 --- a/config/lesskey
