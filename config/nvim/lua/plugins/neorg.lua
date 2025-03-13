@@ -14,6 +14,7 @@ return {
     config = true,
   },
   { "benlubas/neorg-conceal-wrap" },
+  { "juniorsundar/neorg-extras" },
   {
     "nvim-neorg/neorg",
     version = "*",
@@ -22,6 +23,11 @@ return {
       "vhyrro/luarocks.nvim",
       "nvim-lua/plenary.nvim",
       "benlubas/neorg-conceal-wrap",
+      "benlubas/neorg-interim-ls",
+    },
+    keys = {
+      { "<C-l>", "<cmd>Neorg roam node<cr>", desc = "List Neorg notes", mode = { "n", "i" }, ft = "norg" },
+      { "<C-b>", "<cmd>Neorg roam block<cr>", desc = "List Neorg blocks", mode = { "n", "i" }, ft = "norg" },
     },
     config = function()
       local notes_path = env_or_default("NEORG_NOTES_WORKSPACE_DIR", "~/Notes")
@@ -36,9 +42,7 @@ return {
             },
           }, -- Loads default behaviour
           ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp",
-            },
+            config = { engine = { module_name = "external.lsp-completion" } },
           },
           ["core.concealer"] = {
             config = {
@@ -77,10 +81,24 @@ return {
             },
           },
           ["external.conceal-wrap"] = {},
+          ["external.many-mans"] = {
+            config = {
+              metadata_fold = true, -- If want @data property ... @end to fold
+              code_fold = true, -- If want @code ... @end to fold
+            },
+          },
+          ["external.roam"] = {
+            config = {
+              fuzzy_finder = "Snacks", -- OR "Fzf" OR "Snacks". Defaults to "Telescope"
+              fuzzy_backlinks = true, -- Set to "true" for backlinks in fuzzy finder instead of buffer
+              roam_base_directory = "", -- Directory in current workspace to store roam nodes
+              node_name_randomiser = false, -- Tokenise node name suffix for more randomisation
+              node_name_snake_case = false, -- snake_case the names if node_name_randomiser = false
+            },
+          },
+          ["external.interim-ls"] = {},
         },
       })
-
-      local neorg_callbacks = require("neorg.core.callbacks")
 
       -- this is to fix bug: https://github.com/folke/which-key.nvim/issues/476
       vim.api.nvim_create_autocmd("FileType", {
@@ -93,14 +111,6 @@ return {
           end, { buffer = true })
         end,
       })
-    end,
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "neorg" })
     end,
   },
 }
