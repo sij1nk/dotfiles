@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+
+hyprctl clients -j |
+  jq -r '.[].class' |
+  rg transmission-list ||
+  alacritty --class transmission-list -e watch -n 1 transmission-remote -l
