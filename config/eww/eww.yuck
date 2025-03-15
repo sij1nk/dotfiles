@@ -31,6 +31,8 @@
   :initial ""
   `tail -F /tmp/hypr-submap`)
 
+(defpoll torrent :interval "5s" "plsdo torrent")
+
 (defwindow primary
   :monitor "HDMI-A-1" 
   :geometry (geometry 
@@ -118,13 +120,14 @@
 )
 
 ; takes icon widget as child
-(defwidget widget-status [val ?onscroll ?onclick ?onrightclick ?value-class]
+(defwidget widget-status [val ?onscroll ?onclick ?onrightclick ?value-class ?visible]
 (eventbox 
     :halign "center"
     :onscroll onscroll
     :onclick onclick
     :onrightclick onrightclick
     :width 72 
+    :visible visible
     :class "status"
     (box :spacing 2
       (children)
@@ -144,8 +147,10 @@
     :spacing 8 
   (widget-submap)
   (box 
+      :space-evenly false
       :orientation "h"
       :spacing 8
+    (widget-torrent)
     (widget-status
         :val {keyboard-layout[1]}
         :onclick "plsdo keyboard_layout choose"
@@ -195,6 +200,15 @@
       )
     )
   (widget-time)
+  )
+)
+
+(defwidget widget-torrent []
+  (widget-status
+    :visible "${strlength(torrent) > 0}"
+    :val {torrent}
+    :onclick "transmission-list"
+    (box :class "status-icon torrent-icon" "⇋")
   )
 )
 
