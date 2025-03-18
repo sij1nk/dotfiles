@@ -2,3 +2,6 @@
 sort_by = "natural"
 sort_translit = true
 linemode = "permissions"
+
+[plugin]
+prepend_previewers = [{ name = "*.md", run = "glow" }]
