@@ -1,5 +1,5 @@
 [[manager.prepend_keymap]]
-on = "T"
+on = "Y"
 run = "plugin toggle-pane min-preview"
 desc = "Hide or show preview"
 
