@@ -246,8 +246,67 @@ index 7a18134..8a1988c 100644
 +j repeat-search
 +J reverse-search
  q quit
+diff --git a/config/ncmpcpp/bindings b/config/ncmpcpp/bindings
+index 3ea71fa..37f3be6 100644
+--- a/config/ncmpcpp/bindings
++++ b/config/ncmpcpp/bindings
+@@ -407,23 +407,23 @@
+ # def_key "="
+ #     volume_up
+ 
+-def_key "j"
++def_key "n"
+     scroll_down
+-def_key "k"
++def_key "e"
+     scroll_up
+ 
+ def_key "u"
+     page_up
+ def_key "d"
+     page_down
+-def_key "h"
++def_key "m"
+     previous_column
+-def_key "l"
++def_key "i"
+     next_column
+ 
+-def_key "n"
++def_key "h"
+     next_found_item
+-def_key "N"
++def_key "H"
+     previous_found_item
+ 
+ def_key "c"
+@@ -431,13 +431,13 @@ def_key "c"
+ def_key "c"
+     clear_main_playlist
+ 
+-def_key "h"
++def_key "m"
+   jump_to_parent_directory
+-def_key "l"
++def_key "i"
+   enter_directory
+-def_key "l"
++def_key "i"
+   run_action
+-def_key "l"
++def_key "i"
+   play_item
+ def_key "G"
+   move_end
+@@ -453,5 +453,5 @@ def_key "P"
+   show_playlist
+ def_key "W"
+   show_playlist_editor
+-def_key ";"
++def_key "r"
+   reverse_selection
 diff --git a/config/newsboat/config b/config/newsboat/config
-index cafba0a..34be8e4 100644
+index cafba0a..7d14a04 100644
 --- a/config/newsboat/config
 +++ b/config/newsboat/config
 @@ -19,19 +19,19 @@ goto-next-feed no
@@ -266,7 +325,7 @@ index cafba0a..34be8e4 100644
 -bind-key k up article
 -bind-key l open feedlist
 -bind-key l open articlelist
--bind-key h quit
+-bind-key h quit 
 +bind-key n down feedlist
 +bind-key e up feedlist
 +bind-key n next articlelist
