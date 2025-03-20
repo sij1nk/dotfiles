@@ -22,6 +22,8 @@ alacritty.opacity = 0.95
 
 [hypr.files]
 "config/hypr" = "~/.config/hypr"
+# Don't want hyprland changes to take effect immediately, when handling the canary.diff
+"config/hypr/hyprland.conf" = { target = "~/.config/hypr/hyprland.conf", type = "template" }
 
 [eww.files]
 "config/eww" = "~/.config/eww"
