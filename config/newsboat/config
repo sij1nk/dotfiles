@@ -31,7 +31,7 @@ bind-key j down article
 bind-key k up article
 bind-key l open feedlist
 bind-key l open articlelist
-bind-key h quit 
+bind-key h quit
 bind-key q hard-quit
 
 # -- highlights --
