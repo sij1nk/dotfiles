@@ -7,9 +7,8 @@ if [ -z "$dev" ]; then
   exit 1
 fi
 
-set -x
-
 if confirm "Flash firmware to /dev/$dev"; then
+  set -x
   sudo mount "/dev/$dev" /mnt/controller
   sudo cp ~/Repos/qmk_firmware/splitkb_kyria_rev3_sijink_promicro_rp2040.uf2 /mnt/controller
 fi
