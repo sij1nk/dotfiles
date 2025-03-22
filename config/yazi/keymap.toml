@@ -12,3 +12,67 @@ desc = "Archive selected files"
 on = "<Esc>"
 run = "close"
 desc = "Close"
+
+[[manager.prepend_keymap]]
+on = "m"
+run = "leave"
+
+[[manager.prepend_keymap]]
+on = "n"
+run = "arrow 1"
+
+[[manager.prepend_keymap]]
+on = "e"
+run = "arrow -1"
+
+[[manager.prepend_keymap]]
+on = "i"
+run = "enter"
+
+[[manager.prepend_keymap]]
+on = "h"
+run = "find_arrow"
+
+[[manager.prepend_keymap]]
+on = "M"
+run = "back"
+
+[[manager.prepend_keymap]]
+on = "N"
+run = "seek 5"
+
+[[manager.prepend_keymap]]
+on = "E"
+run = "seek -5"
+
+[[manager.prepend_keymap]]
+on = "I"
+run = "forward"
+
+[[manager.prepend_keymap]]
+on = "H"
+run = "find_arrow --previous"
+
+[[manager.prepend_keymap]]
+on = ["l", "s"]
+run = "linemode size"
+
+[[manager.prepend_keymap]]
+on = ["l", "p"]
+run = "linemode permissions"
+
+[[manager.prepend_keymap]]
+on = ["l", "b"]
+run = "linemode btime"
+
+[[manager.prepend_keymap]]
+on = ["l", "m"]
+run = "linemode mtime"
+
+[[manager.prepend_keymap]]
+on = ["l", "o"]
+run = "linemode owner"
+
+[[manager.prepend_keymap]]
+on = ["l", "n"]
+run = "linemode none"

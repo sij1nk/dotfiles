@@ -102,9 +102,9 @@ else if command -v fdfind >/dev/null
     set -x FZF_DEFAULT_COMMAND "fdfind --type f"
 end
 
-set -x FZF_DEFAULT_OPTS "--bind j:down,k:up,space:toggle --bind 'start:unbind(j)+unbind(k)+unbind(i)'" \
-    "--bind 'esc:rebind(j)+rebind(k)+rebind(i)+change-prompt([NORMAL] > )'" \
-    "--bind 'i:unbind(j)+unbind(k)+unbind(i)+change-prompt([INSERT] > )'" \
+set -x FZF_DEFAULT_OPTS "--bind n:down,e:up,space:toggle --bind 'start:unbind(n)+unbind(e)+unbind(h)'" \
+    "--bind 'esc:rebind(n)+rebind(e)+rebind(h)+change-prompt([NORMAL] > )'" \
+    "--bind 'i:unbind(n)+unbind(e)+unbind(h)+change-prompt([INSERT] > )'" \
     "--prompt '[INSERT] > ' --ansi"
 
 set smart_complete '
@@ -118,11 +118,31 @@ set smart_complete '
 if status is-interactive
     fish_config theme choose "Rosé Pine Moon"
     fish_vi_key_bindings
+    bind m backward-char
+    bind n down-or-search
+    bind e up-or-search
+    bind i forward-char
+    bind N end-of-line delete-char
+    bind E man\ \(commandline\ -t\)\ 2\>/dev/null\;\ or\ echo\ -n\ \\a
+
+    bind -m insert h repaint-mode # from qwerty i
+
+    bind l forward-single-char forward-word backward-char # from qwerty e
+    bind L forward-bigword backward-char # from qwerty E
+
     bind -M insert ctrl-space accept-autosuggestion
     bind -M insert tab $smart_complete
     bind -M visual tab $smart_complete
-    bind -M insert \n down-line
-    bind -M insert \v up-line
+    bind -M insert \cN down-line
+    bind -M insert \cE up-line
+
+    bind -M visual m backward-char
+    bind -M visual n down-line
+    bind -M visual e up-line
+    bind -M visual i forward-char
+    bind -M visual l forward-word
+    bind -M visual L forward-bigword
+
     set fzf_history_opts --preview=""
     zoxide init fish --cmd cd | source
 

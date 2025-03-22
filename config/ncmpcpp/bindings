@@ -407,23 +407,23 @@
 # def_key "="
 #     volume_up
 
-def_key "j"
+def_key "n"
     scroll_down
-def_key "k"
+def_key "e"
     scroll_up
 
 def_key "u"
     page_up
 def_key "d"
     page_down
-def_key "h"
+def_key "m"
     previous_column
-def_key "l"
+def_key "i"
     next_column
 
-def_key "n"
+def_key "h"
     next_found_item
-def_key "N"
+def_key "H"
     previous_found_item
 
 def_key "c"
@@ -431,13 +431,13 @@ def_key "c"
 def_key "c"
     clear_main_playlist
 
-def_key "h"
+def_key "m"
   jump_to_parent_directory
-def_key "l"
+def_key "i"
   enter_directory
-def_key "l"
+def_key "i"
   run_action
-def_key "l"
+def_key "i"
   play_item
 def_key "G"
   move_end
@@ -453,5 +453,5 @@ def_key "P"
   show_playlist
 def_key "W"
   show_playlist_editor
-def_key ";"
+def_key "r"
   reverse_selection
