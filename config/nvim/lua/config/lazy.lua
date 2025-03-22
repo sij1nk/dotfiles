@@ -1,6 +1,8 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 local theme_persistence = require("config.theme_persistence")
 
+require("config.cmds")
+
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("Startup", {}),
   callback = theme_persistence.update_theme_from_file,

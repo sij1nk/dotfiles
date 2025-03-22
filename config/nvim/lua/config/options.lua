@@ -8,6 +8,9 @@ vim.g.maplocalleader = ","
 vim.o.list = false
 vim.o.swapfile = false
 
+vim.o.list = true
+vim.o.listchars = "trail:~,nbsp:␣"
+
 vim.g.cmp_widths = {
   abbr = 60,
 }
