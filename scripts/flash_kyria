@@ -3,11 +3,13 @@
 dev=$(lsblk | rg "sd.1.*128M  0 part\s*\$" | rg -o "sd.1")
 
 if [ -z "$dev" ]; then
-  echo "Found no matching device.\nLsblk output:\n$(lsblk)" >&2
+  printf "Found no matching device.\nLsblk output:\n%s" "$(lsblk)" >&2
   exit 1
 fi
 
 set -x
 
-sudo mount /dev/$dev /mnt/controller
-sudo cp ~/Repos/qmk_firmware/splitkb_kyria_rev3_sijink_promicro_rp2040.uf2 /mnt/controller
+if confirm "Flash firmware to /dev/$dev"; then
+  sudo mount "/dev/$dev" /mnt/controller
+  sudo cp ~/Repos/qmk_firmware/splitkb_kyria_rev3_sijink_promicro_rp2040.uf2 /mnt/controller
+fi
