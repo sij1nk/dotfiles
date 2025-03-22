@@ -36,3 +36,49 @@ set recolor-darkcolor           "#e0def4"
 
 set recolor                     "false"
 set recolor-keephue             "false"
+
+# keymaps
+
+map t follow
+
+map m scroll left
+map n scroll down
+map e scroll up
+map i scroll right
+
+map N navigate next
+map E navigate previous
+
+map j search forward
+map J search backward
+
+map k mark_add
+
+map f toggle_fullscreen
+
+# Fullscreen bindings are the same, but have to be repeated
+map [fullscreen] t follow
+
+map [fullscreen] m scroll left
+map [fullscreen] n scroll down
+map [fullscreen] e scroll up
+map [fullscreen] i scroll right
+
+map [fullscreen] N navigate next
+map [fullscreen] E navigate previous
+
+map [fullscreen] j search forward
+map [fullscreen] J search backward
+
+map [fullscreen] k mark_add
+
+map [fullscreen] f toggle_fullscreen
+
+# Index
+map [index] m navigate_index collapse
+map [index] n navigate_index down
+map [index] e navigate_index up
+map [index] i navigate_index expand
+
+map [index] M navigate_index collapse-all
+map [index] I navigate_index expand-all

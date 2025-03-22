@@ -19,19 +19,19 @@ goto-next-feed no
 
 browser "plsdo workspace open_pinned \"Firefox Web Browser\"; firefox --new-tab %u; plsdo workspace open_pinned newsboat"
 
-bind-key j down feedlist
-bind-key k up feedlist
-bind-key j next articlelist
-bind-key k prev articlelist
-bind-key j next searchresultslist
-bind-key k prev searchresultslist
-bind-key J next-feed articlelist
-bind-key K prev-feed articlelist
-bind-key j down article
-bind-key k up article
-bind-key l open feedlist
-bind-key l open articlelist
-bind-key h quit
+bind-key n down feedlist
+bind-key e up feedlist
+bind-key n next articlelist
+bind-key e prev articlelist
+bind-key n next searchresultslist
+bind-key e prev searchresultslist
+bind-key N next-feed articlelist
+bind-key E prev-feed articlelist
+bind-key n down article
+bind-key e up article
+bind-key i open feedlist
+bind-key i open articlelist
+bind-key m quit
 bind-key q hard-quit
 
 # -- highlights --
