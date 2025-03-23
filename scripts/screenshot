@@ -1,14 +1,53 @@
 #!/usr/bin/sh
 
-FULL=$1
+PERSIST_TO=$1
 
-if [ "$FULL" = "full" ]; then
-    grim 
+case "$PERSIST_TO" in
+"clipboard") to="clipboard" ;;
+"file") to="file" ;;
+*) to=$(printf "clipboard\nfile" | bemenu --prompt "Persist screenshot to" -l 2) ;;
+esac
 
-    [ $? -eq 0 ] && notify-send "Screenshot" "Screenshot taken of the entire display" -u low
-else
-    grim -g "$(slurp)"
+[ "$PERSIST_TO" = "clipboard" ] && to="clipboard" || to="file"
 
-    [ $? -eq 0 ] && notify-send "Screenshot" "Screenshot taken of selected area" -u low
+options="full\nwindow\nmonitor\narea"
+options_len="$(echo "$options" | wc -l)"
+MODE=$(echo "$options" | bemenu --prompt "Take screenshot to $to" -l "$options_len")
+
+case "$MODE" in
+"full")
+  cmd="grim"
+  of="the entire display"
+  ;;
+"window")
+  area=$(hyprctl clients -j | jq -r 'map(select(.focusHistoryID == 0))[0] | @text "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+  cmd="grim -g '$area'"
+  of="the current window"
+  ;;
+"monitor")
+  monitors=$(hyprctl monitors -j | jq -r '.[].name')
+  monitors_len="$(echo "$monitors" | wc -l)"
+
+  if [ "$monitors_len" -gt 1 ]; then
+    selected_mon="$(echo "$monitors" | bemenu --prompt "Choose monitor to screenshot" -l "$monitors_len")"
+    [ -z "$selected_mon" ] && exit 0
+    cmd="grim -o $selected_mon"
+    of="$selected_mon"
+  else
+    cmd="grim"
+    of="the entire display"
+  fi
+  ;;
+"area")
+  cmd="grim -g '$(slurp)'"
+  of="the selected area"
+  ;;
+*) exit 0 ;;
+esac
+
+[ "$to" = "clipboard" ] && cmd="$cmd - | wl-copy"
+
+echo "$cmd"
+if eval "$cmd"; then
+  notify-send "Screenshot" "Screenshot taken of $of" -u low
 fi
-
