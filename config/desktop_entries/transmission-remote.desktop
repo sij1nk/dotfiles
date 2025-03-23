@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=transmission-remote
+GenericName=Torrent client
+Comment=Torrent client
+Exec=alacritty --class %c -e transmission-remote -a %f
+Terminal=false
+MimeType=application/x-bittorrent
+Categories=System;Utility;ConsoleOnly;
+Keywords=system;utility;torrent

@@ -96,3 +96,6 @@ color.amd_red = "#ed1c24"
 
 [less.files]
 "config/lesskey" = "~/.config/lesskey"
+
+[mimeapps.files]
+"config/mimeapps.list" = "~/.config/mimeapps.list"
