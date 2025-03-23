@@ -73,9 +73,6 @@ color.amd_red = "#ed1c24"
 "config/ncmpcpp" = '~/.config/ncmpcpp'
 "config/ncmpcpp/config" = { target = "~/.config/ncmpcpp/config", type = "symbolic" }
 
-[wired.files]
-"config/wired/wired.ron" = '~/.config/wired/wired.ron'
-
 [desktop_entries.files]
 "config/desktop_entries" = '~/.local/share/applications'
 
@@ -99,3 +96,6 @@ color.amd_red = "#ed1c24"
 
 [mimeapps.files]
 "config/mimeapps.list" = "~/.config/mimeapps.list"
+
+[mako.files]
+"config/mako" = "~/.config/mako"

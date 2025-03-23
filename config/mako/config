@@ -1,0 +1,20 @@
+background-color={{color.surface}}
+text-color={{color.subtle}}
+font=monospace 16
+default-timeout=5000
+border-size=0
+width=400
+height=800
+icon-path=/usr/share/icons/elementary
+
+[urgency=critical]
+background-color={{color.love}}
+text-color={{color.base}}
+
+[urgency=normal]
+text-color={{color.text}}
+border-size=2
+border-color={{color.foam}}
+
+[summary=Screenshot]
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
