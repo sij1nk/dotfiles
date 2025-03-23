@@ -207,7 +207,7 @@
   (widget-status
     :visible "${strlength(torrent) > 0}"
     :val {torrent}
-    :onclick "transmission-list"
+    :onclick "hyprctl dispatch exec [float] transmission-list"
     (box :class "status-icon torrent-icon" "⇋")
   )
 )
