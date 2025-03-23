@@ -99,3 +99,7 @@ color.amd_red = "#ed1c24"
 
 [mako.files]
 "config/mako" = "~/.config/mako"
+
+[transmission.files]
+"config/transmission/bandwidth-groups.json" = "~/.config/transmission-daemon/bandwidth-groups.json"
+"config/transmission/settings.json" = "~/.config/transmission-daemon/settings.json"
