@@ -8,8 +8,6 @@ case "$PERSIST_TO" in
 *) to=$(printf "clipboard\nfile" | bemenu --prompt "Persist screenshot to" -l 2) ;;
 esac
 
-[ "$PERSIST_TO" = "clipboard" ] && to="clipboard" || to="file"
-
 options="full\nwindow\nmonitor\narea"
 options_len="$(echo "$options" | wc -l)"
 MODE=$(echo "$options" | bemenu --prompt "Take screenshot to $to" -l "$options_len")
@@ -49,5 +47,5 @@ esac
 
 echo "$cmd"
 if eval "$cmd"; then
-  notify-send "Screenshot" "Screenshot taken of $of" -u low
+  notify-send "Screenshot" "Screenshot taken of $of to $to" -i accessories-screenshot-tool
 fi
