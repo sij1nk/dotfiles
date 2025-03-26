@@ -12,176 +12,164 @@ set hintchars fjdksla;
 set editorcmd /usr/bin/alacritty -e /usr/bin/nvim '+normal!%lGzv%c|'
 
 " Binds
+
+""""""""""""""""""""""""""""""""""""""" General
+bind <F1> help
+set newtab about:blank
+" disable tridactyl for current site
+bind <S-Escape> mode ignore
+bind . repeat
+bind ge editor
+" enter command mode
+bind : fillcmdline_notrail
+bind r reload
+" reopen most recently closed tab
+bind u undo
+" reopen most recently closed window
+bind U undo window
+" focus last focused input
+bind gi focusinput -l
+" Not sure which unbinds are needed and which aren't, but they don't hurt
 unbind <C-l>
 unbind <C-f>
 unbind Escape
 unbind <Escape>
-bind <C-6> buffer #
-bind <A-p> pin
-bind <A-m> mute toggle
-bind <F1> help
-set newtab about:blank
-set newtabfocus urlbar
-" bind o bmarks
-bind o fillcmdline open
-bind O current_url open 
-bind w fillcmdline winopen
-bind W current_url winopen
-bind f hint
-bind ]] followpage next
-bind [[ followpage prev
-bind [c urlincrement -1
-bind ]c urlincrement 1
-bind <C-x> urlincrement -1
+unbind <C-j>
+unbind <C-k>
 unbind <C-a>
-bind F hint -b
-bind yy clipboard yank
-bind ys clipboard yankshort
-bind yc clipboard yankcanon
-bind ym clipboard yankmd
-bind yo clipboard yankorg
-bind yt clipboard yanktitle
-bind gh home
-bind gH home true
-" TODO: need xclip-compatible interface to read from clipboard
-" bind p clipboard open
-" bind P clipboard tabopen
-bind <C-e> scrollline 10
-bind n findnext --search-from-view
-bind <C-y> scrollline -10
-bind G scrollto 100
-bind gg scrollto 0
+unbind <Space>
+bind --mode=ex <C-j> ex.next_completion
+bind --mode=ex <C-k> ex.prev_completion
+
+""""""""""""""""""""""""""""""""""""""" Scrolling
+bind h scrollpx -50
+bind j scrollline 10
+bind k scrollline -10
+bind l scrollpx 50
 bind <C-u> scrollpage -0.5
 bind <C-d> scrollpage 0.5
-bind <C-b> scrollpage -1
-bind <C-v> nmode ignore 1 mode normal
-bind $ scrollto 100 x
+bind gg scrollto 0
+bind G scrollto 100
 bind ^ scrollto 0 x
-bind <C-o> jumpprev
-bind <C-i> jumpnext
-bind d tabclose
-bind D composite tabprev; tabclose #
-bind gx0 tabclosealltoleft
-bind gx$ tabclosealltoright
+bind $ scrollto 100 x
+
+""""""""""""""""""""""""""""""""""""""" Finding
+bind / fillcmdline find
+bind ? fillcmdline find --reverse
+bind n findnext --search-from-view
+bind N findnext --search-from-view --reverse
+bind gk findselect
+ " same as findselect but backwards
+bind gK composite findnext --search-from-view --reverse; findselect
+bind <Escape> nohlsearch
+
+""""""""""""""""""""""""""""""""""""""" Tabs
+bind J tabprev
+bind K tabnext
+bind <A-p> pin
+bind <A-m> mute toggle
 bind << tabmove -1
 bind >> tabmove +1
-bind u undo
-bind U undo window
-bind r reload
-bind R reloadhard
-bind x tabclose
-bind gi focusinput -l
-bind g? rot13
-bind g! jumble
-bind g; changelistjump -1
-bind N findnext --search-from-view --reverse
-bind gt tabnext_gt
-bind gT tabprev
 bind g^ tabfirst
 bind g0 tabfirst
 bind g$ tablast
+ " Jumps to the tab that plays audio
 bind ga tabaudio
-bind gr reader
-bind gu urlparent
-bind gU urlroot
-bind gf viewsource
-bind : fillcmdline_notrail
-bind s fillcmdline open search
-bind S fillcmdline tabopen search
-bind B fillcmdline taball
+bind x tabclose
+ " close tab and go to left
+bind X composite tabprev; tabclose #
+ " ~fzf for tabs
 bind b fillcmdline tab
-bind ZZ qall
-bind f hint
-bind F hint -b
-bind gF hint -qb
-bind ;i hint -i
-bind ;b hint -b
-bind ;o hint
-bind ;I hint -I
-bind ;k hint -k
-bind ;K hint -K
-bind ;y hint -y
-bind ;Y hint -cF img i => tri.excmds.yankimage(tri.urlutils.getAbsoluteURL(i.src))
-bind ;p hint -p
-bind ;h hint -h
-bind v hint -h
-bind ;P hint -P
-bind ;r hint -r
-bind ;s hint -s
-bind ;S hint -S
-bind ;a hint -a
-bind ;A hint -A
-bind ;; hint -; *
-bind ;# hint -#
-bind ;v hint -W mpvsafe
-bind ;V hint -V
-bind ;w hint -w
-bind ;t hint -W tabopen
-bind ;O hint -W fillcmdline_notrail open 
-bind ;W hint -W fillcmdline_notrail winopen 
-bind ;T hint -W fillcmdline_notrail tabopen 
-bind ;z hint -z
-bind ;m composite hint -Jpipe img src | open images.google.com/searchbyimage?image_url=
-bind ;M composite hint -Jpipe img src | tabopen images.google.com/searchbyimage?image_url=
-bind ;gi hint -qi
-bind ;gI hint -qI
-bind ;gk hint -qk
-bind ;gy hint -qy
-bind ;gp hint -qp
-bind ;gP hint -qP
-bind ;gr hint -qr
-bind ;gs hint -qs
-bind ;gS hint -qS
-bind ;ga hint -qa
-bind ;gA hint -qA
-bind ;g; hint -q;
-bind ;g# hint -q#
-bind ;gv hint -qW mpvsafe
-bind ;gw hint -qw
-bind ;gb hint -qb
-bind ;gF hint -qb
-bind ;gf hint -q
-bind <S-Insert> mode ignore
-bind <AC-Escape> mode ignore
-bind <AC-`> mode ignore
-bind <S-Escape> mode ignore
-bind <C-[> composite mode normal ; hidecmdline
+ " ~fzf for tabs of all windows
+bind B fillcmdline taball
+
+""""""""""""""""""""""""""""""""""""""" Navigation
+bind p clipboard open
+bind P clipboard tabopen
+bind <C-o> jumpprev
+bind <C-i> jumpnext
+" search
+bind <Space><Space> fillcmdline open search
+bind <Space>t fillcmdline tabopen search
+" history and bookmarks
 bind a fillcmdline open
 bind A fillcmdline tabopen
+bind <space>a fillcmdline winopen
+" current url
+bind o current_url open
+bind <space>o current_url winopen
+
+bind gu urlparent
+bind gU urlroot
+bind [c urlincrement -1
+bind ]c urlincrement 1
+
+""""""""""""""""""""""""""""""""""""""" History
+bind H back
+bind L forward
+
+""""""""""""""""""""""""""""""""""""""" Zoom
 bind zi zoom 0.1 true
 bind zo zoom -0.1 true
-bind zm zoom 0.5 true
-bind zr zoom -0.5 true
 bind zM zoom 0.5 true
 bind zR zoom -0.5 true
 bind zz zoom 1
 bind zI zoom 3
 bind zO zoom 0.3
-bind . repeat
-bind <AS-ArrowUp><AS-ArrowUp><AS-ArrowDown><AS-ArrowDown><AS-ArrowLeft><AS-ArrowRight><AS-ArrowLeft><AS-ArrowRight>ba open https://www.youtube.com/watch?v=M3iOROuTuMA
-bind ` gobble 1 markjump
-bind X composite tabprev; tabclose #
-bind / fillcmdline find
-bind ? fillcmdline find --reverse
-bind gk findselect
-bind gK composite findnext --search-from-view --reverse; findselect
-bind ,<Space> nohlsearch
-bind <C-m> composite escapehatch; tabclose #
-bind <C-Space> composite escapehatch; tabclose #
-bind ge editor
 
-unbind <C-j>
-unbind <C-k>
-bind --mode=exmaps <C-j> !s ydotool key 15:1 15:0
-bind --mode=exmaps <C-k> !s ydotool key 42:1 15:1 15:0 42:0
+""""""""""""""""""""""""""""""""""""""" Clipboard
+bind yy clipboard yank
+bind ys clipboard yankshort
+bind yc clipboard yankcanon
+bind ym clipboard yankmd
+bind yt clipboard yanktitle
 
-bind h scrollpx -50
-bind j scrollline 10
-bind k scrollline -10
-bind l scrollpx 50
-bind H back
-bind J tabprev
-bind K tabnext
-bind L forward
+""""""""""""""""""""""""""""""""""""""" Hint
+" -q means stay in hint mode
+
+bind f hint
+" open in a new tab
+bind F hint -b
+bind ;gF hint -qb
+" no javascript
+bind ;j hint -J
+bind ;gj hint -qJ
+" image
+bind ;i hint -i
+bind ;gi hint -qi
+" image in new tab
+bind ;I hint -I
+bind ;gI hint -qI
+" delete element
+bind ;k hint -k
+bind ;gk hint -qk
+" hide element
+bind ;K hint -K
+bind ;gK hint -qK
+" yank link to clipboard
+bind ;y hint -y
+" yank text to clipboard
+bind ;p hint -p
+" select an element's text?
+bind ;h hint -h
+" yank element's title / alt text to clipboard
+bind ;P hint -P
+" download linked resource
+bind ;s hint -s
+bind ;gs hint -qs
+" download linked image
+bind ;S hint -S
+bind ;gS hint -qS
+" save-as the linked resource
+bind ;a hint -a
+" save-as the linked image
+bind ;A hint -A
+" select element to scroll
+bind ;; hint -; *
+" yank element's anchor to clipboard
+bind ;# hint -#
+" scroll element to top of viewport
+bind ;z hint -z
+
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
