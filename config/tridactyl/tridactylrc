@@ -7,7 +7,7 @@ set update.checkintervalsecs 86400
 set configversion 2.0
 set newtab about:blank
 set profiledir /home/rg/.mozilla/firefox/lysl9wik.default-release
-set theme auto
+set theme sijink
 set hintchars fjdksla;
 set editorcmd /usr/bin/alacritty -e /usr/bin/nvim '+normal!%lGzv%c|'
 
