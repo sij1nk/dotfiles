@@ -86,7 +86,8 @@ color.amd_red = "#ed1c24"
 "config/zellij" = "~/.config/zellij"
 
 [tridactyl.files]
-"config/tridactyl" = "~/.config/tridactyl/"
+"config/tridactyl/tridactylrc" = "~/.config/tridactyl/tridactylrc"
+"config/tridactyl/themes/sijink.css" = { target = "~/.config/tridactyl/themes/sijink.css", type = "symbolic" }
 
 [yazi.files]
 "config/yazi" = { target = "~/.config/yazi/", type = "symbolic" }
