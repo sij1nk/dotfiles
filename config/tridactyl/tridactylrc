@@ -37,7 +37,6 @@ unbind <Escape>
 unbind <C-j>
 unbind <C-k>
 unbind <C-a>
-unbind <Space>
 bind --mode=ex <C-j> ex.next_completion
 bind --mode=ex <C-k> ex.prev_completion
 
@@ -89,15 +88,17 @@ bind P clipboard tabopen
 bind <C-o> jumpprev
 bind <C-i> jumpnext
 " search
-bind <Space><Space> fillcmdline open search
-bind <Space>t fillcmdline tabopen search
+bind s fillcmdline open search
+bind S fillcmdline tabopen search
+bind <A-s> fillcmdline winopen search
 " history and bookmarks
 bind a fillcmdline open
 bind A fillcmdline tabopen
-bind <space>a fillcmdline winopen
+bind <A-a> fillcmdline winopen
 " current url
 bind o current_url open
-bind <space>o current_url winopen
+bind O current_url tabopen
+bind <A-o> current_url winopen
 
 bind gu urlparent
 bind gU urlroot
@@ -161,9 +162,9 @@ bind ;gs hint -qs
 bind ;S hint -S
 bind ;gS hint -qS
 " save-as the linked resource
-bind ;a hint -a
+bind ;v hint -a
 " save-as the linked image
-bind ;A hint -A
+bind ;V hint -A
 " select element to scroll
 bind ;; hint -; *
 " yank element's anchor to clipboard
