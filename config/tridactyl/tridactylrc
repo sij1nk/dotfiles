@@ -60,7 +60,7 @@ bind N findnext --search-from-view --reverse
 bind gk findselect
  " same as findselect but backwards
 bind gK composite findnext --search-from-view --reverse; findselect
-bind <Escape> nohlsearch
+bind g/ nohlsearch
 
 """"""""""""""""""""""""""""""""""""""" Tabs
 bind J tabprev
