@@ -8,7 +8,7 @@ set configversion 2.0
 set newtab about:blank
 set profiledir /home/rg/.mozilla/firefox/lysl9wik.default-release
 set theme sijink
-set hintchars fjdksla;
+set hintchars tnsericagm
 set editorcmd /usr/bin/alacritty -e /usr/bin/nvim '+normal!%lGzv%c|'
 
 " Binds
@@ -22,7 +22,8 @@ bind . repeat
 bind ge editor
 " enter command mode
 bind : fillcmdline_notrail
-bind r reload
+bind w reload
+bind W reloadhard
 " reopen most recently closed tab
 bind u undo
 " reopen most recently closed window
@@ -34,17 +35,18 @@ unbind <C-l>
 unbind <C-f>
 unbind Escape
 unbind <Escape>
-unbind <C-j>
-unbind <C-k>
+unbind <C-n>
+unbind <C-e>
 unbind <C-a>
-bind --mode=ex <C-j> ex.next_completion
-bind --mode=ex <C-k> ex.prev_completion
+unbind --mode=normal a
+bind --mode=ex N ex.next_completion
+bind --mode=ex E ex.prev_completion
 
 """"""""""""""""""""""""""""""""""""""" Scrolling
-bind h scrollpx -50
-bind j scrollline 10
-bind k scrollline -10
-bind l scrollpx 50
+bind m scrollpx -50
+bind n scrollline 10
+bind e scrollline -10
+bind i scrollpx 50
 bind <C-u> scrollpage -0.5
 bind <C-d> scrollpage 0.5
 bind gg scrollto 0
@@ -55,16 +57,16 @@ bind $ scrollto 100 x
 """"""""""""""""""""""""""""""""""""""" Finding
 bind / fillcmdline find
 bind ? fillcmdline find --reverse
-bind n findnext --search-from-view
-bind N findnext --search-from-view --reverse
-bind gk findselect
+bind j findnext --search-from-view
+bind J findnext --search-from-view --reverse
+bind gj findselect
  " same as findselect but backwards
-bind gK composite findnext --search-from-view --reverse; findselect
-bind g/ nohlsearch
+bind gJ composite findnext --search-from-view --reverse; findselect
+bind <Escape> nohlsearch
 
 """"""""""""""""""""""""""""""""""""""" Tabs
-bind J tabprev
-bind K tabnext
+bind N tabprev
+bind E tabnext
 bind <A-p> pin
 bind <A-m> mute toggle
 bind << tabmove -1
@@ -78,9 +80,9 @@ bind x tabclose
  " close tab and go to left
 bind X composite tabprev; tabclose #
  " ~fzf for tabs
-bind t fillcmdline tab
+bind r fillcmdline tab
  " ~fzf for tabs of all windows
-bind T fillcmdline taball
+bind R fillcmdline taball
 " ~fzf for bookmarks
 bind b fillcmdline bmarks
 
@@ -94,9 +96,9 @@ bind s fillcmdline open search
 bind S fillcmdline tabopen search
 bind <A-s> fillcmdline winopen search
 " history and bookmarks
-bind a fillcmdline open
-bind A fillcmdline tabopen
-bind <A-a> fillcmdline winopen
+bind c fillcmdline open
+bind C fillcmdline tabopen
+bind <A-c> fillcmdline winopen
 " current url
 bind o current_url open
 bind O current_url tabopen
@@ -108,8 +110,8 @@ bind [c urlincrement -1
 bind ]c urlincrement 1
 
 """"""""""""""""""""""""""""""""""""""" History
-bind H back
-bind L forward
+bind M back
+bind I forward
 
 """"""""""""""""""""""""""""""""""""""" Zoom
 bind zi zoom 0.1 true
@@ -130,49 +132,49 @@ bind yt clipboard yanktitle
 """"""""""""""""""""""""""""""""""""""" Hint
 " -q means stay in hint mode
 
-bind f hint
+bind t hint
 " open in a new tab
-bind F hint -b
-bind ;gF hint -qb
+bind T hint -b
+bind agT hint -qb
 " no javascript
-bind ;j hint -J
-bind ;gj hint -qJ
+bind aj hint -J
+bind agj hint -qJ
 " image
-bind ;i hint -i
-bind ;gi hint -qi
+bind ai hint -i
+bind agi hint -qi
 " image in new tab
-bind ;I hint -I
-bind ;gI hint -qI
+bind aI hint -I
+bind agI hint -qI
 " delete element
-bind ;k hint -k
-bind ;gk hint -qk
+bind ak hint -k
+bind agk hint -qk
 " hide element
-bind ;K hint -K
-bind ;gK hint -qK
+bind aK hint -K
+bind agK hint -qK
 " yank link to clipboard
-bind ;y hint -y
+bind ay hint -y
 " yank text to clipboard
-bind ;p hint -p
+bind ap hint -p
 " select an element's text?
-bind ;h hint -h
+bind ah hint -h
 " yank element's title / alt text to clipboard
-bind ;P hint -P
+bind aP hint -P
 " download linked resource
-bind ;s hint -s
-bind ;gs hint -qs
+bind as hint -s
+bind ags hint -qs
 " download linked image
-bind ;S hint -S
-bind ;gS hint -qS
+bind aS hint -S
+bind agS hint -qS
 " save-as the linked resource
-bind ;v hint -a
+bind av hint -a
 " save-as the linked image
-bind ;V hint -A
+bind aV hint -A
 " select element to scroll
-bind ;; hint -; *
+bind aa hint -; *
 " yank element's anchor to clipboard
-bind ;# hint -#
+bind a# hint -#
 " scroll element to top of viewport
-bind ;z hint -z
+bind az hint -z
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
