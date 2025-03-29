@@ -17,11 +17,11 @@ vim.keymap.set("n", "<leader>rg", [[:%s//g<Left><Left>]], { desc = "Replace" })
 vim.keymap.set("n", "<leader>rG", [[:%s//gc<Left><Left>]], { desc = "Replace with confirm" })
 vim.keymap.set("x", "<leader>rg", [[:s//g<Left><Left>]], { desc = "Replace" })
 vim.keymap.set("x", "<leader>rG", [[:s//gc<Left><Left>]], { desc = "Replace with confirm" })
-vim.keymap.set("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left><Left>]], { desc = "Replace word" })
+vim.keymap.set("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]], { desc = "Replace word" })
 vim.keymap.set(
   "n",
   "<leader>rW",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gC<Left><Left><Left>]],
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gC<Left><Left>]],
   { desc = "Replace word with confirm" }
 )
 
@@ -32,13 +32,15 @@ wk.add({
 })
 vim.keymap.set("n", "gSx", "")
 
--- more similar window split commands to zellij
+-- more similar window split commands to zellij pane bindings
 
 vim.keymap.del("n", "<leader>-")
 vim.keymap.del("n", "<leader>|")
 
+vim.keymap.set("n", "<leader>wn", "<C-W>s", { desc = "Split Window Below" })
 vim.keymap.set("n", "<leader>wd", "<C-W>s", { desc = "Split Window Below" })
 vim.keymap.set("n", "<leader>wr", "<C-W>v", { desc = "Split Window Right" })
+vim.keymap.set("n", "<leader>wx", "<C-W>q", { desc = "Quit Window" })
 
 -- the "move lines" keybinds use Alt, which would conflict with zellij...
 -- I didn't bother with removing the which-key hints for these, since I don't actually know
