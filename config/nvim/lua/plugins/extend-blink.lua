@@ -97,8 +97,8 @@ return {
       },
 
       ["<CR>"] = { "accept", "fallback" },
-      ["<C-j>"] = { "select_next", "fallback" },
-      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<C-n>"] = { "select_next", "fallback" },
+      ["<C-e>"] = { "select_prev", "fallback" },
       ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
       ["<ESC>"] = {
         -- cancel completion and go back to Normal mode
