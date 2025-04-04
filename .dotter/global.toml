@@ -1,32 +1,9 @@
-[helpers]
-
-[x11.files]
-".xinitrc" = "~/.xinitrc"
-
-[x11.variables]
-x11.enable = true
-
-[wallpapers.files]
-"kanehira_colors.jpg" = { target = "~/Pictures/Wallpapers/kanehira_colors.jpg", type = "symbolic" }
-"kanehira_evening.jpg" = { target = "~/Pictures/Wallpapers/kanehira_evening.jpg", type = "symbolic" }
-
-[scripts.files]
-scripts = "~/.scripts"
-
 [alacritty.files]
 "config/alacritty" = "~/.config/alacritty"
 
 [alacritty.variables]
 alacritty.font_size = 20
 alacritty.opacity = 0.95
-
-[hypr.files]
-"config/hypr" = "~/.config/hypr"
-# Don't want hyprland changes to take effect immediately, when handling the canary.diff
-"config/hypr/hyprland.conf" = { target = "~/.config/hypr/hyprland.conf", type = "template" }
-
-[eww.files]
-"config/eww" = "~/.config/eww"
 
 [btop.files]
 "config/btop" = "~/.config/btop"
@@ -50,57 +27,74 @@ color.hlhi = "#524f67"
 color.intel_blue = "#0071c5"
 color.amd_red = "#ed1c24"
 
+[desktop_entries.files]
+"config/desktop_entries" = '~/.local/share/applications'
+
+[eww.files]
+"config/eww" = "~/.config/eww"
+
+[fish.files]
+"config/fish" = "~/.config/fish"
+
 [fontconfig.files]
 "config/fontconfig" = "~/.config/fontconfig"
 
 [git.files]
 "config/git" = "~/.config/git"
 
+[hypr.files]
+"config/hypr" = "~/.config/hypr"
+# Don't want hyprland changes to take effect immediately, when switching between qwerty and canary
+"config/hypr/hyprland.conf" = { target = "~/.config/hypr/hyprland.conf", type = "template" }
+
+[less.files]
+"config/lesskey" = "~/.config/lesskey"
+
+[mako.files]
+"config/mako" = "~/.config/mako"
+
+[mimeapps.files]
+"config/mimeapps.list" = "~/.config/mimeapps.list"
+
 [mpd.files]
 "config/mpd" = "~/.config/mpd"
-
-[nvim.files]
-"config/nvim" = "~/.config/nvim"
-
-[vifm.files]
-"config/vifm" = "~/.config/vifm"
-"config/vifm/vifm-help.txt" = { target = "~/.config/vifm/vifm-help.txt", type = "symbolic" }
-
-[zathura.files]
-"config/zathura" = '~/.config/zathura'
 
 [ncmpcpp.files]
 "config/ncmpcpp" = '~/.config/ncmpcpp'
 "config/ncmpcpp/config" = { target = "~/.config/ncmpcpp/config", type = "symbolic" }
 
-[desktop_entries.files]
-"config/desktop_entries" = '~/.local/share/applications'
-
 [newsboat.files]
 "config/newsboat" = "~/.config/newsboat"
 
-[fish.files]
-"config/fish" = "~/.config/fish"
+[nvim.files]
+"config/nvim" = "~/.config/nvim"
 
-[zellij.files]
-"config/zellij" = "~/.config/zellij"
+[scripts.files]
+scripts = "~/.scripts"
+
+[transmission.files]
+"config/transmission/bandwidth-groups.json" = "~/.config/transmission-daemon/bandwidth-groups.json"
+"config/transmission/settings.json" = "~/.config/transmission-daemon/settings.json"
 
 [tridactyl.files]
 "config/tridactyl/tridactylrc" = "~/.config/tridactyl/tridactylrc"
 "config/tridactyl/themes/sijink.css" = { target = "~/.config/tridactyl/themes/sijink.css", type = "symbolic" }
 
+[wallpapers.files]
+"kanehira_colors.jpg" = { target = "~/Pictures/Wallpapers/kanehira_colors.jpg", type = "symbolic" }
+"kanehira_evening.jpg" = { target = "~/Pictures/Wallpapers/kanehira_evening.jpg", type = "symbolic" }
+
+[x11.files]
+".xinitrc" = "~/.xinitrc"
+
+[x11.variables]
+x11.enable = true
+
 [yazi.files]
 "config/yazi" = { target = "~/.config/yazi/", type = "symbolic" }
 
-[less.files]
-"config/lesskey" = "~/.config/lesskey"
+[zathura.files]
+"config/zathura" = '~/.config/zathura'
 
-[mimeapps.files]
-"config/mimeapps.list" = "~/.config/mimeapps.list"
-
-[mako.files]
-"config/mako" = "~/.config/mako"
-
-[transmission.files]
-"config/transmission/bandwidth-groups.json" = "~/.config/transmission-daemon/bandwidth-groups.json"
-"config/transmission/settings.json" = "~/.config/transmission-daemon/settings.json"
+[zellij.files]
+"config/zellij" = "~/.config/zellij"
