@@ -127,7 +127,7 @@
     :onclick onclick
     :onrightclick onrightclick
     :width 72 
-    :visible visible
+    :visible {visible == "" ? true : visible}
     :class "status"
     (box :spacing 2
       (children)
