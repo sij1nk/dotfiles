@@ -61,6 +61,8 @@ vim.keymap.set("c", "<C-j>", "<Down>", { silent = false })
 vim.keymap.set("c", "<C-k>", "<Up>", { silent = false })
 vim.keymap.set("c", "<C-l>", "<Right>", { silent = false })
 
+vim.keymap.set("n", "<cr>", "<cmd>w<cr>")
+
 -- theme
 
 local theme_persistence = require("config.theme_persistence")
