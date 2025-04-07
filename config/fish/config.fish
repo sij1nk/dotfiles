@@ -113,7 +113,7 @@ set -x FZF_DEFAULT_OPTS "--bind j:down,k:up,space:toggle --bind 'start:unbind(j)
 if status is-interactive
     fish_config theme choose "Rosé Pine Moon"
     fish_vi_key_bindings
-    bind -M insert -k nul accept-autosuggestion # ctrl-space
+    bind -M insert ctrl-space accept-autosuggestion
     bind -M insert \t complete-and-search
     bind -M visual \t complete-and-search
     bind -M insert \n down-line
