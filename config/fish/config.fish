@@ -77,6 +77,9 @@ set -x LC_COLLATE C
 set -x _JAVA_AWT_WM_NONREPARENTING 1
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
 
+set -x QT_QPA_PLATFORM wayland
+set -x ANKI_WAYLAND 1
+
 set -x XKB_DEFAULT_LAYOUT "us,hu"
 set -x XKB_DEFAULT_VARIANT "basic,102_qwerty_dot_nodead"
 set -x XKB_DEFAULT_OPTIONS "caps:escape"
@@ -123,7 +126,6 @@ if status is-interactive
         set -x KYRIA=0
         exec Hyprland
     end
-
 
     if test (tty) = /dev/tty2
         set -x KYRIA=0
