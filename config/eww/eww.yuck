@@ -6,8 +6,7 @@
 ; loading. Initial values should be unused!
 
 (deflisten keyboard-layout
-  :initial "[0,\"us\"]"
-  `tail -F /tmp/eww-keyboard-layout`
+  `tail -F /home/rg/.cache/keyboard-layout`
 )
 
 (deflisten brightness
@@ -152,9 +151,8 @@
       :spacing 8
     (widget-torrent)
     (widget-status
-        :val {keyboard-layout[1]}
-        :onclick "plsdo keyboard_layout choose"
-        :onscroll "[ {} = 'up' ] && val='next' || val='prev'; plsdo keyboard_layout $val"
+        :val {keyboard-layout.layout_id}
+        :onclick "plsdo keyboard choose"
         (box
             :class "status-icon keyboard-layout-icon"
             ""
