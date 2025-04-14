@@ -1,0 +1,17 @@
+# Original: /usr/lib/systemd/system/transmission.service
+
+[Unit]
+Description=Transmission BitTorrent Daemon
+Wants=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/transmission-daemon -f --log-level=error
+ExecReload=/bin/kill -s HUP $MAINPID
+NoNewPrivileges=true
+MemoryDenyWriteExecute=true
+ProtectSystem=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

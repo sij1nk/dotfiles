@@ -1,0 +1,9 @@
+[Unit]
+Description=Scheduled shutdown of minecraft server and machine
+
+[Timer]
+OnCalendar=*-*-* 23:50
+Persistent=false
+
+[Install]
+WantedBy=timers.target

@@ -72,6 +72,9 @@ color.amd_red = "#ed1c24"
 [scripts.files]
 scripts = "~/.scripts"
 
+[systemd.files]
+"config/systemd/user" = "~/.config/systemd/user"
+
 [transmission.files]
 "config/transmission/bandwidth-groups.json" = "~/.config/transmission-daemon/bandwidth-groups.json"
 "config/transmission/settings.json" = "~/.config/transmission-daemon/settings.json"

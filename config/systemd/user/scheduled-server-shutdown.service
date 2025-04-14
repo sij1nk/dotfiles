@@ -1,0 +1,8 @@
+[Unit]
+Description=Scheduled shutdown of minecraft server and machine
+After=multi-user.target
+
+[Service]
+Type=oneshot
+Environment=PATH=/home/rg/.local/share/cargo/bin:/usr/bin:$PATH
+ExecStart=/usr/bin/sh /home/rg/.scripts/minecraft-server-shutdown.sh

@@ -1,0 +1,9 @@
+[Unit]
+Description=Scheduled backup of minecraft server
+After=multi-user.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Games/minecraft-server
+Environment=PATH=/home/rg/.local/share/cargo/bin:/usr/bin:$PATH
+ExecStart=/usr/bin/sh /home/rg/.scripts/minecraft-server-backup.sh
