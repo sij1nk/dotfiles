@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "i am called" >/tmp/muhscript.log
 percentage=$(transmission-remote -t $TR_TORRENT_ID -l | awk -v ID="$TR_TORRENT_ID" '$0 ~ ID{print $2}')
 
 if [ "$percentage" != "100%" ]; then
