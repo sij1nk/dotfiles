@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+
+hyprctl clients -j |
+  jq -r '.[].class' |
+  rg tremc ||
+  alacritty --class tremc -e tremc -X
