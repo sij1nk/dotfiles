@@ -49,7 +49,16 @@ vim.keymap.set("n", "H", "I", { desc = "Insert at line beginning" })
 vim.keymap.set("n", "M", "<C-o>", { desc = "Prev in jumplist" })
 vim.keymap.set("n", "I", "<C-i>", { desc = "Next in jumplist" })
 
-vim.keymap.set("n", "N", "J", { desc = "Join lines " })
+vim.keymap.set("n", "N", "<C-d>", { desc = "Scroll down" })
+vim.keymap.set("n", "E", "<C-u>", { desc = "Scroll up" })
+
+vim.keymap.set("n", "gn", "J", { desc = "Join lines" })
+
+vim.keymap.set("n", "gj", "gn", { desc = "Search forwards and select" })
+vim.keymap.set("n", "gJ", "gN", { desc = "Search backwards and select" })
+
+vim.keymap.del("n", "gN")
+wk.add({ { "gN", hidden = true } })
 
 vim.keymap.set("n", "<leader>M", "m", { desc = "Mark" })
 
