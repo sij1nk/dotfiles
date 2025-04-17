@@ -78,9 +78,11 @@ bind x tabclose
  " close tab and go to left
 bind X composite tabprev; tabclose #
  " ~fzf for tabs
-bind b fillcmdline tab
+bind t fillcmdline tab
  " ~fzf for tabs of all windows
-bind B fillcmdline taball
+bind T fillcmdline taball
+" ~fzf for bookmarks
+bind b fillcmdline bmarks
 
 """"""""""""""""""""""""""""""""""""""" Navigation
 bind p clipboard open
