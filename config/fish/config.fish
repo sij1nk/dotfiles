@@ -66,8 +66,6 @@ set -x NUGET_PACKAGES "$XDG_DATA_HOME/NuGet/packages"
 set -x WINEPREFIX "$XDG_DATA_HOME/wine"
 
 set -x QT_SCALE_FACTOR 1.5
-# this breaks multimc on x11 (and probably other qt apps as well)
-# set -x QT_QPA_PLATFORM=wayland
 
 set -x LESSHISTFILE -
 set -x NODE_REPL_HISTORY ""
@@ -77,7 +75,9 @@ set -x LC_COLLATE C
 set -x _JAVA_AWT_WM_NONREPARENTING 1
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
 
+# this breaks multimc on x11 (and probably other qt apps as well)
 set -x QT_QPA_PLATFORM wayland
+
 set -x ANKI_WAYLAND 1
 
 set -x XKB_DEFAULT_LAYOUT "us,hu"
@@ -123,12 +123,10 @@ if status is-interactive
 
     set -x XDG_CURRENT_DESKTOP Hyprland
     if test (tty) = /dev/tty1
-        set -x KYRIA=0
         exec Hyprland
     end
 
     if test (tty) = /dev/tty2
-        set -x KYRIA=0
         exec startx -- -keeptty $DISPLAY -ardelay 250 -arinterval 20 &>/dev/null
     end
 end
