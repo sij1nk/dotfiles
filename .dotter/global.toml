@@ -1,3 +1,6 @@
+[settings]
+default_target_type = "template"
+
 [alacritty.files]
 "config/alacritty" = "~/.config/alacritty"
 
