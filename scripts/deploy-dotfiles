@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd ~/.dotfiles || exit 1
-dotter "$@"
+dotter deploy -f -l ~/.dotfiles/.dotter/local.toml "$@"
