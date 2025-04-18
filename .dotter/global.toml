@@ -47,8 +47,7 @@ color.amd_red = "#ed1c24"
 
 [hypr.files]
 "config/hypr" = "~/.config/hypr"
-# Don't want hyprland changes to take effect immediately, when switching between qwerty and canary
-"config/hypr/hyprland.conf" = { target = "~/.config/hypr/hyprland.conf", type = "template" }
+"config/hypr/hyprland.conf" = "~/.config/hypr/hyprland.conf"
 
 [less.files]
 "config/lesskey" = "~/.config/lesskey"
@@ -97,10 +96,11 @@ scripts = "~/.scripts"
 x11.enable = true
 
 [yazi.files]
-"config/yazi" = { target = "~/.config/yazi/", type = "symbolic" }
+"config/yazi" = "~/.config/yazi/"
 
 [zathura.files]
 "config/zathura" = '~/.config/zathura'
 
 [zellij.files]
 "config/zellij" = "~/.config/zellij"
+"config/zellij/plugins" = "~/.config/zellij/plugins"
