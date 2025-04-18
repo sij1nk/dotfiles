@@ -97,10 +97,13 @@ x11.enable = true
 
 [yazi.files]
 "config/yazi" = "~/.config/yazi/"
+"config/yazi/theme.toml" = { target = "~/.config/yazi/theme.toml", type = "symbolic" }
 
 [zathura.files]
 "config/zathura" = '~/.config/zathura'
 
 [zellij.files]
-"config/zellij" = "~/.config/zellij"
-"config/zellij/plugins" = "~/.config/zellij/plugins"
+"config/zellij/config.kdl" = "~/.config/zellij/config.kdl"
+"config/zellij/themes" = "~/.config/zellij/themes"
+"config/zellij/layouts" = "~/.config/zellij/layouts"
+"config/zellij/plugins" = { target = "~/.config/zellij/plugins", type = "symbolic" }
