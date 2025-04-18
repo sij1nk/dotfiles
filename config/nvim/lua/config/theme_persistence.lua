@@ -3,7 +3,11 @@ local M = {}
 local cache_filename = "nvim-theme"
 
 local get_cache_filepath = function()
-  return os.getenv("XDG_CACHE_HOME") .. "/" .. cache_filename
+  local cache_dir = os.getenv("XDG_CACHE_HOME")
+  if not cache_dir then
+    cache_dir = "/home/rg/.cache"
+  end
+  return cache_dir .. "/" .. cache_filename
 end
 
 local write_theme_to_file = function(theme)
