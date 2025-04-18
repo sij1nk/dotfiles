@@ -15,10 +15,20 @@ return {
       win = {
         input = {
           keys = {
-            ["J"] = { "preview_scroll_down", mode = { "n" } },
-            ["K"] = { "preview_scroll_up", mode = { "n" } },
-            ["H"] = { "preview_scroll_left", mode = { "n" } },
-            ["L"] = { "preview_scroll_right", mode = { "n" } },
+            ["n"] = "list_down",
+            ["e"] = "list_up",
+          },
+        },
+        list = {
+          keys = {
+            ["h"] = "focus_input",
+            ["n"] = "list_down",
+            ["e"] = "list_up",
+          },
+        },
+        preview = {
+          keys = {
+            ["h"] = "focus_input",
           },
         },
       },
