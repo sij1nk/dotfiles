@@ -75,9 +75,6 @@ set -x LC_COLLATE C
 set -x _JAVA_AWT_WM_NONREPARENTING 1
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
 
-# this breaks multimc on x11 (and probably other qt apps as well)
-set -x QT_QPA_PLATFORM wayland
-
 set -x ANKI_WAYLAND 1
 
 set -x XKB_DEFAULT_LAYOUT "us,hu"
@@ -121,8 +118,9 @@ if status is-interactive
     set fzf_history_opts --preview=""
     zoxide init fish --cmd cd | source
 
-    set -x XDG_CURRENT_DESKTOP Hyprland
     if test (tty) = /dev/tty1
+        set -x XDG_CURRENT_DESKTOP Hyprland
+        set -x QT_QPA_PLATFORM wayland
         exec Hyprland
     end
 
