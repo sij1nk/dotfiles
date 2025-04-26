@@ -107,12 +107,20 @@ set -x FZF_DEFAULT_OPTS "--bind j:down,k:up,space:toggle --bind 'start:unbind(j)
     "--bind 'i:unbind(j)+unbind(k)+unbind(i)+change-prompt([INSERT] > )'" \
     "--prompt '[INSERT] > ' --ansi"
 
+set smart_complete '
+    if commandline --search-field >/dev/null
+      commandline -f complete
+    else
+      commandline -f complete-and-search
+    end
+  '
+
 if status is-interactive
     fish_config theme choose "Rosé Pine Moon"
     fish_vi_key_bindings
     bind -M insert ctrl-space accept-autosuggestion
-    bind -M insert \t complete-and-search
-    bind -M visual \t complete-and-search
+    bind -M insert tab $smart_complete
+    bind -M visual tab $smart_complete
     bind -M insert \n down-line
     bind -M insert \v up-line
     set fzf_history_opts --preview=""
