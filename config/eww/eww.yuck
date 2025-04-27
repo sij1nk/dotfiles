@@ -152,7 +152,7 @@
     (widget-torrent)
     (widget-status
         :val {keyboard-layout.layout_id}
-        :onclick "plsdo keyboard choose"
+        :onclick "plsdo keyboard choose &" ; & to avoid eww command timeout
         (box
             :class "status-icon keyboard-layout-icon"
             ""
