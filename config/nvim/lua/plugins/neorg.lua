@@ -28,6 +28,7 @@ return {
     keys = {
       { "<C-l>", "<cmd>Neorg roam node<cr>", desc = "List Neorg notes", mode = { "n", "i" }, ft = "norg" },
       { "<C-b>", "<cmd>Neorg roam block<cr>", desc = "List Neorg blocks", mode = { "n", "i" }, ft = "norg" },
+      { "gd", "<Plug>(neorg.esupports.hop.hop-link)", desc = "[neorg] Jump to Link", mode = "n", ft = "norg" },
     },
     config = function()
       local notes_path = env_or_default("NEORG_NOTES_WORKSPACE_DIR", "~/Notes")
