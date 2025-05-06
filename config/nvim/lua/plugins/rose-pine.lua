@@ -38,6 +38,7 @@ return {
           ["@property"] = { fg = "foam", italic = false },
           ["@constant"] = { fg = "gold", bold = true, italic = true },
           ["@constant.macro"] = { fg = "love" },
+          ["@neorg.markup.verbatim"] = { bg = "highlight_low" },
           LspInlayHint = { fg = "highlight_med", bg = "base", blend = 10, italic = true },
         },
       }
