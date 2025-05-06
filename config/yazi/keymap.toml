@@ -7,3 +7,8 @@ desc = "Hide or show preview"
 on = ["c", "a"]
 run = "plugin compress"
 desc = "Archive selected files"
+
+[[manager.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Close"
