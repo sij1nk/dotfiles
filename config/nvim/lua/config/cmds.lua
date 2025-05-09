@@ -7,7 +7,7 @@ local empty_template_path = vim.env.HOME .. "/Notes/_empty_template.rnote"
 -- - proper doc comments
 -- - eventually extract into plugin
 -- - if it becomes a plugin, we can depend on plenary.log to properly log errors and stuff
-function InsertRnoteLink()
+function NeorgInsertRnoteLink()
   local bufname = vim.api.nvim_buf_get_name(0)
   if string.len(bufname) == 0 then
     vim.notify("Current buffer must point to a file on disk", vim.log.levels.ERROR)
@@ -34,7 +34,10 @@ function InsertRnoteLink()
     end
 
     vim.system({ "rnote", rnote_filepath }, { cwd = buf_dirname })
+
+    -- insert neorg link at current cursor position
+    vim.api.nvim_put({ "{file://" .. rnote_filepath .. "}[" .. text .. "]" }, "c", true, true)
   end)
 end
 
-vim.api.nvim_create_user_command("InsertRnoteLink", InsertRnoteLink, {})
+vim.api.nvim_create_user_command("NeorgInsertRnoteLink", NeorgInsertRnoteLink, {})
