@@ -4,6 +4,11 @@ return {
     scroll = { enabled = false },
     indent = { animate = { enabled = false } },
     picker = {
+      sources = {
+        files = {
+          exclude = { "*.rnote" },
+        },
+      },
       matcher = {
         frecency = true,
       },
