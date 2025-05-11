@@ -6,29 +6,29 @@
 ; loading. Initial values should be unused!
 
 (deflisten keyboard-layout
-  `tail -F /home/rg/.cache/keyboard-layout`
+  `tail -F /home/rg/.local/share/keyboard-layout`
 )
 
 (deflisten brightness
-  `tail -F /tmp/eww-brightness`
+  `tail -F /home/rg/.local/share/eww-brightness`
 )
 
 (deflisten colortemp
   :initial "0"
-  `tail -F /tmp/eww-colortemp`
+  `tail -F /home/rg/.local/share/eww-colortemp`
 )
 
 (deflisten audio
   :initial "{\"value\":25,\"is_muted\":false,\"output\":\"Headphones\"}"
-  `tail -F /tmp/eww-audio`)
+  `tail -F /home/rg/.local/share/eww-audio`)
 
 (deflisten workspace-state
   :initial "{\"active_primary_workspace_id\":0,\"active_secondary_workspace_id\":null,\"occupied_workspace_ids\":[]}"
-  `tail -F /tmp/eww-workspaces`)
+  `tail -F /home/rg/.local/share/eww-workspaces`)
 
 (deflisten submap
   :initial ""
-  `tail -F /tmp/hypr-submap`)
+  `tail -F /home/rg/.local/share/hypr-submap`)
 
 (defpoll torrent :interval "5s" "plsdo torrent")
 
