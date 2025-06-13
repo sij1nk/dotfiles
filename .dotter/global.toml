@@ -33,6 +33,9 @@ color.amd_red = "#ed1c24"
 [desktop_entries.files]
 "config/desktop_entries" = '~/.local/share/applications'
 
+[dotfiles_id.files]
+"config/dotfiles_id" = { target = "~/.config/dotfiles_id", type = "symbolic" }
+
 [eww.files]
 "config/eww" = "~/.config/eww"
 
