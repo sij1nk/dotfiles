@@ -1,14 +1,14 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "Y"
 run = "plugin toggle-pane min-preview"
 desc = "Hide or show preview"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = ["c", "a"]
 run = "plugin compress"
 desc = "Archive selected files"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "<Esc>"
 run = "close"
 desc = "Close"
