@@ -12,8 +12,3 @@ desc = "Archive selected files"
 on = "<Esc>"
 run = "close"
 desc = "Close"
-
-[[manager.prepend_keymap]]
-on = "d"
-run = "plugin trash"
-desc = "Trash files"
