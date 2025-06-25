@@ -1,0 +1,45 @@
+#!/usr/bin/env fish
+# List all hyprland keybinds which have a description, and pick one to execute
+
+function __print_modmask -a modmask
+    [ (math bitor $modmask, 64) = $modmask ] && printf G # gui
+    [ (math bitor $modmask, 8) = $modmask ] && printf A # alt
+    [ (math bitor $modmask, 4) = $modmask ] && printf C # ctrl
+    [ (math bitor $modmask, 1) = $modmask ] && printf S # shift
+end
+
+# Format the keybind part of a bind string by:
+# - replacing the modmask (which is a number/bitfield) with the letter representations of mods
+# - joining the modmask and key with '+'
+# - padding it to a fixed width
+function __format_keybinds -a binds
+    for bind in (string split "
+" $binds)
+        set parts (string split '|' $bind)
+        set words (string split ' ' $parts[1])
+
+        set modmask (__print_modmask $words[1])
+        [ -n "$modmask" ] && set separator "+" || set separator ""
+        set rest "$words[2..]"
+
+        echo -n (string pad --right --width 20 "$modmask$separator$rest")
+        echo "| $parts[2..]"
+    end
+end
+
+set binds_json "$(hyprctl binds -j)"
+
+# Chosen keybind will be mapped to its dispatcher+arg by its description
+set lookup_table "$(echo $binds_json | jq 'map(select(.has_description)) | map({key: .description, value: { dispatcher: .dispatcher, arg: .arg} }) | from_entries')"
+
+set dmenu_string "$(echo $binds_json | jq --raw-output 'map(select(.has_description) | "\(.modmask) \(.key)\(if .submap != "" then " [\(.submap)]" else "" end) | \(.description)") | .[]')"
+set dmenu_string "$(__format_keybinds $dmenu_string)"
+
+set chosen_keybind (echo $dmenu_string | bemenu --prompt 'Execute hypr keybind' 2> /dev/null)
+[ -z "$chosen_keybind" ] && exit 0
+
+set keybind_description (echo "$chosen_keybind" | string split '|' --fields 2 | string trim)
+[ -z "$keybind_description" ] && exit 0
+
+set command (echo "$lookup_table" | jq --raw-output --arg key "$keybind_description" '.[$key] | "\(.dispatcher) \(.arg)"')
+hyprctl dispatch "$command"
