@@ -82,7 +82,7 @@ bind t fillcmdline tab
  " ~fzf for tabs of all windows
 bind T fillcmdline taball
 " ~fzf for bookmarks
-bind b fillcmdline bmarks
+bind b composite js -r geturl.js | exclaim_quiet echo > /tmp/new_bookmark; composite js -r gettitle.js | exclaim_quiet echo >> /tmp/new_bookmark; exclaim_quiet cat ~/.cache/new_bookmark >> /tmp/new_bookmark; exclaim_quiet alacritty -e nvim /tmp/new_bookmark &
 
 """"""""""""""""""""""""""""""""""""""" Navigation
 bind p clipboard open
