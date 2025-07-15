@@ -64,6 +64,9 @@ color.amd_red = "#ed1c24"
 [mpd.files]
 "config/mpd" = "~/.config/mpd"
 
+[mpv.files]
+"config/mpv" = "~/.config/mpv"
+
 [ncmpcpp.files]
 "config/ncmpcpp" = '~/.config/ncmpcpp'
 "config/ncmpcpp/config" = { target = "~/.config/ncmpcpp/config", type = "symbolic" }
