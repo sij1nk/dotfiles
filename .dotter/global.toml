@@ -88,6 +88,8 @@ scripts = "~/.scripts"
 "config/transmission/settings.json" = "~/.config/transmission-daemon/settings.json"
 
 [tridactyl.files]
+"config/tridactyl/gettitle.js" = "~/.config/tridactyl/gettitle.js"
+"config/tridactyl/geturl.js" = "~/.config/tridactyl/geturl.js"
 "config/tridactyl/tridactylrc" = "~/.config/tridactyl/tridactylrc"
 "config/tridactyl/themes/sijink.css" = { target = "~/.config/tridactyl/themes/sijink.css", type = "symbolic" }
 
