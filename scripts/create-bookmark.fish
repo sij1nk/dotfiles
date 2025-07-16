@@ -1,14 +1,45 @@
 #!/usr/bin/env fish
 
-# 1.
-# read /tmp/new_bookmark:
-# if first line is not an URL, abort
-# read URL from first line
-# if second line is empty or starts with '#': title is the URL
-# otherwise title is the second line
-# rest of the non-empty, non-comment lines are tags (each line is a tag)
-# print url, title, tags
-# delete /tmp/new_bookmark
+set filename /tmp/new_bookmark
+
+set input (cat $filename)
+if [ -z "$input" ]
+    echo "/tmp/new_bookmark file is empty or missing - aborting"
+    exit 1
+end
+
+set lines (string split \n $input)
+
+set url $lines[1]
+set title $lines[2]
+set tags $lines[3..]
+
+set tags2 (string join '...' $tags)
+
+if ! string match --quiet --regex "^(http://|https://)" "$url"
+    echo "first line is not an URL - aborting"
+    exit 1
+end
+
+if string match --quiet --regex "^[^#].*\S+" "$title"
+    set title (string trim "$title")
+else
+    set title "$url"
+end
+
+set parsed_tags ""
+
+for tag in $tags
+    if string match --quiet --regex "^[^#].*\S+" "$tag"
+        set parsed_tags "$parsed_tags$tag;"
+    end
+end
+
+echo "url: $url"
+echo "title: $title"
+echo "tags: $parsed_tags"
+
+rm $filename
 
 # 2.
 # instead of printing:
