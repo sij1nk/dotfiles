@@ -1,18 +1,23 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.textobjects = vim.tbl_extend("force", opts.textobjects, {
-        swap = {
-          enable = true,
-          swap_next = {
-            ["gSj"] = { query = "@parameter.inner", desc = "Swap Next Parameter" },
-          },
-          swap_previous = {
-            ["gSk"] = { query = "@parameter.inner", desc = "Swap Prev Parameter" },
-          },
-        },
-      })
-    end,
+    keys = {
+      {
+        "gSj",
+        mode = { "n" },
+        function()
+          require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
+        end,
+        desc = "Swap Next Parameter",
+      },
+      {
+        "gSk",
+        mode = { "n" },
+        function()
+          require("nvim-treesitter-textobjects.swap").swap_next("@parameter.outer")
+        end,
+        desc = "Swap Prev Parameter",
+      },
+    },
   },
 }
