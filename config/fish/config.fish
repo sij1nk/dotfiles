@@ -21,6 +21,7 @@ abbr -a gl 'git log'
 abbr -a glg 'git log --oneline --graph'
 abbr -a vim 'vim -i NONE'
 abbr -a tf terraform
+abbr -a pn pnpm
 
 if command -v zathura >/dev/null
     abbr -a zat zathura
@@ -39,6 +40,7 @@ else
 end
 
 fish_add_path '/home/rg/.scripts'
+fish_add_path /home/rg/go/bin
 fish_add_path '/home/rg/.local/bin'
 fish_add_path '/home/rg/.local/share/cargo/bin'
 fish_add_path '/home/rg/.local/share/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin'
