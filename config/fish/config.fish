@@ -91,8 +91,8 @@ set -x BEMENU_OPTS "-f --binding vim --vim-esc-exits --ignorecase \
   --hb $ROSEPINE_MAIN_LOVE --hf $ROSEPINE_MAIN_OVERLAY \
   --sb $ROSEPINE_MAIN_GOLD --sf $ROSEPINE_MAIN_OVERLAY \
   --ab $ROSEPINE_MAIN_SURFACE --af $ROSEPINE_MAIN_TEXT \
-  -W 0.4"
-set -x BEMENU_SCALE 1.5
+  -W 0.6"
+set -x BEMENU_SCALE 3
 
 set __fish_git_prompt_showuntr yes
 set __fish_git_prompt_showdirtystate yes
