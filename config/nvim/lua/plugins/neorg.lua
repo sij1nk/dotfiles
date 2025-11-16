@@ -17,7 +17,7 @@ return {
   { "juniorsundar/neorg-extras" },
   {
     "nvim-neorg/neorg",
-    version = "*",
+    version = false,
     ft = "norg",
     dependencies = {
       "vhyrro/luarocks.nvim",
