@@ -131,7 +131,7 @@ if status is-interactive
     if test (tty) = /dev/tty1
         set -x XDG_CURRENT_DESKTOP Hyprland
         set -x QT_QPA_PLATFORM wayland
-        exec Hyprland
+        exec start-hyprland
     end
 
     if test (tty) = /dev/tty2
