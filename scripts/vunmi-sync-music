@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+rsync \
+  --archive \
+  --human-readable \
+  --info=stats1,progress2 \
+  --modify-window=1 \
+  --delete \
+  -e ssh \
+  /home/rg/Music rg@sijink.xyz:/home/rg/Music
