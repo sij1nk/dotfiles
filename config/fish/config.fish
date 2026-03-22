@@ -43,7 +43,6 @@ fish_add_path '/home/rg/.scripts'
 fish_add_path /home/rg/go/bin
 fish_add_path '/home/rg/.local/bin'
 fish_add_path '/home/rg/.local/share/cargo/bin'
-fish_add_path '/home/rg/.local/share/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin'
 
 set -x EDITOR nvim
 set -x VISUAL nvim
