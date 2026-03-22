@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Determine default branch (main/master) locally
+default_branch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's|^origin/||')
+if [ -z "$default_branch" ]; then
+  if git show-ref --verify --quiet refs/heads/main; then
+    default_branch=main
+  elif git show-ref --verify --quiet refs/heads/master; then
+    default_branch=master
+  else
+    echo "Could not determine default branch."
+    exit 1
+  fi
+fi
+
+# List local branches except the default branch
+branches=$(git branch --format='%(refname:short)' | grep -v "^$default_branch$" | fzf --multi --prompt="Delete branch(es): ")
+
+echo "Branches $branches"
+
+[ -z "$branches" ] && exit 0
+
+# Convert to array
+mapfile -t branch_array <<<"$branches"
+
+echo "Branch array $branch_array"
+
+if [ "${#branch_array[@]}" -eq 1 ]; then
+  branch="${branch_array[0]}"
+  if [ "$branch" = "$default_branch" ]; then
+    echo "Cannot delete the default branch ($default_branch)."
+    exit 1
+  fi
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  if [ "$branch" = "$current_branch" ]; then
+    echo "Switching to $default_branch before deleting $branch..."
+    git checkout "$default_branch"
+  fi
+  git branch -D "$branch"
+  if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+    git push origin --delete "$branch"
+  fi
+  echo "Branch '$branch' deleted locally and remotely (if existed)."
+else
+  # Multi-branch: show confirmation
+  echo "The following branches will be deleted:"
+  printf '  %s\n' "${branch_array[@]}"
+  read -n 1 -p "Are you sure? [y/N] " confirm
+  echo
+  [[ "$confirm" =~ ^[Yy]$ ]] || {
+    echo "Aborted."
+    exit 1
+  }
+
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  # Filter out default branch and handle current branch switch
+  to_delete=()
+  for branch in "${branch_array[@]}"; do
+    if [ "$branch" = "$default_branch" ]; then
+      echo "Skipping default branch ($default_branch)."
+      continue
+    fi
+    if [ "$branch" = "$current_branch" ]; then
+      echo "Switching to $default_branch before deleting $branch..."
+      git checkout "$default_branch"
+      current_branch="$default_branch"
+    fi
+    to_delete+=("$branch")
+  done
+
+  if [ "${#to_delete[@]}" -eq 0 ]; then
+    echo "No branches to delete."
+    exit 0
+  fi
+
+  git branch -D "${to_delete[@]}"
+  # Check which branches exist remotely before pushing delete
+  remote_branches=()
+  for branch in "${to_delete[@]}"; do
+    if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+      remote_branches+=("$branch")
+    fi
+  done
+  if [ "${#remote_branches[@]}" -gt 0 ]; then
+    git push origin --delete "${remote_branches[@]}"
+  fi
+  echo "Branches deleted locally and remotely (if existed)."
+fi

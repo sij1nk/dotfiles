@@ -4,10 +4,9 @@
 prefixes_to_prune=bug,bugfix,fix,feature,chore,refactor,release,ci,spike
 
 repo=${1:-$(realpath .)}
-git_folder="$repo/.git"
 
-if ! [ -d "$git_folder" ]; then
-  echo "$git_folder is not a git repository; aborting"
+if ! git status >/dev/null 2>&1; then
+  echo "$repo is not part of a git repository; aborting"
   exit 1
 fi
 
@@ -25,4 +24,8 @@ if confirm "The local branches listed above ($n/$total) will be deleted. Are you
   branches_concat=$(echo "$branches" | tr '\n' ' ')
   # Don't double quote, so branch names are passed as separate arguments to git branch -D
   git branch -D $branches_concat
+
+  if confirm "Pruning remote branches. Are you sure"; then
+    git fetch --prune
+  fi
 fi

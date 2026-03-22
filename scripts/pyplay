@@ -1,0 +1,109 @@
+#!/bin/bash
+
+command=$1
+
+show_help() {
+  echo "Usage:"
+  echo "  pyplay h|help: show this help"
+  echo "  pyplay w|wipe: wipe all temporary pyplays"
+  echo "  pyplay l|list: list all pyplays"
+  echo "  pyplay o|open: open a selected pyplay in a zellij session"
+  echo "  pyplay c|create: create a new temporary pyplay in a zellij session"
+  echo '  pyplay s|save: save a temporary pyplay (with a custom name, if provided in $2)'
+  exit 0
+}
+
+if [ -z "$command" ] || [ "$command" == 'h' ] || [ "$command" == 'help' ]; then
+  show_help
+fi
+
+dir_prefix="/tmp/pyplay"
+template_path="$HOME/repos/@python/python_playground_template/"
+saved_playgrounds_path="$HOME/repos/@python/_playgrounds/"
+timestamp=$(date +%Y%m%d-%H%M%S)
+
+open_pyplay() {
+  pyplay=$1
+  basename=$(basename "$pyplay")
+  zellij action new-tab --name "$basename" --cwd "$pyplay" --layout "$XDG_CONFIG_HOME/zellij/layouts/pyplay.kdl"
+}
+
+get_temp_pyplays() {
+  fdfind -t d "pyplay-*" "/tmp"
+}
+
+get_saved_pyplays() {
+  ls -1 "$saved_playgrounds_path"
+}
+
+get_pyplays() {
+  temp_pyplays=$(get_temp_pyplays)
+  saved_pyplays=$(get_saved_pyplays)
+  echo -e "$saved_pyplays\n$temp_pyplays" | grep .
+}
+
+case "$command" in
+'w') ;&
+'wipe')
+  temp_pyplays=$(get_temp_pyplays)
+  if [ -z "$temp_pyplays" ]; then
+    echo "There are no temporary pyplays."
+    exit 0
+  fi
+
+  echo "The following temporary pyplays will be wiped:"
+  echo -e "$temp_pyplays"
+  if confirm "Are you sure"; then
+    echo -n "$temp_pyplays" | xargs rm -rf
+  fi
+  ;;
+'l') ;&
+'list')
+  get_pyplays
+  ;;
+'o') ;&
+'open')
+  pyplays=$(get_pyplays)
+
+  chosen=$(echo -e "$pyplays" | fzf)
+  if [ -z "$chosen" ]; then
+    exit 1
+  fi
+
+  if [[ "$chosen" != $dir_prefix* ]]; then
+    chosen="$saved_playgrounds_path$chosen"
+  fi
+
+  open_pyplay "$chosen"
+  ;;
+'c') ;&
+'create')
+  pyplaydir="$dir_prefix-$timestamp"
+  cp -r "$template_path" "$pyplaydir"
+
+  open_pyplay "$pyplaydir"
+  ;;
+'s') ;&
+'save')
+  pyplaydir="$(pwd)"
+  if [[ "$pyplaydir" != $dir_prefix* ]]; then
+    echo "Current directory is not a pyplay directory! Aborting"
+    exit 1
+  fi
+
+  name=$2
+
+  cd "$HOME" || exit 1
+
+  savedir="$saved_playgrounds_path"
+  if [ -n "$name" ]; then
+    savedir="$savedir$name"
+  else
+    savedir="$savedir$(basename $pyplaydir)"
+  fi
+
+  mv "$pyplaydir" "$savedir"
+  echo "Playground has been saved to $savedir"
+  ;;
+*) show_help ;;
+esac

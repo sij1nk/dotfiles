@@ -1,0 +1,109 @@
+#!/bin/bash
+
+command=$1
+
+show_help() {
+  echo "Usage:"
+  echo "  tsplay h|help: show this help"
+  echo "  tsplay w|wipe: wipe all temporary tsplays"
+  echo "  tsplay l|list: list all tsplays"
+  echo "  tsplay o|open: open a selected tsplay in a zellij session"
+  echo "  tsplay c|create: create a new temporary tsplay in a zellij session"
+  echo '  tsplay s|save: save a temporary tsplay (with a custom name, if provided in $2)'
+  exit 0
+}
+
+if [ -z "$command" ] || [ "$command" == 'h' ] || [ "$command" == 'help' ]; then
+  show_help
+fi
+
+dir_prefix="/tmp/tsplay"
+template_path="$HOME/repos/@typescript/typescript_playground_template/"
+saved_playgrounds_path="$HOME/repos/@typescript/_playgrounds/"
+timestamp=$(date +%Y%m%d-%H%M%S)
+
+open_tsplay() {
+  tsplay=$1
+  basename=$(basename "$tsplay")
+  zellij action new-tab --name "$basename" --cwd "$tsplay" --layout "$XDG_CONFIG_HOME/zellij/layouts/tsplay.kdl"
+}
+
+get_temp_tsplays() {
+  fdfind -t d "tsplay-*" "/tmp"
+}
+
+get_saved_tsplays() {
+  ls -1 "$saved_playgrounds_path"
+}
+
+get_tsplays() {
+  temp_tsplays=$(get_temp_tsplays)
+  saved_tsplays=$(get_saved_tsplays)
+  echo -e "$saved_tsplays\n$temp_tsplays" | grep .
+}
+
+case "$command" in
+'w') ;&
+'wipe')
+  temp_tsplays=$(get_temp_tsplays)
+  if [ -z "$temp_tsplays" ]; then
+    echo "There are no temporary tsplays."
+    exit 0
+  fi
+
+  echo "The following temporary tsplays will be wiped:"
+  echo -e "$temp_tsplays"
+  if confirm "Are you sure"; then
+    echo -n "$temp_tsplays" | xargs rm -rf
+  fi
+  ;;
+'l') ;&
+'list')
+  get_tsplays
+  ;;
+'o') ;&
+'open')
+  tsplays=$(get_tsplays)
+
+  chosen=$(echo -e "$tsplays" | fzf)
+  if [ -z "$chosen" ]; then
+    exit 1
+  fi
+
+  if [[ "$chosen" != $dir_prefix* ]]; then
+    chosen="$saved_playgrounds_path$chosen"
+  fi
+
+  open_tsplay "$chosen"
+  ;;
+'c') ;&
+'create')
+  tsplaydir="$dir_prefix-$timestamp"
+  cp -r "$template_path" "$tsplaydir"
+
+  open_tsplay "$tsplaydir"
+  ;;
+'s') ;&
+'save')
+  tsplaydir="$(pwd)"
+  if [[ "$tsplaydir" != $dir_prefix* ]]; then
+    echo "Current directory is not a tsplay directory! Aborting"
+    exit 1
+  fi
+
+  name=$2
+
+  cd "$HOME" || exit 1
+
+  savedir="$saved_playgrounds_path"
+  if [ -n "$name" ]; then
+    savedir="$savedir$name"
+  else
+    savedir="$savedir$(basename $tsplaydir)"
+  fi
+
+  mv "$tsplaydir" "$savedir"
+  echo "Playground has been saved to $savedir"
+  ;;
+*) show_help ;;
+esac
