@@ -30,6 +30,10 @@ color.hlhi = "#524f67"
 color.intel_blue = "#0071c5"
 color.amd_red = "#ed1c24"
 
+[darkman.files]
+"config/darkman" = "~/.config/darkman"
+"data/darkman" = "~/.local/share/darkman"
+
 [desktop_entries.files]
 "config/desktop_entries" = '~/.local/share/applications'
 
