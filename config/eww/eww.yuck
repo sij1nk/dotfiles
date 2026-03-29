@@ -158,8 +158,9 @@
             ""
           )
       )
-    (widget-status 
+    (widget-status
         :val brightness
+        :onclick "darkman toggle"
         :onscroll "plsdo brightness -d {} 10"
       (box
           :class "status-icon brightness-icon"
