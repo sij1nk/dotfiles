@@ -119,3 +119,6 @@ x11.enable = true
 "config/zellij/themes" = "~/.config/zellij/themes"
 "config/zellij/layouts" = "~/.config/zellij/layouts"
 "config/zellij/plugins" = { target = "~/.config/zellij/plugins", type = "symbolic" }
+
+[zk.files]
+"config/zk" = { target = "~/.config/zk", type = "symbolic" }
