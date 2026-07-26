@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  version = "1.*",
   dependencies = {
     "disrupted/blink-cmp-conventional-commits",
     "bydlw98/blink-cmp-env",
@@ -118,8 +119,6 @@ return {
     cmdline = {
       enabled = true,
       keymap = {
-        preset = "inherit",
-
         ["<ESC>"] = {
           -- cancel completion, but don't close cmdline
           function(cmp)
@@ -131,8 +130,6 @@ return {
           end,
         },
       },
-      completion = { menu = { auto_show = true } },
-      sources = { "path" },
     },
   },
 }
