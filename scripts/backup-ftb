@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -e
+
+# TODO: to make the script simple to use, all variables are embedded so I can just do `backup-ftb` manually
+# optimally, these should be parameterizable via cli args / env vars
+# zip_pw="${ZIP_PASSWORD:?missing environment variable}"
+# keep_n_most_recent="${KEEP_N_MOST_RECENT:?missing environment variable}"
+modpack="${1:-FTB Infinity Evolved 1.7}"
+save="${2:-15togo}"
+zip_pw="ftb"
+keep_n_most_recent=5
+
+date=$(date -Iminutes)
+
+sanitized_backup_folder_name=$(echo "${modpack}__${save}" | tr ' ' '_' | awk '{print tolower($0)}')
+sanitized_backup_id="${sanitized_backup_folder_name}__${date}.zip"
+
+save_dir="/home/rg/.local/share/PrismLauncher/instances/${modpack}/.minecraft/saves/${save}"
+backup_dir="/st/rg/Backups"
+mkdir -p "${backup_dir}/${sanitized_backup_folder_name}"
+
+echo "Keeping $keep_n_most_recent backups"
+to_delete=$(ls -1 --sort=t $backup_dir | tail -n +$((keep_n_most_recent + 1)))
+
+if [ -n "$to_delete" ]; then
+  echo "Deleting the following backups:"
+  echo "$to_delete"
+  echo "$to_delete" | xargs -I {} rm -rf "$backup_dir/{}"
+fi
+
+cd "$save_dir/.." || exit
+zip -P "$zip_pw" -r "${backup_dir}/${sanitized_backup_folder_name}/${sanitized_backup_id}" "$save"
+
+echo "Syncing backups to remote..."
+rclone sync "$backup_dir" "backups:/Backups"
