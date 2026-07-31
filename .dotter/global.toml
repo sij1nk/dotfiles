@@ -60,6 +60,7 @@ color.amd_red = "#ed1c24"
 hypr.monitor.output = "HDMI-A-1"
 hypr.monitor.mode = "3840x2160@120"
 hypr.monitor.scale = 2
+hypr.input.sensitivity = -0.5
 
 [less.files]
 "config/lesskey" = "~/.config/lesskey"
