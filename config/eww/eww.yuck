@@ -1,6 +1,4 @@
-(defvar primary-ids "[1, 2, 3, 4, 5]")
-(defvar secondary-ids "[6, 7, 8, 9, 10]")
-(defvar all-ids "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
+(defvar ids "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
 
 ; Eww wants some of the initial values to exist, otherwise it logs errors when
 ; loading. Initial values should be unused!
@@ -46,43 +44,8 @@
     :orientation "h"
     :hexpand true
   (widget-media)
-  (widget-hypr-workspaces :ids primary-ids :monitor "primary")
+  (widget-hypr-workspaces :ids ids :monitor "primary")
   (widget-statuslist)
-  ))
-
-(defwindow primary-single
-  :monitor "HDMI-A-1" 
-  :geometry (geometry 
-    :x "0"
-    :y "0%"
-    :width "100%"
-    :height "44px"
-    :anchor "top center")
-  :stacking "fg"
-  :exclusive true
-(centerbox
-    :orientation "h"
-    :hexpand true
-  (widget-media)
-  (widget-hypr-workspaces :ids all-ids :monitor "primary")
-  (widget-statuslist)
-  ))
-
-(defwindow secondary
-  :monitor "DP-1" 
-  :geometry (geometry  
-    :x "0" 
-    :y "0" 
-    :width "100%" 
-    :height "36px" 
-    :anchor "center top")
-  :stacking "fg"
-  :exclusive true
-(centerbox 
-    :orientation "h" 
-  (box)
-  (widget-hypr-workspaces :ids secondary-ids :monitor "secondary")
-  (box)
   ))
 
 (defwidget widget-hypr-workspaces [ids monitor]

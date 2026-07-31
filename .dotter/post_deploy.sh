@@ -3,5 +3,4 @@
 set -x
 
 hyprctl reload
-# TODO: what if we're on dual monitor?
-eww --restart open primary-single
+eww --restart open primary
