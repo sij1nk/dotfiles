@@ -56,6 +56,11 @@ color.amd_red = "#ed1c24"
 "config/hypr" = "~/.config/hypr"
 "config/hypr/hyprland.conf" = "~/.config/hypr/hyprland.conf"
 
+[hypr.variables]
+hypr.monitor.output = "HDMI-A-1"
+hypr.monitor.mode = "3840x2160@120"
+hypr.monitor.scale = 2
+
 [less.files]
 "config/lesskey" = "~/.config/lesskey"
 
