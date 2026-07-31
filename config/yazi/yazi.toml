@@ -4,10 +4,10 @@ sort_translit = true
 linemode = "permissions"
 
 [plugin]
-prepend_previewers = [{ name = "*.md", run = "glow" }]
+prepend_previewers = [{ url = "*.md", run = "glow" }]
 
 [opener]
 rnote = [{ run = 'rnote "$@"', orphan = true, for = "unix" }]
 
 [open]
-prepend_rules = [{ name = "*.rnote", use = "rnote" }]
+prepend_rules = [{ url = "*.rnote", use = "rnote" }]

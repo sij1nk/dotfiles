@@ -138,15 +138,15 @@ rules = [
   { mime = "application/x-rar", fg = "#eb6f92" },
 
   # Symlink
-  { name = "*", is = "link", fg = "#c4a7e7" },
-  { name = "*", is = "exec", fg = "#ebbcba" },
+  { url = "*", is = "link", fg = "#c4a7e7" },
+  { url = "*", is = "exec", fg = "#ebbcba" },
 
   # Empty file
   { mime = "inode/x-empty", fg = "#eb6f92" },
 
   # Fallback
-  { name = "*", fg = "#e0def4" },
-  { name = "*/", fg = "#9ccfd8" },
+  { url = "*", fg = "#e0def4" },
+  { url = "*/", fg = "#9ccfd8" },
 ]
 
 # : }}}
