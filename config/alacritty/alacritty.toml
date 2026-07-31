@@ -10,13 +10,6 @@ TERM = "alacritty"
 [font]
 size = {{alacritty.font_size}}
 
-[font.italic]
-family = "Cartograph CF"
-style = "Italic"
-
-[font.normal]
-family = "monospace"
-
 [[keyboard.bindings]]
 action = "Paste"
 key = "V"
