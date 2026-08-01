@@ -31,7 +31,7 @@
 (defpoll torrent :interval "5s" "plsdo torrent")
 
 (defwindow primary
-  :monitor "HDMI-A-1" 
+  :monitor "{{hypr.monitor.output}}"
   :geometry (geometry 
     :x "0"
     :y "0%"
