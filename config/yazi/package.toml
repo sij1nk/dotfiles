@@ -13,5 +13,7 @@ use = "Ev357/compress"
 rev = "addea98"
 hash = "eb56f28f5d44e121276523007a7e8f83"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "Mintass/rose-pine"
+rev = "d91f8f2"
+hash = "87da3630653b6d272e43658418599188"

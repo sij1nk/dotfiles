@@ -18,14 +18,10 @@ fi
 # List local branches except the default branch
 branches=$(git branch --format='%(refname:short)' | grep -v "^$default_branch$" | fzf --multi --prompt="Delete branch(es): ")
 
-echo "Branches $branches"
-
 [ -z "$branches" ] && exit 0
 
 # Convert to array
 mapfile -t branch_array <<<"$branches"
-
-echo "Branch array $branch_array"
 
 if [ "${#branch_array[@]}" -eq 1 ]; then
   branch="${branch_array[0]}"

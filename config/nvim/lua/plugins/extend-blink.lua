@@ -119,6 +119,7 @@ return {
     cmdline = {
       enabled = true,
       keymap = {
+        preset = "cmdline",
         ["<ESC>"] = {
           -- cancel completion, but don't close cmdline
           function(cmp)
@@ -130,6 +131,8 @@ return {
           end,
         },
       },
+      completion = { menu = { auto_show = true } },
+      sources = { "cmdline", "buffer", "path" },
     },
   },
 }

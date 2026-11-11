@@ -151,6 +151,11 @@ if status is-interactive
     direnv hook fish | source
     fzf --fish | source
 
+    set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+    if not string match -q -- $PNPM_HOME $PATH
+        set -gx PATH "$PNPM_HOME" $PATH
+    end
+
     if test (tty) = /dev/tty1
         set -x XDG_CURRENT_DESKTOP Hyprland
         set -x QT_QPA_PLATFORM wayland
