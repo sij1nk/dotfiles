@@ -19,9 +19,14 @@ return {
             ["K"] = { "preview_scroll_up", mode = { "n" } },
             ["H"] = { "preview_scroll_left", mode = { "n" } },
             ["L"] = { "preview_scroll_right", mode = { "n" } },
+            ["<C-P>"] = { "toggle_preview", mode = { "n", "i" } },
           },
         },
       },
     },
+  },
+  keys = {
+    { "<leader>gp", nil },
+    { "<leader>gP", nil },
   },
 }

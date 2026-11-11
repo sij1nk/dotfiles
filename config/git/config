@@ -1,10 +1,16 @@
 [user]
 {{#with git}}
-	email = {{email}}
-	name = {{name}}
+ email = {{email}}
+ name = {{name}}
 {{/with}}
 [diff]
-        colormoved = "default"
-        colormovedws = "allow-indentation-change"
+  colormoved = "default"
+  colormovedws = "allow-indentation-change"
 [core]
-	autocrlf = false
+ autocrlf = false
+[rerere]
+ enabled = true
+[interactive]
+  singleKey = true
+[pull]
+  rebase = true

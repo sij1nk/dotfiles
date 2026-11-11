@@ -4,8 +4,6 @@ abbr -a mv 'mv -v'
 abbr -a mkdir 'mkdir -p'
 abbr -a less 'less -R'
 
-abbr -a z zellij
-
 abbr -a g git
 abbr -a ga 'git add -p'
 abbr -a gco 'git checkout'
@@ -14,6 +12,7 @@ abbr -a gca 'git commit --amend'
 abbr -a gp 'git push'
 abbr -a gs 'git status -s'
 abbr -a gr 'git restore'
+abbr -a grim 'git rebase -i main'
 abbr -a gds 'git diff --staged'
 abbr -a grs 'git restore --staged'
 abbr -a grh 'git reset --hard'
@@ -22,6 +21,9 @@ abbr -a glg 'git log --oneline --graph'
 abbr -a vim 'vim -i NONE'
 abbr -a tf terraform
 abbr -a pn pnpm
+abbr -a cl clip.exe
+abbr -a pi 'VISUAL=vim pi'
+abbr -a todo 'zk edit -m todo'
 
 if command -v zathura >/dev/null
     abbr -a zat zathura
@@ -103,9 +105,29 @@ else if command -v fdfind >/dev/null
     set -x FZF_DEFAULT_COMMAND "fdfind --type f"
 end
 
-set -x FZF_DEFAULT_OPTS "--bind j:down,k:up,space:toggle --bind 'start:unbind(j)+unbind(k)+unbind(i)'" \
-    "--bind 'esc:rebind(j)+rebind(k)+rebind(i)+change-prompt([NORMAL] > )'" \
-    "--bind 'i:unbind(j)+unbind(k)+unbind(i)+change-prompt([INSERT] > )'" \
+function zellij_tab_name_update --on-variable PWD
+    set tab_name ''
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set git_root (basename (git rev-parse --show-toplevel))
+        set git_prefix (git rev-parse --show-prefix)
+        set tab_name "$git_root/$git_prefix"
+        set tab_name (string trim -c / "$tab_name") # Remove trailing slash
+    else
+        set tab_name $PWD
+        if test "$tab_name" = "$HOME"
+            set tab_name "~"
+        else
+            set tab_name (basename "$tab_name")
+        end
+    end
+    command nohup zellij action rename-tab $tab_name >/dev/null 2>&1 &
+end
+
+# - basic vim modal bindings (normal mode, insert mode, j,k to navigate, i,esc to change mode)
+# - y: yank current line (cut first 20 characters to skip the date and separator)
+set -x FZF_DEFAULT_OPTS "--bind j:down,k:up,space:toggle --bind 'y:execute-silent(echo -n {} | cut -c 20- | clip.exe)' --bind 'start:unbind(j)+unbind(k)+unbind(i)+unbind(y)'" \
+    "--bind 'esc:rebind(j)+rebind(k)+rebind(i)+rebind(y)+change-prompt([NORMAL] > )'" \
+    "--bind 'i:unbind(j)+unbind(k)+unbind(i)+unbind(y)+change-prompt([INSERT] > )'" \
     "--prompt '[INSERT] > ' --ansi"
 
 set smart_complete '
@@ -126,6 +148,8 @@ if status is-interactive
     bind -M insert \v up-line
     set fzf_history_opts --preview=""
     zoxide init fish --cmd cd | source
+    direnv hook fish | source
+    fzf --fish | source
 
     if test (tty) = /dev/tty1
         set -x XDG_CURRENT_DESKTOP Hyprland
