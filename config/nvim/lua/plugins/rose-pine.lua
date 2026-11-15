@@ -30,6 +30,7 @@ return {
           NormalFloat = { bg = "base", fg = "text" },
           FloatBorder = { bg = "base", fg = "base" },
           MyHighlight = { fg = "iris" },
+          Whitespace = { fg = "highlight_med" },
           IblIndent = { fg = "highlight_med" },
           CodeBlock = { bg = "base" },
           -- rose-pine italicizes a lot of stuff by default, which is annoying with fancy italic fonts

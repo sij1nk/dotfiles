@@ -54,7 +54,6 @@ color.amd_red = "#ed1c24"
 
 [hypr.files]
 "config/hypr" = "~/.config/hypr"
-"config/hypr/hyprland.conf" = "~/.config/hypr/hyprland.conf"
 
 [hypr.variables]
 hypr.monitor.output = "HDMI-A-1"
